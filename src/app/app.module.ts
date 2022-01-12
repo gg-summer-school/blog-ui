@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { GuardsComponent } from './auth/guards/guards.component';
 import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriesComponent,
     GuardsComponent,
-    InterceptorsComponent
+    InterceptorsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
