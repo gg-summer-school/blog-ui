@@ -3,9 +3,34 @@
   height: 700px;
   width: 100px;
   position: fixed;
+  text-align: center;
+  color: white;
+  font-size: 15px;
 }
 
-a {
-  text-decoration: none;
+  //$col-md-2 (
+  //  background-color: $indigo-800;
+  //);
+
+.icon {
   color: white;
+  margin-left: 10px;
+  font-size: 15px;
 }
+
+  .col-md-12 {
+    color: white;
+  }
+
+  img {
+    border-right: 100px;
+    width: 50px;
+    height: 50px;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+
