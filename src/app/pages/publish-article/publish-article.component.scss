@@ -12,6 +12,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-image:url('/../../../assets/blog.JPG');
+  border-top-left-radius:10px ;
+  border-bottom-left-radius:10px ;
 }
 form
 {
@@ -20,4 +22,15 @@ form
 input{
   border-radius: 10px;
   border: 1px solid darkgrey;
+}
+.button
+{
+  text-align: center;
+}
+button
+{
+  width: 350px;
+  background-color: darkblue;
+  box-shadow: 1px 2px 3px;
+  border-radius: 20px;
 }
