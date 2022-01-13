@@ -8,6 +8,7 @@ import { GuardsComponent } from './auth/guards/guards.component';
 import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,15 @@ import { LoginComponent } from './pages/login/login.component';
     GuardsComponent,
     InterceptorsComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
