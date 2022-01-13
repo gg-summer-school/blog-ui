@@ -1,0 +1,31 @@
+<script src="../../app.component.spec.ts"></script>
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-6 image">
+    </div>
+    <div class="col-md-6">
+      <br>
+      <h4>Publish an article</h4>
+      <form [formGroup]="createP" (submit)="onSubmit()">
+        <input type="text" placeholder="Title" class="form-control">
+        <br>
+        <label for="bc">Upload book cover</label>
+        <input type="file"  id="bc" placeholder="Book cover" class="form-control">
+        <br>
+        <input type="text" placeholder="Abstract" class="form-control">
+        <br>
+        <input type="text" placeholder="Table of content" class="form-control">
+        <br>
+        <input type="text" placeholder="Contributors" class="form-control">
+        <br>
+        <input type="number" placeholder="Book price" class="form-control">
+        <br>
+<!--        <quill-editor [styles]="{height: '200px'}" theme="snow" formControlName="content"></quill-editor>-->
+
+      </form>
+    </div>
+  </div>
+</div>

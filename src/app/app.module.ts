@@ -6,17 +6,26 @@ import { AppComponent } from './app.component';
 import { GuardsComponent } from './auth/guards/guards.component';
 import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PublishArticleComponent } from './pages/publish-article/publish-article.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     GuardsComponent,
     InterceptorsComponent,
-    DashboardComponent
+    DashboardComponent,
+    PublishArticleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

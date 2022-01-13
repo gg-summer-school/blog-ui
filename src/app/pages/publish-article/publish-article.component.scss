@@ -1,0 +1,23 @@
+.row
+{
+  box-shadow: 1px 2px 4px gray;
+  margin-left: 70px;
+  margin-right: 70px;
+  border-radius: 10px;
+
+}
+.image
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image:url('/../../../assets/blog.JPG');
+}
+form
+{
+  padding: 15px;
+}
+input{
+  border-radius: 10px;
+  border: 1px solid darkgrey;
+}
