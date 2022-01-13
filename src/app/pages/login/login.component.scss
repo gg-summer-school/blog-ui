@@ -37,11 +37,23 @@
     0 32px 64px rgba(0,0,0,0.07);
 }
 
-.right .col-sm-10 {
-    margin-left: 50px;
-    margin-top: 200px;
+.btn {
+    width: 310px;
+    background-color: indigo;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
-.btn {
-    width: 368px;
+h5 {
+    text-align: center;
+}
+
+.right .col-sm-10 form {
+    margin-left: 60px;
+    margin-top: 150px;
+}
+
+span {
+    color: blue;
+    float: right;
 }
