@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { GuardsComponent } from './auth/guards/guards.component';
 import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GuardsComponent,
     InterceptorsComponent,
-    DashboardComponent
+    DashboardComponent,
+    YourArticlesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
