@@ -1,11 +1,13 @@
 .col-md-2 {
   background-color: indigo;
   height: 700px;
-  width: 70px;
+  width: 50px;
   position: fixed;
   text-align: center;
   color: white;
-  font-size: 11px;
+  font-size: 7px;
+  font-weight: lighter;
+  padding-right: 5px;
 }
 
   //$col-md-2 (
@@ -14,8 +16,8 @@
 
 .icon {
   color: white;
-  margin-left: 10px;
-  font-size: 20px;
+  margin-left: 5px;
+  font-size: 15px;
 }
 
   .col-md-12 {
@@ -31,6 +33,10 @@
   a {
     text-decoration: none;
     color: white;
+  }
+
+  .log {
+    font-size: 9px;
   }
 
 

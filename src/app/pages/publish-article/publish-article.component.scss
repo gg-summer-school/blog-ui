@@ -1,0 +1,36 @@
+.row
+{
+  box-shadow: 1px 2px 4px gray;
+  margin-left: 100px;
+  margin-right: 70px;
+  border-radius: 10px;
+
+}
+.image
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image:url('/../../../assets/blog.JPG');
+  border-top-left-radius:10px ;
+  border-bottom-left-radius:10px ;
+}
+form
+{
+  padding: 15px;
+}
+input{
+  border-radius: 10px;
+  border: 1px solid darkgrey;
+}
+.button
+{
+  text-align: center;
+}
+button
+{
+  width: 350px;
+  background-color: indigo;
+  box-shadow: 1px 2px 3px;
+  border-radius: 20px;
+}
