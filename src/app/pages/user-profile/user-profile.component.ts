@@ -7,6 +7,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
 
+  firstName: string = "Ndzo Daniel";
+  email: string = "ndzodaniel31@gmail.com";
+
   constructor(private formBuilder: FormBuilder) { }
   user!: FormGroup;
   users = this.formBuilder.group({
