@@ -20,41 +20,32 @@ const routes: Routes = [
   {path: 'user-profile', component: UserProfileComponent},
   {path: 'publisher-admin', component: PublisherAdminComponent},
   {path: 'user-admin', component: UserAdminComponent},
-  {
-    path: '',
-    component: LandingPageComponent
-  },
 
-  {path: '', component: LandingPageComponent},
-  {path: 'your-articles', component: YourArticlesComponent},
-  {path: 'user-profile', component: UserProfileComponent},
-  {path: 'publisher-admin', component: PublisherAdminComponent},
-  {path: 'user-admin', component: UserAdminComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'publish-article', component: PublishArticleComponent},
   {path: 'users-article', component: UsersArticleComponent},
-  {path: 'landing-page', component: LandingPageComponent},
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent},
+
+  { path: 'user-admin',
+    component: UserAdminComponent
   },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-  {
-    path: 'your-articles',
-    component: YourArticlesComponent
-  },
-  {
-    path: 'user-profile',
-    component: UserProfileComponent
+
+  { path: 'requests',
+    component: RequestsComponent
   },
   {
     path: 'articles-detail',
     component: ArticleDetailPageComponent
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
   }
-  ];
+
+];
+
 
 
 @NgModule({
