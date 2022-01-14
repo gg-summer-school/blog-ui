@@ -53,7 +53,8 @@ const routes: Routes = [
   {
     path: 'articles-detail',
     component: ArticleDetailPageComponent
-  }
+  },
+
 ];
 
 
