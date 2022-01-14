@@ -9,6 +9,9 @@ import { InterceptorsComponent } from './auth/interceptors/interceptors.componen
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { SignupComponent } from './pages/signup/signup.component';
     InterceptorsComponent,
     DashboardComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    YourArticlesComponent,
+    UserProfileComponent
   ],
   imports: [
     FormsModule,

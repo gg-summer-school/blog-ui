@@ -1,0 +1,103 @@
+ <div class="col-xs-8">
+   <br/>
+      <div class="align-content-center profile">
+        <h4>My Profile</h4>
+        <img src="assets/avatar.png" class="image">
+        <br/>
+        <br/>
+          <div class="form-group mb-4 mt-3 p">
+            <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
+            <span><label>King Arthur</label></span>
+          </div>
+        <br/>
+        <div class="form-group mb-4 p">
+          <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>
+          <span><label>kingarthur@gmail.com</label></span>
+        </div>
+        <br/>
+        <div class="form-group mb-4 p">
+          <label class="text-muted"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>
+          <span><label>Publisher</label></span>
+        </div>
+        <br/>
+        <div class="form-group mb-4 p">
+          <label class="text-muted"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>
+          <span><label>2</label></span>
+        </div>
+        <div class="mb-4 col-md-4 d-grid gap-2">
+          <div class="">
+            <button class="btn btn-sm edit" data-bs-toggle="modal"
+                    data-bs-target="#editProfileModal">Edit profile</button>
+          </div>
+        </div>
+        <br/>
+      </div>
+ </div>
+
+ <!-- Modal for edit user profile -->
+ <div
+   class="modal fade"
+   id="editProfileModal"
+   tabindex="-1"
+   aria-labelledby="exampleModalLabel"
+   aria-hidden="true"
+ >
+   <div class="modal-dialog modal-sm">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+         <button
+           type="button"
+           class="btn-close btn-sm "
+           data-bs-dismiss="modal"
+           aria-label="Close"
+         ></button>
+       </div>
+       <div class="modal-body">
+         <form [formGroup]="users">
+           <div class="form-group mb-2">
+             <label>Name</label>
+             <input
+               id="firstName"
+               type="text"
+               class="form-control"
+               required
+               formControlName="firstName"
+             />
+           </div>
+           <div class="form-group mb-2">
+             <label>Email</label>
+             <input
+               id="email"
+               type="text"
+               class="form-control"
+               required
+               formControlName="email"
+             />
+           </div>
+           <div class="form-group mb-2">
+             <label>Role</label>
+             <input
+               id="role"
+               type="text"
+               class="form-control"
+               required
+               formControlName="role"
+             />
+           </div>
+           <div class="d-flex justify-content-end">
+             <button
+               type="submit"
+               class="btn  btn-sm btn-primary"
+               data-bs-dismiss="modal">
+               Save
+             </button>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+
