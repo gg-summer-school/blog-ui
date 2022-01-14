@@ -12,12 +12,12 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { PublishArticleComponent } from './pages/publish-article/publish-article.component';
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-// @ts-ignore
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { SearchFilterPipe } from './pipe/search-filter.pipe'
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http'
     UsersArticleComponent,
     PublishArticleComponent,
     LandingPageComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchFilterPipe
   ],
   imports: [
     HttpClientModule,
