@@ -54,6 +54,15 @@ const routes: Routes = [
     path: 'articles-detail',
     component: ArticleDetailPageComponent
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  {
+    path: 'signup',
+    component: SignupComponent
+  }
 
 ];
 
