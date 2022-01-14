@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GuardsComponent } from './auth/guards/guards.component';
-import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UserAdminComponent } from './pages/user-admin/user-admin.component';
@@ -15,26 +12,32 @@ import { PublishArticleComponent } from './pages/publish-article/publish-article
 import {ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+// @ts-ignore
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GuardsComponent,
-    InterceptorsComponent,
-    DashboardComponent,
     PublisherAdminComponent,
     RequestsComponent,
     UserAdminComponent,
     YourArticlesComponent,
     UserProfileComponent,
     PublishArticleComponent,
-    UsersArticleComponent
+    UsersArticleComponent,
+    PublishArticleComponent,
+    LandingPageComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule
 
   ],
   providers: [],
