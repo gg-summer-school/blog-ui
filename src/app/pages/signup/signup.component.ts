@@ -9,6 +9,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
+  role = "Publisher";
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -18,8 +19,7 @@ export class SignupComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(256)]],
-        roles: ['', Validators.required],
-        acceptTerms: [false, Validators.requiredTrue]
+        role: ['', Validators.required]
       }
     );
   }
