@@ -4,3 +4,8 @@ export interface Users{
   email: string;
   roles: string;
 }
+
+export interface loginData {
+  email: string;
+  password: string;
+}
