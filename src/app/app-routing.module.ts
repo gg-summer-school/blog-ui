@@ -7,6 +7,7 @@ import {UserAdminComponent} from './pages/user-admin/user-admin.component';
 import {RequestsComponent} from './pages/requests/requests.component';
 import {PublishArticleComponent} from './pages/publish-article/publish-article.component';
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
+import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 
 const routes: Routes = [
   {path: 'your-articles', component: YourArticlesComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'user-admin', component: UserAdminComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'publish-article', component: PublishArticleComponent},
-  {path: 'users-article', component: UsersArticleComponent}
+  {path: 'users-article', component: UsersArticleComponent},
+  {path: 'landing-page', component: LandingPageComponent}
 ];
 
 @NgModule({
