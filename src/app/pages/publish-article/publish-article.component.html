@@ -1,0 +1,48 @@
+<script src="../../app.component.spec.ts"></script>
+<app-sidebar></app-sidebar>
+<div class="container">
+    <div class="main">
+      <br>
+      <h4>Publish an article</h4>
+      <br>
+      <form [formGroup]="publish" (submit)="onSubmit(publish.value)">
+        <input type="text" placeholder="Title" class="form-control" formControlName="title">
+        <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="bc">Upload book cover</label>
+            <input type="file"  id="bc" placeholder="Book cover" class="form-control" formControlName="cover">
+            <span *ngIf="f.cover.invalid && f.cover.touched" class="form-text"> This field is required</span>
+          </div>
+          <div class="col-md-6">
+            <label >Category</label>
+            <select class="form-control form-select" formControlName="category" >
+              <option  value="">Science</option>
+              <option  value="">Art</option>
+              <option  value="">Space</option>
+              <option  value="">Travel</option>
+            </select>
+            <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> This field is required</span>
+          </div>
+
+        </div>
+
+        <br>
+        <textarea type="text" placeholder="Abstract" class="form-control" formControlName="abstract"></textarea>
+        <span *ngIf="f.abstract.invalid && f.abstract.touched" class="form-text"> This field is required</span>
+        <br>
+        <textarea type="text" placeholder="Table of content" class="form-control" formControlName="tableContent"></textarea>
+        <span *ngIf="f.tableContent.invalid && f.tableContent.touched" class="form-text"> This field is required</span>
+        <br>
+        <input type="text" placeholder="Contributors" class="form-control" formControlName="contributors">
+        <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
+        <br>
+        <input type="number" placeholder="Book price" class="form-control" formControlName="price">
+        <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+        <br>
+        <div class="button"> <button class="btn btn-primary">Publish article</button></div>
+      </form>
+    </div>
+</div>
+  <br>
