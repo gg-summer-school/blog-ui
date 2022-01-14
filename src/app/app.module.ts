@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,14 +10,14 @@ import { UserAdminComponent } from './pages/user-admin/user-admin.component';
 import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { PublishArticleComponent } from './pages/publish-article/publish-article.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {FormsModule} from "@angular/forms";
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 // @ts-ignore
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     PublisherAdminComponent,
     RequestsComponent,
     UserAdminComponent,
+    LoginComponent,
+    SignupComponent,
     YourArticlesComponent,
     UserProfileComponent,
     PublishArticleComponent,
@@ -33,12 +36,15 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
-
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
