@@ -22,6 +22,7 @@
 }
 p{
   margin-left: 10rem;
+  font-family: merriweather
   //margin-buttom: 0.5rem;
 }
 h4{
@@ -29,7 +30,16 @@ h4{
   margin-left: 10rem;
 }
 .edit{
-  position: center;
-  margin-left: 30rem;
+  //position: center;
+  margin-left: 31rem;
   background-color: indigo;
+  color: white;
+  width: 6rem;
+}
+.text-muted{
+  padding-right: 7px
+}
+.text-mute{
+  margin-left: 10rem;
+  margin-right: 0.5rem;
 }
