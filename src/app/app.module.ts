@@ -9,6 +9,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PublishArticleComponent } from './pages/publish-article/publish-article.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -18,13 +21,15 @@ import {FormsModule} from "@angular/forms";
     GuardsComponent,
     InterceptorsComponent,
     DashboardComponent,
-    PublishArticleComponent
+    PublishArticleComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule
 
   ],
   providers: [],
