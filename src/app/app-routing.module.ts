@@ -14,21 +14,19 @@ import {LandingPageComponent} from './pages/landing-page/landing-page.component'
 
 
 const routes: Routes = [
+
+  {path: '', component: LandingPageComponent},
+  {path: 'your-articles', component: YourArticlesComponent},
+  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'publisher-admin', component: PublisherAdminComponent},
+  {path: 'user-admin', component: UserAdminComponent},
+
+  {path: 'requests', component: RequestsComponent},
+  {path: 'publish-article', component: PublishArticleComponent},
+  {path: 'users-article', component: UsersArticleComponent},
   {
-    path: '',
-    component: LandingPageComponent
-  },
-  { path: 'your-articles',
-    component: YourArticlesComponent
-  },
-
-  { path: 'user-profile',
-    component: UserProfileComponent
-  },
-
-  { path: 'publisher-admin',
-    component: PublisherAdminComponent
-  },
+    path: 'login',
+    component: LoginComponent},
 
   { path: 'user-admin',
     component: UserAdminComponent
@@ -37,28 +35,10 @@ const routes: Routes = [
   { path: 'requests',
     component: RequestsComponent
   },
-
-  { path: 'publish-article',
-    component: PublishArticleComponent
-  },
-
-  { path: 'users-article',
-    component: UsersArticleComponent
-  },
-
-  { path: 'landing-page',
-    component: LandingPageComponent
-  },
-
   {
     path: 'articles-detail',
     component: ArticleDetailPageComponent
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-
   {
     path: 'signup',
     component: SignupComponent

@@ -10,6 +10,8 @@ export class LandingPageComponent implements OnInit {
   count = 0;
   tableSize = 6;
   nums:any;
+  searchData='';
+
   constructor() { }
 
   ngOnInit(): void {

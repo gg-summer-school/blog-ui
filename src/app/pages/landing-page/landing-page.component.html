@@ -17,7 +17,7 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
-          <input type="text" class="size" placeholder=" search articles...">
+          <input type="text" class="size" placeholder=" search articles..." [(ngModel)]="searchData" id="listSearch">
           <button class="button"><i class="fa fa-search fa-1x "></i></button>
         </li>
       </ul>
@@ -270,9 +270,8 @@
     </div>
 
 </div>
+
 <br>
-
-
 <div class="footer ">
     <div class="row">
       <div class="col-md-3">
