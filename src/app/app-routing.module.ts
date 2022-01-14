@@ -10,6 +10,7 @@ import {UsersArticleComponent} from './pages/users-article/users-article.compone
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 
 const routes: Routes = [
+  {path: '', component: LandingPageComponent},
   {path: 'your-articles', component: YourArticlesComponent},
   {path: 'user-profile', component: UserProfileComponent},
   {path: 'publisher-admin', component: PublisherAdminComponent},

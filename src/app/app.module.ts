@@ -3,10 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-=======
->>>>>>> ee594f177ec3e552a7cc4ae28a1585ef29e37ad7
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UserAdminComponent } from './pages/user-admin/user-admin.component';
@@ -25,10 +21,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    DashboardComponent,
-=======
->>>>>>> ee594f177ec3e552a7cc4ae28a1585ef29e37ad7
     PublisherAdminComponent,
     RequestsComponent,
     UserAdminComponent,
