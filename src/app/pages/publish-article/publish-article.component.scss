@@ -1,0 +1,49 @@
+.main
+{
+  margin-left: 180px;
+  margin-right: 180px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+  0 2px 4px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07),
+  0 32px 64px rgba(0,0,0,0.07);
+  border-radius: 10px;
+  padding: 25px;
+
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+}
+select{
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+}
+textarea{
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+}
+.button
+{
+  text-align: center;
+}
+button
+{
+  width: 350px;
+  background-color: indigo;
+  box-shadow: 1px 2px 3px;
+  border-radius: 20px;
+}
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+select.ng-invalid.ng-touched
+{
+  border: 2px solid red;
+}
+textarea.ng-invalid.ng-touched
+{
+  border: 2px solid red;
+}
