@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-publish-article',
@@ -7,16 +7,33 @@ import {FormGroup} from "@angular/forms";
   styleUrls: ['./publish-article.component.scss']
 })
 export class PublishArticleComponent implements OnInit {
-  createP= new FormGroup({});
+  publish= new FormGroup({});
 
   constructor() { }
 
   ngOnInit(): void {
+    this.publish= new FormGroup(
+      {
+        title: new FormControl(null, Validators.required),
+        cover: new FormControl(null, Validators.required),
+        category: new FormControl(null, Validators.required),
+        abstract: new FormControl(null, Validators.required),
+        tableContent: new FormControl(null, Validators.required),
+        contributors: new FormControl(null, Validators.required),
+        price: new FormControl(null, Validators.required),
+
+      }
+    );
+  }
+  get f()
+  {
+    return this.publish.controls;
   }
 
-  onSubmit()
-  {
 
+  onSubmit(form:any)
+  {
+     console.log(form);
   }
 
 }
