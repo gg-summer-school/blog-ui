@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GuardsComponent } from './auth/guards/guards.component';
-import { InterceptorsComponent } from './auth/interceptors/interceptors.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
@@ -19,8 +17,6 @@ import { UsersArticleComponent } from './pages/users-article/users-article.compo
 @NgModule({
   declarations: [
     AppComponent,
-    GuardsComponent,
-    InterceptorsComponent,
     DashboardComponent,
     PublisherAdminComponent,
     RequestsComponent,
