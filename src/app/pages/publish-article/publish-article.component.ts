@@ -8,6 +8,15 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class PublishArticleComponent implements OnInit {
   publish= new FormGroup({});
+  selectedFile:any;
+  currentFile:any;
+  selectedFile1:any;
+  currentFile1:any;
+  fileUpload= {
+   coverPage:'',
+   document:'',
+  }
+
 
   constructor() { }
 
@@ -32,10 +41,29 @@ export class PublishArticleComponent implements OnInit {
     return this.publish.controls;
   }
 
-
   onSubmit(form:any)
   {
      console.log(form);
   }
+
+
+  select($event:any){
+    this.selectedFile=$event.target.files;
+  }
+  select1($event:any){
+    this.selectedFile1=$event.target.files;
+  }
+
+  upload()
+  {
+    this.currentFile=this.selectedFile.item(0);
+    this.currentFile1=this.selectedFile1.item(0);
+    this.fileUpload={
+      coverPage: this.currentFile,
+      document: this.currentFile1
+    }
+
+  }
+
 
 }

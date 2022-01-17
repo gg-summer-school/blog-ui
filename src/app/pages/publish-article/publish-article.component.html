@@ -18,26 +18,6 @@
         <input type="text" placeholder="Title" class="form-control" formControlName="title">
         <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
         <br>
-        <div class="row">
-          <div class="col-md-6">
-            <label for="bc">Upload book cover</label>
-            <input type="file"  id="bc" placeholder="Book cover" class="form-control" formControlName="cover_page">
-            <span *ngIf="f.cover_page.invalid && f.cover_page.touched" class="form-text"> This field is required</span>
-          </div>
-          <div class="col-md-6">
-            <label >Category</label>
-            <select class="form-control form-select" formControlName="category_id" >
-              <option  value="">Science</option>
-              <option  value="">Art</option>
-              <option  value="">Space</option>
-              <option  value="">Travel</option>
-            </select>
-            <span *ngIf="f.category_id.invalid && f.category_id.touched" class="form-text"> This field is required</span>
-          </div>
-
-        </div>
-
-        <br>
         <textarea type="text" placeholder="Abstract" class="form-control" formControlName="article_abstract"></textarea>
         <span *ngIf="f.article_abstract.invalid && f.article_abstract.touched" class="form-text"> This field is required</span>
         <br>
@@ -49,10 +29,16 @@
         <br>
         <div class="row">
           <div class="col-md-6">
-            <label for="bc">Upload book</label>
-            <input type="file" placeholder="Book cover" class="form-control" formControlName="book">
-            <span *ngIf="f.book.invalid && f.book.touched" class="form-text"> This field is required</span>
+            <label >Category</label>
+            <select class="form-control form-select" formControlName="category_id" >
+              <option  value="">Science</option>
+              <option  value="">Art</option>
+              <option  value="">Space</option>
+              <option  value="">Travel</option>
+            </select>
+            <span *ngIf="f.category_id.invalid && f.category_id.touched" class="form-text"> This field is required</span>
           </div>
+
           <div class="col-md-6">
             <label>Price</label>
             <input type="number" placeholder="Book price" class="form-control" formControlName="price">
@@ -61,8 +47,33 @@
         </div>
 
         <br>
-        <div class="button"> <button class="btn btn-primary">Publish article</button></div>
+        <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal">Publish article</button></div>
       </form>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label for="bc">Upload book cover</label>
+            <input type="file"  id="bc"  (change)="select($event)" enctype="multipart/form-data" class="form-control" formControlName="cover_page">
+            <span *ngIf="f.cover_page.invalid && f.cover_page.touched" class="form-text"> This field is required</span>
+<br>
+            <label for="bc">Upload book</label>
+            <input type="file"  (change)="select1($event)" enctype="multipart/form-data" class="form-control" formControlName="book">
+            <span *ngIf="f.book.invalid && f.book.touched" class="form-text"> This field is required</span>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary upload" (click)="upload()">Upload</button>
+      </div>
+    </div>
+  </div>
 </div>
   <br>
