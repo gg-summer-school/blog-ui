@@ -64,8 +64,9 @@
         </div>
 
         <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
+          <tr><button (click) = "onClickSuspend()" class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;
+
+            <button (click) = "onClickBlock()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
         </div>
       </div>
     </div>
@@ -94,3 +95,25 @@
   </div>
 </div>
 
+
+<!-- Modal to block and suspend user -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
+      </div>
+      <div class="modal-footer">
+        <!--Block user-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
+        <!--suspend user-->
+        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
