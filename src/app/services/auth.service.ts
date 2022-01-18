@@ -18,14 +18,12 @@ export class AuthService {
   baseUrl: string = environment.baseUrlPub;
   baseUrlAuth: string = environment.baseUrl;
   baseUrlUserProfile: string = environment.baseUrlPro
-  // baseUrlUserProfile1: string = 'http://localhost:8000/api/protected/users/user_profile';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
   constructor(private http: HttpClient) { }
 
   register(userData: Users) {
-  //  return this.http.post(this.baseUrl + '/' + 'public' + '/' + 'auth' + '/' + 'signup', userData;
     return this.http.post(this.baseUrlAuth + '/' + 'signup', userData);
   }
 
@@ -33,20 +31,20 @@ export class AuthService {
     return this.http.post(this.baseUrlAuth + '/' + 'signin', userData);
   }
 
-  getUserProfile(): Observable<any> {
-    
-    return  this.http.get(this.baseUrlUserProfile + 'users' +  '/' + 'user_profile',
-      {headers: this.headers}).pipe(
-        map((res: any) => {
+  getUserProfile(): Observable<Users> {
+    return  this.http.get<Users>(this.baseUrlUserProfile + 'users' +  '/' + 'user_profile')
+    .pipe(
+        map((res: Users) => {
           return res || {}
         }),
       catchError(this.handleError)
     )
   }
-  updateUserProfile(user:any){
-    return this.http.put(this.baseUrlUserProfile,user,
+
+  updateUserProfile(user:Users){
+    return this.http.put<Users>(this.baseUrlUserProfile,user,
     {headers: this.headers}).pipe(
-      map((res: any) => {
+      map((res: Users) => {
         return res || {}
       }),
       catchError(this.handleError)
