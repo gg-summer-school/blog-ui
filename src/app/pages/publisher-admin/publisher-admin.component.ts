@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 
 @Component({
   selector: 'app-publisher-admin',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublisherAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
+  }
+
+  displayPublishers() {
+    // this.adminPagesService.getPublishers()
+    //   .subscribe()
   }
 
 }
