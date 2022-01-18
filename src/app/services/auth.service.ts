@@ -16,6 +16,7 @@ export class AuthService {
   userProfile!: Users;
 
   baseUrl: string = environment.baseUrlPub;
+  baseUrlAuth: string = environment.baseUrl;
   baseUrlUserProfile: string = environment.baseUrlPro
   // baseUrlUserProfile1: string = 'http://localhost:8000/api/protected/users/user_profile';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -25,11 +26,11 @@ export class AuthService {
 
   register(userData: Users) {
   //  return this.http.post(this.baseUrl + '/' + 'public' + '/' + 'auth' + '/' + 'signup', userData;
-    return this.http.post(this.baseUrl + 'auth' + '/' + 'signup', userData);
+    return this.http.post(this.baseUrlAuth + '/' + 'signup', userData);
   }
 
-  login() {
-    return this.http.get<loginData>(this.baseUrl + 'auth' + '/' + 'signin');
+  login(userData: loginData) {
+    return this.http.post(this.baseUrlAuth + '/' + 'signin', userData);
   }
 
   getUserProfile(): Observable<any> {
