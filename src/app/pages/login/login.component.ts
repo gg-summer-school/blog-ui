@@ -55,8 +55,6 @@ onSubmit() {
     },
     err => {
       this.errorMessage = err.error.message;
-      this.isLoginFailed = true;
-      console.log(this.errorMessage);
     }
   );
   }
