@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublisherAdminComponent implements OnInit {
 
+  isBlocked = false;
+  isSuspended = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClickBlock() {
+    this.isBlocked = true;
+    this.isSuspended = false;
+  }
+
+  onClickSuspend() {
+    this.isSuspended = true;
+    this.isBlocked = false;
   }
 
 }
