@@ -1,4 +1,4 @@
-export interface Categories{
+export interface Contributors {
   id: string;
   name: string;
 }

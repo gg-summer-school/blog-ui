@@ -24,7 +24,7 @@
         <textarea type="text" placeholder="Table of content" class="form-control" formControlName="toc"></textarea>
         <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
         <br>
-        <input type="text" placeholder="Contributors" class="form-control" formControlName="contributors">
+        <input type="text" placeholder="Enter many contributors separated by comma" class="form-control" formControlName="contributors">
         <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
         <br>
         <div class="row">
