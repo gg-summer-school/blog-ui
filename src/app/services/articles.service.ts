@@ -12,14 +12,15 @@ import { Articles } from '../model/articles';
 export class ArticlesService {
 
   baseUrl: string = environment.baseUrlPub;
-  baseUrl1: string = environment.baseUrlPro
+  baseUrl1: string = environment.baseUrlPro;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'multipart/form-data'
     })
-  }
+  };
 
   constructor(private http: HttpClient) { }
+
   getAllArticles()
   {
     return this.http.get(this.baseUrl + 'articles');
@@ -49,14 +50,20 @@ export class ArticlesService {
   {
 
   }
-  //display all user articles
-  displayAlluserArticles(userId: string):Observable<Articles[]>{
+
+  // downloadFile
+  downloadArticle(): any {
+    return this.http.get(this.baseUrl1 + 'articles', {responseType: 'blob'});
+  }
+  // display all user articles
+  displayAlluserArticles(userId: string): Observable<Articles[]>{
     return this.http.get<Articles[]>(this.baseUrl1 + 'users' + '/' + {userId})
       .pipe(
         retry(1),
         catchError(this.handleError)
-      )
+      );
   }
+
   //display one user article
   getOneUserArticle(articleId: string, userId: string): Observable<Articles>{
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId})
@@ -68,11 +75,12 @@ export class ArticlesService {
    //get all user-role paid article
    getAllOneUserPaidArticle(userId: string, articleId: string){
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
+
   }
    // Error handling
    handleError(error: any) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
