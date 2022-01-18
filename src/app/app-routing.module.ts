@@ -35,17 +35,17 @@ const routes: Routes = [
 
   { path: 'publisher-admin',
     component: PublisherAdminComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 
   { path: 'user-admin',
     component: UserAdminComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 
   { path: 'requests',
     component: RequestsComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 
   { path: 'publish-article',
@@ -53,7 +53,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  { 
+  {
     path: 'users-article',
     component: UsersArticleComponent,
     canActivate: [AuthGuard]
@@ -68,7 +68,7 @@ const routes: Routes = [
     component: ArticleDetailPageComponent,
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'signup',
     component: SignupComponent

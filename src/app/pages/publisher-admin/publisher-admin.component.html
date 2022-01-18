@@ -31,7 +31,7 @@
     <div class="table">
       <div class="row">
         <div class="col-md-3">
-          <a>User one</a><br>
+          <a *ngFor="let publisher of publishers" >{{ publishers.name}}</a><br>
         </div>
 
         <div class="col-md-3 art">

@@ -8,14 +8,19 @@ import {AdminPagesService} from "../../services/admin-services/admin-pages.servi
 })
 export class PublisherAdminComponent implements OnInit {
 
+  publishers: any;
+
   constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
   }
 
   displayPublishers() {
-    // this.adminPagesService.getPublishers()
-    //   .subscribe()
+    this.adminPagesService.getPublishers()
+      .subscribe( res=>
+      {
+        this.publishers = res
+      })
   }
 
 }
