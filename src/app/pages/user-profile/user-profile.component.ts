@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
+import { Users } from 'src/app/model/users';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -7,19 +9,26 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
 
-  firstName: string = "Ndzo Daniel";
-  email: string = "ndzodaniel31@gmail.com";
+  firstName = 'Ndzo Daniel';
+  email = 'ndzodaniel31@gmail.com';
+  userProfile!: Users;
 
-  constructor(private formBuilder: FormBuilder) { }
-  user!: FormGroup;
-  users = this.formBuilder.group({
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  usersEdit = this.formBuilder.group({
     name: '',
     email: '',
-    password: '',
-    roles: ''
+    password: ''
   });
-
-  ngOnInit(): void {
+ngOnInit(): void {
+  this.authService.getUserProfile().subscribe((response: any) => {
+    this.userProfile = response;
+  });
   }
+  editUserAccount(): void{
+    this.authService.updateUserProfile(this.usersEdit.value).subscribe((response : any) => {
+      this.userProfile = response;
+    });
+  }
+
 
 }

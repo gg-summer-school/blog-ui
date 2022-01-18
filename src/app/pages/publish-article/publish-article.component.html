@@ -1,4 +1,4 @@
-<script src="../../app.component.spec.ts"></script>
+
 <app-sidebar></app-sidebar>
 <!--<div class="row d">-->
 <!--  <div class="col-md-3">-->
@@ -21,34 +21,45 @@
         <div class="row">
           <div class="col-md-6">
             <label for="bc">Upload book cover</label>
-            <input type="file"  id="bc" placeholder="Book cover" class="form-control" formControlName="cover">
-            <span *ngIf="f.cover.invalid && f.cover.touched" class="form-text"> This field is required</span>
+            <input type="file"  id="bc" placeholder="Book cover" class="form-control" formControlName="cover_page">
+            <span *ngIf="f.cover_page.invalid && f.cover_page.touched" class="form-text"> This field is required</span>
           </div>
           <div class="col-md-6">
             <label >Category</label>
-            <select class="form-control form-select" formControlName="category" >
+            <select class="form-control form-select" formControlName="category_id" >
               <option  value="">Science</option>
               <option  value="">Art</option>
               <option  value="">Space</option>
               <option  value="">Travel</option>
             </select>
-            <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> This field is required</span>
+            <span *ngIf="f.category_id.invalid && f.category_id.touched" class="form-text"> This field is required</span>
           </div>
 
         </div>
 
         <br>
-        <textarea type="text" placeholder="Abstract" class="form-control" formControlName="abstract"></textarea>
-        <span *ngIf="f.abstract.invalid && f.abstract.touched" class="form-text"> This field is required</span>
+        <textarea type="text" placeholder="Abstract" class="form-control" formControlName="article_abstract"></textarea>
+        <span *ngIf="f.article_abstract.invalid && f.article_abstract.touched" class="form-text"> This field is required</span>
         <br>
-        <textarea type="text" placeholder="Table of content" class="form-control" formControlName="tableContent"></textarea>
-        <span *ngIf="f.tableContent.invalid && f.tableContent.touched" class="form-text"> This field is required</span>
+        <textarea type="text" placeholder="Table of content" class="form-control" formControlName="toc"></textarea>
+        <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
         <br>
         <input type="text" placeholder="Contributors" class="form-control" formControlName="contributors">
         <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
         <br>
-        <input type="number" placeholder="Book price" class="form-control" formControlName="price">
-        <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="bc">Upload book</label>
+            <input type="file" placeholder="Book cover" class="form-control" formControlName="book">
+            <span *ngIf="f.book.invalid && f.book.touched" class="form-text"> This field is required</span>
+          </div>
+          <div class="col-md-6">
+            <label>Price</label>
+            <input type="number" placeholder="Book price" class="form-control" formControlName="price">
+            <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+          </div>
+        </div>
+
         <br>
         <div class="button"> <button class="btn btn-primary">Publish article</button></div>
       </form>
