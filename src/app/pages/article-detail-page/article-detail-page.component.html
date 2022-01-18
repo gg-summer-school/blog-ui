@@ -41,6 +41,7 @@
     <div class="row">
       <div class="col-md-10">
         <h5>Some papers authored by Dr. Prof. Feng and the Engineering Index Compendex since 1997</h5>
+        <span class="form-text">January 2022</span><br/>
         <span class="form-text">Contributors: (Arthur K. Lewis, Brian B Johnson)</span>
       </div>
     </div>
@@ -49,10 +50,10 @@
           <img src="assets/cover.jpg" style="width: 11rem; height: 10rem" alt="No cover page">
         </div>
         <div class="col-md-6 side">
-          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal2">Download Full Pdf</button>
+          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal2"><a [href]="fileUrl" download="file.txt">Download Full Pdf</a></button>
           <br/>
           <br/>
-          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal3">Read Full Article</button>
+          <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Request Full-Text</button>
         </div>
       </div>
   </div>
@@ -64,7 +65,7 @@
             <h2 class="accordion-header" id="flush-headingOne">
               <br/>
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-               <h6>ABSTRACT</h6>
+               <h6>SHOW ABSTRACT</h6>
               </button>
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -127,6 +128,16 @@
       <div class="progress">
         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
       </div>
+      <br>
+      <br>
+      <div class="d-flex justify-content-end">
+        <button
+          type="submit"
+          class="btn  btn-sm btn-primary"
+          data-bs-dismiss="modal">
+          <a href="/signup" style="color: white;text-decoration: none;">Join For Free</a>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -140,7 +151,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h5 class="modal-title" id="exampleModalLabel">To proceed effect payment</h5>
         <button
           type="button"
           class="btn-close btn-sm "
@@ -148,12 +159,14 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
-         <p>To proceed effect payment</p>
+          <div class="form-group mb-2">
+            <label>Name of Article</label>
+            <input
+              id="nameofarticle"data-bs-target="#editProfileModal"
+              type="text"
+              class="form-control"
+              required/>
           </div>
-      <div class="row">
-        <span class="form-text"><b>Price: </b>$400</span>
-      </div>
       <div class="form-group mb-2">
         <label>Account Number</label>
         <input
