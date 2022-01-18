@@ -13,7 +13,7 @@ export class DashboardPublisherService {
 
   constructor(private http: HttpClient) { }
 
-  getArticlesByPublisher(publisherId: number): Observable<Articles>{
-    return this.http.get<Articles>(this.baseUrl1 + 'publishers' + publisherId + '/articles');
+  getArticlesByPublisher(publisherId: string){
+    return this.http.get(this.baseUrl1 + 'publishers/' + publisherId + '/articles');
   }
 }

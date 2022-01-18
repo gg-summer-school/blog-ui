@@ -25,32 +25,32 @@ export class ArticlesService {
     return this.http.get(this.baseUrl + 'articles');
 
   }
-  createArticle(article:Articles, publisherId:number, categoryId:number)
+  createArticle(article:Articles, publisherId:string, categoryId:string)
   {
     return this.http.post(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
   }
-  createArticleFiles(article:Articles, publisherId:number, articleId:number)
+  createArticleFiles(article:Articles, publisherId:string, articleId:string)
   {
     return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
   }
-  getArticlesByCategory(article:Articles, publisherId:number, articleId:number)
+  getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
   {
     return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
   }
-  getOneArticle(articleId:number)
+  getOneArticle(articleId:string)
   {
 
   }
-  deleteArticle(articleId:number)
+  deleteArticle(articleId:string)
   {
 
   }
-  updateArticle(articleId:number, article:any)
+  updateArticle(articleId:string, article:any)
   {
 
   }
   //display all user articles
-  displayAlluserArticles(userId: number):Observable<Articles[]>{
+  displayAlluserArticles(userId: string):Observable<Articles[]>{
     return this.http.get<Articles[]>(this.baseUrl1 + 'users' + '/' + {userId})
       .pipe(
         retry(1),
@@ -58,15 +58,15 @@ export class ArticlesService {
       )
   }
   //display one user article
-  getOneUserArticle(articleId: number, userId: number): Observable<Articles>{
+  getOneUserArticle(articleId: string, userId: string): Observable<Articles>{
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId})
   }
   //get all user-role paid articles
-  getAllUserPaidArticles(userId: number){
+  getAllUserPaidArticles(userId: string){
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles')
   }
    //get all user-role paid article
-   getAllOneUserPaidArticle(userId: number, articleId: number){
+   getAllOneUserPaidArticle(userId: string, articleId: string){
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
   }
    // Error handling

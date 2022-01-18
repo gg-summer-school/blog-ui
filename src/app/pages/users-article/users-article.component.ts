@@ -9,8 +9,8 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class UsersArticleComponent implements OnInit {
   userPaidArticles!: Articles[];
-  userId!: number;
-  articleId!: number;
+  userId!: string;
+  articleId!: string;
   userPaidArticle!: Articles[];
 
   constructor(private articleService: ArticlesService) { }
