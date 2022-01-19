@@ -31,6 +31,7 @@ export class TokenStorageService {
   public getUser(): UserDto {
     const user = localStorage.getItem('user')
     const userDto  = (JSON.parse(user as string));
+
     return userDto;
   }
 }

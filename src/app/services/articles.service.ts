@@ -32,9 +32,12 @@ export class ArticlesService {
     return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
   }
 
-  uploadArticleFiles(article:any, publisherId:string, articleId:string)
+  uploadArticleFiles( coverPage:FormData,document:FormData, publisherId:string, articleId:string)
   {
-    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-upload', article);
+    // const formData: FormData = new FormData();
+    // formData.append('document', article);
+
+    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-upload', coverPage);
   }
   getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
   {
@@ -42,7 +45,7 @@ export class ArticlesService {
   }
   getCategory()
   {
-    return this.http.get("http://192.168.8.103:8000/api/public/categories");
+    return this.http.get(this.baseUrl+'categories');
   }
   getOneArticle(articleId:string)
   {

@@ -46,20 +46,22 @@ get registerFormControl() {
 }
 
 onSubmit() {
+
   this.submitted = true;
-  if (this.loginForm.valid) {
+  // if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
+         console.log('fasdf')
         this.router.navigate(['/user-admin']);
         this.tokenStorage.saveUser(userData);
-        this.tokenStorage.getUser();
-        // console.log(this.tokenStorage.getToken())
+       // this.tokenStorage.getUser();
 
     },
     err => {
-      this.errorMessage = err.error.message;
+      console.log(err.error)
+      this.errorMessage = err.error;
     }
   );
-  }
+  //}
 }
 
 }

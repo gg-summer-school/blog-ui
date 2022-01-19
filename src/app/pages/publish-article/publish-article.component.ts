@@ -102,11 +102,13 @@ export class PublishArticleComponent implements OnInit {
   {
     this.currentFile=this.selectedFile.item(0);
     this.currentFile1=this.selectedFile1.item(0);
-    this.fileUpload={
-      coverPage: this.currentFile,
-      document: this.currentFile1
-    }
-    this.articlesService.uploadArticleFiles(this.fileUpload,this.publisherId, this.articleId).subscribe(res=>
+
+    const coverPageFormData: FormData = new FormData();
+    const documentFormData:FormData = new FormData();
+    documentFormData.append('document', this.currentFile1);
+    coverPageFormData.append('coverPage', this.currentFile)
+
+    this.articlesService.uploadArticleFiles(coverPageFormData, documentFormData,this.publisherId, this.articleId).subscribe(res=>
     {
       console.log(res);
     })
