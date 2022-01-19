@@ -24,5 +24,10 @@ export class AdminPagesService {
     return this.http.get<Admin>(this.baseUrlPro + 'users' + '/' + 'readers');
   }
 
+  getArticlesByPublisher(publisherId: string, isApproved: boolean) {
+    return this.http.get<Admin>(this.baseUrlPro + 'publishers' + '/' + publisherId + '/' + 'articles');
+  }
+
+  suspend() {}
 
 }

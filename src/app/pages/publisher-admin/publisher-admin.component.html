@@ -31,20 +31,20 @@
     <div  *ngFor="let publisher of publishers" class="table">
       <div class="row">
         <div class="col-md-3">
-          <a>{{ publisher.name}}</a><br>
+          <a>{{ publisher.name }}</a><br>
         </div>
 
         <div class="col-md-3 art">
-          <a>One</a><br>
+          <a>{{numberOfArticles.length}}</a><br>
         </div>
 
         <div class="col-md-2">
           <a>{{ publisher.email }}</a><br>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 ema">
           <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
+            <button class="btn btn-outline-secondary">Add Role</button></tr>
         </div>
       </div>
     </div>
