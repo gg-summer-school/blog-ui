@@ -28,10 +28,10 @@
       </div>
     </div>
 
-    <div class="table">
+    <div  *ngFor="let publisher of publishers" class="table">
       <div class="row">
         <div class="col-md-3">
-          <a *ngFor="let publisher of publishers" >{{ publishers.name}}</a><br>
+          <a>{{ publisher.name}}</a><br>
         </div>
 
         <div class="col-md-3 art">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-md-2">
-          <a>Email one</a><br>
+          <a>{{ publisher.email }}</a><br>
         </div>
 
         <div class="col-md-3">
@@ -48,49 +48,7 @@
         </div>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User two</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>Two</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email two</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User one</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>One</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email one</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
-        </div>
-      </div>
-    </div><br>
+<br>
 
   </div>
 </div>
-

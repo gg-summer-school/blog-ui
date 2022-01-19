@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
+import {Admin} from "../../model/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,15 @@ export class AdminPagesService {
 
   constructor(private http: HttpClient) { }
 
-  getPublishers() {
-    return this.http.get(this.baseUrlPro + 'users');
+  getPublishers(isApproved: boolean) {
+    return this.http.get<Admin>(this.baseUrlPro + 'users' + '/' + 'publishers' + '/' + isApproved);
   }
 
-  getUsers(name: string) {
-    return this.http.get(this.baseUrlPro + 'users')
+  //http://localhost:8000/api/protected/users/publishers/false
+
+  getReaders() {
+    return this.http.get<Admin>(this.baseUrlPro + 'users' + '/' + 'readers');
   }
 
-  getEmail(email: string) {
-    return this.http.get('')
-  }
+
 }

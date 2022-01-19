@@ -9,17 +9,19 @@ import {AdminPagesService} from "../../services/admin-services/admin-pages.servi
 export class PublisherAdminComponent implements OnInit {
 
   publishers: any;
+  isApproved: boolean = false;
 
   constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
+    this.displayPublishers();
   }
 
   displayPublishers() {
-    this.adminPagesService.getPublishers()
+    this.adminPagesService.getPublishers(this.isApproved)
       .subscribe( res=>
       {
-        this.publishers = res
+        this.publishers = res;
       })
   }
 
