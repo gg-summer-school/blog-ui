@@ -46,8 +46,7 @@ export class PublishArticleComponent implements OnInit {
     );
     this.getCategories();
     this.publisherId= this.tokenStorage.getUser().id;
-    console.log(this.publisherId);
-
+    console.log(this.tokenStorage.getUser().id);
   }
 
   get f()
@@ -120,8 +119,6 @@ export class PublishArticleComponent implements OnInit {
     this.articlesService.getCategory().subscribe(res=>
     {
       this.categories= res;
-      console.log(res);
-      console.log(this.categories);
     })
   }
 

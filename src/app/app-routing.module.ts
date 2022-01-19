@@ -53,7 +53,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  { 
+  {
     path: 'users-article',
     component: UsersArticleComponent,
     canActivate: [AuthGuard]
@@ -68,7 +68,7 @@ const routes: Routes = [
     component: ArticleDetailPageComponent,
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'signup',
     component: SignupComponent

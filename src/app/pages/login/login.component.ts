@@ -52,9 +52,9 @@ onSubmit() {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
          console.log('fasdf')
         this.router.navigate(['/user-admin']);
-        this.tokenStorage.saveUser(userData);
-       // this.tokenStorage.getUser();
 
+        this.tokenStorage.saveToken(userData.accessToken);
+       this.tokenStorage.saveUser(userData);
     },
     err => {
       console.log(err.error)

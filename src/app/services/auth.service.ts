@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   login(userData: loginData):Observable<UserDto> {
-    return this.http.post<UserDto>(this.baseUrlAuth + '/' + 'signin', userData);
+    return this.http.post<any>(this.baseUrlAuth + '/' + 'signin', userData);
   }
 
   getUserProfile(): Observable<Users> {
