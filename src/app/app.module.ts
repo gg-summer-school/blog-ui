@@ -16,7 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
@@ -24,6 +24,7 @@ import { UsersArticleComponent } from './pages/users-article/users-article.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatusComponent } from './pages/status/status.component';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 @NgModule({
@@ -61,7 +62,12 @@ import { StatusComponent } from './pages/status/status.component';
     NgxPaginationModule
   ],
 
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, multi: true,
+      useClass: AuthInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

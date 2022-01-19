@@ -11,34 +11,64 @@ import {RequestsComponent} from './pages/requests/requests.component';
 import {PublishArticleComponent} from './pages/publish-article/publish-article.component';
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 
 const routes: Routes = [
-
-  {path: '', component: LandingPageComponent},
-  {path: 'your-articles', component: YourArticlesComponent},
-  {path: 'user-profile', component: UserProfileComponent},
-  {path: 'publisher-admin', component: PublisherAdminComponent},
-  {path: 'user-admin', component: UserAdminComponent},
-
-  {path: 'requests', component: RequestsComponent},
-  {path: 'publish-article', component: PublishArticleComponent},
-  {path: 'users-article', component: UsersArticleComponent},
   {
     path: 'login',
-    component: LoginComponent},
+    component: LoginComponent
+  },
+  {
+    path: '',
+    component: LandingPageComponent
+  },
+  { path: 'your-articles',
+    component: YourArticlesComponent,
+    canActivate: [AuthGuard]
+  },
+
+  { path: 'user-profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard]
+  },
+
+  { path: 'publisher-admin',
+    component: PublisherAdminComponent,
+    canActivate: [AuthGuard]
+  },
 
   { path: 'user-admin',
-    component: UserAdminComponent
+    component: UserAdminComponent,
+    canActivate: [AuthGuard]
   },
 
   { path: 'requests',
-    component: RequestsComponent
+    component: RequestsComponent,
+    canActivate: [AuthGuard]
   },
+
+  { path: 'publish-article',
+    component: PublishArticleComponent,
+    canActivate: [AuthGuard]
+  },
+
+  { 
+    path: 'users-article',
+    component: UsersArticleComponent,
+    canActivate: [AuthGuard]
+  },
+
+  { path: 'landing-page',
+    component: LandingPageComponent
+  },
+
   {
     path: 'articles-detail',
-    component: ArticleDetailPageComponent
+    component: ArticleDetailPageComponent,
+    canActivate: [AuthGuard]
   },
+  
   {
     path: 'signup',
     component: SignupComponent

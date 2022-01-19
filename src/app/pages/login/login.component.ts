@@ -47,29 +47,14 @@ get registerFormControl() {
 onSubmit() {
   this.submitted = true;
   if (this.loginForm.valid) {
-     this.authService.login().subscribe((userData: any) => { 
-
-      const user = userData.find((a:any) => {
-        return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      })
-
-      if(user){
-        alert("Login is succesful");
-        this.tokenStorage.saveToken(userData.accessToken);
-        this.tokenStorage.saveUser(userData);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        this.router.navigate(['/'])
+     this.authService.login(this.loginForm.value).subscribe((userData: any) => { 
+        this.router.navigate(['/user-admin']);
         console.log(userData);
-      }else{
-        alert("User not found")
-      }
+        
+        this.tokenStorage.saveToken(userData.accessToken);
     },
     err => {
       this.errorMessage = err.error.message;
-      this.isLoginFailed = true;
-      console.log(this.errorMessage);
     }
   );
   }
