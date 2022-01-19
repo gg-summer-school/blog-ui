@@ -27,9 +27,9 @@ export class ArticlesService {
     return this.http.get(this.baseUrl + 'articles');
 
   }
-  createArticle(article:Articles, publisherId:string, categoryId:string):Observable<any>
+  createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
   {
-    return this.http.post(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
+    return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
   }
 
   uploadArticleFiles(article:any, publisherId:string, articleId:string)

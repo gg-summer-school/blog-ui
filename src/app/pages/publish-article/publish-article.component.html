@@ -1,20 +1,12 @@
 
 <app-sidebar></app-sidebar>
-<!--<div class="row d">-->
-<!--  <div class="col-md-3">-->
-<!--    <app-sidebar></app-sidebar>-->
-<!--  </div>-->
-<!--  <div class="col-md-5">-->
-<!--    <app-status></app-status>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="container">
     <div class="main">
       <br>
       <h4>Publish an article</h4>
       <br>
-      <form [formGroup]="publish" (submit)="onSubmit(publish.value, publish.value.category)">
+      <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
         <input type="text" placeholder="Title" class="form-control" formControlName="title">
         <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
         <br>

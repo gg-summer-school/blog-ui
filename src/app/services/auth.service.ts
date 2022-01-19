@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { loginData, Users } from '../model/users';
+import {UserDto} from "../model/UserDto";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,8 +28,8 @@ export class AuthService {
     return this.http.post(this.baseUrlAuth + '/' + 'signup', userData);
   }
 
-  login(userData: loginData) {
-    return this.http.post(this.baseUrlAuth + '/' + 'signin', userData);
+  login(userData: loginData):Observable<UserDto> {
+    return this.http.post<UserDto>(this.baseUrlAuth + '/' + 'signin', userData);
   }
 
   getUserProfile(): Observable<Users> {

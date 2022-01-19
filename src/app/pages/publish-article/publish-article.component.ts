@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ArticlesService} from "../../services/articles.service";
 import {Categories} from "../../model/categories";
+import {TokenStorageService} from "../../services/token-storage.service";
+import {Contributors} from "../../model/contributors";
+import {Articles} from "../../model/articles";
+import {ResponseObject} from "../../model/response";
 
 @Component({
   selector: 'app-publish-article',
@@ -21,9 +25,10 @@ export class PublishArticleComponent implements OnInit {
    document:'',
   };
   contributor:[]=[];
+  publisherId:string='';
 
 
-  constructor(private  articlesService: ArticlesService) { }
+  constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.publish= new FormGroup(
@@ -40,23 +45,48 @@ export class PublishArticleComponent implements OnInit {
       }
     );
     this.getCategories();
+    this.publisherId= this.tokenStorage.getUser().id;
+    console.log(this.publisherId);
+
   }
+
   get f()
   {
     return this.publish.controls;
   }
 
-  onSubmit(form:any, categoryId:string)
+  onSubmit(categoryId:string)
   {
-    this.contributor= form.value.contributors.split(',');
-    form.value.contributors= this.contributor;
-    this.articlesService.createArticle(form, "37d7b7d7-7e2f-4bf4-b6d4-c2d865aea491", categoryId).subscribe((res:any) => {
+    let contributors:Contributors[] = [];
+    this.contributor= this.publish.value.contributors.split(',');
+    for(let i =0; i < this.contributor.length; i++){
+      const cont:Contributors = {
+        id:"",
+        name: this.contributor[i]
+      }
+      contributors.push(cont)
+    }
+    let payload:Articles = {
+      title:this.publish.value.title,
+      toc:this.publish.value.toc,
+      articleAbstract: this.publish.value.articleAbstract,
+      price: this.publish.value.price,
+      contributors:contributors
+    }
+   this.articlesService.createArticle(payload, this.publisherId, categoryId).subscribe((response:ResponseObject) => {
+    this.articleId = response.details;
 
-      console.log(res)
-      console.log(categoryId)
-      console.log(form.value.contributors)
-      this.articleId=res.details;
-    })
+   })
+
+
+    //form.value.contributors= this.contributor;
+    // this.articlesService.createArticle(this.publish, "37d7b7d7-7e2f-4bf4-b6d4-c2d865aea491", categoryId).subscribe((res:any) => {
+    //
+    //   // console.log(res)
+    //   // console.log(categoryId)
+    //   // console.log(form.value.contributors)
+    //   this.articleId=res.details;
+    // })
 
   }
 
@@ -76,7 +106,7 @@ export class PublishArticleComponent implements OnInit {
       coverPage: this.currentFile,
       document: this.currentFile1
     }
-    this.articlesService.uploadArticleFiles(this.fileUpload,"37d7b7d7-7e2f-4bf4-b6d4-c2d865aea491", this.articleId).subscribe(res=>
+    this.articlesService.uploadArticleFiles(this.fileUpload,this.publisherId, this.articleId).subscribe(res=>
     {
       console.log(res);
     })

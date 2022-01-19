@@ -38,7 +38,7 @@ export class UsersArticleComponent implements OnInit {
       console.log(this.userPaidArticle);
     });
   }
-  downloadArticle(articleId: string){
+  downloadArticle(){
    this.articleService.downloadArticle().subscribe((response: any) => {
     let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
     const url = window.URL.createObjectURL(blob);
