@@ -11,58 +11,62 @@ import { Articles } from '../model/articles';
 })
 export class ArticlesService {
   baseUrl: string = environment.baseUrlPub;
-  baseUrl1: string = environment.baseUrlPro
+  baseUrl1: string = environment.baseUrlPro;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'multipart/form-data'
     })
-  }
+  };
 
   constructor(private http: HttpClient) { }
-  getAllArticles(articleData: Articles)
-  {
-    return this.http.get(this.baseUrl + '/' + 'categories');
-
+  // getAllArticles(articleData: Articles)
+  // {
+  //   return this.http.get(this.baseUrl + '/' + 'categories');
+  //
+  // }
+  // createArticle(article:any)
+  // {
+  // }
+  // getOneArticle(articleId:number)
+  // {
+  //
+  // }
+  // deleteArticle(articleId:number)
+  // {
+  //
+  // }
+  // updateArticle(articleId:number, article:any)
+  // {
+  //
+  // }
+  // downloadFile
+  downloadArticle(): any {
+    return this.http.get(this.baseUrl1 + 'articles', {responseType: 'blob'});
   }
-  createArticle(article:any)
-  {
-  }
-  getOneArticle(articleId:number)
-  {
-
-  }
-  deleteArticle(articleId:number)
-  {
-
-  }
-  updateArticle(articleId:number, article:any)
-  {
-
-  }
-  //display all user articles
-  displayAlluserArticles(userId: number):Observable<Articles[]>{
+  // display all user articles
+  displayAlluserArticles(userId: number): Observable<Articles[]>{
     return this.http.get<Articles[]>(this.baseUrl1 + 'users' + '/' + {userId})
       .pipe(
         retry(1),
         catchError(this.handleError)
-      )
+      );
   }
-  //display one user article
+  // display one user article
   getOneUserArticle(articleId: number, userId: number): Observable<Articles>{
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId})
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
   }
-  //get all user-role paid articles
+  // get all user-role paid articles
   getAllUserPaidArticles(userId: number){
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles')
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles');
   }
-   //get all user-role paid article
+   // get all user-role paid article
    getAllOneUserPaidArticle(userId: number, articleId: number){
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
   }
    // Error handling
    handleError(error: any) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
@@ -72,6 +76,6 @@ export class ArticlesService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-    
+
   }
 
