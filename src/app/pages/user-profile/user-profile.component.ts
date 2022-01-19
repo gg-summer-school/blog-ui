@@ -15,15 +15,20 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
   usersEdit = this.formBuilder.group({
-    name: '',
+    firstName: '',
     email: '',
     password: ''
   });
 ngOnInit(): void {
-  this.authService.getUserProfile().subscribe((response: any) => {
-    this.userProfile = response;
-  });
+     this.getUserDetail();
   }
+
+  getUserDetail() {
+    this.authService.getUserProfile().subscribe((response: any) => {
+      this.userProfile = response;
+    });
+  }
+
   editUserAccount(): void{
     this.authService.updateUserProfile(this.usersEdit.value).subscribe((response : any) => {
       this.userProfile = response;
