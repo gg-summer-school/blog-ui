@@ -28,6 +28,17 @@ export class AdminPagesService {
     return this.http.get<Admin>(this.baseUrlPro + 'publishers' + '/' + publisherId + '/' + 'articles');
   }
 
-  suspend() {}
+  approveUser(user_id: string, approve: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'approve' + '/' + 'user' + '/' + user_id, approve);
+  }
+
+  suspendUser(user_id: string, suspend: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
+  }
+
+  declineUser(user_id: string) {
+    return this.http
+  }
+
 
 }

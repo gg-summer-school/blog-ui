@@ -13,13 +13,15 @@ export class PublisherAdminComponent implements OnInit {
   isApproved: boolean = true;
   publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
   numberOfArticles: Admin[] = [];
+  status:string = 'Suspend';
+  suspendUser: boolean = false;
 
 
   constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
     this.displayPublishers();
-    this.getArticlesById()
+    // this.getArticlesById()
   }
 
   displayPublishers() {
@@ -31,12 +33,17 @@ export class PublisherAdminComponent implements OnInit {
       })
   }
 
-  getArticlesById() {
-    this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-      .subscribe( res =>
-      {
-        // console.log(res)
-      })
+  suspendPublisher(publisherId: string) {
+    this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+    })
   }
+
+  // getArticlesById() {
+  //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
+  //     .subscribe( res =>
+  //     {
+  //       // console.log(res)
+  //     })
+  // }
 
 }
