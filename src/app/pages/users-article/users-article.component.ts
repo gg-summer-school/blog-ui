@@ -11,8 +11,8 @@ import { saveAs } from 'file-saver';
 })
 export class UsersArticleComponent implements OnInit {
   userPaidArticles!: Articles[];
-  userId!: number;
-  articleId!: number;
+  userId!: string;
+  articleId!: string;
   userPaidArticle!: Articles[];
 
   constructor(private articleService: ArticlesService,private sanitizer: DomSanitizer) { }
@@ -38,7 +38,7 @@ export class UsersArticleComponent implements OnInit {
       console.log(this.userPaidArticle);
     });
   }
-  downloadArticle(articleId: number){
+  downloadArticle(){
    this.articleService.downloadArticle().subscribe((response: any) => {
     let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
     const url = window.URL.createObjectURL(blob);
