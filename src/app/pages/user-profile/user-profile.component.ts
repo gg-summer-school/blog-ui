@@ -26,6 +26,8 @@ ngOnInit(): void {
   getUserDetail() {
     this.authService.getUserProfile().subscribe((response: any) => {
       this.userProfile = response;
+      console.log(response);
+      
     });
   }
 
