@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 
 @Component({
   selector: 'app-requests',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requests.component.scss']
 })
 export class RequestsComponent implements OnInit {
+  isApproved: boolean = false;
+  publishers: any;
 
-  constructor() { }
+  constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
+    this.displayPendingPublishers();
+  }
+
+  displayPendingPublishers() {
+    this.adminPagesService.getPublishers(this.isApproved)
+      .subscribe( res=>
+      {
+        this.publishers = res;
+      })
   }
 
 }
