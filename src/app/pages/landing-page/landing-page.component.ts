@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ArticlesService} from "../../services/articles.service";
+import {Categories} from "../../model/categories";
 
 @Component({
   selector: 'app-landing-page',
@@ -6,22 +8,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  page = 1;
+  page = 0;
   count = 0;
-  tableSize = 6;
+  tableSize = 20;
   nums:any;
   searchData='';
+  //Allcategories:Categories[]=[];
+  allCategories:any;
+  allArticles: any;
 
-  constructor() { }
+
+  constructor( private articlesService:ArticlesService) { }
 
   ngOnInit(): void {
    this.nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+   this.getCategories();
+   this.getAllArticles();
   }
+
   onTableDataChange(event:any){
     this.page = event;
 
   }
+  getCategories() {
+    this.articlesService.getCategory().subscribe(res=>
+    {
+      this.allCategories=res;
+    })
 
+  }
 
+  getAllArticles() {
+    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe(res => {
+       this.allArticles = res;
+       console.log(res);
+    })
+  }
 
 }

@@ -65,12 +65,9 @@
         <div class="card-header" style="background-color: darkblue; color: white">
           Our Categories
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
+        <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
+          <li class="list-group-item">{{category.name}}</li>
+
         </ul>
       </div>
       <br>
@@ -196,7 +193,16 @@
   <h3 class="text-center mt-5 mb-5">
     All articles and books
   </h3>
-    <div class="row" >
+  <div class="row">
+    <div class="col-md-4 card-group">
+      <a href="/articles-detail">
+        <div class="card" style="width: 18rem;">
+         
+        </div>
+    </a>
+    </div>
+  <!-- </div> -->
+    <!-- <div class="row" >
 
       <div class="col-md-4 card-group"
            style="margin-top: 30px"
@@ -215,7 +221,7 @@
             {{num}}
           </div>
       </a>
-      </div>
+      </div> -->
     </div>
 
 
