@@ -39,5 +39,4 @@ export class PublisherAdminComponent implements OnInit {
       })
   }
 
-  s
 }
