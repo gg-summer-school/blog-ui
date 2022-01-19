@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Articles } from '../model/articles';
+import {ResponseObject} from "../model/response";
 
 
 @Injectable({
@@ -26,17 +27,22 @@ export class ArticlesService {
     return this.http.get(this.baseUrl + 'articles');
 
   }
-  createArticle(article:Articles, publisherId:string, categoryId:string)
+  createArticle(article:Articles, publisherId:string, categoryId:string):Observable<any>
   {
     return this.http.post(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
   }
-  createArticleFiles(article:Articles, publisherId:string, articleId:string)
+
+  uploadArticleFiles(article:any, publisherId:string, articleId:string)
   {
-    return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
+    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-upload', article);
   }
   getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
   {
     return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
+  }
+  getCategory()
+  {
+    return this.http.get("http://192.168.8.103:8000/api/public/categories");
   }
   getOneArticle(articleId:string)
   {

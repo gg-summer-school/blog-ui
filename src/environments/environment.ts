@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrlPro: 'http://localhost:8000/api/protected/',
-  baseUrlPub: 'http://localhost:8000/api/public/',
+  baseUrlPro: 'http://192.168.8.103:8000/api/protected/',
+  baseUrlPub: 'http://192.168.8.103:8000/api/public/',
 };
 
 /*

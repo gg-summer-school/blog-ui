@@ -65,12 +65,9 @@
         <div class="card-header" style="background-color: darkblue; color: white">
           Our Categories
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A third item</li>
+        <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
+          <li class="list-group-item">{{category.name}}</li>
+
         </ul>
       </div>
       <br>
