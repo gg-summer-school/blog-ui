@@ -27,28 +27,7 @@
         <b>Action</b>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User one</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email one</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>One</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
-        </div>
-      </div>
-    </div>
-
+  
     <div class="table">
       <div class="row">
         <div class="col-md-3">
@@ -65,33 +44,9 @@
 
         <div class="col-md-3">
           <tr><button (click) = "onClickSuspend()" class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;
-
-            <button (click) = "onClickBlock()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
         </div>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User one</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email one</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>One</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
-        </div>
-      </div>
-    </div><br>
-
   </div>
 </div>
 
@@ -108,11 +63,7 @@
         Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
       </div>
       <div class="modal-footer">
-        <!--Block user-->
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
-        <!--suspend user-->
-        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
+        <button type="button" class="btn btn-danger">Suspend</button>
       </div>
     </div>
   </div>
