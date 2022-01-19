@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 
 @Component({
   selector: 'app-user-admin',
@@ -8,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class UserAdminComponent implements OnInit {
   isBlocked = false;
   isSuspended = false;
+  readers: any;
 
-  constructor() { }
+  constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
+    this.displayReaders()
+  }
+
+  displayReaders() {
+    this.adminPagesService.getReaders()
+      .subscribe( res=>
+      {
+        this.readers = res;
+      })
   }
 
   onClickBlock() {

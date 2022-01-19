@@ -24,14 +24,14 @@
       </div>
     </div>
 
-    <div class="table">
+    <div *ngFor="let p of publishers" class="table">
       <div class="row">
         <div class="col-md-4">
-          <a>Publisher one</a><br>
+          <a>{{p.name}}</a><br>
         </div>
 
         <div class="col-md-3">
-          <a>Email one</a><br>
+          <a>{{p.email}}</a><br>
         </div>
 
         <div class="col-md-4">
@@ -40,40 +40,6 @@
         </div>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-4">
-          <a>Publisher two</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <a>Email two</a><br>
-        </div>
-
-        <div class="col-md-4">
-          <tr><button class="btn btn-dark but">Accept</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"> Decline</button></tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-4">
-          <a>Publisher one</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <a>Email one</a><br>
-        </div>
-
-        <div class="col-md-4">
-          <tr><button class="btn btn-dark but art">Accept</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"> Decline</button></tr>
-        </div>
-      </div>
-    </div><br>
 
   </div>
 </div>

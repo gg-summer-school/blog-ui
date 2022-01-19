@@ -9,12 +9,10 @@
 
 <div class="container">
   <div class="col-md-9">
-
     <div class="row">
       <div class="col-md-3">
         <b>Publishers </b>
       </div>
-
       <div class="col-md-3">
         <b>Number of Articles</b>
       </div>
@@ -28,44 +26,24 @@
       </div>
     </div>
 
-    <div class="table">
+    <div *ngFor="let publisher of publishers" class="table">
       <div class="row">
         <div class="col-md-3">
-          <a>User one</a><br>
+          <a>{{ publisher.name }}</a><br>
         </div>
 
         <div class="col-md-3 art">
-          <a>One</a><br>
+          <a>{{numberOfArticles.length}}</a><br>
         </div>
 
         <div class="col-md-2">
-          <a>Email one</a><br>
+          <a>{{ publisher.email }}</a><br>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 ema">
           <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User two</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>Two</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email two</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
+            <button class="btn btn-outline-secondary">Add Role</button>
+          </tr>
         </div>
       </div>
     </div>
@@ -85,8 +63,11 @@
         </div>
 
         <div class="col-md-3">
-          <tr><button  (click) = "onClickSuspend()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button  (click) = "onClickBlock()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button></tr>
+          <tr><button (click)="onClickSuspend()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
+            <button (click)="onClickBlock()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button>
+          </tr>
         </div>
       </div>
     </div><br>
@@ -96,15 +77,18 @@
 
 
 <!-- Modal to block and suspend publisher -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span
+            *ngIf="isSuspended">Suspend</span> "User Name"</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this
+        user?
       </div>
       <div class="modal-footer">
         <!--Block publisher-->
@@ -117,3 +101,6 @@
   </div>
 </div>
 
+<br>
+
+ 
