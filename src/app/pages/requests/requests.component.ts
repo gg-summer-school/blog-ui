@@ -29,6 +29,13 @@ export class RequestsComponent implements OnInit {
   approvePublisher(publisherId: string) {
     this.adminPagesService.approveUser(publisherId, this.approveUser).subscribe((res) => {
     })
+    window.location.reload();
+  }
+
+  declineUser(publisherId: string) {
+    this.adminPagesService.declineUser(publisherId).subscribe((res) => {
+    })
+    window.location.reload();
   }
 
 

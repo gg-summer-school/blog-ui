@@ -48,7 +48,7 @@ get registerFormControl() {
 onSubmit() {
 
   this.submitted = true;
-  // if (this.loginForm.valid) {
+  if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
          console.log('fasdf')
         this.router.navigate(['/user-admin']);
@@ -58,10 +58,10 @@ onSubmit() {
     },
     err => {
       console.log(err.error)
-      this.errorMessage = err.error;
+      this.errorMessage = err.error.message;
     }
   );
-  //}
+  }
 }
 
 }

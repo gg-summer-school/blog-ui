@@ -15,13 +15,13 @@ export class AdminPagesService {
   constructor(private http: HttpClient) { }
 
   getPublishers(isApproved: boolean) {
-    return this.http.get<Admin>(this.baseUrlPro + 'users' + '/' + 'publishers' + '/' + isApproved);
+    return this.http.get<Admin[]>(this.baseUrlPro + 'users' + '/' + 'publishers' + '/' + isApproved);
   }
 
   //http://localhost:8000/api/protected/users/publishers/false
 
   getReaders() {
-    return this.http.get<Admin>(this.baseUrlPro + 'users' + '/' + 'readers');
+    return this.http.get<Admin[]>(this.baseUrlPro + 'users' + '/' + 'readers');
   }
 
   getArticlesByPublisher(publisherId: string, isApproved: boolean) {
@@ -29,23 +29,23 @@ export class AdminPagesService {
   }
 
   approveUser(user_id: string, approve: boolean) {
-    return this.http.put<Admin>(this.baseUrlPro + 'approve' + '/' + 'user' + '/' + user_id, approve);
+    return this.http.patch<Admin>(this.baseUrlPro + 'approve' + '/' + 'user' + '/' + user_id, approve);
   }
 
   suspendUser(user_id: string, suspend: boolean) {
-    return this.http.put<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
+    return this.http.patch<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
   }
 
   addRole(user_id: string, add_Role: boolean) {
-    return this.http.put<Admin>(this.baseUrlPro + 'addrole' + '/' + 'user' + '/' + user_id, add_Role);
+    return this.http.patch<Admin>(this.baseUrlPro + 'addrole' + '/' + 'user' + '/' + user_id, add_Role);
   }
 
   reactivateUser(user_id: string, reactivate_User: boolean) {
-    return this.http.put<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'user' + '/' + user_id, reactivate_User);
+    return this.http.patch<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'user' + '/' + user_id, reactivate_User);
   }
 
-  declineUser(user_id: string) {
-    return this.http
+  declineUser(publisher_id: string) {
+    return this.http.delete<Admin>(this.baseUrlPro + 'user' + '/' + publisher_id);
   }
 
 

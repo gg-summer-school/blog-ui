@@ -1,24 +1,46 @@
+@media(max-width: 1500px) {
+  body{
+    background-color: red;
+  }
+  .col-md-9{
+    margin-left: 100px;
+  }
 
+  .col-md-3 {
+    display: block;
+  }
 
-.col-md-9{
-  margin-left: 100px;
+  .col-md-2 {
+    display: block;
+  }
+
+  .table {
+    margin-top: 50px;
+    height: 70px;
+    background-color: #eaeaea;
+    border-radius: 7px;
+    padding-top: 20px;
+  }
+
+  button {
+    padding: 2px;
+    font-size: smaller;
+  }
+
+  .col-md-4 {
+    margin-left: 20px;
+  }
+
 }
 
-.table {
-  margin-top: 50px;
-  height: 70px;
-  background-color: #eaeaea;
-  border-radius: 7px;
-  padding-top: 20px;
-}
+@media (max-width: 500px) {
+  .col-md-9{
+    margin-left: 100px;
+  }
 
-button {
-  padding: 2px;
-  font-size: smaller;
-}
-
-.col-md-4 {
-  margin-left: 20px;
+  .col-md-3 {
+    display: block;
+  }
 }
 
 .but {
@@ -37,3 +59,6 @@ button {
   margin-left: 41px;
 }
 
+.dropdown.show .dropdown-menu {
+  opacity: 1 !important;
+}
