@@ -9,6 +9,8 @@ import {AdminPagesService} from "../../services/admin-services/admin-pages.servi
 export class RequestsComponent implements OnInit {
   isApproved: boolean = false;
   publishers: any;
+  approveUser: boolean = true;
+
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -23,5 +25,11 @@ export class RequestsComponent implements OnInit {
         this.publishers = res;
       })
   }
+
+  approvePublisher(publisherId: string) {
+    this.adminPagesService.approveUser(publisherId, this.approveUser).subscribe((res) => {
+    })
+  }
+
 
 }
