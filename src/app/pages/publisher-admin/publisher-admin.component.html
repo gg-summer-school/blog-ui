@@ -12,7 +12,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <b>Publishers </b>
+        <b>Publishers ({{number}})</b>
       </div>
 
       <div class="col-md-3">
@@ -43,11 +43,17 @@
         </div>
 
         <div class="col-md-3 ema">
-          <div *ngIf="isClicked">
-            <tr><button (click)="suspendPublisher(publisher.id)" class="btn btn-dark but">Suspend</button>&nbsp;
-              <button (click)="reactivateUser(publisher.id)" class="btn btn-dark but">Reactivate</button>&nbsp;</tr>
-          </div>
-            <tr><button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>
+            <tr><button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
+              <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" >Admin</a></li>
+                  <li><a class="dropdown-item" >Another action</a></li>
+                </ul>
+              </div>
+<!--            <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>-->
         </div>
       </div>
     </div>
@@ -55,3 +61,11 @@
 
   </div>
 </div>
+<!--<div class="container">-->
+<!--<ul class="list-group"  *ngFor="let publisher of publishers">-->
+<!--  <li class="list-group-item-dark">{{ publisher.name }}</li>-->
+<!--  <li class="list-group-item-dark">{{ publisher.email }}}</li>-->
+<!--  <button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;-->
+<!--  <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;-->
+<!--</ul>-->
+<!--</div>-->

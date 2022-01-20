@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
+import {Admin} from "../../model/admin";
 
 @Component({
   selector: 'app-user-admin',
@@ -9,7 +10,8 @@ import {AdminPagesService} from "../../services/admin-services/admin-pages.servi
 export class UserAdminComponent implements OnInit {
   isBlocked = false;
   isSuspended = false;
-  readers: any;
+  readers: Admin[] = []
+  number!:number
   suspendUser: boolean = false;
 
   constructor(private adminPagesService: AdminPagesService) { }
@@ -23,6 +25,7 @@ export class UserAdminComponent implements OnInit {
       .subscribe( res=>
       {
         this.readers = res;
+        this.number= this.readers.length;
       })
   }
 
