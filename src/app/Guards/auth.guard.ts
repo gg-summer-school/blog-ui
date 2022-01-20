@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
 
 
   canActivate(): boolean {
+
     const user = this.tokenStorageService.getToken();
 
     if (!user) {

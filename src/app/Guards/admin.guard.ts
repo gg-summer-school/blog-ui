@@ -6,20 +6,24 @@ import { TokenStorageService } from '../services/token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PublisherGuard implements CanActivate {
- 
+export class AdminGuard implements CanActivate {
+
   constructor(private tokenStorageService: TokenStorageService, private router: Router){}
-
-
+  
   canActivate(): boolean {
     const user = this.tokenStorageService.getUser().role;
-    let role = user.find((role: any )=> role === 'PUBLISHER')
-    if(role === 'PUBLISHER') {
+    let role = user.find((role: any )=> role === 'ADMIN')
+    if(role === 'ADMIN') {
       return true;
-    }else {
+    }else if(role === 'READER') {
       alert('You are a thief!!!');
       this.router.navigate(['/user-admin'])
       return false;
+    }else {
+      alert('You are a thief!!!');
+      this.router.navigate(['/publisher-admin'])
+      return false;
     }
   } 
+  
 }

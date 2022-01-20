@@ -6,12 +6,37 @@ import { ArticleDetailPageComponent } from './pages/article-detail-page/article-
 import {YourArticlesComponent} from "./pages/your-articles/your-articles.component";
 import {UserProfileComponent} from "./pages/user-profile/user-profile.component";
 import {PublisherAdminComponent} from './pages/publisher-admin/publisher-admin.component';
-import {UserAdminComponent} from './pages/user-admin/user-admin.component';
 import {RequestsComponent} from './pages/requests/requests.component';
 import {PublishArticleComponent} from './pages/publish-article/publish-article.component';
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { PublisherGuard } from './Guards/publisher.guard';
+import { AdminGuard } from './Guards/admin.guard';
+import { DashboardComponent } from './pages/user-admin/user-admin.component';
+
+
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: LandingPageComponent
+//   },
+
+//   {
+//     path: 'login',
+//     component: LoginComponent
+//   },
+
+//   {
+//     path: 'signup',
+//     component: SignupComponent
+//   },
+
+//   {
+//     path: 'dashboard',
+//     component: DashboardComponent
+//   }
+// ];
 
 
 const routes: Routes = [
@@ -25,7 +50,7 @@ const routes: Routes = [
   },
   { path: 'your-articles',
     component: YourArticlesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, PublisherGuard]
   },
 
   { path: 'user-profile',
@@ -35,22 +60,22 @@ const routes: Routes = [
 
   { path: 'publisher-admin',
     component: PublisherAdminComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, PublisherGuard], 
   },
 
-  { path: 'user-admin',
-    component: UserAdminComponent,
-    canActivate: [AuthGuard]
+  { path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard, PublisherGuard],
   },
 
   { path: 'requests',
     component: RequestsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
 
   { path: 'publish-article',
     component: PublishArticleComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, PublisherGuard]
   },
 
   {

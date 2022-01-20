@@ -1,68 +1,68 @@
 
 <app-sidebar></app-sidebar>
-<!--<div class="row d">-->
-<!--  <div class="col-md-3">-->
-<!--    <app-sidebar></app-sidebar>-->
-<!--  </div>-->
-<!--  <div class="col-md-5">-->
-<!--    <app-status></app-status>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="container">
     <div class="main">
       <br>
       <h4>Publish an article</h4>
       <br>
-      <form [formGroup]="publish" (submit)="onSubmit(publish.value)">
+      <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
         <input type="text" placeholder="Title" class="form-control" formControlName="title">
         <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
         <br>
-        <div class="row">
-          <div class="col-md-6">
-            <label for="bc">Upload book cover</label>
-            <input type="file"  id="bc" placeholder="Book cover" class="form-control" formControlName="cover_page">
-            <span *ngIf="f.cover_page.invalid && f.cover_page.touched" class="form-text"> This field is required</span>
-          </div>
-          <div class="col-md-6">
-            <label >Category</label>
-            <select class="form-control form-select" formControlName="category_id" >
-              <option  value="">Science</option>
-              <option  value="">Art</option>
-              <option  value="">Space</option>
-              <option  value="">Travel</option>
-            </select>
-            <span *ngIf="f.category_id.invalid && f.category_id.touched" class="form-text"> This field is required</span>
-          </div>
-
-        </div>
-
-        <br>
-        <textarea type="text" placeholder="Abstract" class="form-control" formControlName="article_abstract"></textarea>
-        <span *ngIf="f.article_abstract.invalid && f.article_abstract.touched" class="form-text"> This field is required</span>
+        <textarea type="text" placeholder="Abstract" class="form-control" formControlName="articleAbstract"></textarea>
+        <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> This field is required</span>
         <br>
         <textarea type="text" placeholder="Table of content" class="form-control" formControlName="toc"></textarea>
         <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
         <br>
-        <input type="text" placeholder="Contributors" class="form-control" formControlName="contributors">
+        <input type="text" placeholder="Enter many contributors separated by comma" class="form-control" formControlName="contributors">
         <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
         <br>
         <div class="row">
           <div class="col-md-6">
-            <label for="bc">Upload book</label>
-            <input type="file" placeholder="Book cover" class="form-control" formControlName="book">
-            <span *ngIf="f.book.invalid && f.book.touched" class="form-text"> This field is required</span>
+            <label >Category</label>
+            <select class="form-control form-select" formControlName="category" >
+              <option *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
+            </select>
+            <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> This field is required</span>
           </div>
+
           <div class="col-md-6">
-            <label>Price</label>
+            <label>Price(frs)</label>
             <input type="number" placeholder="Book price" class="form-control" formControlName="price">
             <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
           </div>
         </div>
 
         <br>
-        <div class="button"> <button class="btn btn-primary">Publish article</button></div>
+        <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal">Publish article</button></div>
       </form>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label for="bc">Upload book cover</label>
+            <input type="file"  id="bc"  (change)="select($event)" enctype="multipart/form-data" class="form-control" formControlName="coverPage">
+            <span *ngIf="f.coverPage.invalid && f.coverPage.touched" class="form-text"> This field is required</span>
+<br>
+            <label for="bc">Upload book</label>
+            <input type="file"  (change)="select1($event)" enctype="multipart/form-data" class="form-control" formControlName="document">
+            <span *ngIf="f.document.invalid && f.document.touched" class="form-text"> This field is required</span>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary upload" (click)="upload()">Upload</button>
+      </div>
+    </div>
+  </div>
 </div>
   <br>
