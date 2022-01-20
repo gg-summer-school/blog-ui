@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from "../../services/articles.service";
 import {Categories} from "../../model/categories";
+import { Articles } from 'src/app/model/articles';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,12 +11,12 @@ import {Categories} from "../../model/categories";
 export class LandingPageComponent implements OnInit {
   page = 0;
   count = 0;
-  tableSize = 20;
+  tableSize = 6;
   nums:any;
   searchData='';
   //Allcategories:Categories[]=[];
   allCategories:any;
-  allArticles: any;
+  allArticles: Articles[] = [];
 
 
   constructor( private articlesService:ArticlesService) { }
@@ -39,7 +40,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe(res => {
+    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe((res: Articles[]) => {
        this.allArticles = res;
        console.log(res);
     })
