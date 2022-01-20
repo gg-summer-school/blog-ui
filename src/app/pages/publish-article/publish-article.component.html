@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="main">
-      <br>
+
       <h4>Publish an article</h4>
       <br>
       <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
@@ -36,7 +36,7 @@
         </div>
 
         <br>
-        <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal">Publish article</button></div>
+        <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="publish.invalid">upload article</button></div>
       </form>
     </div>
 </div>
@@ -46,21 +46,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+      <h3>Article successfully created!!!</h3>
+        </div>
+        <br>
+        <div class="alert alert-danger" role="alert" *ngIf="error">
+        <h3> {{errorMessage}}</h3>
+        </div>
+        <br>
+        <div class="alert alert-danger" role="alert" *ngIf="error1">
+          <h3> {{errorMessage1}} error</h3>
+        </div>
+        <br>
         <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <label for="bc">Upload book cover</label>
-            <input type="file"  id="bc"  (change)="select($event)" enctype="multipart/form-data" class="form-control" formControlName="coverPage">
-            <span *ngIf="f.coverPage.invalid && f.coverPage.touched" class="form-text"> This field is required</span>
+            <label >Upload book cover</label>
+            <input type="file"  accept="image/x-png,image/jpg,image/jpeg" (change)="select($event)" enctype="multipart/form-data" class="form-control" >
 <br>
-            <label for="bc">Upload book</label>
-            <input type="file"  (change)="select1($event)" enctype="multipart/form-data" class="form-control" formControlName="document">
-            <span *ngIf="f.document.invalid && f.document.touched" class="form-text"> This field is required</span>
+            <label >Upload book</label>
+            <input type="file" accept="application/pdf"  (change)="select1($event)" enctype="multipart/form-data" class="form-control">
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary upload" (click)="upload()">Upload</button>
+        <button type="button" class="btn btn-primary upload" (click)="upload()">publish article</button>
       </div>
     </div>
   </div>
