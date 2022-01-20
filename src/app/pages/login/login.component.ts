@@ -49,7 +49,8 @@ onSubmit() {
   if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: any) => { 
         this.router.navigate(['/user-admin']);
-        console.log(userData);
+        
+        this.tokenStorage.saveUser(userData);
         
         this.tokenStorage.saveToken(userData.accessToken);
     },

@@ -10,7 +10,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private token: TokenStorageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("it's called");
     
     let authReq = req;
     const token = this.token.getToken();
