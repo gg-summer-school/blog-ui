@@ -15,6 +15,7 @@ export class PublisherAdminComponent implements OnInit {
   numberOfArticles: Admin[] = [];
   status:string = 'Suspend';
   suspendUser: boolean = false;
+  addRole: boolean = false;
 
 
   constructor(private adminPagesService: AdminPagesService) { }
@@ -35,6 +36,11 @@ export class PublisherAdminComponent implements OnInit {
 
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+    })
+  }
+
+  addRole(publisherId: string) {
+    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
     })
   }
 
