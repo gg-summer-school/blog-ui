@@ -17,7 +17,7 @@ export class PublisherAdminComponent implements OnInit {
   suspendUser: boolean = false;
   addRole: boolean = false;
   reactivate: boolean = true;
-
+  isClicked: boolean = true;
 
   constructor(private adminPagesService: AdminPagesService) { }
 

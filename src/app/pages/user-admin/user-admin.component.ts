@@ -12,7 +12,6 @@ export class UserAdminComponent implements OnInit {
   readers: any;
   suspendUser: boolean = false;
 
-
   constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {

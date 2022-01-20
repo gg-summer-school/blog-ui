@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-md-3 ema">
-          <div >
+          <div *ngIf="isClicked">
             <tr><button (click)="suspendPublisher(publisher.id)" class="btn btn-dark but">Suspend</button>&nbsp;
               <button (click)="reactivateUser(publisher.id)" class="btn btn-dark but">Reactivate</button>&nbsp;</tr>
           </div>
