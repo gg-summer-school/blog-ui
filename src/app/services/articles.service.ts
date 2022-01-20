@@ -32,24 +32,23 @@ export class ArticlesService {
     return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
   }
 
-  uploadArticleFiles( coverPage:FormData,document:FormData, publisherId:string, articleId:string)
+  uploadArticleFiles( uploadFile:FormData, publisherId:string, articleId:string)
   {
-    // const formData: FormData = new FormData();
-    // formData.append('document', article);
 
-    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-upload', coverPage);
+    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-uploads',  uploadFile);
   }
-  getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
-  {
-    return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
-  }
+
+  // getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
+  // {
+  //   return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
+  // }
   getCategory()
   {
     return this.http.get(this.baseUrl+'categories');
   }
-  getOneArticle(articleId:string)
+  getArticlesByPublisher(publisherId:string)
   {
-
+    return this.http.get(this.baseUrl1+'publishers/'+publisherId+'/articles');
   }
   deleteArticle(articleId:string)
   {
