@@ -28,25 +28,27 @@
       </div>
     </div>
 
-    <div class="table">
+    <div *ngFor="let read of readers" class="table">
       <div class="row">
         <div class="col-md-3">
-          <a>User two</a><br>
+          <a>{{read.name}}</a><br>
         </div>
 
         <div class="col-md-2">
-          <a>Email two</a><br>
+          <a>{{read.email}}</a><br>
         </div>
 
         <div class="col-md-3 art">
-          <a>Two</a><br>
+          <a>One</a><br>
         </div>
 
         <div class="col-md-3">
-          <tr><button class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;
+          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
+            <button class="btn btn-outline-secondary"> Add Role</button></tr>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -63,7 +65,11 @@
         Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Suspend</button>
+        <!--Block user-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
+        <!--suspend user-->
+        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
       </div>
     </div>
   </div>

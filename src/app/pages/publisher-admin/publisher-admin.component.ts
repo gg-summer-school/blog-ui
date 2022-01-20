@@ -16,6 +16,7 @@ export class PublisherAdminComponent implements OnInit {
   status:string = 'Suspend';
   suspendUser: boolean = false;
   addRole: boolean = false;
+  reactivate: boolean = true;
 
 
   constructor(private adminPagesService: AdminPagesService) { }
@@ -43,6 +44,12 @@ export class PublisherAdminComponent implements OnInit {
     this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
     })
   }
+
+  reactivateUser(publisherId: string) {
+    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+    })
+  }
+
 
   // getArticlesById() {
   //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)

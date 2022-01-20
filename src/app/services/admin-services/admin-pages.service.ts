@@ -37,7 +37,11 @@ export class AdminPagesService {
   }
 
   addRole(user_id: string, add_Role: boolean) {
-    return this.http.put<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, add_Role);
+    return this.http.put<Admin>(this.baseUrlPro + 'addrole' + '/' + 'user' + '/' + user_id, add_Role);
+  }
+
+  reactivateUser(user_id: string, reactivate_User: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'user' + '/' + user_id, reactivate_User);
   }
 
   declineUser(user_id: string) {
