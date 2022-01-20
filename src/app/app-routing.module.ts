@@ -15,30 +15,6 @@ import { PublisherGuard } from './Guards/publisher.guard';
 import { AdminGuard } from './Guards/admin.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
-
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: LandingPageComponent
-//   },
-
-//   {
-//     path: 'login',
-//     component: LoginComponent
-//   },
-
-//   {
-//     path: 'signup',
-//     component: SignupComponent
-//   },
-
-//   {
-//     path: 'dashboard',
-//     component: DashboardComponent
-//   }
-// ];
-
-
 const routes: Routes = [
   {
     path: 'login',

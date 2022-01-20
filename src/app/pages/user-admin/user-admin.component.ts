@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
   isBlocked = false;
   isSuspended = false;
   readers: any;
+  suspendUser: boolean = false;
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -25,14 +26,10 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  onClickBlock() {
-    this.isBlocked = true;
-    this.isSuspended = false;
-  }
-
-  onClickSuspend() {
+  onClickSuspend(publisherId: string) {
     this.isSuspended = true;
-    this.isBlocked = false;
+    this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+    })
   }
 
 }

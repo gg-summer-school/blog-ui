@@ -43,8 +43,11 @@
         </div>
 
         <div class="col-md-3 ema">
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-outline-secondary">Add Role</button></tr>
+          <div *ngIf="isClicked">
+            <tr><button (click)="suspendPublisher(publisher.id)" class="btn btn-dark but">Suspend</button>&nbsp;
+              <button (click)="reactivateUser(publisher.id)" class="btn btn-dark but">Reactivate</button>&nbsp;</tr>
+          </div>
+            <tr><button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>
         </div>
       </div>
     </div>
