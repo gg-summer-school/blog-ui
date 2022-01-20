@@ -39,7 +39,7 @@ export class PublisherAdminComponent implements OnInit {
     })
   }
 
-  addRole(publisherId: string) {
+  addRoleToUser(publisherId: string) {
     this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
     })
   }

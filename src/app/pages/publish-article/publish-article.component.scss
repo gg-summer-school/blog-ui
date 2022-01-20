@@ -29,7 +29,7 @@ textarea{
 {
   text-align: center;
 }
-button
+.butt
 {
   width: 350px;
   background-color: indigo;
@@ -46,4 +46,9 @@ select.ng-invalid.ng-touched
 textarea.ng-invalid.ng-touched
 {
   border: 2px solid red;
+}
+.upload
+{
+  width: 100px;
+  background-color: indigo;border-radius: 10px;
 }
