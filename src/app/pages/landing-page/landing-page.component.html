@@ -194,10 +194,18 @@
     All articles and books
   </h3>
   <div class="row">
-    <div class="col-md-4 card-group">
+    <div 
+        class="col-md-4 card-group"
+        style="margin-top: 30px;"
+        *ngFor="let article of allArticles | paginate : {
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems: count
+        };">
       <a href="/articles-detail">
         <div class="card" style="width: 18rem;">
-         
+            <img [src]="article.document" alt="test">
+            <h3>{{ article.title }}</h3>
         </div>
     </a>
     </div>

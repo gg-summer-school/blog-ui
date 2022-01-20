@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from "../../services/articles.service";
 import {Categories} from "../../model/categories";
 import { Articles } from 'src/app/model/articles';
+import { ArticleList } from 'src/app/model/articleDtoList';
+// import { ArticleDtoList } from 'src/app/model/articleDtoList';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,12 +13,12 @@ import { Articles } from 'src/app/model/articles';
 export class LandingPageComponent implements OnInit {
   page = 0;
   count = 0;
-  tableSize = 6;
+  tableSize = 20;
   nums:any;
   searchData='';
   //Allcategories:Categories[]=[];
   allCategories:any;
-  allArticles: Articles[] = [];
+  allArticles!: any[];
 
 
   constructor( private articlesService:ArticlesService) { }
@@ -40,9 +42,9 @@ export class LandingPageComponent implements OnInit {
   }
 
   getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe((res: Articles[]) => {
-       this.allArticles = res;
-       console.log(res);
+    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe((res: ArticleList) => {
+       this.allArticles = res.articleDtoList;
+       console.log(res.articleDtoList);
     })
   }
 

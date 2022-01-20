@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ArticleList } from '../model/articleDtoList';
 import { Articles } from '../model/articles';
 import {ResponseObject} from "../model/response";
 
@@ -25,9 +26,9 @@ export class ArticlesService {
   //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
 
 
-  getAllArticles(pageNo: number, pageSize: number): Observable<Articles[]>
+  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
   {
-    return this.http.get<Articles[]>(this.baseUrl + `articles?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=title&sortDir=asc`);
+    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=title&sortDir=asc`);
 
   }
   createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
