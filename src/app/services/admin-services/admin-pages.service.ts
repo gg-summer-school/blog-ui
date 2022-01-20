@@ -28,6 +28,25 @@ export class AdminPagesService {
     return this.http.get<Admin>(this.baseUrlPro + 'publishers' + '/' + publisherId + '/' + 'articles');
   }
 
-  suspend() {}
+  approveUser(user_id: string, approve: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'approve' + '/' + 'user' + '/' + user_id, approve);
+  }
+
+  suspendUser(user_id: string, suspend: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
+  }
+
+  addRole(user_id: string, add_Role: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'addrole' + '/' + 'user' + '/' + user_id, add_Role);
+  }
+
+  reactivateUser(user_id: string, reactivate_User: boolean) {
+    return this.http.put<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'user' + '/' + user_id, reactivate_User);
+  }
+
+  declineUser(user_id: string) {
+    return this.http
+  }
+
 
 }

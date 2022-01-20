@@ -204,8 +204,10 @@
         };">
       <a href="/articles-detail">
         <div class="card" style="width: 18rem;">
-            <img [src]="article.document" alt="test">
+            <img [src]="article.coverPage" alt="test">
             <h3>{{ article.title }}</h3>
+            <p>{{article.createdAt}}</p>
+            <P>{{article.contributors}}</P>
         </div>
     </a>
     </div>

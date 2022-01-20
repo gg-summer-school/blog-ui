@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Articles } from 'src/app/model/articles';
 import { ArticlesService } from 'src/app/services/articles.service';
 import {DashboardPublisherService} from "../../services/dashboard-publisher.service";
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-your-articles',
@@ -12,10 +13,14 @@ export class YourArticlesComponent implements OnInit {
   userId! : string;
   userArticles!: Articles[];
   pubArticles:any=[];
+  publisherId:string='';
 
-  constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService) { }
+  constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
+              private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.publisherId= this.tokenStorage.getUser().id;
+    console.log(this.publisherId);
     this.getArticlesByPublisher();
   }
   getAllUserArticles(){
@@ -28,7 +33,7 @@ export class YourArticlesComponent implements OnInit {
 
   getArticlesByPublisher()
   {
-    this.publisherService.getArticlesByPublisher("37d7b7d7-7e2f-4bf4-b6d4-c2d865aea491").subscribe(res=>
+    this.articleService.getArticlesByPublisher(this.publisherId).subscribe(res=>
     {
       this.pubArticles=res;
       console.log(res);
