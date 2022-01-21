@@ -19,15 +19,15 @@ import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'page-not-found',
-    pathMatch: 'full'
-  },
-  {
-    path: 'page-not-found',
-    component: PageNotFoundComponent
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'page-not-found',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'page-not-found',
+  //   component: PageNotFoundComponent
+  // },
   {
     path: 'login',
     component: LoginComponent
@@ -48,7 +48,7 @@ const routes: Routes = [
 
   { path: 'publisher-admin',
     component: PublisherAdminComponent,
-    canActivate: [AuthGuard, PublisherGuard], 
+    canActivate: [AuthGuard, PublisherGuard],
   },
 
   { path: 'dashboard',
