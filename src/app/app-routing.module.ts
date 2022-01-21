@@ -21,15 +21,6 @@ import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 
 const routes: Routes = [
-  // {
-  //   path: '**',
-  //   redirectTo: 'page-not-found',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'page-not-found',
-  //   component: PageNotFoundComponent
-  // },
   {
     path: 'login',
     component: LoginComponent
@@ -98,6 +89,16 @@ const routes: Routes = [
     path: 'view-transactions',
     component: ViewTransactionsComponent,
     canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'page-not-found',
+    component: PageNotFoundComponent,
+  },
+
+  {
+    path: '**',
+    redirectTo: 'page-not-found',
   },
 
 ];
