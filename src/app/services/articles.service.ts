@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Articles } from '../model/articles';
+import { ArticleList, Articles } from '../model/articles';
 import {ResponseObject} from "../model/response";
 
 
@@ -22,11 +22,13 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllArticles()
+  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
   {
-    return this.http.get(this.baseUrl + 'articles');
+    return this.http.get<ArticleList>(this.baseUrl + 'articles?pageNo=' + pageNo + `&pageSize=` + pageSize);
 
   }
+
+
   createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
   {
     return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);

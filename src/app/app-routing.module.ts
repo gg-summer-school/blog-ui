@@ -19,11 +19,11 @@ import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'page-not-found',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'page-not-found',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'page-not-found',
     component: PageNotFoundComponent
