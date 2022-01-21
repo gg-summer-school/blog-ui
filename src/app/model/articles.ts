@@ -1,5 +1,4 @@
 import {Contributors} from "./contributors";
-import {Categories} from "./categories";
 
 export interface Articles {
   title: string;
@@ -7,4 +6,7 @@ export interface Articles {
   toc: string;
   price: number;
   contributors: Contributors[];
+}
+export interface Payment {
+  nameOfArticle: string;
 }

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Articles } from '../model/articles';
-import {ResponseObject} from "../model/response";
+import {Articles, Payment} from '../model/articles';
+import {ResponseObject} from '../model/response';
 
 
 @Injectable({
@@ -27,36 +27,46 @@ export class ArticlesService {
     return this.http.get(this.baseUrl + 'articles');
 
   }
-  createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
+  createArticle(article: Articles, publisherId: string, categoryId: string): Observable<ResponseObject>
   {
-    return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
+    return this.http.post<ResponseObject>(this.baseUrl1 + 'publishers/' + publisherId + '/articles/categories/' + categoryId, article);
   }
 
-  uploadArticleFiles( coverPage:FormData,document:FormData, publisherId:string, articleId:string)
+  uploadArticleFiles( coverPage: FormData, document: FormData, publisherId: string, articleId: string)
   {
     // const formData: FormData = new FormData();
     // formData.append('document', article);
 
-    return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-upload', coverPage);
+    return this.http.put(this.baseUrl1 + 'publishers/' + publisherId + '/articles/' + articleId + '/file-upload', coverPage);
   }
-  getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
+  getArticlesByCategory(article: Articles, publisherId: string, articleId: string)
   {
-    return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
+    return this.http.put(this.baseUrl1 + '/publishers' + publisherId + '/articles/' + articleId + '/file-upload', article);
   }
   getCategory()
   {
-    return this.http.get(this.baseUrl+'categories');
+    return this.http.get(this.baseUrl + 'categories');
   }
-  getOneArticle(articleId:string)
+  getOneArticle(articleId: string)
   {
 
   }
-  deleteArticle(articleId:string)
+  deleteArticle(articleId: string)
   {
 
   }
-  updateArticle(articleId:string, article:any)
+  updateArticle(articleId: string, article: any)
   {
+
+  }
+  // payArticles
+  // tslint:disable-next-line:variable-name typedef
+  PayArticle(user_id: string, article_id: string, article: any){
+    return this.http.post<ResponseObject>(this.baseUrl1 + 'transactions/' + 'user/' + {user_id} + '/article/' + {article_id}, article)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
 
   }
 
@@ -73,17 +83,17 @@ export class ArticlesService {
       );
   }
 
-  //display one user article
+  // display one user article
   getOneUserArticle(articleId: string, userId: string): Observable<Articles>{
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId})
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
   }
-  //get all user-role paid articles
+  // get all user-role paid articles
   getAllUserPaidArticles(userId: string){
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles')
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles');
   }
-   //get all user-role paid article
+   // get all user-role paid article
    getAllOneUserPaidArticle(userId: string, articleId: string){
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
+    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
 
   }
    // Error handling

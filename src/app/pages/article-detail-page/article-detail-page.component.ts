@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import {ArticlesService} from '../../services/articles.service';
+import {Password} from '../../model/users';
+import {Payment} from '../../model/articles';
+import {FormBuilder} from '@angular/forms';
 
 
 @Component({
@@ -10,14 +14,30 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ArticleDetailPageComponent implements OnInit {
   fileUrl: any;
   sanitizer: any;
+  articleid!: string;
+  userid!: string;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private article: ArticlesService) {}
+
+  paymentForm = this.formBuilder.group({
+    nameOfArticle: '',
+    payment: ''
+  });
 
   ngOnInit(): void {
-    const data = 'some text';
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+    // const data = 'some text';
+    // const blob = new Blob([data], {type: 'application/octet-stream'});
+    //
+    // this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
   }
 
+  // tslint:disable-next-line:typedef
+  payAnArticle() {
+    this.article.PayArticle(this.userid, this.articleid, this.paymentForm).subscribe((response) => {
+        console.log(response);
+        console.log(this.paymentForm.value);
+      }
+    );
+  }
 }
+
