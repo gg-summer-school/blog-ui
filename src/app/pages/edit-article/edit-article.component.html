@@ -1,0 +1,57 @@
+<div class="row">
+<div class="col-md-2">
+<app-sidebar></app-sidebar>
+</div>
+
+<div class="col-md-10">
+  <br>
+  <div style="text-align: right">
+    <app-status></app-status>
+  </div>
+
+<div class="container">
+    <div class="card" style="width: 50rem;">
+      <div class="card-body">
+    <h4>Edit article</h4>
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="success">
+      <h3>Article successfully updated!!!</h3>
+    </div>
+    <br>
+    <div class="alert alert-danger" role="alert" *ngIf="error1">
+      <h3> {{errorMessage1}} error</h3>
+    </div>
+
+    <form [formGroup]="publish" (submit)="onSubmit(publish.value)">
+      <input type="text" placeholder="Title" class="form-control" formControlName="title" [(ngModel)]="oneArticle.title">
+      <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
+      <br>
+      <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="articleAbstract" [(ngModel)]="oneArticle.articleAbstract"></quill-editor>
+      <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> This field is required</span>
+      <br>
+      <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="toc" [(ngModel)]="oneArticle.toc" ></quill-editor>
+      <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
+      <br>
+          <label>Price(frs)</label>
+          <input type="number" placeholder="Book price" class="form-control" formControlName="price" [(ngModel)]="oneArticle.price">
+          <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+
+
+      <br>
+      <div class="button"> <button class="btn btn-primary butt">Edit article</button></div>
+
+      <br>
+    </form>
+  </div>
+<!--  <div>{{baseUrl}}{{oneArticle.coverPage}}</div>-->
+<!--  <img [src]="baseUrl+oneArticle.coverPage">-->
+<!--  <div>{{baseUrl}}{{oneArticle.document}}</div>-->
+<!--  <a href="{{baseUrl+oneArticle.document}}">{{oneArticle.document}}</a>-->
+</div>
+  </div>
+</div>
+</div>
+
+
+
+<br>

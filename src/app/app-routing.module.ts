@@ -11,11 +11,13 @@ import {PublishArticleComponent} from './pages/publish-article/publish-article.c
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 import { AuthGuard } from './Guards/auth.guard';
+import {EditArticleComponent} from "./pages/edit-article/edit-article.component";
 import {ViewTransactionsComponent} from "./pages/view-transactions/view-transactions.component";
 import {PageNotFoundComponent} from "./pages/page-not-found/page-not-found.component";
 import { AdminGuard } from './Guards/admin.guard';
 import { PublisherGuard } from './Guards/publisher.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
+
 
 
 const routes: Routes = [
@@ -70,6 +72,11 @@ const routes: Routes = [
   {
     path: 'articles-detail',
     component: ArticleDetailPageComponent,
+    canActivate: [AuthGuard]
+  },
+ {
+    path: 'edit-article/:id/:catid',
+    component: EditArticleComponent,
     canActivate: [AuthGuard]
   },
 
