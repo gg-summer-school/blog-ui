@@ -48,14 +48,7 @@ export class ArticlesService {
   {
     return this.http.get(this.baseUrl+'categories');
   }
-  getArticlesByPublisher(publisherId:string)
-  {
-    return this.http.get(this.baseUrl1+'publishers/'+publisherId+'/articles');
-  }
-  deleteArticle(articleId:string)
-  {
 
-  }
   updateArticle(articleId:string, article:any)
   {
 
