@@ -2,22 +2,45 @@
   background-color: indigo;
 
 }
-
-.col-md-9{
-  margin-left: 100px;
-}
+//.main{
+//  margin-right: 200px;
+//  margin-left: 200px;
+//}
 
 .table {
-  margin-top: 20px;
-  height: 70px;
+  background-color: white;
+  border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+th td tr{
+  border-radius: 30px;
+}
+tr{
   background-color: #eaeaea;
-  border-radius: 7px;
-  padding-top: 20px;
+
+
+}
+th
+{
+  text-align: center;
+ background-color: white;
+
+}
+td{
+  text-align: center;
+  padding: 20px;
+
 }
 
 button {
-  padding: 2px;
+
   font-size: smaller;
+  width: 80px;
+}
+.edit{
+  background-color: indigo;
 }
 
 

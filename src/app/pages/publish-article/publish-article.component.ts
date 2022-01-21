@@ -79,6 +79,7 @@ export class PublishArticleComponent implements OnInit {
      {
        this.error1=true;
        this.errorMessage1= error1.error.message;
+
      })
   }
 

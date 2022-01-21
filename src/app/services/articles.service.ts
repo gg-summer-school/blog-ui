@@ -49,13 +49,6 @@ export class ArticlesService {
   {
     return this.http.get(this.baseUrl + 'categories');
   }
-
-  // tslint:disable-next-line:typedef
-  getArticlesByPublisher(publisherId: string)
-
-  {
-    return this.http.get(this.baseUrl1 + 'publishers/' + publisherId + '/articles');
-  }
   // payArticles
   // tslint:disable-next-line:variable-name typedef
   PayArticle(user_id: string, article_id: string, article: any){
@@ -68,11 +61,11 @@ export class ArticlesService {
   }
 
   // downloadFile
-  downloadArticle(): any {
+  downloadArticle(): any{
     return this.http.get(this.baseUrl1 + 'articles', {responseType: 'blob'});
   }
   // display all user articles
-  displayAlluserArticles(userId: string): Observable<Articles[]>{
+  displayAlluserArticles(userId: string) : Observable<Articles[]>{
     return this.http.get<Articles[]>(this.baseUrl1 + 'users' + '/' + {userId})
       .pipe(
         retry(1),
