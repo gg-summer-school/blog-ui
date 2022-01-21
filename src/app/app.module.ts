@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserAdminComponent } from './pages/user-admin/user-admin.component';
+import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -34,7 +34,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     AppComponent,
     PublisherAdminComponent,
     RequestsComponent,
-    UserAdminComponent,
+    DashboardComponent,
     LoginComponent,
     SignupComponent,
     YourArticlesComponent,

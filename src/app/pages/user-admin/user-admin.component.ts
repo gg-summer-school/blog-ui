@@ -7,7 +7,7 @@ import {Admin} from "../../model/admin";
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.scss']
 })
-export class UserAdminComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   isBlocked = false;
   isSuspended = false;
   readers: Admin[] = []
