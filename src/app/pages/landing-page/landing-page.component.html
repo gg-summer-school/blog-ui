@@ -189,6 +189,8 @@
   </div>
 
 <br>
+
+<!--ALL ARTICLES DISPLAY-->
 <div class="container">
   <h3 class="text-center mt-5 mb-5">
     All articles and books
@@ -196,12 +198,8 @@
   <div class="row">
     <div 
         class="col-md-4 card-group"
-        style="margin-top: 30px;"
-        *ngFor="let article of allArticles | paginate : {
-          itemsPerPage: tableSize,
-          currentPage: page,
-          totalItems: count
-        };">
+        style="margin-top: 30px;" 
+        *ngFor="let article of allArticles">
       <a href="/articles-detail">
         <div class="card" style="width: 18rem;">
             <img [src]="article.coverPage" alt="test">
@@ -210,42 +208,59 @@
             <P>{{article.contributors}}</P>
         </div>
     </a>
-    </div>
-  <!-- </div> -->
-    <!-- <div class="row" >
-
-      <div class="col-md-4 card-group"
-           style="margin-top: 30px"
-           *ngFor="let num of nums | paginate : {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count
-              };
-        let i = index" [class.active]="i ">
-        <a href="/articles-detail">
-          <div class="card" style="width: 18rem;">
-            <img src="assets/com.jpg " class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            {{num}}
-          </div>
-      </a>
-      </div> --> 
+    </div> 
     </div> 
 
 
 <br>
-  <div class="d-flex justify-content-center">
-    <pagination-controls
+   <div class="paginate">
 
-      previousLabel="Prev"
-      nextLabel="Next"
-      (pageChange)="onTableDataChange($event)">
-    </pagination-controls>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" (click) = "previous($event)">Previous</a></li>
+        <li class="page-item" *ngFor = "let p of testArray; let i = index">
+          <a class="page-link" (click) = "setPage(i, $event)">{{i}}</a>
+        </li>
+        <li class="page-item"><a class="page-link"  (click) = "Next()">Next</a></li>
+      </ul>
+    </nav>
+
+   </div>
   </div>
 
-</div>
+<!-- </div>  -->
+
+
+<!-- <div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <h4>ARTICLES</h4>
+        <table class="table table-strped">
+         
+          <tbody>
+
+            <tr *ngFor="let article of allArticles">
+                 <td>{{ article.title  }}</td>
+                 <td>{{ article.createdAt }}</td>
+            </tr>
+  
+          </tbody>
+
+        </table>
+        <hr>
+        
+        <ul class="nav nav-pills">
+          <li class="nav-items" *ngFor = "let p of testArray; let i = index">
+            <a style="padding-left: 10px;" class="nav-links" (click) = "setPage(i, $event)">{{ i }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
 
 <br>
 <div class="auth" >

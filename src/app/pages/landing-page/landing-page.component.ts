@@ -13,26 +13,48 @@ import { ArticleList } from 'src/app/model/articleDtoList';
 export class LandingPageComponent implements OnInit {
   page = 0;
   count = 0;
-  tableSize = 20;
+  pageSize = 3;
   nums:any;
   searchData='';
+
+  totalPages: number = 0;
   //Allcategories:Categories[]=[];
   allCategories:any;
   allArticles!: any[];
+  pages: any = 0;
 
+  testArray: any[] = [];
 
   constructor( private articlesService:ArticlesService) { }
 
+  previous(event: any) {
+     console.log(event);
+  }
+
+  Next() {
+    
+  }
+
+  setPage(i: any, event: any) {
+    event.preventDefault();
+    this.page = i;
+    this.getAllArticles();
+  }
+
   ngOnInit(): void {
-   this.nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    this.getCategories();
    this.getAllArticles();
   }
 
-  onTableDataChange(event:any){
-    this.page = event;
-
+  handlePageChange(event:any){
+    this.pageSize = event;
+    this.getAllArticles();
   }
+
+  incrementNum() {
+    this.page++
+  }
+
   getCategories() {
     this.articlesService.getCategory().subscribe(res=>
     {
@@ -42,9 +64,10 @@ export class LandingPageComponent implements OnInit {
   }
 
   getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.tableSize).subscribe((res: ArticleList) => {
+    this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: ArticleList) => {
        this.allArticles = res.articleDtoList;
-       console.log(res.articleDtoList);
+       this.pages = res.totalPages;
+       this.testArray = (Array.from(Array(this.pages).keys()));
     })
   }
 

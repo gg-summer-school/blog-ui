@@ -28,7 +28,7 @@ export class ArticlesService {
 
   getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
   {
-    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=title&sortDir=asc`);
+    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
 
   }
   createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
