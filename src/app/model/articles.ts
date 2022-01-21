@@ -18,10 +18,12 @@ export interface ArticleList {
   totalPages: number;
   articleDtoLIst: ArticleDto[]
 }
+
+
+  
 export interface ArticleDto{
   articleAbstract:string
   categoryId: string
-  categoryName:String
   contributors: Contributors[]
   coverPage: string
   createdAt: Date
@@ -38,6 +40,4 @@ export interface updatePayload {
   price: number
   title: string,
   toc: string
-
 }
-

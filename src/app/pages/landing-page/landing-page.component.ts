@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ArticlesService} from "../../services/articles.service";
 import {Categories} from "../../model/categories";
-import { ArticleList } from 'src/app/model/articles';
-import { ArticleDto } from 'src/app/model/articlesDto';
+import { Articles } from 'src/app/model/articles';
+import { ArticleList } from 'src/app/model/articleDtoList';
+// import { ArticleDtoList } from 'src/app/model/articleDtoList';
 
 @Component({
   selector: 'app-landing-page',
@@ -15,16 +16,24 @@ export class LandingPageComponent implements OnInit {
   pageSize = 3;
   nums:any;
   searchData='';
+
+  totalPages: number = 0;
   //Allcategories:Categories[]=[];
   allCategories:any;
-  allArticles!: any;
-
+  allArticles!: any[];
   pages: any = 0;
 
-  tesArray: any[] = []
-
+  testArray: any[] = [];
 
   constructor( private articlesService:ArticlesService) { }
+
+  previous(event: any) {
+     
+  }
+
+  Next() {
+    
+  }
 
   setPage(i: any, event: any) {
     event.preventDefault();
@@ -33,14 +42,19 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.nums=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
    this.getCategories();
    this.getAllArticles();
   }
-  onTableDataChange(event:any){
-    this.page = event;
 
+  handlePageChange(event:any){
+    this.pageSize = event;
+    this.getAllArticles();
   }
+
+  incrementNum() {
+    this.page++
+  }
+
   getCategories() {
     this.articlesService.getCategory().subscribe(res=>
     {
@@ -50,14 +64,11 @@ export class LandingPageComponent implements OnInit {
   }
 
   getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: ArticleList) => {
-        this.allArticles = res.articleDtoLIst;
-        console.log(this.allArticles.title);
-        
-        this.pages = res.totalPages;
-        console.log(res.totalElements);
-        console.log(res.totalPages);
-        this.tesArray = (Array.from(Array(this.pages).keys()));
+    this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: any) => {
+       this.allArticles = res.articleDtoList;
+       this.pages = res.totalPages;
+       this.testArray = (Array.from(Array(this.pages).keys()));
     })
   }
+
 }

@@ -22,9 +22,12 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
+  //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
+
+
   getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
   {
-    return this.http.get<ArticleList>(this.baseUrl + 'articles?pageNo=' + pageNo + `&pageSize=` + pageSize);
+    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
 
   }
 
