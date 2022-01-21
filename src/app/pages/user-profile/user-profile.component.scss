@@ -1,17 +1,19 @@
 .profile{
   margin-left:20rem;
-  margin-right: 10rem;
+  //margin-right: 10rem;
   padding-top: 0.25rem;
-  //padding-bottom: 0.2rem;
-  width: 40rem;
-  height: 35rem;
+  padding-bottom: 0.2rem;
+  width: 31rem;
+  height: 36rem;
   background-color: white;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-  0 2px 4px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 8px 16px rgba(0,0,0,0.07),
-  0 16px 32px rgba(0,0,0,0.07),
-  0 32px 64px rgba(0,0,0,0.07);
+  border-color: #eaeaea;
+  overflow: hidden;
+  //box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+  //0 2px 4px rgba(0,0,0,0.07),
+  //0 4px 8px rgba(0,0,0,0.07),
+  //0 8px 16px rgba(0,0,0,0.07),
+  //0 16px 32px rgba(0,0,0,0.07),
+  //0 32px 64px rgba(0,0,0,0.07);
 }
 .image{
   border-radius: 400rem;
@@ -31,10 +33,17 @@ h4{
 }
 .edit{
   //position: center;
-  margin-left: 31rem;
+  //margin-left: 28rem;
   background-color: indigo;
   color: white;
-  width: 6rem;
+  width: 3rem;
+}
+.edits{
+  position: center;
+  //margin-left: 25rem;
+  background-color: indigo;
+  color: white;
+  width: 5rem;
 }
 .text-muted{
   padding-right: 7px
@@ -42,4 +51,7 @@ h4{
 .text-mute{
   margin-left: 10rem;
   margin-right: 0.5rem;
+}
+.confirm{
+  margin-right: 5rem;
 }

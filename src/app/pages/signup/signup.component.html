@@ -1,6 +1,8 @@
 <div *ngIf="errorMessage != ''" class="alert alert-danger errorMessage" role="alert">
     <h4>{{ errorMessage }}</h4>
 </div>
+<!--<div class="row">-->
+<!--  <div class="col-xs-12 col-sm-6 col-md-8">-->
 <div class="container">
 
   <div class="left">
@@ -37,7 +39,7 @@
                 <div *ngIf="f.email.errors.email">Email is invalid</div>
               </div>
             </div>
-    
+
             <div class="form-group">
               <label>Password</label>
               <input
@@ -59,20 +61,19 @@
             <div class="form-group">
               <br/>
               <label>Choose role</label>
-              <select 
+              <select
                     [(ngModel)] = "role"
-                    class="form-select mt-3" 
+                    class="form-select mt-3"
                     required formControlName="role">
                 <option value="USER">User</option>
                 <option value="PUBLISHER">Publisher</option>
               </select>
             </div>
-    
+
             <div class="form-group">
               <button type="submit" class="btn btn-cl">Create your account</button>
             </div>
             <h5>Already have an account? &nbsp; <a routerLink = "/login">Login</a></h5>
           </form>
-        </div>
-    </div>
+        </div></div>
   </div>

@@ -1,40 +1,46 @@
 <app-sidebar></app-sidebar>
-
- <div class="col-xs-8">
-   <br/>
+<!--<div class="card">-->
+  <div class="card-body">
+    <div>
+      <br/>
       <div class="align-content-center profile">
-        <h4>My Profile</h4>
+        <h4>Welcome , {{userProfile.name}}</h4>
         <img src="assets/avatar.png" class="image">
         <br/>
         <br/>
-          <div class="form-group mb-4 mt-3 p">
-            <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
-            <span><label>{{userProfile.name}}</label></span>
-          </div>
+        <div class="form-group mb-4 mt-3 p">
+          <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
+          <span class="card-text"><label>{{userProfile.name}}</label></span>
+        </div>
         <br/>
         <div class="form-group mb-4 p">
           <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>
-          <span><label>{{userProfile.email}}</label></span>
+          <span class="card-text"><label>{{userProfile.email}}</label></span>
         </div>
         <br/>
         <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>
-          <span><label>Publisher</label></span>
+          <label class="text-muted card-text"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>
+          <span class="card-text" *ngFor="let aRole of userProfile.role"><label>{{aRole.role}}</label>  </span>
         </div>
         <br/>
         <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>
-          <span><label>2</label></span>
+          <label class="text-muted card-text"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>
+          <span><label>{{userProfile.articles.length}}</label></span>
         </div>
-        <div class="mb-4 col-md-4 d-grid gap-2">
-          <div class="">
+          <div class="row">
+            <div class="mb-4 col-md-4">
             <button class="btn btn-sm edit" data-bs-toggle="modal"
-                    data-bs-target="#editProfileModal">Edit profile</button>
+                    data-bs-target="#editProfileModal">Edit Profile</button></div>
+              <div class="mb-4 col-md-4">
+            <button class="btn btn-sm edits" data-bs-toggle="modal"
+                    data-bs-target="#editProfileModal1">Change Password</button>
           </div>
         </div>
         <br/>
       </div>
- </div>
+    </div>
+  </div>
+<!--</div>-->
 
  <!-- Modal for edit user profile -->
  <div
@@ -56,16 +62,16 @@
          ></button>
        </div>
        <div class="modal-body">
-         <form [formGroup]="usersEdit">
+         <form [formGroup]="usersEdit" (ngSubmit)="editUserAccount()">
            <div class="form-group mb-2">
              <label>Name</label>
              <input
                [(ngModel)] = "userProfile.name"
-               id="firstName"
+               id="name"
                type="text"
                class="form-control"
                required
-               formControlName="firstName"
+               formControlName="name"
              />
            </div>
            <div class="form-group mb-2">
@@ -73,18 +79,19 @@
              <input
                [(ngModel)] = "userProfile.email"
                id="email"
-               type="text"
+               type="email"
                class="form-control"
                required
                formControlName="email"
              />
            </div>
+
            <div class="d-flex justify-content-end">
              <button
                type="submit"
                class="btn  btn-sm btn-primary"
                data-bs-dismiss="modal">
-               Save
+               Edit
              </button>
            </div>
          </form>
@@ -92,3 +99,57 @@
      </div>
    </div>
  </div>
+<!-- Modal for edit user profile -->
+<div
+  class="modal fade"
+  id="editProfileModal1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Edit Profile</h5>
+        <button
+          type="button"
+          class="btn-close btn-sm "
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="changePassword" (ngSubmit)="UserChangePassword()">
+          <div class="form-group mb-2">
+            <label>Enter Old Password</label>
+            <input
+              id="oldPassword"
+              type="password"
+              class="form-control"
+              required
+              formControlName="oldPassword"
+            />
+          </div>
+          <div class="form-group mb-2">
+            <label>Enter New Password</label>
+            <input
+              id="newPassword"
+              type="password"
+              class="form-control"
+              required
+              formControlName="newPassword"
+            />
+          </div>
+          <div class="d-flex justify-content-end">
+            <button
+              type="submit"
+              class="btn  btn-sm btn-primary"
+              data-bs-dismiss="modal">
+              confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

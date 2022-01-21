@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
-  role = "PUBLISHER";
+  role = 'PUBLISHER';
   errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
@@ -39,12 +39,12 @@ export class SignupComponent implements OnInit {
         console.log(userData);
       }, error => {
         this.errorMessage = error.error.message;
-      })
+      });
     }
   }
-  onReset(): void {
-    this.submitted = false;
-    this.signupForm.reset();
-  }
+  // onReset(): void {
+  //   this.submitted = false;
+  //   this.signupForm.reset();
+  // }
 
 }
