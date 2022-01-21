@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserAdminComponent } from './pages/user-admin/user-admin.component';
+import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -25,6 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatusComponent } from './pages/status/status.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     AppComponent,
     PublisherAdminComponent,
     RequestsComponent,
-    UserAdminComponent,
+    DashboardComponent,
     LoginComponent,
     SignupComponent,
     YourArticlesComponent,
@@ -46,7 +48,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     LandingPageComponent,
     SidebarComponent,
     SearchFilterPipe,
-    StatusComponent
+    StatusComponent,
+    ViewTransactionsComponent,
+    PageNotFoundComponent
 
   ],
   imports: [
