@@ -35,8 +35,8 @@
         </div>
 
         <div class="col-md-4">
-          <tr><button class="btn btn-dark but">Accept</button>&nbsp;&nbsp;
-            <button class="btn btn-danger"> Decline</button></tr>
+          <tr><button class="btn btn-dark but" (click)="approvePublisher(p.id)">Accept</button>&nbsp;&nbsp;
+            <button class="btn btn-danger" (click)="declineUser(p.id)"> Decline</button></tr>
         </div>
       </div>
     </div>

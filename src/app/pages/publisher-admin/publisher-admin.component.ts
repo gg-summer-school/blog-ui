@@ -9,17 +9,23 @@ import {Admin} from "../../model/admin";
 })
 export class PublisherAdminComponent implements OnInit {
 
-  publishers: any;
+  publishers: Admin[] = [];
   isApproved: boolean = true;
   publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
   numberOfArticles: Admin[] = [];
-
+  status:string = 'Suspend';
+  suspendUser: boolean = false;
+  addRole: boolean = false;
+  reactivate: boolean = true;
+  isClicked: boolean = true;
+  active: boolean = false;
+  number!: number
 
   constructor(private adminPagesService: AdminPagesService) { }
 
   ngOnInit(): void {
     this.displayPublishers();
-    this.getArticlesById()
+    // this.getArticlesById()
   }
 
   displayPublishers() {
@@ -27,16 +33,36 @@ export class PublisherAdminComponent implements OnInit {
       .subscribe( res =>
       {
         this.publishers = res;
-        // console.log(this.publishers);
       })
+    this.number= this.publishers.length;
+
   }
 
-  getArticlesById() {
-    this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-      .subscribe( res =>
-      {
-        // console.log(res)
-      })
+  suspendPublisher(publisherId: string) {
+    this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+
+    })
+    this.active=true;
   }
+
+  addRoleToUser(publisherId: string) {
+    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
+    })
+  }
+
+  reactivateUser(publisherId: string) {
+    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+    })
+    this.active=false;
+  }
+
+
+  // getArticlesById() {
+  //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
+  //     .subscribe( res =>
+  //     {
+  //       // console.log(res)
+  //     })
+  // }
 
 }

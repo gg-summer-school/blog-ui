@@ -22,6 +22,7 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
+  // tslint:disable-next-line:typedef
   getAllArticles()
   {
     return this.http.get(this.baseUrl + 'articles');
@@ -32,32 +33,28 @@ export class ArticlesService {
     return this.http.post<ResponseObject>(this.baseUrl1 + 'publishers/' + publisherId + '/articles/categories/' + categoryId, article);
   }
 
-  uploadArticleFiles( coverPage: FormData, document: FormData, publisherId: string, articleId: string)
+  // tslint:disable-next-line:typedef
+  uploadArticleFiles(uploadFile: FormData, publisherId: string, articleId: string)
   {
-    // const formData: FormData = new FormData();
-    // formData.append('document', article);
 
-    return this.http.put(this.baseUrl1 + 'publishers/' + publisherId + '/articles/' + articleId + '/file-upload', coverPage);
+  return this.http.put(this.baseUrl1 + 'publishers/' + publisherId + '/articles/' + articleId + '/file-uploads',  uploadFile);
+
   }
-  getArticlesByCategory(article: Articles, publisherId: string, articleId: string)
-  {
-    return this.http.put(this.baseUrl1 + '/publishers' + publisherId + '/articles/' + articleId + '/file-upload', article);
-  }
+  // getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
+  // {
+  //   return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
+  // }
+  // tslint:disable-next-line:typedef
   getCategory()
   {
     return this.http.get(this.baseUrl + 'categories');
   }
-  getOneArticle(articleId: string)
-  {
 
-  }
-  deleteArticle(articleId: string)
-  {
+  // tslint:disable-next-line:typedef
+  getArticlesByPublisher(publisherId: string)
 
-  }
-  updateArticle(articleId: string, article: any)
   {
-
+    return this.http.get(this.baseUrl1 + 'publishers/' + publisherId + '/articles');
   }
   // payArticles
   // tslint:disable-next-line:variable-name typedef
@@ -88,15 +85,18 @@ export class ArticlesService {
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
   }
   // get all user-role paid articles
+  // tslint:disable-next-line:typedef
   getAllUserPaidArticles(userId: string){
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles');
   }
    // get all user-role paid article
+  // tslint:disable-next-line:typedef
    getAllOneUserPaidArticle(userId: string, articleId: string){
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} + '/' + 'paid-articles/' + {articleId});
 
   }
    // Error handling
+  // tslint:disable-next-line:typedef
    handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

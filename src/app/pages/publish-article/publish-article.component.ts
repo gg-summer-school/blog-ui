@@ -20,10 +20,11 @@ export class PublishArticleComponent implements OnInit {
   currentFile1:any;
   categories:any;
   articleId:string='';
-  fileUpload= {
-   coverPage:'',
-   document:'',
-  };
+ success:boolean=false;
+ error:boolean= false;
+ error1:boolean= false;
+ errorMessage='';
+ errorMessage1='';
   contributor:[]=[];
   publisherId:string='';
 
@@ -34,12 +35,10 @@ export class PublishArticleComponent implements OnInit {
     this.publish= new FormGroup(
       {
         title: new FormControl(null, Validators.required),
-        coverPage: new FormControl(null, Validators.required),
         category: new FormControl(null, Validators.required),
         articleAbstract: new FormControl(null, Validators.required),
         toc: new FormControl(null, Validators.required),
         contributors: new FormControl(null, Validators.required),
-        document: new FormControl(null, Validators.required),
         price: new FormControl(null, Validators.required),
 
       }
@@ -75,18 +74,12 @@ export class PublishArticleComponent implements OnInit {
    this.articlesService.createArticle(payload, this.publisherId, categoryId).subscribe((response:ResponseObject) => {
     this.articleId = response.details;
 
-   })
-
-
-    //form.value.contributors= this.contributor;
-    // this.articlesService.createArticle(this.publish, "37d7b7d7-7e2f-4bf4-b6d4-c2d865aea491", categoryId).subscribe((res:any) => {
-    //
-    //   // console.log(res)
-    //   // console.log(categoryId)
-    //   // console.log(form.value.contributors)
-    //   this.articleId=res.details;
-    // })
-
+   },
+     error1 =>
+     {
+       this.error1=true;
+       this.errorMessage1= error1.error.message;
+     })
   }
 
 
@@ -102,15 +95,20 @@ export class PublishArticleComponent implements OnInit {
     this.currentFile=this.selectedFile.item(0);
     this.currentFile1=this.selectedFile1.item(0);
 
-    const coverPageFormData: FormData = new FormData();
-    const documentFormData:FormData = new FormData();
-    documentFormData.append('document', this.currentFile1);
-    coverPageFormData.append('coverPage', this.currentFile)
+    const formData: FormData = new FormData();
+    formData.append('files', this.currentFile);
+    formData.append('files', this.currentFile1)
 
-    this.articlesService.uploadArticleFiles(coverPageFormData, documentFormData,this.publisherId, this.articleId).subscribe(res=>
+    console.log(formData)
+    this.articlesService.uploadArticleFiles(formData,this.publisherId, this.articleId).subscribe(res=>
     {
-      console.log(res);
-    })
+      this.success=true;
+     window.location.reload();
+    },
+      error => {
+      this.error=true;
+      this.errorMessage=error.error.message;
+      })
 
   }
 
