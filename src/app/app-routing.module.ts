@@ -12,6 +12,7 @@ import {PublishArticleComponent} from './pages/publish-article/publish-article.c
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 import { AuthGuard } from './Guards/auth.guard';
+import {EditArticleComponent} from "./pages/edit-article/edit-article.component";
 
 
 const routes: Routes = [
@@ -66,6 +67,11 @@ const routes: Routes = [
   {
     path: 'articles-detail',
     component: ArticleDetailPageComponent,
+    canActivate: [AuthGuard]
+  },
+ {
+    path: 'edit-article/:id/:catid',
+    component: EditArticleComponent,
     canActivate: [AuthGuard]
   },
 

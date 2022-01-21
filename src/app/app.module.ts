@@ -25,6 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatusComponent } from './pages/status/status.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
+import {QuillModule} from "ngx-quill";
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     LandingPageComponent,
     SidebarComponent,
     SearchFilterPipe,
-    StatusComponent
+    StatusComponent,
+    EditArticleComponent
 
   ],
   imports: [
@@ -59,7 +62,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     FormsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    QuillModule.forRoot(),
+
   ],
 
   providers: [

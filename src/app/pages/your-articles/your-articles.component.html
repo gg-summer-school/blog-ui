@@ -1,89 +1,62 @@
-<!--  <div class="col-md-3" >-->
-<!--    <img src="" >-->
-<!--  </div>-->
-<div class="row d">
-  <div class="col-md-3">
+
+<div class="row">
+  <div class="col-md-1 col-sm-12" >
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col-md-5">
-    <app-status></app-status>
+
+  <div class="col-md-11 col-sm-12" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
   </div>
-</div>
 
 <div class="container">
-  <div class="col-md-9">
-
-    <h4>My Articles</h4>
+  <h3>Your published articles</h3>
+  <br>
+  <table class="table table-borderless table-responsive table-sm" >
+    <thead>
+    <tr>
+      <th scope="col">Articles</th>
+      <th scope="col">Category</th>
+      <th scope="col">Prices</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let article of pubArticles">
     <br>
-    <div class="row" >
-      <div class="col-md-4">
-        <b>Books (03)</b>
+    <tr >
+      <td>{{article.title}}</td>
+      <td>{{article.categoryName}}</td>
+      <td>{{article.price}} frs</td>
+      <td>
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="delete(article.userId, article.id, article.categoryId)"><i class="fa fa-trash 2px"></i> Delete</button>&nbsp;&nbsp;
+        <button class="btn btn-primary edit" (click)="edit(article.id, article.categoryId)" ><i class="fa fa-edit 2px"></i> Edit</button>
+      </td>
+
+    </tr>
+
+    <tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
 
-      <div class="col-md-4">
-        <b>Contributors</b>
-      </div>
-
-      <div class="col-md-3">
-        <b>Action</b>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3" *ngFor="let article of pubArticles">
-          <a>{{article.title}}</a><br>
+        <div  *ngIf="deleteMessage">
+          <h3>Article successfully deleted!!!</h3>
         </div>
-
-        <div class="col-md-4 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="far fa-edit"></i> Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>
-          </tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>Book two</a><br>
-        </div>
-
-        <div class="col-md-4 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="far fa-edit"></i> Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>
-          </tr>
+        <div *ngIf="error">
+          <h3>{{errorMessage}}</h3>
         </div>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>Book three</a><br>
-        </div>
-
-        <div class="col-md-4 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="far fa-edit"></i> Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>
-          </tr>
-        </div>
-      </div>
-    </div><br>
-
   </div>
 </div>
 
-
+</div>
+</div>

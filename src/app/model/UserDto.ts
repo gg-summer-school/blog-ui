@@ -1,3 +1,5 @@
+import {Contributors} from "./contributors";
+
 export interface UserDto {
 
   accessToken: string
@@ -7,5 +9,5 @@ export interface UserDto {
   refreshToken: string
   role: string[]
   type: string
-
 }
+
