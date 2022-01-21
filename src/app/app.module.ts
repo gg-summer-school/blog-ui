@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserAdminComponent } from './pages/user-admin/user-admin.component';
+import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 import { YourArticlesComponent } from './pages/your-articles/your-articles.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -27,6 +27,8 @@ import { StatusComponent } from './pages/status/status.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import {QuillModule} from "ngx-quill";
+import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -34,7 +36,7 @@ import {QuillModule} from "ngx-quill";
     AppComponent,
     PublisherAdminComponent,
     RequestsComponent,
-    UserAdminComponent,
+    DashboardComponent,
     LoginComponent,
     SignupComponent,
     YourArticlesComponent,
@@ -49,7 +51,11 @@ import {QuillModule} from "ngx-quill";
     SidebarComponent,
     SearchFilterPipe,
     StatusComponent,
-    EditArticleComponent
+    EditArticleComponent,
+
+    ViewTransactionsComponent,
+    PageNotFoundComponent
+
 
   ],
   imports: [
