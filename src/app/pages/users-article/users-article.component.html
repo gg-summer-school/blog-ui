@@ -29,40 +29,18 @@
       </div>
     </div>
 
-    <div class="table">
-      <div class="row" *ngFor="let userPA of userPaidArticles">
-        <div class="col-md-3">
-          <a>userPA.title</a><br>
-        </div>
-
-        <!-- <div class="col-md-3">
-          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
-        </div> -->
-
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but" (click)="downloadArticle()"><i class="fas fa-download"></i>Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>-->
-          </tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
+    <div class="table" *ngFor="let userPA of userPaidArticles">
       <div class="row">
         <div class="col-md-3">
-          <a>Book two</a><br>
+          <a>{{userPA.title}}</a><br>
         </div>
 
         <!-- <div class="col-md-3">
           <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
         </div> -->
 
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
+        <div *ngFor="let contributor of userPA.contributors" class="col-md-3 art">
+          <a>{{contributor.name}}</a><br>
         </div>
 
         <div class="col-md-3">
@@ -72,28 +50,6 @@
         </div>
       </div>
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>Book three</a><br>
-        </div>
-
-        <!-- <div class="col-md-3">
-          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
-        </div> -->
-
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>-->
-          </tr>
-        </div>
-      </div>
-    </div><br>
 
   </div>
 </div>
