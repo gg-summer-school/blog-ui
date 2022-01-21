@@ -44,8 +44,16 @@
 
         <div class="col-md-3">
 <!--          <tr><button  class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;-->
-          <tr><button class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button class="btn btn-outline-secondary"> Add Role</button></tr>
+          <tr><button (click)="suspendPublisher(read.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
+            <button (click)="reactivateUser(read.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary" (click)="addRoleToUser(read.id)">Add Role</button>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" >Admin</a></li>
+                <li><a class="dropdown-item" >Another action</a></li>
+              </ul>
+            </div>
         </div>
       </div>
     </div>

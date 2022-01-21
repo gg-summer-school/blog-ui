@@ -45,15 +45,15 @@
         <div class="col-md-3 ema">
             <tr><button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
               <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
-              <div class="dropdown">
-                <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button>
+<!--              <div class="dropdown">-->
+<!--                <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button>-->
 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" >Admin</a></li>
-                  <li><a class="dropdown-item" >Another action</a></li>
-                </ul>
-              </div>
-<!--            <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>-->
+<!--                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--                  <li><a class="dropdown-item" >Admin</a></li>-->
+<!--                  <li><a class="dropdown-item" >Another action</a></li>-->
+<!--                </ul>-->
+<!--              </div>-->
+            <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>
         </div>
       </div>
     </div>
