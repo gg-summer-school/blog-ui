@@ -35,6 +35,7 @@ export class YourArticlesComponent implements OnInit {
       console.log(res);
     })
   }
+
   delete(userId:string, articleId:string, categoryId:string)
   {
     this.publisherService.deleteArticle(userId,articleId,categoryId).subscribe(res=>

@@ -7,6 +7,7 @@ export const environment = {
   baseUrl: 'http://192.168.100.246:8000/api/public/auth',
   baseUrlPro: 'http://192.168.100.246:8000/api/protected/',
   baseUrlPub: 'http://192.168.100.246:8000/api/public/',
+
 };
 
 /*
