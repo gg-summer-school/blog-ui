@@ -48,20 +48,28 @@ get registerFormControl() {
 onSubmit() {
 
   this.submitted = true;
-  // if (this.loginForm.valid) {
+  if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
-         console.log('fasdf')
-        this.router.navigate(['/user-admin']);
+      const user = userData.role;
+      console.log(user);
+      
+      if(user.length === 1){
+        this.router.navigate(['/users-article']);
+      } else if(user.length === 2) {
+        this.router.navigate(['/your-articles']);
+      }else if(user.length === 3) {
+        this.router.navigate(['/requests']);
+      }
 
         this.tokenStorage.saveToken(userData.accessToken);
        this.tokenStorage.saveUser(userData);
     },
     err => {
       console.log(err.error)
-      this.errorMessage = err.error;
+      this.errorMessage = err.error.message;
     }
   );
-  //}
+  }
 }
 
 }

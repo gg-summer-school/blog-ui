@@ -1,36 +1,18 @@
 <div class="col-md-12">
 
-  <div class="col-md-2"><br><br><br><br>
+  <div class="col-md-2">
     <div class="row">
-      <a routerLink="/landing-page"><i class="fas fa-home icon"></i><br> Home</a>
-    </div>
-    <br><br><br>
-
-    <div>
-      <a routerLink="/requests" routerLinkActive="/requests"><i class="fas fa-exclamation-circle icon"></i><br>Requests</a><br><br>
-      <br><br>
-      
-      <a routerLink="/publisher-admin"><i class="fas fa-user-circle icon"></i><br> View Publishers</a>
-      <br><br><br><br>
-
-      <a routerLink="/user-admin"> <i class="fas fa-user-plus icon"></i><br>View Reader</a><br><br><br><br>
-    </div>
-
-    <div>
-      <a routerLink="/your-articles"><i class="fas fa-scroll icon"></i><br> View my article</a><br><br>
-      <br><br>
-
-      <a routerLink="/publish-article"><i class="fas fa-newspaper icon"></i><br>Publish Article</a><br><br>
-      <br><br>
-
-    </div>
-
-      <a routerLink="/users-article"><i class="fas fa-book-reader icon"></i><br> My paid article</a>
-
-      <br><br><br><br><br><br><br><br><br>
-      <a (click) = "logOut()"><i class="fa fa-sign-out "></i><br>Logout</a>
+      <a routerLink="/landing-page" class="mb-4 mt-5"><i class="fas fa-home icon"></i><br> Home</a>
+      <a *ngIf = "adminRole" routerLink="/requests" routerLinkActive="/requests" class="mb-4"><i class="fas fa-exclamation-circle icon"></i><br>Requests</a>
+      <a *ngIf = "adminRole" routerLink="/publisher-admin" class="mb-4"><i class="fas fa-user-circle icon"></i><br> View Publishers</a>
+      <a *ngIf = "adminRole" routerLink="/user-admin" class="mb-4"> <i class="fas fa-user-plus icon"></i><br>View Reader</a>
+      <a *ngIf = "publisherRole" routerLink="/your-articles" class="mb-4"><i class="fas fa-scroll icon"></i><br> View my article</a>
+      <a *ngIf = "publisherRole" routerLink="/publish-article" class="mb-4"><i class="fas fa-newspaper icon"></i><br>Publish Article</a>
+      <a routerLink="/users-article" class="mb-4"><i class="fas fa-book-reader icon"></i><br> My paid article</a>
+      <a routerLink="/view-transactions" class="mb-4 "><i class="fas fa-exchange-alt icon"></i><br> View Transactions</a>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <a (click)="logOut()" class="mb-5 mt-5"><i class="fa fa-sign-out "></i>Logout</a>
     </div>
   </div>
-  <br><br>
 
 <i class="fal fa-home-alt"></i>

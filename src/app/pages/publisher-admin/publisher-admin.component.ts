@@ -12,7 +12,7 @@ export class PublisherAdminComponent implements OnInit {
   isBlocked = false;
   isSuspended = false;
 
-  publishers: any;
+  publishers: Admin[] = [];
   isApproved: boolean = true;
   publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
   numberOfArticles: Admin[] = [];
@@ -20,7 +20,8 @@ export class PublisherAdminComponent implements OnInit {
   suspendUser: boolean = false;
   addRole: boolean = false;
   reactivate: boolean = true;
-  isClicked: boolean = true;
+  active: boolean = false;
+  number!: number
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -44,6 +45,20 @@ export class PublisherAdminComponent implements OnInit {
     //   {
     //     // console.log(res)
     //   })
+    this.adminPagesService.getPublishers(this.isApproved)
+      .subscribe( res =>
+      {
+        this.publishers = res;
+      })
+    this.number= this.publishers.length;
+
+  }
+
+  suspendPublisher(publisherId: string) {
+    this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+
+    })
+    this.active=true;
   }
 
   onClickBlock() {
@@ -57,10 +72,6 @@ export class PublisherAdminComponent implements OnInit {
 
   }
 
-  suspendPublisher(publisherId: string) {
-    this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
-    })
-  }
 
     addRoleToUser(publisherId: string) {
       this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
