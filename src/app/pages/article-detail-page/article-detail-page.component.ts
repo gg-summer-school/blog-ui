@@ -15,8 +15,8 @@ import {TokenStorageService} from '../../services/token-storage.service';
 export class ArticleDetailPageComponent implements OnInit {
   fileUrl: any;
   sanitizer: any;
-  articleid!: string;
-  userid!: string;
+  articleid = '9453c7ef-c210-474f-80cf-516756c83ac7';
+  userid = 'cbaee553-0180-480a-8f41-cd684ff9b23e';
 
   constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService) {}
 
@@ -35,10 +35,9 @@ export class ArticleDetailPageComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   payAnArticle() {
-    this.article.PayArticle(this.userid, this.articleid, this.paymentForm).subscribe((response) => {
-        console.log(response);
-        console.log(this.paymentForm.value);
-      }
+    console.log(this.paymentForm.value);
+    this.article.PayArticle(this.userid, this.articleid, this.paymentForm.value).subscribe((response) => {
+        console.log(response);     }
     );
   }
 }
