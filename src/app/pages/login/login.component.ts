@@ -48,7 +48,7 @@ get registerFormControl() {
 onSubmit() {
 
   this.submitted = true;
-  // if (this.loginForm.valid) {
+  if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       console.log(user);
@@ -69,6 +69,7 @@ onSubmit() {
       this.errorMessage = err.error.message;
     }
   );
+  }
 }
 
 }
