@@ -12,9 +12,20 @@ import {PublishArticleComponent} from './pages/publish-article/publish-article.c
 import {UsersArticleComponent} from './pages/users-article/users-article.component';
 import {LandingPageComponent} from './pages/landing-page/landing-page.component';
 import { AuthGuard } from './Guards/auth.guard';
+import {ViewTransactionsComponent} from "./pages/view-transactions/view-transactions.component";
+import {PageNotFoundComponent} from "./pages/page-not-found/page-not-found.component";
 
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'page-not-found',
+    pathMatch: 'full'
+  },
+  {
+    path: 'page-not-found',
+    component: PageNotFoundComponent
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -72,7 +83,13 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
-  }
+  },
+
+  {
+    path: 'view-transactions',
+    component: ViewTransactionsComponent,
+    canActivate: [AuthGuard]
+  },
 
 ];
 

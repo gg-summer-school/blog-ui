@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
-import {Admin} from "../../model/admin";
+import {Admin, Transactions} from "../../model/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class AdminPagesService {
   baseUrlPub: string = environment.baseUrlPub;
 
   constructor(private http: HttpClient) { }
+
+
 
   getPublishers(isApproved: boolean) {
     return this.http.get<Admin[]>(this.baseUrlPro + 'users' + '/' + 'publishers' + '/' + isApproved);
@@ -46,6 +48,10 @@ export class AdminPagesService {
 
   declineUser(publisher_id: string) {
     return this.http.delete<Admin>(this.baseUrlPro + 'user' + '/' + publisher_id);
+  }
+
+  transactionDetails(user_id: string) {
+    return this.http.get<Transactions[]>(this.baseUrlPro + 'transactions' + '/' + 'user' + '/' + user_id);
   }
 
 
