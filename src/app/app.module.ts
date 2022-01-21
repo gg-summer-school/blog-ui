@@ -25,6 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatusComponent } from './pages/status/status.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
     LandingPageComponent,
     SidebarComponent,
     SearchFilterPipe,
-    StatusComponent
+    StatusComponent,
+    ViewTransactionsComponent,
+    PageNotFoundComponent
 
   ],
   imports: [

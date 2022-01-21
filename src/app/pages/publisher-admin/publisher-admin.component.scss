@@ -1,4 +1,4 @@
-@media(max-width: 1500px) {
+//@media(max-width: 1500px) {
   body{
     background-color: red;
   }
@@ -28,20 +28,24 @@
   }
 
   .col-md-4 {
-    margin-left: 20px;
+    float: left;
   }
 
-}
+//}
 
 @media (max-width: 500px) {
   .col-md-9{
-    margin-left: 100px;
+    float: left;
+    width: 100%;
   }
 
   .col-md-3 {
+    width: 100%;
     display: block;
   }
 }
+
+
 
 .but {
   background-color: indigo;

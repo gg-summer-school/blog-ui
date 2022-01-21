@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
   readers: Admin[] = []
   number!:number
   suspendUser: boolean = false;
+  addRole: boolean = false;
+  reactivate: boolean = true;
+  active: boolean = false;
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -29,10 +32,28 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  onClickSuspend(publisherId: string) {
-    this.isSuspended = true;
+  // onClickSuspend(publisherId: string) {
+  //   this.isSuspended = true;
+  //   this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+  //   })
+  // }
+
+  suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
+
     })
+    this.active=true;
+  }
+
+  addRoleToUser(publisherId: string) {
+    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
+    })
+  }
+
+  reactivateUser(publisherId: string) {
+    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+    })
+    this.active=false;
   }
 
 }
