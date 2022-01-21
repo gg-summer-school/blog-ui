@@ -4,6 +4,7 @@ import {ArticlesService} from '../../services/articles.service';
 import {Password} from '../../model/users';
 import {Payment} from '../../model/articles';
 import {FormBuilder} from '@angular/forms';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ArticleDetailPageComponent implements OnInit {
   articleid!: string;
   userid!: string;
 
-  constructor(private formBuilder: FormBuilder, private article: ArticlesService) {}
+  constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService) {}
 
   paymentForm = this.formBuilder.group({
     nameOfArticle: '',
@@ -25,6 +26,7 @@ export class ArticleDetailPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.userid = this.tokenservice.getUser().id;
     // const data = 'some text';
     // const blob = new Blob([data], {type: 'application/octet-stream'});
     //

@@ -41,10 +41,12 @@ export class LoginComponent implements OnInit {
     })
 }
 
+// tslint:disable-next-line:typedef
 get registerFormControl() {
   return this.loginForm.controls;
 }
 
+// tslint:disable-next-line:typedef
 onSubmit() {
 
   this.submitted = true;
@@ -52,7 +54,6 @@ onSubmit() {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       console.log(user);
-      
       if(user.length === 1){
         this.router.navigate(['/users-article']);
       } else if(user.length === 2) {
