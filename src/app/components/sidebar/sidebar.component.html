@@ -7,20 +7,20 @@
     <br><br><br>
 
     <div>
-      <a routerLink="/requests" routerLinkActive="/requests"><i class="fas fa-exclamation-circle icon"></i><br>Requests</a><br><br>
+      <a *ngIf = "adminRole" routerLink="/requests" routerLinkActive="/requests"><i class="fas fa-exclamation-circle icon"></i><br>Requests</a><br><br>
       <br><br>
       
-      <a routerLink="/publisher-admin"><i class="fas fa-user-circle icon"></i><br> View Publishers</a>
+      <a *ngIf = "adminRole" routerLink="/publisher-admin"><i class="fas fa-user-circle icon"></i><br> View Publishers</a>
       <br><br><br><br>
 
-      <a routerLink="/user-admin"> <i class="fas fa-user-plus icon"></i><br>View Reader</a><br><br><br><br>
+      <a *ngIf = "adminRole" routerLink="/user-admin"> <i class="fas fa-user-plus icon"></i><br>View Reader</a><br><br><br><br>
     </div>
 
     <div>
-      <a routerLink="/your-articles"><i class="fas fa-scroll icon"></i><br> View my article</a><br><br>
+      <a *ngIf = "publisherRole" routerLink="/your-articles"><i class="fas fa-scroll icon"></i><br> View my article</a><br><br>
       <br><br>
 
-      <a routerLink="/publish-article"><i class="fas fa-newspaper icon"></i><br>Publish Article</a><br><br>
+      <a *ngIf = "publisherRole" routerLink="/publish-article"><i class="fas fa-newspaper icon"></i><br>Publish Article</a><br><br>
       <br><br>
 
     </div>

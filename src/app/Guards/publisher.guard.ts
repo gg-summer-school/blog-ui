@@ -13,8 +13,8 @@ export class PublisherGuard implements CanActivate {
 
   canActivate(): boolean {
     const user = this.tokenStorageService.getUser().role;
-    let role = user.find((role: any )=> role === 'PUBLISHER')
-    if(role === 'PUBLISHER') {
+    let role = user.find((role: any )=> role === 'ROLE_PUBLISHER')
+    if(role === 'ROLE_PUBLISHER') {
       return true;
     }else {
       alert('You are a thief!!!');

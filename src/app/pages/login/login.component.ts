@@ -51,20 +51,15 @@ onSubmit() {
   // if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
-      const reader = user.find((role: any )=> role === 'READER');
-      const publisher = user.find((role: any )=> role === 'PUBLISHER');
       console.log(user);
       
-      if((user[0] === 'READER' && user[1] == 'PUBLISHER' && user[2] == 'ADMIN') || (user[0] =='ADMIN' && user[1] == 'PUBLISHER' && user[2] == 'READER') || (user[0] == 'READER' && user[1] == 'ADMIN' && user[2] == 'PUBLISHER') ) {
+      if(user.length === 1){
+        this.router.navigate(['/users-article']);
+      } else if(user.length === 2) {
+        this.router.navigate(['/your-articles']);
+      }else if(user.length === 3) {
         this.router.navigate(['/requests']);
       }
-      else if ((user[0] == 'READER' && user[1] == 'PUBLISHER') || (user[0] == 'PUBLISHER' && user[1] == 'READER')) {
-          this.router.navigate(['/your-articles'])
-      }
-      else if(reader == 'READER') {
-          this.router.navigate(['/users-article'])
-      }
-
 
         this.tokenStorage.saveToken(userData.accessToken);
        this.tokenStorage.saveUser(userData);
@@ -74,7 +69,6 @@ onSubmit() {
       this.errorMessage = err.error.message;
     }
   );
-  //}
 }
 
 }
