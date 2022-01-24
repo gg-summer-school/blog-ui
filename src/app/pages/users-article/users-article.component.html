@@ -1,99 +1,245 @@
-<div class="row d">
-  <div class="col-md-3">
+<!--<div class="row d">-->
+<!--  <div class="col-md-3">-->
+<!--    <app-sidebar></app-sidebar>-->
+<!--  </div>-->
+<!--  <div class="col-md-5">-->
+<!--    <app-status></app-status>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+<!--  <div class="col-md-9">-->
+
+<!--    <h4>My Paid Articles</h4><br>-->
+<!--    <div class="row do">-->
+<!--      <div class="col-md-4">-->
+<!--        <b>Books (03)</b>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; <div class="col-md-3">-->
+<!--        <b>Book Description</b>-->
+<!--      </div> &ndash;&gt;-->
+
+<!--      <div class="col-md-3">-->
+<!--        <b>Contributors</b>-->
+<!--      </div>-->
+
+<!--      <div class="col-md-4">-->
+<!--        <b>Action</b>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table">-->
+<!--      <div class="row" *ngFor="let userPA of userPaidArticles">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>userPA.title</a><br>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; <div class="col-md-3">-->
+<!--          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>-->
+<!--        </div> &ndash;&gt;-->
+
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but" (click)="downloadArticle()"><i class="fas fa-download"></i>Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--&lt;!&ndash;            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>&ndash;&gt;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>Book two</a><br>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; <div class="col-md-3">-->
+<!--          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>-->
+<!--        </div> &ndash;&gt;-->
+
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--&lt;!&ndash;            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>&ndash;&gt;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>Book three</a><br>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; <div class="col-md-3">-->
+<!--          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>-->
+<!--        </div> &ndash;&gt;-->
+
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--&lt;!&ndash;            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>&ndash;&gt;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div><br>-->
+
+<!--  </div>-->
+<!--</div>-->
+<div class="row">
+  <div class="col-md-4">
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-4">
     <app-status></app-status>
   </div>
-</div>
-
-<div class="container">
-  <div class="col-md-9">
-
-    <h4>My Paid Articles</h4><br>
-    <div class="row do">
-      <div class="col-md-4">
-        <b>Books (03)</b>
-      </div>
-
-      <!-- <div class="col-md-3">
-        <b>Book Description</b>
-      </div> -->
-
-      <div class="col-md-3">
-        <b>Contributors</b>
-      </div>
-
-      <div class="col-md-4">
-        <b>Action</b>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row" *ngFor="let userPA of userPaidArticles">
-        <div class="col-md-3">
-          <a>userPA.title</a><br>
-        </div>
-
-        <!-- <div class="col-md-3">
-          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
-        </div> -->
-
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but" (click)="downloadArticle()"><i class="fas fa-download"></i>Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>-->
-          </tr>
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
+  <div class="col-md-4">
+    <div class="col-md-9">
+      <h4>My Paid Articles</h4><br>
       <div class="row">
+        <div class="col-md-4">
+          <b>Books (03)</b>
+        </div>
         <div class="col-md-3">
-          <a>Book two</a><br>
+          <b>Contributors</b>
         </div>
 
-        <!-- <div class="col-md-3">
-          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
-        </div> -->
-
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>-->
-          </tr>
+        <div class="col-md-4">
+          <b>Action</b>
         </div>
       </div>
+      <div class="table">
+        <div class="row" *ngFor="let userPA of userPaidArticles">
+          <div class="col-md-3">
+            <a>{{userPA.title}}</a><br>
+          </div>
+          <div class="col-md-3 art">
+            <a>person 1, person 2 etc{{userPA.contributors}}</a><br>
+          </div>
+
+          <div class="col-md-3">
+            <tr><button class="btn btn-dark but" (click)="downloadArticle()"><i class="fas fa-download"></i>Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </tr>
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row">
+          <div class="col-md-3">
+            <a>Book two</a><br>
+          </div>
+          <div class="col-md-3 art">
+            <a>person 1, person 2 etc</a><br>
+          </div>
+
+          <div class="col-md-3">
+            <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </tr>
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row">
+          <div class="col-md-3">
+            <a>Book three</a><br>
+          </div>
+          <div class="col-md-3 art">
+            <a>person 1, person 2 etc</a><br>
+          </div>
+
+          <div class="col-md-3">
+            <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </tr>
+          </div>
+        </div>
+      </div><br>
+
     </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>Book three</a><br>
-        </div>
-
-        <!-- <div class="col-md-3">
-          <a>This book falls on the computer science and engineering category talking about c++ programming.</a><br>
-        </div> -->
-
-        <div class="col-md-3 art">
-          <a>person 1, person 2 etc</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--            <button class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete </button>-->
-          </tr>
-        </div>
-      </div>
-    </div><br>
-
   </div>
 </div>
+
+
+<!--<div class="row">-->
+<!--  <div class="col-md-4">One</div>-->
+<!--  <div class="col-md-4">Two</div>-->
+<!--  <div class="col-md-4">Three</div>-->
+<!--</div>-->
+<!--<div class="container">-->
+<!--  <div class="col-md-9">-->
+
+<!--    <h4>My Paid Articles</h4><br>-->
+<!--    <div class="row do">-->
+<!--      <div class="col-md-4">-->
+<!--        <b>Books (03)</b>-->
+<!--      </div>-->
+<!--      <div class="col-md-3">-->
+<!--        <b>Contributors</b>-->
+<!--      </div>-->
+
+<!--      <div class="col-md-4">-->
+<!--        <b>Action</b>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="table">-->
+<!--      <div class="row" *ngFor="let userPA of userPaidArticles">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>userPA.title</a><br>-->
+<!--        </div>-->
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but" (click)="downloadArticle()"><i class="fas fa-download"></i>Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>Book two</a><br>-->
+<!--        </div>-->
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>Book three</a><br>-->
+<!--        </div>-->
+<!--        <div class="col-md-3 art">-->
+<!--          <a>person 1, person 2 etc</a><br>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-3">-->
+<!--          <tr><button class="btn btn-dark but"><i class="fas fa-download"></i> Download</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--          </tr>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div><br>-->
+
+<!--  </div>-->
+<!--</div>-->

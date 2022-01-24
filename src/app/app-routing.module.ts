@@ -17,7 +17,7 @@ import {PageNotFoundComponent} from "./pages/page-not-found/page-not-found.compo
 import { AdminGuard } from './Guards/admin.guard';
 import { PublisherGuard } from './Guards/publisher.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
-
+import {PaymentComponent} from './pages/payment/payment.component';
 
 
 const routes: Routes = [
@@ -90,6 +90,10 @@ const routes: Routes = [
     component: ViewTransactionsComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'payment-details',
+    component: PaymentComponent,
+  },
 
   {
     path: 'page-not-found',
@@ -100,7 +104,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'page-not-found',
   },
-
 ];
 
 

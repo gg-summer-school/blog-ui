@@ -1,46 +1,198 @@
 <app-sidebar></app-sidebar>
-<!--<div class="card">-->
-  <div class="card-body">
-    <div>
-      <br/>
-      <div class="align-content-center profile">
-        <h4>Welcome , {{userProfile.name}}</h4>
-        <img src="assets/avatar.png" class="image">
-        <br/>
-        <br/>
-        <div class="form-group mb-4 mt-3 p">
-          <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
-          <span class="card-text"><label>{{userProfile.name}}</label></span>
+
+
+<div class="container emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="assets/avatar.png" alt=""/>
+<!--          <div class="file btn btn-lg btn-primary">-->
+<!--            Change Photo-->
+<!--            <input type="file" name="file"/>-->
+<!--          </div>-->
         </div>
-        <br/>
-        <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>
-          <span class="card-text"><label>{{userProfile.email}}</label></span>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            Fiona Anye
+<!--            {{userProfile.name}}-->
+          </h5>
+          <h6>
+            Publisher , Designer
+<!--            <span class="card-text" *ngFor="let aRole of userProfile.role"><label>{{aRole.role}}</label></span>-->
+          </h6>
+<!--          <p class="proile-rating">RANKINGS : <span>8/10</span></p>-->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+            </li>
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>-->
+<!--            </li>-->
+          </ul>
         </div>
-        <br/>
-        <div class="form-group mb-4 p">
-          <label class="text-muted card-text"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>
-          <span class="card-text" *ngFor="let aRole of userProfile.role"><label>{{aRole.role}}</label>  </span>
-        </div>
-        <br/>
-        <div class="form-group mb-4 p">
-          <label class="text-muted card-text"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>
-          <span><label>{{userProfile.articles.length}}</label></span>
-        </div>
-          <div class="row">
-            <div class="mb-4 col-md-4">
-            <button class="btn btn-sm edit" data-bs-toggle="modal"
-                    data-bs-target="#editProfileModal">Edit Profile</button></div>
-              <div class="mb-4 col-md-4">
-            <button class="btn btn-sm edits" data-bs-toggle="modal"
-                    data-bs-target="#editProfileModal1">Change Password</button>
+      </div>
+      <div class="col-md-2">
+<!--        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>-->
+                    <button class="btn btn-sm edit" data-bs-toggle="modal"
+                            data-bs-target="#editProfileModal">Edit Profile</button>
+        <button class="btn btn-sm edits" data-bs-toggle="modal"
+                data-bs-target="#editProfileModal1">Change Password</button>
+                  </div>
+      </div>
+    <div class="row">
+      <div class="col-md-4">
+<!--        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Change password"/>-->
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>User Id</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>Kshiti123</p>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+<!--                  {{userProfile.name}} -->
+                  Fiona Anye</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+<!--                  {{userProfile.email}}-->
+                  Fionaanye@gmail.com</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Number Of Articles</label>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  2
+<!--                  {{userProfile.articles.length}}-->
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Role</label>
+              </div>
+              <div class="col-md-6">
+                <p>Web Developer and Designer</p>
+<!--                <span class="card-text" *ngFor="let aRole of userProfile.role"><label>{{aRole.role}}</label></span>-->
+              </div>
+            </div>
           </div>
+<!--          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>Experience</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>Expert</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>Hourly Rate</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>10$/hr</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>Total Projects</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>230</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>English Level</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>Expert</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-6">-->
+<!--                <label>Availability</label>-->
+<!--              </div>-->
+<!--              <div class="col-md-6">-->
+<!--                <p>6 months</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-md-12">-->
+<!--                <label>Your Bio</label><br/>-->
+<!--                <p>Your detail description</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
-        <br/>
       </div>
     </div>
-  </div>
-<!--</div>-->
+  </form>
+</div>
+
+
+<!--  <div class="card-body">-->
+<!--    <div>-->
+<!--      <br/>-->
+<!--      <div class="align-content-center profile">-->
+<!--        <h4>Welcome , {{userProfile.name}}</h4>-->
+<!--        <img src="assets/avatar.png" class="image">-->
+<!--        <br/>-->
+<!--        <br/>-->
+<!--        <div class="form-group mb-4 mt-3 p">-->
+<!--          <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>-->
+<!--          <span class="card-text"><label>{{userProfile.name}}</label></span>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        <div class="form-group mb-4 p">-->
+<!--          <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>-->
+<!--          <span class="card-text"><label>{{userProfile.email}}</label></span>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        <div class="form-group mb-4 p">-->
+<!--          <label class="text-muted card-text"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>-->
+<!--          <span class="card-text" *ngFor="let aRole of userProfile.role"><label>{{aRole.role}}</label>  </span>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--        <div class="form-group mb-4 p">-->
+<!--          <label class="text-muted card-text"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>-->
+<!--          <span><label>{{userProfile.articles.length}}</label></span>-->
+<!--        </div>-->
+<!--          <div class="row">-->
+<!--            <div class="mb-4 col-md-4">-->
+<!--            <button class="btn btn-sm edit" data-bs-toggle="modal"-->
+<!--                    data-bs-target="#editProfileModal">Edit Profile</button></div>-->
+<!--              <div class="mb-4 col-md-4">-->
+<!--            <button class="btn btn-sm edits" data-bs-toggle="modal"-->
+<!--                    data-bs-target="#editProfileModal1">Change Password</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <br/>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
  <!-- Modal for edit user profile -->
  <div
@@ -110,7 +262,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">Edit Profile</h5>
+        <h5 class="modal-title" id="exampleModalLabel1">Change Password</h5>
         <button
           type="button"
           class="btn-close btn-sm "

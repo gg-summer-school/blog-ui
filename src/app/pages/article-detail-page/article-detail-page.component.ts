@@ -37,7 +37,7 @@ export class ArticleDetailPageComponent implements OnInit {
   payAnArticle() {
     console.log(this.paymentForm.value);
     this.article.PayArticle(this.userid, this.articleid, this.paymentForm.value).subscribe((response) => {
-        console.log(response);     }
+        console.log(response); }
     );
   }
 }
