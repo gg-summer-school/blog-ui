@@ -8,29 +8,39 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=" ">Home</a>
+          <a class="nav-link active" aria-current="page" href=" ">{{ 'Navbar.Home' | translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
+          <a class="nav-link " href="#">{{ 'Navbar.About' | translate }}</a>
         </li>
       </ul>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
-          <input type="text" class="size" placeholder=" search articles..." [(ngModel)]="searchData" id="listSearch">
+          <input type="text" class="size" placeholder=" {{ 'Navbar.searchPlaceholder' | translate }}" [(ngModel)]="searchData" id="listSearch">
           <button class="button"><i class="fa fa-search fa-1x "></i></button>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary">SignUp</button></a>
+          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary">{{ 'Navbar.SignUp' | translate }}</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="/login" ><button class="btn btn-outline-info">Login</button></a>
+          <a class="nav-link " href="/login" ><button class="btn btn-outline-info">{{ 'Navbar.Login' | translate }}</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="/users-article" ><button class="btn btn-outline-info">Dashboard</button></a>
+          <a class="nav-link " href="/users-article" ><button class="btn btn-outline-info">{{ 'Navbar.Dashboard' | translate }}</button></a>
+        </li>
+        <li class="nav-item">
+          <span class="form-inline">
+      <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()" [value]="language"
+                [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span>
         </li>
       </ul>
 
@@ -45,15 +55,20 @@
     <br>
     <br>
       <br>
-    <h2>Welcome to <span style="color: indigo"> Blog site</span></h2>
-    <span>Publish your articles and books to the world.</span>
+    <h2>{{ 'Page.Welcome' | translate }}<span style="color: indigo"> Blog site</span></h2>
+<!--    <span>Publish your articles and books to the world.</span>-->
+      <span>{{ 'Page.Publish' | translate }}</span>
     <br>
-    <span>View all kinds  of articles or books. We have it all installed for you.</span>
+<!--    <span>View all kinds  of articles or books. We have it all installed for you.</span>-->
+      <span>{{ 'Page.Publish1' | translate }}</span>
+
       <br>
       <br>
     <hr>
-      <button class=" btn btn-outline" style="color: indigo">View articles</button>
-  </div>
+<!--      <button class=" btn btn-outline" style="color: indigo">View articles</button>-->
+      <button class=" btn btn-outline" style="color: indigo">{{ 'Page.ViewArticles' | translate }}</button>
+
+    </div>
   </div>
   <div class="col-md-8"> <div class="bg"></div>
 
@@ -66,7 +81,7 @@
       <br>
       <div class="card">
         <div class="card-header" style="background-color: darkblue; color: white">
-          Our Categories
+          {{ 'Page.categories' | translate }}
         </div>
         <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
           <li class="list-group-item">{{category.name}}</li>
@@ -78,7 +93,7 @@
     <div class="col-md-9 ">
       <br>
       <div class="row ">
-        <h4>Popular articles</h4>
+        <h4>{{ 'Page.popular' | translate }}</h4>
 
           <div class="col-md-6 d-flex">
             <a href="/articles-detail">
@@ -89,8 +104,10 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Book title</h5>
-                  <span class="card-text form-text">Category: education</span>
+                  <h5 class="card-title">
+                    {{ 'Page.bookTitle' | translate }}
+                  </h5>
+                  <span class="card-text form-text">{{ 'Page.categories' | translate }}: education</span>
                   <p>Author(s): Chi Mah</p>
                 </div>
               </div>
@@ -194,7 +211,8 @@
 <br>
 <div class="container">
   <h3 class="text-center mt-5 mb-5">
-    All articles and books
+<!--    All articles and books-->
+    {{ 'Page.Allarticlesandbooks' | translate }}
   </h3>
     <div class="row" >
 
@@ -233,13 +251,13 @@
 
 <br>
 <div class="auth" >
-  <h5>Our Authors</h5>
+  <h5>{{ 'Page.author' | translate }}</h5>
   <div class="row">
     <div class="col-md-3">
       <div class="card" >
 
             <div class="card-body">
-              <div><h6>Author name</h6></div>
+              <div><h6>{{ 'Page.authorName' | translate }}</h6></div>
               <span class="card-text form-text">email@gmail.com</span>
             </div>
         </div>

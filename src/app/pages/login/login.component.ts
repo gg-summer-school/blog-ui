@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { loginData, Users } from 'src/app/model/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import {UserDto} from "../../model/UserDto";
+import {UserDto} from '../../model/UserDto';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   loginForm!: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([Validators.required])]
-    })
+    });
 }
 
 // tslint:disable-next-line:typedef
@@ -54,19 +54,20 @@ onSubmit() {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       console.log(user);
-      if(user.length === 1){
+      if (user.length === 1){
         this.router.navigate(['/users-article']);
-      } else if(user.length === 2) {
+      } else if (user.length === 2) {
         this.router.navigate(['/your-articles']);
-      }else if(user.length === 3) {
+      }else if (user.length === 3) {
         this.router.navigate(['/requests']);
       }
 
-        this.tokenStorage.saveToken(userData.accessToken);
-       this.tokenStorage.saveUser(userData);
+      this.tokenStorage.saveToken(userData.accessToken);
+      this.tokenStorage.saveRefreshToken(userData.refreshToken);
+      this.tokenStorage.saveUser(userData);
     },
     err => {
-      console.log(err.error)
+      console.log(err.error);
       this.errorMessage = err.error.message;
     }
   );

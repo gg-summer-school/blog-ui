@@ -81,5 +81,11 @@ export class AuthService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
+  // tslint:disable-next-line:typedef
+  refreshToken(token: string) {
+    return this.http.post(this.baseUrlAuth + 'refreshtoken', {
+      refreshToken: token
+    }, httpOptions);
+  }
 
 }

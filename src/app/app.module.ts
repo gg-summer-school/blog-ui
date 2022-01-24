@@ -26,10 +26,20 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { StatusComponent } from './pages/status/status.component';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
-import {QuillModule} from "ngx-quill";
+import {QuillModule} from 'ngx-quill';
 import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import {  HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+// tslint:disable-next-line:typedef
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 
 
 @NgModule({
@@ -72,6 +82,13 @@ import { PaymentComponent } from './pages/payment/payment.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     QuillModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
 
   ],
 

@@ -5,6 +5,8 @@ import {Password} from '../../model/users';
 import {Payment} from '../../model/articles';
 import {FormBuilder} from '@angular/forms';
 import {TokenStorageService} from '../../services/token-storage.service';
+import { TranslateService } from '@ngx-translate/core';
+
 
 
 @Component({
@@ -13,17 +15,25 @@ import {TokenStorageService} from '../../services/token-storage.service';
   styleUrls: ['./article-detail-page.component.scss']
 })
 export class ArticleDetailPageComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder, private article: ArticlesService,
+              private tokenservice: TokenStorageService,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+  }
   fileUrl: any;
   sanitizer: any;
   articleid = '9453c7ef-c210-474f-80cf-516756c83ac7';
   userid = 'cbaee553-0180-480a-8f41-cd684ff9b23e';
 
-  constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService) {}
-
   paymentForm = this.formBuilder.group({
     nameOfArticle: '',
     payment: ''
   });
+  // tslint:disable-next-line:typedef
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
   ngOnInit(): void {
     this.userid = this.tokenservice.getUser().id;
