@@ -32,8 +32,6 @@ export class LandingPageComponent implements OnInit {
                public tokenStorage: TokenStorageService) { }
 
   previous(event: any) {
-    this.page--;
-    this.articlesService.getAllArticles(this.page, this.pageSize)
   }
 
   Next() {
@@ -72,7 +70,6 @@ export class LandingPageComponent implements OnInit {
     this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: any) => {
        this.allArticles = res.articleDtoList;
        this.pages = res.totalPages;
-       
        this.testArray = (Array.from(Array(this.pages).keys()));
     })
   }

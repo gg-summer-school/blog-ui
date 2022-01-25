@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 const  TOKEN_KEY = 'auth-token'
 const  USER_KEY = 'auth-user'
-const REFRESHTOKEN_KEY = 'auth-refreshtoken';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +12,6 @@ export class TokenStorageService {
 
   signOut(): void {
     localStorage.clear();
-  }
-
-  public saveRefreshToken(token: string): void {
-    localStorage.removeItem(REFRESHTOKEN_KEY);
-    localStorage.setItem(REFRESHTOKEN_KEY, token);
-  }
-
-  public getRefreshToken(): string | null {
-    return localStorage.getItem(REFRESHTOKEN_KEY);
   }
 
   public saveToken(token: string): void {

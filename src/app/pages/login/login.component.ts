@@ -51,6 +51,7 @@ onSubmit() {
   if (this.loginForm.valid) {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
+      console.log(user);
       
       if(user.length === 1){
         this.router.navigate(['/users-article']);
@@ -61,9 +62,7 @@ onSubmit() {
       }
 
         this.tokenStorage.saveToken(userData.accessToken);
-        
-        this.tokenStorage.saveRefreshToken(userData.refreshToken);
-        this.tokenStorage.saveUser(userData);
+       this.tokenStorage.saveUser(userData);
     },
     err => {
       console.log(err.error)
