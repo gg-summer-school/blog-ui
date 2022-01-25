@@ -25,7 +25,7 @@ export class EditArticleComponent implements OnInit {
   publisherId:string='';
   categoryId:string= '';
   oneArticle!:ArticleDto;
-  baseUrl= "http://192.168.8.106:8000";
+  baseUrl= "http://192.168.8.111:8000";
 
 
 
