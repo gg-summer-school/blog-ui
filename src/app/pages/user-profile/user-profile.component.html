@@ -1,3 +1,5 @@
+<app-sidebar></app-sidebar>
+
  <div class="col-xs-8">
    <br/>
       <div class="align-content-center profile">
@@ -7,12 +9,12 @@
         <br/>
           <div class="form-group mb-4 mt-3 p">
             <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
-            <span><label>King Arthur</label></span>
+            <span><label>{{userProfile.name}}</label></span>
           </div>
         <br/>
         <div class="form-group mb-4 p">
           <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>
-          <span><label>kingarthur@gmail.com</label></span>
+          <span><label>{{userProfile.email}}</label></span>
         </div>
         <br/>
         <div class="form-group mb-4 p">
@@ -54,11 +56,11 @@
          ></button>
        </div>
        <div class="modal-body">
-         <form [formGroup]="users">
+         <form [formGroup]="usersEdit">
            <div class="form-group mb-2">
              <label>Name</label>
              <input
-               [(ngModel)] = "firstName"
+               [(ngModel)] = "userProfile.name"
                id="firstName"
                type="text"
                class="form-control"
@@ -69,7 +71,7 @@
            <div class="form-group mb-2">
              <label>Email</label>
              <input
-               [(ngModel)] = "email"
+               [(ngModel)] = "userProfile.email"
                id="email"
                type="text"
                class="form-control"
@@ -90,6 +92,3 @@
      </div>
    </div>
  </div>
-
-
-

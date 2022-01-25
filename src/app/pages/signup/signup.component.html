@@ -1,3 +1,6 @@
+<div *ngIf="errorMessage != ''" class="alert alert-danger errorMessage" role="alert">
+    <h4>{{ errorMessage }}</h4>
+</div>
 <div class="container">
 
   <div class="left">
@@ -60,8 +63,8 @@
                     [(ngModel)] = "role"
                     class="form-select mt-3" 
                     required formControlName="role">
-                <option value="User">User</option>
-                <option value="Publisher">Publisher</option>
+                <option value="USER">User</option>
+                <option value="PUBLISHER">Publisher</option>
               </select>
             </div>
     

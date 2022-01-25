@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
-  role = "Publisher";
+  role = "PUBLISHER";
+  errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
@@ -37,7 +38,7 @@ export class SignupComponent implements OnInit {
       this.authService.register(this.signupForm.value).subscribe(userData => {
         console.log(userData);
       }, error => {
-        console.log(error.message);
+        this.errorMessage = error.error.message;
       })
     }
   }

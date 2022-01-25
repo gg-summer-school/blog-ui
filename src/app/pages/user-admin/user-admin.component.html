@@ -1,0 +1,86 @@
+<div class="row ">
+  <div class="col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-md-10">
+    <br>
+    <div style="float: right">
+      <app-status></app-status>
+    </div>
+
+
+<div class="container">
+  <div class="col-md-9">
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-md-3">
+        <b>Number of Readers ({{number}})</b>
+      </div>
+
+      <div class="col-md-3">
+        <b>Email</b>
+      </div>
+
+      <div class="col-md-3">
+        <b>Number of Articles</b>
+      </div>
+
+      <div class="col-md-3">
+        <b>Action</b>
+      </div>
+    </div>
+
+    <div *ngFor="let read of readers" class="table">
+      <div class="row">
+        <div class="col-md-3">
+          <a>{{read.name}}</a><br>
+        </div>
+
+        <div class="col-md-2">
+          <a>{{read.email}}</a><br>
+        </div>
+
+        <div class="col-md-3 art">
+          <a>Two</a><br>
+        </div>
+
+        <div class="col-md-3">
+<!--          <tr><button  class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;-->
+          <tr><button (click)="suspendPublisher(read.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
+            <button (click)="reactivateUser(read.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary" (click)="addRoleToUser(read.id)">Add Role</button>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" >Admin</a></li>
+                <li><a class="dropdown-item" >Another action</a></li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal to block and suspend user -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
