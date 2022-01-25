@@ -93,6 +93,15 @@ export class ArticlesService {
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
 
   }
+  // tslint:disable-next-line:variable-name typedef
+  PayArticle(user_id: string, article_id: string, article: any){
+    return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/user/${user_id}/article/${article_id}`, article)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+
+  }
    // Error handling
    handleError(error: any) {
     let errorMessage = '';
