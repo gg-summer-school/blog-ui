@@ -22,6 +22,10 @@ export class TokenStorageService {
   public getToken(): string | null {
     return localStorage.getItem(TOKEN_KEY);
   }
+ public getToken1(): boolean | null {
+    return !!localStorage.getItem(TOKEN_KEY);
+
+  }
 
   public saveUser(user: any): void {
     localStorage.removeItem(USER_KEY);

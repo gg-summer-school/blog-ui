@@ -21,6 +21,12 @@ import { DashboardComponent } from './pages/user-admin/user-admin.component';
 
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'page-not-found',
+  //   pathMatch: 'full'
+  // },
+
   {
     path: 'login',
     component: LoginComponent
@@ -70,7 +76,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'articles-detail',
+    path: 'articles-detail/:id/:catid',
     component: ArticleDetailPageComponent,
     canActivate: [AuthGuard]
   },

@@ -63,21 +63,16 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <div class="alert alert-success" role="alert" *ngIf="success">
-      <h3>Article successfully created!!!</h3>
-        </div>
-        <br>
-        <div class="alert alert-danger" role="alert" *ngIf="error">
+      <div class="alert alert-success" role="alert" *ngIf="success">
+        <h3>Article successfully created!!!</h3>
+      <div class="alert alert-danger" role="alert" *ngIf="error">
         <h3> {{errorMessage}}</h3>
-        </div>
-        <br>
-        <div class="alert alert-danger" role="alert" *ngIf="error1">
-          <h3> {{errorMessage1}} error</h3>
-        </div>
-        <br>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="error1">
+        <h3> {{errorMessage1}} error</h3>
+      </div>
+      <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
-        <br>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -89,9 +84,10 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary upload" (click)="upload()">publish article</button>
+        <button type="button" class="btn btn-primary upload"  (click)="upload()" >publish article</button>
       </div>
     </div>
   </div>
 </div>
   <br>
+

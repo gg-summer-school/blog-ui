@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
-import {Admin} from "../../model/admin";
+import { AdminPagesService } from "../../services/admin-services/admin-pages.service";
+import { Admin } from "../../model/admin";
 
 @Component({
   selector: 'app-publisher-admin',
@@ -9,11 +9,14 @@ import {Admin} from "../../model/admin";
 })
 export class PublisherAdminComponent implements OnInit {
 
+  isBlocked = false;
+  isSuspended = false;
+
   publishers: Admin[] = [];
   isApproved: boolean = true;
   publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
   numberOfArticles: Admin[] = [];
-  status:string = 'Suspend';
+  status: string = 'Suspend';
   suspendUser: boolean = false;
   addRole: boolean = false;
   reactivate: boolean = true;
@@ -28,6 +31,20 @@ export class PublisherAdminComponent implements OnInit {
   }
 
   displayPublishers() {
+    // this.adminPagesService.getPublishers(this.isApproved)
+    //   .subscribe( res =>
+    //   {
+    //     this.publishers = res;
+    //     // console.log(this.publishers);
+    //   })
+  }
+
+  getArticlesById() {
+    // this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
+    //   .subscribe( res =>
+    //   {
+    //     // console.log(res)
+    //   })
     this.adminPagesService.getPublishers(this.isApproved)
       .subscribe( res =>
       {
@@ -44,24 +61,35 @@ export class PublisherAdminComponent implements OnInit {
     this.active=true;
   }
 
-  addRoleToUser(publisherId: string) {
-    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
-    })
+  onClickBlock() {
+    this.isBlocked = true;
+    this.isSuspended = false;
   }
 
-  reactivateUser(publisherId: string) {
-    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
-    })
-    this.active=false;
+  onClickSuspend() {
+    this.isSuspended = true;
+    this.isBlocked = false;
+
   }
 
 
-  // getArticlesById() {
-  //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-  //     .subscribe( res =>
-  //     {
-  //       // console.log(res)
-  //     })
-  // }
+    addRoleToUser(publisherId: string) {
+      this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
+      })
+    }
 
-}
+    reactivateUser(publisherId: string) {
+      this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+      })
+    }
+
+
+    // getArticlesById() {
+    //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
+    //     .subscribe( res =>
+    //     {
+    //       // console.log(res)
+    //     })
+    // }
+
+  }

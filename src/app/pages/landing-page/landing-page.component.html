@@ -24,10 +24,13 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary">SignUp</button></a>
+          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary" *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="/login" ><button class="btn btn-outline-info">Login</button></a>
+          <a class="nav-link "  href="/login" ><button class="btn btn-outline-info" *ngIf="!tokenStorage.getToken1()">Login</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/users-article" ><button class="btn btn-outline-info" *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
         </li>
       </ul>
 
@@ -66,37 +69,20 @@
           Our Categories
         </div>
         <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
-          <li class="list-group-item">{{category.name}}</li>
+          <li class="list-group-item group" (click)="categoryAticle(category.id)">{{category.name}}</li>
 
         </ul>
       </div>
       <br>
     </div>
-    <div class="col-md-9 ">
+
+    <div class="col-md-9 " *ngIf="!category">
       <br>
       <div class="row ">
         <h4>Popular articles</h4>
 
-          <div class="col-md-6 d-flex">
-            <a href="/articles-detail">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Book title</h5>
-                  <span class="card-text form-text">Category: education</span>
-                  <p>Author(s): Chi Mah</p>
-                </div>
-              </div>
-            </div>
-          </div>
-            </a>
-        </div>
         <div class="col-md-6 d-flex">
-            <a href="/articles-detail">
+          <a href="/articles-detail">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -111,8 +97,26 @@
                 </div>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
+        <div class="col-md-6 d-flex">
+          <a href="/articles-detail">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Book title</h5>
+                    <span class="card-text form-text">Category: education</span>
+                    <p>Author(s): Chi Mah</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
 
       </div>
       <div class="row ">
@@ -186,47 +190,120 @@
         </div>
       </div>
     </div>
-  </div>
 
-<br>
-<div class="container">
-  <h3 class="text-center mt-5 mb-5">
-    All articles and books
-  </h3>
-    <div class="row" >
+    <div class="col-md-9">
 
-      <div class="col-md-4 card-group"
-           style="margin-top: 30px"
-           *ngFor="let num of nums | paginate : {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count
-              };
-        let i = index" [class.active]="i ">
-        <a href="/articles-detail">
-          <div class="card" style="width: 18rem;">
-            <img src="assets/com.jpg " class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <div class="row">
+        <h4></h4>
+
+        <div class="col-md-6 d-flex card-group" *ngFor="let catArticle of categoryArticles" style="margin-top: 30px" >
+          <a (click)="view(catArticle.id, catArticle.categoryId)" style="cursor: pointer">
+            <div class="card h-100 " style="width: 30rem" >
+              <div class="row ">
+                <div class="col-md-4 " >
+                  <img [src]="catArticle.coverPage"   class="img-fluid rounded-start h-100" alt="no book cover">
+                </div>
+                <div class="col-md-8" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{catArticle.title}}</h5>
+                    <span class="card-text form-text">Category: {{catArticle.categoryName}}</span>
+                    <br>
+                    Contributors: <span class="form-text" *ngFor="let contributor of catArticle.contributors"> ({{contributor.name}})</span>
+                    <br>
+                    <br>
+                    <span class="card-text form-text"> {{catArticle.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            {{num}}
-          </div>
-      </a>
+          </a>
+        </div>
+        <br>
       </div>
     </div>
 
 
-<br>
-  <div class="d-flex justify-content-center">
-    <pagination-controls
-
-      previousLabel="Prev"
-      nextLabel="Next"
-      (pageChange)="onTableDataChange($event)">
-    </pagination-controls>
   </div>
 
-</div>
+<br>
+
+<!--ALL ARTICLES DISPLAY-->
+<div class="container">
+  <h3 class="text-center mt-5 mb-5">
+    All articles and books
+  </h3>
+  <div class="row">
+    <div
+        class="col-md-4 col-sm-12 card-group"
+        style="margin-top: 30px;"
+        *ngFor="let article of allArticles | searchFilter: searchData">
+      <a  (click)="view(article.id, article.categoryId)">
+        <div class="card h-100" style="width: 18rem;">
+          <img  [src]="article.coverPage" class="card-img-top" alt="no book cover">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <span class="form-text">Category: {{article.categoryName}}</span>
+            <br>
+            Contributors: <span class="form-text" *ngFor="let contributor of article.contributors"> ({{contributor.name}})</span>
+            <br>
+            <br>
+            <span class="form-text">{{article.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+          </div>
+        </div>
+    </a>
+    </div>
+    </div>
+
+
+<br>
+   <div class="paginate">
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click) = "previous($event)">Previous</a></li>
+        <li class="page-item active" *ngFor = "let p of testArray; let i = index">
+          <a class="page-link" (click) = "setPage(i, $event)">{{i}}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link"  (click) = "Next()">Next</a></li>
+      </ul>
+    </nav>
+
+   </div>
+  </div>
+
+<!-- </div>  -->
+
+
+<!-- <div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <h4>ARTICLES</h4>
+        <table class="table table-strped">
+
+          <tbody>
+
+            <tr *ngFor="let article of allArticles">
+                 <td>{{ article.title  }}</td>
+                 <td>{{ article.createdAt }}</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+        <hr>
+
+        <ul class="nav nav-pills">
+          <li class="nav-items" *ngFor = "let p of testArray; let i = index">
+            <a style="padding-left: 10px;" class="nav-links" (click) = "setPage(i, $event)">{{ i }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
 
 <br>
 <div class="auth" >

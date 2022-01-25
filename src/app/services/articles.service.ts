@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Articles } from '../model/articles';
+import {ArticleDto, ArticleList, Articles} from '../model/articles';
 import {ResponseObject} from "../model/response";
+import {Categories} from "../model/categories";
 
 
 @Injectable({
@@ -22,11 +23,23 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllArticles()
+  //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
+
+
+  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
   {
-    return this.http.get(this.baseUrl + 'articles');
+    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
 
   }
+
+  getArticle( articleId: string, userId: string): Observable<ArticleDto>
+  {
+    return this.http.get<ArticleDto>(this.baseUrl1 + `articles?articleId=`+articleId + `&userId=`+userId);
+
+  }
+
+
+
   createArticle(article:Articles, publisherId:string, categoryId:string):Observable<ResponseObject>
   {
     return this.http.post<ResponseObject>(this.baseUrl1+'publishers/'+publisherId+'/articles/categories/'+categoryId, article);
@@ -38,13 +51,15 @@ export class ArticlesService {
     return this.http.put(this.baseUrl1+'publishers/'+publisherId+'/articles/'+articleId+'/file-uploads',  uploadFile);
   }
 
-  // getArticlesByCategory(article:Articles, publisherId:string, articleId:string)
-  // {
-  //   return this.http.put(this.baseUrl1+'/publishers'+publisherId+'/articles/'+articleId+'/file-upload', article);
-  // }
+  getArticlesByCategory(catid:string)
+  {
+    return this.http.get<ArticleDto[]>(this.baseUrl+`articles/categories?categoryId=`+catid);
+  }
+
+
   getCategory()
   {
-    return this.http.get(this.baseUrl+'categories');
+    return this.http.get<Categories[]>(this.baseUrl+'categories');
   }
 
   updateArticle(articleId:string, article:any)
