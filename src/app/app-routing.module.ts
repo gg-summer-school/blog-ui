@@ -76,9 +76,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'articles-detail/:id/:catid',
+    path: 'articles-detail/:id',
     component: ArticleDetailPageComponent,
-    canActivate: [AuthGuard]
   },
  {
     path: 'edit-article/:id/:catid',
