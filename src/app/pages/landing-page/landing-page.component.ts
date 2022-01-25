@@ -75,9 +75,9 @@ export class LandingPageComponent implements OnInit {
     })
   }
 
-  view(id: string, catid:string)
+  view(id: string)
   {
-    this.router.navigate(['/articles-detail', id, catid]);
+    this.router.navigate(['/articles-detail', id]);
   }
   categoryAticle(catid: string)
   {
@@ -89,6 +89,11 @@ export class LandingPageComponent implements OnInit {
       error => {
       console.log(error);
       })
+  }
+
+  selectedIndex!: number;
+  select(index: number) {
+    this.selectedIndex = index;
   }
 
 }
