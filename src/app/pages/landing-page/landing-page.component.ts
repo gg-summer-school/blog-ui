@@ -72,7 +72,6 @@ export class LandingPageComponent implements OnInit {
     this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: any) => {
        this.allArticles = res.articleDtoList;
        this.pages = res.totalPages;
-       console.log(this.allArticles);
        
        this.testArray = (Array.from(Array(this.pages).keys()));
     })
