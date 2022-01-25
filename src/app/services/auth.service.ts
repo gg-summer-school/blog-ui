@@ -42,6 +42,12 @@ export class AuthService {
     )
   }
 
+  refreshToken(token: string) {
+    return this.http.post(this.baseUrl + 'refreshtoken', {
+      refreshToken: token
+    }, httpOptions);
+  }
+
   updateUserProfile(user:Users){
     return this.http.put<Users>(this.baseUrlUserProfile,user,
     {headers: this.headers}).pipe(

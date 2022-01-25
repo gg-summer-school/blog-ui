@@ -9,9 +9,9 @@ import {TokenStorageService} from '../../services/token-storage.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
+  userid: string = '';
+  articleid: string = '';
 
-  articleid = '9453c7ef-c210-474f-80cf-516756c83ac7';
-  userid = 'cbaee553-0180-480a-8f41-cd684ff9b23e';
   constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService) {}
   paymentForm = this.formBuilder.group({
     nameOfArticle: '',
@@ -19,6 +19,7 @@ export class PaymentComponent implements OnInit {
   });
 
   ngOnInit(): void {
+     this.userid = this.tokenservice.getUser().id;
   }
   // tslint:disable-next-line:typedef
   payAnArticle() {
