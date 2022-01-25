@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
-import {Admin} from "../../model/admin";
+import {Admin, roleDTO, RolePayload} from "../../model/admin";
 
 @Component({
   selector: 'app-publisher-admin',
@@ -15,7 +15,7 @@ export class PublisherAdminComponent implements OnInit {
   numberOfArticles: Admin[] = [];
   status:string = 'Suspend';
   suspendUser: boolean = false;
-  addRole: boolean = false;
+  addRole!: RolePayload;
   reactivate: boolean = true;
   active: boolean = false;
   number!: number
@@ -39,20 +39,36 @@ export class PublisherAdminComponent implements OnInit {
 
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
-
+      this.displayPublishers();
     })
-    this.active=true;
   }
 
-  addRoleToUser(publisherId: string) {
-    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
+  addRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+  }
+
+  removeRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
     })
   }
 
   reactivateUser(publisherId: string) {
     this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+      this.displayPublishers();
     })
-    this.active=false;
   }
 
 

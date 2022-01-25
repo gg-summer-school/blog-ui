@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
-import {Admin, Transactions} from "../../model/admin";
+import {Admin, roleDTO, RolePayload, Transactions} from "../../model/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +38,15 @@ export class AdminPagesService {
     return this.http.patch<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
   }
 
-  addRole(user_id: string, add_Role: boolean) {
-    return this.http.patch<Admin>(this.baseUrlPro + 'addrole' + '/' + 'user' + '/' + user_id, add_Role);
+  addRole(user_id: string, add_Role: RolePayload) {
+    return this.http.patch<Admin>(this.baseUrlPro + 'addrole' + '/' + 'users' + '/' + user_id, add_Role);
+  }
+
+  appendRole(userId: string, roleDto: roleDTO) {
+    return this.http.patch<Admin>(`${this.baseUrlPro}addrole/users/${userId}`, roleDto);
+  }
+  removeRole(userId: string, roleDto: roleDTO) {
+    return this.http.patch<Admin>(`${this.baseUrlPro}removerole/users/${userId}`, roleDto);
   }
 
   reactivateUser(user_id: string, reactivate_User: boolean) {

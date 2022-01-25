@@ -44,6 +44,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, PublisherGuard],
   },
 
+  { path: 'user-admin',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+
   { path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard, PublisherGuard],

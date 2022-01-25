@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
-import {Admin} from "../../model/admin";
+import {Admin, roleDTO, RolePayload} from "../../model/admin";
 
 @Component({
   selector: 'app-user-admin',
@@ -13,9 +13,10 @@ export class DashboardComponent implements OnInit {
   readers: Admin[] = []
   number!:number
   suspendUser: boolean = false;
-  addRole: boolean = false;
+  addRole!: RolePayload;
   reactivate: boolean = true;
   active: boolean = false;
+  role: string = 'Role'
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -32,28 +33,38 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  // onClickSuspend(publisherId: string) {
-  //   this.isSuspended = true;
-  //   this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
-  //   })
-  // }
-
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
-
-    })
-    this.active=true;
-  }
-
-  addRoleToUser(publisherId: string) {
-    this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
+      this.displayReaders();
     })
   }
 
-  reactivateUser(publisherId: string) {
-    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+  addRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
     })
-    this.active=false;
+  }
+
+  removeRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+  }
+
+  reactivateUser(user_id: string) {
+    this.adminPagesService.reactivateUser(user_id, this.reactivate).subscribe((res) => {
+      this.displayReaders();
+    })
   }
 
 }

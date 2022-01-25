@@ -43,14 +43,23 @@
         </div>
 
         <div class="col-md-3 ema">
-            <tr><button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
-              <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
+            <tr><button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-dark but">Suspend</button>&nbsp;
+              <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-dark but">Reactivate</button>&nbsp;
               <div class="dropdown">
-                <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button>
-
+                <button class="btn btn-outline-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Role</button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" >Admin</a></li>
-                  <li><a class="dropdown-item" >Another action</a></li>
+                  <li><a class="dropdown-item" ><b>Upgrade To</b></a></li>
+                  <select class="form-select mt-1" (change)="addRoleToUser(publisher.id, $event)">
+                    <option selected><b>Role</b></option>
+                    <option value="0">Admin</option>
+                    <option value="1">Publisher</option>
+                  </select>
+                  <li><a class="dropdown-item" ><b>Remove Role</b></a></li>
+                  <select class="form-select mt-1" (change)="removeRoleToUser(publisher.id, $event)">
+                    <option selected><b>Role</b></option>
+                    <option value="0">Admin</option>
+                    <option value="1">Publisher</option>
+                  </select>
                 </ul>
               </div>
 <!--            <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>-->
