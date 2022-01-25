@@ -4,13 +4,20 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://192.168.1.41:8000/api/public/auth',
-  // baseUrlPro: 'http://192.168.1.41:8000/api/protected/',
-  // baseUrlPub: 'http://192.168.1.41:8000/api/public/',
+
+  // baseUrl: 'http://192.168.100.246:8000/api/public/auth',
+  // baseUrlPro: 'http://192.168.100.246:8000/api/protected/',
+  // baseUrlPub: 'http://192.168.100.246:8000/api/public/',
+
 
   baseUrl: 'http://localhost:8000/api/public/auth',
   baseUrlPro: 'http://localhost:8000/api/protected/',
   baseUrlPub: 'http://localhost:8000/api/public/',
+
+  // baseUrl: 'http://192.168.100.246:8000/api/public/auth',
+  // baseUrlPro: 'http://192.168.100.246:8000/api/protected/',
+  // baseUrlPub: 'http://192.168.100.246:8000/api/public/',
+
 
 };
 

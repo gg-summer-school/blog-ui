@@ -42,6 +42,7 @@ export class YourArticlesComponent implements OnInit {
     {
       this.deleteMessage=true;
       this.getArticlesByPublisher();
+      window.location.reload()
 
     },
       error => {

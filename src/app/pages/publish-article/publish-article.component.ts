@@ -6,6 +6,7 @@ import {TokenStorageService} from "../../services/token-storage.service";
 import {Contributors} from "../../model/contributors";
 import {Articles} from "../../model/articles";
 import {ResponseObject} from "../../model/response";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-publish-article',
@@ -29,7 +30,8 @@ export class PublishArticleComponent implements OnInit {
   publisherId:string='';
 
 
-  constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService) { }
+  constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.publish= new FormGroup(
@@ -105,6 +107,7 @@ export class PublishArticleComponent implements OnInit {
     {
       this.success=true;
      window.location.reload();
+
     },
       error => {
       this.error=true;
