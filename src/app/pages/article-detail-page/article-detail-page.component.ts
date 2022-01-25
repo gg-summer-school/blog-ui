@@ -29,14 +29,12 @@ export class ArticleDetailPageComponent implements OnInit {
     // this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
 
     this.articleId= this.route.snapshot.params.id;
-    this.categoryId= this.route.snapshot.params.catid;
-    this.userId= this.tokenStorage.getUser().id;
     this.getArticle();
 
   }
   getArticle()
   {
-    this.publisherService.getOneArticle(this.userId, this.articleId, this.categoryId).subscribe(res=>
+    this.publisherService.getArticle(this.articleId).subscribe(res=>
     {
       this.article= res;
     })

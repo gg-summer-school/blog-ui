@@ -68,8 +68,9 @@
         <div class="card-header" style="background-color: darkblue; color: white">
           Our Categories
         </div>
-        <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
-          <li class="list-group-item group" (click)="categoryAticle(category.id)">{{category.name}}</li>
+        <ul class="list-group list-group-flush" *ngFor="let category of allCategories  let i=index" (click)="select(i)"
+            [ngClass]="{'active': selectedIndex == i, 'list-group-item': true}">
+          <li class="list-group-item group" routerLinkActive="active" (click)="categoryAticle(category.id)">{{category.name}}</li>
 
         </ul>
       </div>
@@ -197,7 +198,7 @@
         <h4></h4>
 
         <div class="col-md-6 d-flex card-group" *ngFor="let catArticle of categoryArticles" style="margin-top: 30px" >
-          <a (click)="view(catArticle.id, catArticle.categoryId)" style="cursor: pointer">
+          <a (click)="view(catArticle.id)" style="cursor: pointer">
             <div class="card h-100 " style="width: 30rem" >
               <div class="row ">
                 <div class="col-md-4 " >
@@ -211,7 +212,7 @@
                     Contributors: <span class="form-text" *ngFor="let contributor of catArticle.contributors"> ({{contributor.name}})</span>
                     <br>
                     <br>
-                    <span class="card-text form-text"> {{catArticle.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                    <span class="card-text form-text">{{catArticle.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
                   </div>
                 </div>
               </div>
@@ -237,7 +238,7 @@
         class="col-md-4 col-sm-12 card-group"
         style="margin-top: 30px;"
         *ngFor="let article of allArticles | searchFilter: searchData">
-      <a  (click)="view(article.id, article.categoryId)">
+      <a  (click)="view(article.id)" style="cursor: pointer">
         <div class="card h-100" style="width: 18rem;">
           <img  [src]="article.coverPage" class="card-img-top" alt="no book cover">
           <div class="card-body">
