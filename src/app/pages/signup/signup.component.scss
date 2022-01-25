@@ -1,59 +1,83 @@
-.image{
-  height: 600rem;
-}
-.form-items{
-  margin-left: 3rem;
-  align-items: center;
-  width: 21rem;
-  height: 28rem;
-}
-.form-content{
-  background-color: white;
-}
-.row{
-  padding-top: 4rem;
-  background-color: white;
-  border-radius: 50rem;
-}
-.signup{
-  background-color: indigo;
-  color: white;
-  width: 25rem;
-}
-h3{
-  text-align: center;
-}
-p{
-  text-align: center;
-}
 .container {
-  margin-top: 50px;
+  margin-top: 65px;
   width: 70%;
 }
 
 .container .left {
-  margin: 0;
   padding: 0;
-  float: left;
+  margin: 0;
   width: 50%;
-  height: 30%
+  float: left;
+}
+
+.container .left img {
+  width: 100%;
+  height: 86vh;
+  border-radius: 20px 0px 0 20px;
+
+  box-shadow: 0 1px 2px rgba(158, 3, 132, 0.07), 
+  0 2px 4px rgba(0,0,0,0.07), 
+  0 4px 8px rgba(0,0,0,0.07), 
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07), 
+  0 32px 64px rgba(0,0,0,0.07);
 }
 
 .container .right {
-  padding-top: 0;
-  margin: 0;
-  float: right;
+  border-radius: 0 20px 20px 0;
+  height: 86vh;
+  padding: 0;
   width: 50%;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-  0 2px 4px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
+  float: right;
+
+  box-shadow: 0 1px 2px rgba(158, 3, 132, 0.07), 
+  0 2px 4px rgba(0,0,0,0.07), 
+  0 4px 8px rgba(0,0,0,0.07), 
   0 8px 16px rgba(0,0,0,0.07),
-  0 16px 32px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07), 
   0 32px 64px rgba(0,0,0,0.07);
 }
-.btn-cl{
+
+.btn {
+  width: 100%;
   background-color: indigo;
-  width: 20rem
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+h5 {
+  text-align: center;
+}
+
+.right form {
+  margin-left: 40px;
+  margin-top: 60px;
+}
+
+span {
+  color: blue;
+  float: right;
+}
+
+.text-danger {
+  float: none;
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.errorMessage {
+  width: 50%;
+  margin-left: 300px;
+  height: 60px;
+}
+
+.errorMessage h4 {
+  text-align: center;
 }

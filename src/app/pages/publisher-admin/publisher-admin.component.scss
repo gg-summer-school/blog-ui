@@ -1,0 +1,68 @@
+//@media(max-width: 1500px) {
+  body{
+    background-color: red;
+  }
+  .col-md-9{
+    margin-left: 100px;
+  }
+
+  .col-md-3 {
+    display: block;
+  }
+
+  .col-md-2 {
+    display: block;
+  }
+
+  .table {
+    margin-top: 50px;
+    height: 70px;
+    background-color: #eaeaea;
+    border-radius: 7px;
+    padding-top: 20px;
+  }
+
+  button {
+    padding: 2px;
+    font-size: smaller;
+  }
+
+  .col-md-4 {
+    float: left;
+  }
+
+//}
+
+@media (max-width: 500px) {
+  .col-md-9{
+    float: left;
+    width: 100%;
+  }
+
+  .col-md-3 {
+    width: 100%;
+    display: block;
+  }
+}
+
+
+
+.but {
+  background-color: indigo;
+}
+
+.art {
+  margin-left: 30px;
+}
+
+.em {
+  margin-left: 70px;
+}
+
+.ema {
+  margin-left: 41px;
+}
+
+.dropdown.show .dropdown-menu {
+  opacity: 1 !important;
+}

@@ -1,65 +1,6 @@
-
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-6 image">-->
-<!--            <img src="assets/signup.png" style="width: 100%;">-->
-<!--    </div>-->
-<!--    <div class="col-md-6" style="background-color: mediumvioletred">-->
-<!--      <div class="form-holder">-->
-<!--        <div class="form-content">-->
-<!--          <div class="form-items">-->
-<!--            <h3>Register</h3>-->
-<!--            <form class="requires-validation" novalidate>-->
-
-<!--              <div class="col-md-12">-->
-<!--                <input class="form-control" type="text" name="name" placeholder="Name" required>-->
-<!--                <br/>-->
-<!--                <div class="valid-feedback">Username field is valid!</div>-->
-<!--                <div class="invalid-feedback">Username field cannot be blank!</div>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-12">-->
-<!--                <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>-->
-<!--                <br/>-->
-<!--                <div class="valid-feedback">Email field is valid!</div>-->
-<!--                <div class="invalid-feedback">Email field cannot be blank!</div>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-12">-->
-<!--                <select class="form-select mt-3" required>-->
-<!--                  <option selected disabled value="">Role</option>-->
-<!--                  <option value="jweb">User</option>-->
-<!--                  <option value="sweb">Publisher</option>-->
-<!--                </select>-->
-<!--                <br/>-->
-<!--                <div class="valid-feedback">You selected a position!</div>-->
-<!--                <div class="invalid-feedback">Please select a position!</div>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-12">-->
-<!--                <input class="form-control" type="password" name="password" placeholder="Password" required><br/>-->
-<!--                <div class="valid-feedback">Password field is valid!</div>-->
-<!--                <div class="invalid-feedback">Password field cannot be blank!</div>-->
-<!--              </div>-->
-<!--              <div class="form-check">-->
-<!--                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>-->
-<!--                <label class="form-check-label">I confirm that all data are correct</label>-->
-<!--                <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>-->
-<!--              </div>-->
-<!--              <br/>-->
-<!--              <div class="form-button mt-3">-->
-<!--                <button id="submit" type="submit" class="btn signup">Create Account</button>-->
-<!--                <br/>-->
-<!--                <p>Already have an account? <a href="#"><b>Login</b></a> </p>-->
-<!--              </div>-->
-<!--            </form>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
+<div *ngIf="errorMessage != ''" class="alert alert-danger errorMessage" role="alert">
+    <h4>{{ errorMessage }}</h4>
+</div>
 <div class="container">
 
   <div class="left">
@@ -68,91 +9,70 @@
 
   <div class="right">
     <div class="register-form">
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
-        <h3><b>Register</b></h3>
-        <div class="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            formControlName="name"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-          />
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">name is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input
-            type="text"
-            formControlName="email"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-          />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Email is invalid</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            formControlName="password"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-          />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">
-              Password must be at least 8 characters
+        <div class="col-sm-10">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
+            <h5><b>Create your account</b></h5>
+            <div class="form-group">
+              <label>Name</label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+              />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">name is required</div>
+              </div>
             </div>
-            <div *ngIf="f.password.errors.maxlength">
-              Username must not exceed 40 characters
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email is invalid</div>
+              </div>
             </div>
-          </div>
+    
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">
+                  Password must be at least 8 characters
+                </div>
+                <div *ngIf="f.password.errors.maxlength">
+                  Username must not exceed 40 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <br/>
+              <label>Choose role</label>
+              <select 
+                    [(ngModel)] = "role"
+                    class="form-select mt-3" 
+                    required formControlName="role">
+                <option value="READER">User</option>
+                <option value="PUBLISHER">Publisher</option>
+              </select>
+            </div>
+    
+            <div class="form-group">
+              <button type="submit" class="btn btn-cl">Create your account</button>
+            </div>
+            <h5>Already have an account? &nbsp; <a routerLink = "/login">Login</a></h5>
+          </form>
         </div>
-
-        <div class="form-group">
-          <br/>
-          <label>Choose role</label>
-          <select class="form-select mt-3" aria-label="Default select example" required formControlName="roles">
-            <option selected>Role</option>
-            <option value="User">User</option>
-            <option value="Publisher">Publisher</option>
-          </select>
-          <br/>
-          <div class="valid-feedback">You selected a position!</div>
-          <div class="invalid-feedback">Please select a position!</div>
-        </div>
-
-        <div class="form-group form-check">
-          <input
-            type="checkbox"
-            formControlName="acceptTerms"
-            class="form-check-input"
-            [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }"
-          />
-          <label for="acceptTerms" class="form-check-label">I have read and agree to the Terms</label>
-          <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">
-            Accept Terms is required
-          </div>
-        </div>
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-cl">Create your account</button>
-          <button
-            type="button"
-            (click)="onReset()"
-            class="btn btn-warning float-right">
-            Reset
-          </button>
-        </div>
-      </form>
     </div>
   </div>
-</div>
-
-

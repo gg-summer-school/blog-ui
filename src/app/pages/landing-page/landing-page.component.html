@@ -1,0 +1,394 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Blog site</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href=" ">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">About</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item boder">
+          <input type="text" class="size" placeholder=" search articles..." [(ngModel)]="searchData" id="listSearch">
+
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary" *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "  href="/login" ><button class="btn btn-outline-info" *ngIf="!tokenStorage.getToken1()">Login</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/users-article" ><button class="btn btn-outline-info" *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="row color">
+  <div class="col-md-4 about">
+    <div class="container">
+    <br>
+    <br>
+    <br>
+      <br>
+    <h2>Welcome to <span style="color: indigo"> Blog site</span></h2>
+    <span>Publish your articles and books to the world.</span>
+    <br>
+    <span>View all kinds  of articles or books. We have it all installed for you.</span>
+      <br>
+      <br>
+    <hr>
+      <button class=" btn btn-outline" style="color: indigo">View articles</button>
+  </div>
+  </div>
+  <div class="col-md-8"> <div class="bg"></div>
+
+</div>
+
+</div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <br>
+      <div class="card">
+        <div class="card-header" style="background-color: darkblue; color: white">
+          Our Categories
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
+          <li class="list-group-item group" (click)="categoryAticle(category.id)">{{category.name}}</li>
+
+        </ul>
+      </div>
+      <br>
+    </div>
+
+    <div class="col-md-9 " *ngIf="!category">
+      <br>
+      <div class="row ">
+        <h4>Popular articles</h4>
+
+        <div class="col-md-6 d-flex">
+          <a href="/articles-detail">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Book title</h5>
+                    <span class="card-text form-text">Category: education</span>
+                    <p>Author(s): Chi Mah</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 d-flex">
+          <a href="/articles-detail">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Book title</h5>
+                    <span class="card-text form-text">Category: education</span>
+                    <p>Author(s): Chi Mah</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <div class="row ">
+        <div class="col-md-6 d-flex">
+          <div class="card mb-3" style="max-width: 540px; ">
+            <div class="row g-0">
+              <div class="col-md-4 ">
+                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Book title</h5>
+                  <span class="card-text form-text">Category: education yufvhfg tfufjfy ilgiuklij</span>
+                  <p>Author(s): Chi Mah</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 d-flex">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Book title</h5>
+                  <span class="card-text form-text">Category: education</span>
+                  <p>Author(s): Chi Mah</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-6 d-flex">
+          <div class="card mb-3" style="max-width: 540px; ">
+            <div class="row g-0">
+              <div class="col-md-4 ">
+                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Book title</h5>
+                  <span class="card-text form-text">Category: education </span>
+                  <p>Author(s): Chi Mah, Chi Claudette</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 d-flex">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Book title</h5>
+                  <span class="card-text form-text">Category: education</span>
+                  <p>Author(s): Chi Mah</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+
+      <div class="row">
+        <h4></h4>
+
+        <div class="col-md-6 d-flex card-group" *ngFor="let catArticle of categoryArticles" style="margin-top: 30px" >
+          <a (click)="view(catArticle.id, catArticle.categoryId)" style="cursor: pointer">
+            <div class="card h-100 " style="width: 30rem" >
+              <div class="row ">
+                <div class="col-md-4 " >
+                  <img [src]="catArticle.coverPage"   class="img-fluid rounded-start h-100" alt="no book cover">
+                </div>
+                <div class="col-md-8" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{catArticle.title}}</h5>
+                    <span class="card-text form-text">Category: {{catArticle.categoryName}}</span>
+                    <br>
+                    Contributors: <span class="form-text" *ngFor="let contributor of catArticle.contributors"> ({{contributor.name}})</span>
+                    <br>
+                    <br>
+                    <span class="card-text form-text"> {{catArticle.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <br>
+      </div>
+    </div>
+
+
+  </div>
+
+<br>
+
+<!--ALL ARTICLES DISPLAY-->
+<div class="container">
+  <h3 class="text-center mt-5 mb-5">
+    All articles and books
+  </h3>
+  <div class="row">
+    <div
+        class="col-md-4 col-sm-12 card-group"
+        style="margin-top: 30px;"
+        *ngFor="let article of allArticles | searchFilter: searchData">
+      <a  (click)="view(article.id, article.categoryId)">
+        <div class="card h-100" style="width: 18rem;">
+          <img  [src]="article.coverPage" class="card-img-top" alt="no book cover">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <span class="form-text">Category: {{article.categoryName}}</span>
+            <br>
+            Contributors: <span class="form-text" *ngFor="let contributor of article.contributors"> ({{contributor.name}})</span>
+            <br>
+            <br>
+            <span class="form-text">{{article.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+          </div>
+        </div>
+    </a>
+    </div>
+    </div>
+
+
+<br>
+   <div class="paginate">
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center active">
+        <li class="page-item"><a class="page-link" (click) = "previous($event)">Previous</a></li>
+        <li class="page-item" *ngFor = "let p of testArray; let i = index">
+          <a class="page-link" (click) = "setPage(i, $event)">{{i}}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link"  (click) = "Next()">Next</a></li>
+      </ul>
+    </nav>
+
+   </div>
+  </div>
+
+<!-- </div>  -->
+
+
+<!-- <div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <h4>ARTICLES</h4>
+        <table class="table table-strped">
+
+          <tbody>
+
+            <tr *ngFor="let article of allArticles">
+                 <td>{{ article.title  }}</td>
+                 <td>{{ article.createdAt }}</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+        <hr>
+
+        <ul class="nav nav-pills">
+          <li class="nav-items" *ngFor = "let p of testArray; let i = index">
+            <a style="padding-left: 10px;" class="nav-links" (click) = "setPage(i, $event)">{{ i }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<br>
+<div class="auth" >
+  <h5>Our Authors</h5>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card" >
+
+            <div class="card-body">
+              <div><h6>Author name</h6></div>
+              <span class="card-text form-text">email@gmail.com</span>
+            </div>
+        </div>
+      </div>
+    <div class="col-md-3">
+      <div class="card" >
+
+        <div class="card-body">
+          <h6>Author name</h6>
+          <span class="card-text form-text">email@gmail.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" >
+        <div class="card-body">
+          <h6>Author name</h6>
+          <span class="card-text form-text">email@gmail.com</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" >
+        <div class="card-body">
+          <h6>Author name</h6>
+          <span class="card-text form-text">email@gmail.com</span>
+        </div>
+      </div>
+    </div>
+    </div>
+
+</div>
+
+<br>
+<div class="footer ">
+    <div class="row">
+      <div class="col-md-3">
+        <h5>Quick links</h5>
+        <a>View categories</a>
+        <br>
+        <a>View articles</a>
+        <br>
+        <a>Our authors</a>
+        <br>
+        <a>Signup</a>
+      </div>
+      <div class="col-md-3">
+        <h5>Contact us</h5>
+        <span>Whatsapp</span>
+        <br>
+        <span>Instagram</span>
+        <br>
+        <span>Twitter</span>
+        <br>
+        <span>LinkedIn</span>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <span >About us</span>
+        <p>FAQ</p>
+      </div>
+      <div class="col-md-3">
+        <p>Terms</p>
+        <p>Privacy</p>
+        <h5>Subscribe to our newsletter</h5>
+        <input placeholder=" enter email..." class="input-size" ><button class="btn btn-outline-primary">Subscribe</button>
+      </div>
+
+    </div>
+
+
+</div>
+<div class="foot">
+  <p class="p">Copyright @2022 All rights reserved. <span class="blog">Blog site</span></p>
+</div>
+
+
+

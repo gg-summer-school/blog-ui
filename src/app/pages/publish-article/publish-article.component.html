@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+
+<div class="col-md-10">
+  <br>
+  <div style="text-align: right">
+    <app-status></app-status>
+  </div>
+<div class="container">
+
+      <div class="card" style="width: 50rem;">
+        <h4 class="card-header" style="text-align: center">Publish an article</h4>
+        <div class="card-body">
+          <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
+            <label>Title</label>
+            <input type="text" placeholder="Title" class="form-control" formControlName="title">
+            <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
+            <br>
+            <label>Abstract</label>
+            <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="articleAbstract"></quill-editor>
+            <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> This field is required</span>
+            <br>
+            <label>Table of contents</label>
+            <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="toc"></quill-editor>
+            <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
+            <br>
+            <label>Contributors/Authors</label>
+            <input type="text" placeholder="Enter many contributors separated by comma" class="form-control" formControlName="contributors">
+            <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label >Category</label>
+                <select class="form-control form-select" formControlName="category" >
+                  <option selected *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
+                </select>
+                <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> This field is required</span>
+              </div>
+
+              <div class="col-md-6">
+                <label>Price(frs)</label>
+                <input type="number" placeholder="Book price" class="form-control" formControlName="price">
+                <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+              </div>
+            </div>
+
+            <br>
+            <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="publish.invalid">upload article</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+        </div>
+
+
+      <br>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="alert alert-success" role="alert" *ngIf="success">
+        <h3>Article successfully created!!!</h3>
+      <div class="alert alert-danger" role="alert" *ngIf="error">
+        <h3> {{errorMessage}}</h3>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="error1">
+        <h3> {{errorMessage1}} error</h3>
+      </div>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <label >Upload book cover</label>
+            <input type="file"  accept="image/x-png,image/jpg,image/jpeg" (change)="select($event)" enctype="multipart/form-data" class="form-control" >
+<br>
+            <label >Upload book</label>
+            <input type="file" accept="application/pdf"  (change)="select1($event)" enctype="multipart/form-data" class="form-control">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary upload"  (click)="upload()" >publish article</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <br>
+

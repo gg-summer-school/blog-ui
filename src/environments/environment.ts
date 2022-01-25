@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  baseUrl: 'http://192.168.8.111:8000/api/public/auth',
+  baseUrlPro: 'http://192.168.8.111:8000/api/protected/',
+  baseUrlPub: 'http://192.168.8.111:8000/api/public/',
+
 };
 
 /*

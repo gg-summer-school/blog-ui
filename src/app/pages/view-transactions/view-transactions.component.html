@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10">
+    <div class="align">
+      <app-status></app-status>
+    </div>
+
+  <div class="col-md-8">
+    <h5>Transaction Details</h5>
+
+    <br>
+    <div >
+      <p>Payment Motive: <small class="m-lg-5"> Pay Book(s)</small></p>
+      <p>Name of Article: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.nameOfArticle }}</small> </p>
+      <p>Payment Date: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.createdAt }}</small></p>
+      <p>Transaction ID: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.id }}</small></p>
+    </div>
+  </div>
+  </div>
+</div>
