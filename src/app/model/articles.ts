@@ -42,3 +42,8 @@ export interface updatePayload {
   title: string,
   toc: string
 }
+
+export interface Payment {
+  nameOfArticle: string,
+  payment: number
+}

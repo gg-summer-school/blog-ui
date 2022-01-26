@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-    //  this.roles = this.tokenStorage.getUser().roles;
+     this.roles = this.tokenStorage.getUser().roles;
     }
 
 
@@ -49,6 +49,7 @@ onSubmit() {
 
   this.submitted = true;
   if (this.loginForm.valid) {
+    console.log("button is clicked");
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       console.log(user);

@@ -32,7 +32,6 @@ export class LandingPageComponent implements OnInit {
                public tokenStorage: TokenStorageService) { }
 
   previous(event: any) {
-
   }
 
   Next() {
