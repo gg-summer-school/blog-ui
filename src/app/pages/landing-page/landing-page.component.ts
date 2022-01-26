@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {Categories} from "../../model/categories";
 import {ArticleDto} from "../../model/articles";
+import {TranslateService} from "@ngx-translate/core";
 // import { ArticleDtoList } from 'src/app/model/articleDtoList';
 
 @Component({
@@ -29,13 +30,13 @@ export class LandingPageComponent implements OnInit {
   testArray: any[] = [];
 
   constructor( private articlesService:ArticlesService, private router: Router,
-               public tokenStorage: TokenStorageService) { }
-
-  previous(event: any) {
+               public tokenStorage: TokenStorageService, public translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
   }
 
-  Next() {
-
+  switchLang(lang: string) {
+    this.translate.use(lang);
   }
 
   setPage(i: any, event: any) {
@@ -45,8 +46,13 @@ export class LandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
    this.getCategories();
    this.getAllArticles();
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
   }
 
   handlePageChange(event:any){
@@ -96,4 +102,3 @@ export class LandingPageComponent implements OnInit {
   }
 
 }
-
