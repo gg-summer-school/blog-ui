@@ -1,0 +1,25 @@
+{
+  "Navbar": {
+    "SignUp": "SignUp",
+    "Login": "Login",
+    "Dashboard": "Dashboard",
+    "Home": "Home",
+    "About": "About",
+    "searchPlaceholder": "search articles..."
+
+  },
+  "Page": {
+    "Welcome": "Welcome to",
+    "Publish": "Publish your articles and books to the world.",
+    "ViewArticles": "Show articles",
+    "Publish1": "See all kinds of articles or books. We have everything installed for you.",
+    "categories": "Our Categories",
+    "popular": "Popular Articles",
+    "author": "Our authors",
+    "authorName": "Name of the author",
+    "Allarticlesandbooks": "All articles and books",
+    "bookTitle": "Book Title",
+    "category": "Category"
+
+  }
+}
