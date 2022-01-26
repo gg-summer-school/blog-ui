@@ -8,6 +8,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {AuthService} from "../../services/auth.service";
 import {loginData} from "../../model/users";
 import {ArticlesService} from "../../services/articles.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -32,7 +33,11 @@ export class ArticleDetailPageComponent implements OnInit {
 
   constructor(private router: Router, private  route: ActivatedRoute, private  publisherService: DashboardPublisherService,
               private formBuilder: FormBuilder, private authService: AuthService,
-              public tokenStorage: TokenStorageService, private articleService: ArticlesService) { }
+              public tokenStorage: TokenStorageService, private articleService: ArticlesService,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
     this.articleid = '9453c7ef-c210-474f-80cf-516756c83ac7';

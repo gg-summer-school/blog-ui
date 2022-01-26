@@ -18,6 +18,7 @@ export class LandingPageComponent implements OnInit {
   pageSize = 3;
   nums:any;
   searchData='';
+  tableSize = 6;
 
   totalPages: number = 0;
   //Allcategories:Categories[]=[];

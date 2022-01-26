@@ -8,10 +8,10 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/">{{ 'articlePage.Home' | translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
+          <a class="nav-link " href="#">{{ 'articlePage.About' | translate }}</a>
         </li>
       </ul>
 
@@ -25,13 +25,13 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary" *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
+          <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary" *ngIf="!tokenStorage.getToken1()">{{ 'articlePage.SignUp' | translate }}</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/login" ><button class="btn btn-outline-info" *ngIf="!tokenStorage.getToken1()">Login</button></a>
+          <a class="nav-link " routerLink="/login" ><button class="btn btn-outline-info" *ngIf="!tokenStorage.getToken1()">{{ 'articlePage.Login' | translate }}</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="/users-article" ><button class="btn btn-outline-info" *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
+          <a class="nav-link " routerLink="/users-article" ><button class="btn btn-outline-info" *ngIf="tokenStorage.getToken1()">{{ 'articlePage.Dashboard' | translate }}</button></a>
         </li>
       </ul>
 
@@ -117,8 +117,8 @@
     Contributors: <span class="form-text" *ngFor="let contributor of article.contributors"> ({{contributor.name}})</span>
   </div>
   <div class="card-body">
-    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal" *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">Request Full-Text</button>
+    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal" *ngIf="tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button>
+    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button>
     <div style="text-align: center">
 
         <img src="assets/cover.jpg" alt="No cover page" width="50%" height="50%" class="img-thumbnail img-fluid">
@@ -129,15 +129,15 @@
         <h2 class="accordion-header" id="flush-headingOne">
           <br/>
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            <h6>SHOW ABSTRACT</h6>
+            <h6>{{ 'articlePage.Abstract' | translate }}</h6>
           </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">     <quill-view-html content="{{article.articleAbstract}}"></quill-view-html>
             <br>
             <br>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"  *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">Request Full-Text</button></div>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"  *ngIf="tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button></div>
 
         </div>
       </div>
@@ -147,7 +147,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              <h6>Table Of contents</h6>
+              <h6>{{ 'articlePage.Content' | translate }}</h6>
             </button>
           </h2>
           <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -155,8 +155,8 @@
               <quill-view-html content="{{article.toc}}"></quill-view-html>
               <br>
               <br>
-              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"  *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">Request Full-Text</button></div>
+              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"  *ngIf="tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button>
+              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" *ngIf="!tokenStorage.getToken1()">{{ 'articlePage.Text' | translate }}</button></div>
 
           </div>
         </div>
@@ -177,7 +177,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content download">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Download Pending</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">{{ 'articlePage.download' | translate }}</h5>
         <button
           type="button"
           class="btn-close btn-sm "
@@ -185,7 +185,7 @@
           aria-label="Close"
         ></button>
       </div>
-      <span class="form-text">Downloading...</span>
+      <span class="form-text">{{ 'articlePage.download2' | translate }}</span>
       <div class="progress">
         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
       </div>
@@ -196,7 +196,7 @@
           type="submit"
           class="btn  btn-sm btn-primary"
           data-bs-dismiss="modal">
-          <a href="/signup" style="color: white;text-decoration: none;">Join For Free</a>
+          <a href="/signup" style="color: white;text-decoration: none;">{{ 'articlePage.Join' | translate }}</a>
         </button>
       </div>
     </div>
@@ -214,7 +214,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">To proceed effect payment</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'articlePage.proceed' | translate }}</h5>
         <button
           type="button"
           class="btn-close btn-sm "
@@ -223,7 +223,7 @@
         ></button>
       </div>
           <div class="form-group mb-2">
-            <label>Name of Article</label>
+            <label>{{ 'articlePage.Name' | translate }}</label>
             <input
               id="nameofarticle"data-bs-target="#editProfileModal"
               type="text"
@@ -231,7 +231,7 @@
               required/>
           </div>
       <div class="form-group mb-2">
-        <label>Account Number</label>
+        <label>{{ 'articlePage.Number' | translate }}</label>
         <input
           id="account"
           type="text"
@@ -255,18 +255,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel1">Read full article</h3>
+        <h3 class="modal-title" id="exampleModalLabel1">{{ 'articlePage.Article' | translate }}</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5>Please login to proceed !!!</h5>
+        <h5>{{ 'articlePage.LoginTo' | translate }}</h5>
         <div class="right">
           <div class="register-form">
             <div class="col-sm-10">
               <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
-                <h5><b>Create your account</b></h5>
+                <h5><b>{{ 'articlePage.Account' | translate }}</b></h5>
                 <div class="form-group">
-                  <label>Name</label>
+                  <label>{{ 'articlePage.Name' | translate }}</label>
                   <input
                     type="text"
                     formControlName="name"
@@ -274,11 +274,12 @@
                     [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
                   />
                   <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required">name is required</div>
+                    <div *ngIf="f.name.errors.required">{{ 'articlePage.nameRequired' | translate }}</div>                    <div *ngIf="f.name.errors.required">nameRequirednameRequired</div>
+
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Email</label>
+                  <label>{{ 'articlePage.Email1' | translate }}</label>
                   <input
                     type="text"
                     formControlName="email"
@@ -286,8 +287,8 @@
                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                   />
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email is required</div>
-                    <div *ngIf="f.email.errors.email">Email is invalid</div>
+                    <div *ngIf="f.email.errors.required">{{ 'articlePage.Email2' | translate }}</div>
+                    <div *ngIf="f.email.errors.email">{{ 'articlePage.Email3' | translate }}</div>
                   </div>
                 </div>
 
@@ -300,29 +301,29 @@
                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                   />
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.required">{{ 'articlePage.Password' | translate }}</div>
                     <div *ngIf="f.password.errors.minlength">
-                      Password must be at least 8 characters
+                      {{ 'articlePage.password2' | translate }}
                     </div>
                     <div *ngIf="f.password.errors.maxlength">
-                      Username must not exceed 40 characters
+                      {{ 'articlePage.username' | translate }}
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <br/>
-                  <label>Choose role</label>
+                  <label>{{ 'articlePage.role' | translate }}</label>
                   <select
                     [(ngModel)] = "role"
                     class="form-select mt-3"
                     required formControlName="role">
-                    <option value="USER">User</option>
-                    <option value="PUBLISHER">Publisher</option>
+                    <option value="USER">{{ 'articlePage.user' | translate }}</option>
+                    <option value="PUBLISHER">{{ 'articlePage.publisher' | translate }}</option>
                   </select>
                 </div>
 
                 <div class="form-group">
-                  <label>Name Of Articles</label>
+                  <label>{{ 'articlePage.ArticleN' | translate }}</label>
                   <input
                     type="text"
                     formControlName="nameOfArticle"
@@ -332,7 +333,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Payment</label>
+                  <label>{{ 'articlePage.Payment' | translate }}</label>
                   <input
                     type="text"
                     formControlName="payment"
@@ -342,7 +343,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn btn-cl">Create your account</button>
+                  <button type="submit" class="btn btn-cl">{{ 'articlePage.account2' | translate }}</button>
                 </div>
               </form>
             </div>
