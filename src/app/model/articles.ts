@@ -9,10 +9,22 @@ export interface Articles {
 
   contributors: Contributors[];
 }
+
+export interface ArticleList {
+  last: false;
+  pageNo: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  articleDtoLIst: ArticleDto[]
+}
+
+
+
 export interface ArticleDto{
   articleAbstract:string
   categoryId: string
-  categoryName:String
+  categoryName: string
   contributors: Contributors[]
   coverPage: string
   createdAt: Date
@@ -29,6 +41,4 @@ export interface updatePayload {
   price: number
   title: string,
   toc: string
-
 }
-

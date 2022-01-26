@@ -24,6 +24,10 @@ export class DashboardPublisherService {
   {
     return this.http.get<ArticleDto>(this.baseUrl1+'publisher/'+userId+'/articles/'+articleId+'/categories/'+categoryId);
   }
+  getArticle( articleId:string)
+  {
+    return this.http.get<ArticleDto>(this.baseUrl+'articles/'+articleId);
+  }
   editArticle(userId:string, articleId:string, categoryId:string, article:updatePayload)
   {
     return this.http.put(this.baseUrl1+'publishers/'+userId+'/articles/'+articleId+'/categories/'+categoryId, article);

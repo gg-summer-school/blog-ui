@@ -9,12 +9,10 @@
 
 <div class="container">
   <div class="col-md-9">
-
     <div class="row">
       <div class="col-md-3">
         <b>Publishers ({{number}})</b>
       </div>
-
       <div class="col-md-3">
         <b>Number of Articles</b>
       </div>
@@ -28,7 +26,7 @@
       </div>
     </div>
 
-    <div  *ngFor="let publisher of publishers" class="table">
+    <div *ngFor="let publisher of publishers" class="table">
       <div class="row">
         <div class="col-md-3">
           <a>{{ publisher.name }}</a><br>
@@ -65,10 +63,61 @@
         </div>
       </div>
     </div>
-<br>
+
+    <div class="table">
+      <div class="row">
+        <div class="col-md-3">
+          <a>User one</a><br>
+        </div>
+
+        <div class="col-md-3 art">
+          <a>One</a><br>
+        </div>
+
+        <div class="col-md-2">
+          <a>Email one</a><br>
+        </div>
+
+        <div class="col-md-3">
+          <tr><button (click)="onClickSuspend()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+              class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
+          </tr>
+        </div>
+      </div>
+    </div><br>
 
   </div>
 </div>
+
+
+<!-- Modal to block and suspend publisher -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span
+            *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this
+        user?
+      </div>
+      <div class="modal-footer">
+        <!--Block publisher-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
+        <!--suspend publisher-->
+        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+
 <!--<div class="container">-->
 <!--<ul class="list-group"  *ngFor="let publisher of publishers">-->
 <!--  <li class="list-group-item-dark">{{ publisher.name }}</li>-->

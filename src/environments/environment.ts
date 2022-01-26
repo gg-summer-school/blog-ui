@@ -4,21 +4,9 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://192.168.1.41:8000/api/public/auth',
-  // baseUrlPro: 'http://192.168.1.41:8000/api/protected/',
-  // baseUrlPub: 'http://192.168.1.41:8000/api/public/',
 
-  baseUrl: 'http://localhost:8000/api/public/auth',
-  baseUrlPro: 'http://localhost:8000/api/protected/',
-  baseUrlPub: 'http://localhost:8000/api/public/',
+  baseUrl: 'http://192.168.8.111:8000/api/public/auth',
+  baseUrlPro: 'http://192.168.8.111:8000/api/protected/',
+  baseUrlPub: 'http://192.168.8.111:8000/api/public/',
 
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

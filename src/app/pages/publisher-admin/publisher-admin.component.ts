@@ -9,15 +9,17 @@ import {Admin, roleDTO, RolePayload} from "../../model/admin";
 })
 export class PublisherAdminComponent implements OnInit {
 
+  isBlocked = false;
+  isSuspended = false;
+
   publishers: Admin[] = [];
   isApproved: boolean = true;
   publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
   numberOfArticles: Admin[] = [];
-  status:string = 'Suspend';
+  status: string = 'Suspend';
   suspendUser: boolean = false;
   addRole!: RolePayload;
   reactivate: boolean = true;
-  active: boolean = false;
   number!: number
 
   constructor(private adminPagesService: AdminPagesService) { }
@@ -34,7 +36,6 @@ export class PublisherAdminComponent implements OnInit {
         this.publishers = res;
       })
     this.number= this.publishers.length;
-
   }
 
   suspendPublisher(publisherId: string) {
@@ -71,13 +72,18 @@ export class PublisherAdminComponent implements OnInit {
     })
   }
 
+  onClickSuspend() {
+    this.isSuspended = true;
+    this.isBlocked = false;
+    }
 
-  // getArticlesById() {
-  //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-  //     .subscribe( res =>
-  //     {
-  //       // console.log(res)
-  //     })
-  // }
 
-}
+    // getArticlesById() {
+    //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
+    //     .subscribe( res =>
+    //     {
+    //       // console.log(res)
+    //     })
+    // }
+
+  }
