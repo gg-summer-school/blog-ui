@@ -6,7 +6,7 @@ import { ArticleDto, Payment } from "../../model/articles";
 import { TokenStorageService } from "../../services/token-storage.service";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
-import { loginData } from "../../model/users";
+import { loginData, Users } from "../../model/users";
 import { ArticlesService } from "../../services/articles.service";
 import { Subscription } from 'rxjs';
 import { ResponseObject } from 'src/app/model/response';
@@ -31,15 +31,12 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   categoryId: string = "";
   userId: string = '';
   article!: ArticleDto;
-  info: any;
-  articleid: string = '';
-  userid: string = '';
   subscriptions: Subscription[] = [];
-  showModal: boolean = false;
   paymentForm = this.formBuilder.group({
     nameOfArticle: ['', Validators.required],
     accountNumber: ['', Validators.required],
   });
+  authUser: Users | undefined;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
@@ -53,8 +50,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
-    this.articleid = '9453c7ef-c210-474f-80cf-516756c83ac7';
-    this.userid = 'cbaee553-0180-480a-8f41-cd684ff9b23e';
     this.signupForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
@@ -80,7 +75,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     let articleId = this.article.id;
     let logginUserId: string = this.tokenStorage.getUser().id;
     const subscription = this.articleService.PayArticle(logginUserId, articleId, this.paymentForm.value).subscribe((response: ResponseObject) => {
-    this.router.navigate(['/users-article'])
+      this.router.navigate(['/users-article'])
     }, (error: HttpErrorResponse) => {
       console.log(error);
     }).add(() => {
@@ -113,6 +108,9 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   }
 
 
+  //  getTotalNumberArticlesByPublisher(){
+  //    const subscription = this.ar
+  //  }
 
 
 
