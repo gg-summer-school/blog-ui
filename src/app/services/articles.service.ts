@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import {ArticleDto, ArticleList, Articles} from '../model/articles';
 import {ResponseObject} from "../model/response";
 import {Categories} from "../model/categories";
+import { ArticleResource } from '../model/articleDtoList';
 
 
 @Injectable({
@@ -26,10 +27,9 @@ export class ArticlesService {
   //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
 
 
-  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
+  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleResource>
   {
-    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
-
+    return this.http.get<ArticleResource>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
   }
 
   getArticle( articleId: string, userId: string): Observable<ArticleDto>
