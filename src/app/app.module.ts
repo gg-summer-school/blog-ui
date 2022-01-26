@@ -29,6 +29,7 @@ import { EditArticleComponent } from './pages/edit-article/edit-article.componen
 import {QuillModule} from "ngx-quill";
 import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     EditArticleComponent,
 
     ViewTransactionsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PaymentComponent
 
 
   ],

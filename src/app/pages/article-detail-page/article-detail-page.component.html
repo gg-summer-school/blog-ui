@@ -260,10 +260,97 @@
       </div>
       <div class="modal-body">
         <h5>Please login to proceed !!!</h5>
+        <div class="right">
+          <div class="register-form">
+            <div class="col-sm-10">
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
+                <h5><b>Create your account</b></h5>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">name is required</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="text"
+                    formControlName="email"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                  />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email is invalid</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                  />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">
+                      Password must be at least 8 characters
+                    </div>
+                    <div *ngIf="f.password.errors.maxlength">
+                      Username must not exceed 40 characters
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <br/>
+                  <label>Choose role</label>
+                  <select
+                    [(ngModel)] = "role"
+                    class="form-select mt-3"
+                    required formControlName="role">
+                    <option value="USER">User</option>
+                    <option value="PUBLISHER">Publisher</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Name Of Articles</label>
+                  <input
+                    type="text"
+                    formControlName="nameOfArticle"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Payment</label>
+                  <input
+                    type="text"
+                    formControlName="payment"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-cl">Create your account</button>
+                </div>
+              </form>
+            </div>
+          </div>
       </div>
-      <div class="modal-footer">
-        <a routerLink="/login"><button type="button" data-bs-dismiss="modal" class="btn btn-primary">Login</button></a>
-      </div>
+<!--      <div class="modal-footer">-->
+<!--        <a><button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Sign Up</button></a>-->
+<!--      </div>-->
     </div>
   </div>
 </div>

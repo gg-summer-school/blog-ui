@@ -31,34 +31,30 @@ export class AdminPagesService {
   }
 
   approveUser(user_id: string, approve: boolean) {
-    return this.http.patch<Admin>(this.baseUrlPro + 'approve' + '/' + 'user' + '/' + user_id, approve);
+    return this.http.patch<Admin>(this.baseUrlPro + 'approve' + '/' + 'users' + '/' + user_id, approve);
   }
 
   suspendUser(user_id: string, suspend: boolean) {
-    return this.http.patch<Admin>(this.baseUrlPro + 'suspend' + '/' + 'user' + '/' + user_id, suspend);
-  }
-
-  addRole(user_id: string, add_Role: RolePayload) {
-    return this.http.patch<Admin>(this.baseUrlPro + 'addrole' + '/' + 'users' + '/' + user_id, add_Role);
+    return this.http.patch<Admin>(this.baseUrlPro + 'suspend' + '/' + 'users' + '/' + user_id, suspend);
   }
 
   appendRole(userId: string, roleDto: roleDTO) {
-    return this.http.patch<Admin>(`${this.baseUrlPro}addrole/users/${userId}`, roleDto);
+    return this.http.patch<Admin>(`${this.baseUrlPro}add-role/users/${userId}`, roleDto);
   }
   removeRole(userId: string, roleDto: roleDTO) {
-    return this.http.patch<Admin>(`${this.baseUrlPro}removerole/users/${userId}`, roleDto);
+    return this.http.patch<Admin>(`${this.baseUrlPro}remove-role/users/${userId}`, roleDto);
   }
 
   reactivateUser(user_id: string, reactivate_User: boolean) {
-    return this.http.patch<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'user' + '/' + user_id, reactivate_User);
+    return this.http.patch<Admin>(this.baseUrlPro + 'reactivate' + '/' + 'users' + '/' + user_id, reactivate_User);
   }
 
   declineUser(publisher_id: string) {
-    return this.http.delete<Admin>(this.baseUrlPro + 'user' + '/' + publisher_id);
+    return this.http.delete<Admin>(this.baseUrlPro + 'users' + '/' + publisher_id);
   }
 
   transactionDetails(user_id: string) {
-    return this.http.get<Transactions[]>(this.baseUrlPro + 'transactions' + '/' + 'user' + '/' + user_id);
+    return this.http.get<Transactions[]>(this.baseUrlPro + 'transactions' + '/' + 'users' + '/' + user_id);
   }
 
 
