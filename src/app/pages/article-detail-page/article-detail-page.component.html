@@ -1,145 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Blog site</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<app-navbar></app-navbar>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
-        </li>
-      </ul>
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item boder">
-
-          <input type="text" class="size" placeholder=" &#xf002; search articles..." id="listSearch">
-          <!--          <button class="button"><i class="fa fa-search fa-1x "></i></button>-->
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary"
-              *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="/login"><button class="btn btn-outline-info"
-              *ngIf="!tokenStorage.getToken1()">Login</button></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
-              *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
-        </li>
-      </ul>
-
-    </div>
-  </div>
-</nav>
-<div class="container">
-  <div class="card card1">
-    <div class="card-header">
-      <h5>{{article.title}}</h5>
-      <span class="form-text">{{article.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span><br />
-      Contributors: <span class="form-text" *ngFor="let contributor of article.contributors">
-        ({{contributor.name}})</span>
-    </div>
-    <div class="card-body">
-      <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"
-        *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-      <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-        *ngIf="!tokenStorage.getToken1()">Request Full-Text</button>
-      <div style="text-align: center">
-
-        <img src="assets/cover.jpg" alt="No cover page" width="50%" height="50%" class="img-thumbnail img-fluid">
-
+<div class="container-fluid mt-5">
+  <div class="row coverPage">
+    <div class="col-md-3 mt-lg-3">
+      <div class="image">
+        <img src="{{article.coverPage}}" alt="article coverPage image" height="350px" width="250px" />
       </div>
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <br />
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              <h6>SHOW ABSTRACT</h6>
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <quill-view-html content="{{article.articleAbstract}}"></quill-view-html>
+      <hr>
+      <div>
+        <h5 class="label1">Follow the Author</h5>
+        <h6 class="label1"><label router-link="/user-profile">Mike Shel</label></h6>
+        <h6 class="label1"><label>mikeshel@gmail.com</label></h6>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row mt-4">
+        <div class="col-9">
+          <h6 class="label">{{article.title}} <br>
+            <p router-link="/user-profile">By Mike Shel | <span>Category: {{article.categoryName}}</span>
               <br>
-              <br>
-              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"
-                *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-              <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                *ngIf="!tokenStorage.getToken1()">Request Full-Text</button>
-            </div>
+              <small>Book 1 of 5</small>
+            </p>
+          </h6>
+          <hr>
 
+          <div class="price">
+            <small class="pdf">Document(PDF format)</small><br>
+            XCFA {{article.price}}
           </div>
-        </div>
-        <br>
-        <br>
-        <div class="card">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                <h6>Table Of contents</h6>
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-              data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <quill-view-html content="{{article.toc}}"></quill-view-html>
-                <br>
-                <br>
-                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal"
-                  *ngIf="tokenStorage.getToken1()">Request Full-Text</button>
-                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                  *ngIf="!tokenStorage.getToken1()">Request Full-Text</button>
-              </div>
-
-            </div>
+          <div class="mt-4 ">
+            <p class="articleAbstract">{{article.articleAbstract}} <br>
+              <small class="readmore">Read more</small>
+            </p>
           </div>
+          <div class="mt-4 ">
+            <p class="articleAbstract">{{article.toc}} <br>
+              <small class="readmore">Read more</small>
+            </p>
+          </div>
+          <hr>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!--download modal-->
-<div class="modal fade" id="editProfileModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content download">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Download Pending</h5>
-        <button type="button" class="btn-close btn-sm " data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <span class="form-text">Downloading...</span>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-          aria-valuemax="100">25%</div>
-      </div>
-      <br>
-      <br>
-      <div class="d-flex justify-content-end">
-        <button type="submit" class="btn  btn-sm btn-primary" data-bs-dismiss="modal">
-          <a href="/signup" style="color: white;text-decoration: none;">Join For Free</a>
-        </button>
-      </div>
+    <div class="col-md-1">
     </div>
   </div>
 </div>
-<br>
-<br>
 
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<!-- payment form -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -165,7 +75,6 @@
     </div>
   </div>
 </div>
-
 <!-- Modal for users with no account-->
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

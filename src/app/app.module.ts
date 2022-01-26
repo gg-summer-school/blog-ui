@@ -30,6 +30,8 @@ import {QuillModule} from "ngx-quill";
 import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+ 
 
 
 @NgModule({
@@ -53,10 +55,11 @@ import { PaymentComponent } from './pages/payment/payment.component';
     SearchFilterPipe,
     StatusComponent,
     EditArticleComponent,
-
+    NavbarComponent,
     ViewTransactionsComponent,
     PageNotFoundComponent,
-    PaymentComponent
+    PaymentComponent,
+     
 
 
   ],

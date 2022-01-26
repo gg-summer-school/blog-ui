@@ -16,23 +16,68 @@
    0 16px 32px rgba(0,0,0,0.07),
    0 32px 64px rgba(0,0,0,0.07);
  }
-.join{
-  color: white;
-  text-decoration: none;
-}
-.card1{
-  margin-top: 100px;
-}
-.card-header
-{
-  text-align: center;
-}
-.card-header
-{
-  background-color:white;
-}
+ 
 
 h5 ,label{
   font-family: 'Times New Roman', Times, serif;
+}
+
+.coverPage {
+  margin-top: 5rem;
+  
+}
+.image {
+  margin-left: 23px;
+}
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 7px;
+  
+}
+ 
+.label1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+
+.label {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: x-large;
+}
+p {
+  font-weight:lighter;
+  color: blue;
+  font-size: medium;
+}
+
+label {
+  cursor: pointer;
+  font-size: medium;
+  color: blue;
+}
+
+.price {
+  width: 200px;
+  border: 1px solid gray;
+  padding: 3px;
+  text-align: center;
+  font-size: medium;
+}
+.pdf {
+  font-size: small;
+}
+
+.articleAbstract {
+  color: black;
+  font-weight:normal;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.readmore {
+  color: blue;
+  cursor: pointer;
 }
 
