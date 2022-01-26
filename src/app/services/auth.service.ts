@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { loginData, Users } from '../model/users';
 import {UserDto} from "../model/UserDto";
+import { ResponseObject } from '../model/response';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,8 +25,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(userData: Users) {
-    return this.http.post(this.baseUrlAuth + '/' + 'signup', userData);
+  register(userData: Users):Observable<ResponseObject> {
+    return this.http.post<ResponseObject>(this.baseUrlAuth + '/' + 'signup', userData);
   }
 
   login(userData: loginData):Observable<UserDto> {

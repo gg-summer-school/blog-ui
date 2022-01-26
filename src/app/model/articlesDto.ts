@@ -14,3 +14,8 @@ export interface ArticleDto {
     updatedAt: string
     userId: string
 }
+
+export interface PayArticleDto {
+    nameofarticle: string,
+    accountNumber:string,
+}
