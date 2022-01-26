@@ -5,41 +5,29 @@
   <div class="col-md-5">
     <app-status></app-status>
   </div>
-</div>
 
-<div class="container">
-  <div class="col-md-9">
-
-    <div class="row">
-      <div class="col-md-3">
-        <b>Pending Publishers (03)</b>
-      </div>
-
-      <div class="col-md-3 em">
-        <b>Email</b>
-      </div>
-
-      <div class="col-md-3 em">
-        <b>Action</b>
-      </div>
-    </div>
-
-    <div *ngFor="let p of publishers" class="table">
-      <div class="row">
-        <div class="col-md-4">
-          <a>{{p.name}}</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <a>{{p.email}}</a><br>
-        </div>
-
-        <div class="col-md-4">
-          <tr><button class="btn btn-dark but" (click)="approvePublisher(p.id)">Accept</button>&nbsp;&nbsp;
-            <button class="btn btn-danger" (click)="declineUser(p.id)"> Decline</button></tr>
-        </div>
-      </div>
-    </div>
-
+  <div class="col-md-10 ">
+    <h4>Requests</h4>
+    <br>
+    <table class="table table-borderless table-responsive table-sm">
+      <thead>
+      <tr>
+        <th scope="col"><b>Pending Publishers (03)</b></th>
+        <th scope="col"><b>Email</b></th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let p of publishers">
+      <br>
+      <tr >
+        <td>{{p.name}}</td>
+        <td>{{p.email}}</td>
+        <td>
+          <button class="btn btn-dark but" (click)="approvePublisher(p.id)">Accept</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="declineUser(p.id)"> Decline</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

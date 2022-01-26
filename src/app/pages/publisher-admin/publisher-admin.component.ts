@@ -34,8 +34,8 @@ export class PublisherAdminComponent implements OnInit {
       .subscribe( res =>
       {
         this.publishers = res;
+        this.number= this.publishers.length;
       })
-    this.number= this.publishers.length;
   }
 
   suspendPublisher(publisherId: string) {

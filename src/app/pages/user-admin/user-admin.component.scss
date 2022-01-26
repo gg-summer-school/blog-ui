@@ -9,34 +9,51 @@
 .table {
   background-color: white;
   border-radius: 30px;
-  margin-left: 20px;
-  margin-right: 20px;
-  height: 70px;
+  text-align: center;
 }
 th td tr{
   border-radius: 30px;
 }
 tr{
   background-color: #eaeaea;
-
-
 }
 th
 {
   text-align: center;
   background-color: white;
-
 }
 td{
   text-align: center;
   padding: 20px;
-
 }
 
 button {
-
-  font-size: smaller;
   width: 80px;
+  padding: 2px;
+}
+
+@media (max-width: 600px) {
+  .table {
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  th td tr{
+    border-radius: 30px;
+  }
+  tr{
+    background-color: #eaeaea;
+  }
+  th
+  {
+    text-align: center;
+    background-color: white;
+  }
+  td{
+    text-align: center;
+    padding: 20px;
+  }
 }
 
 //.table {
