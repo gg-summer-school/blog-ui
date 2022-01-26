@@ -1,94 +1,99 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticlesService} from "../../services/articles.service";
-import {Router} from "@angular/router";
-import {TokenStorageService} from "../../services/token-storage.service";
-import {Categories} from "../../model/categories";
-import {ArticleDto} from "../../model/articles";
-// import { ArticleDtoList } from 'src/app/model/articleDtoList';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ArticlesService } from "../../services/articles.service";
+import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { TokenStorageService } from "../../services/token-storage.service";
+import { Categories } from "../../model/categories";
+import { ArticleDto } from "../../model/articles";
+import { Subscription } from 'rxjs';
+import { ArticleResource } from 'src/app/model/articleDtoList';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
-  page = 0;
+export class LandingPageComponent implements OnInit, OnDestroy {
+ 
   count = 0;
   pageSize = 3;
-  nums:any;
-  searchData='';
-
+  nums: any;
+  searchData = '';
   totalPages: number = 0;
-  //Allcategories:Categories[]=[];
-  allCategories:Categories[]=[];
-  allArticles!: any[];
-  categoryArticles:ArticleDto[]=[];
+  allArticles: ArticleDto[] = [];
   pages: any = 0;
-  category:boolean=false;
+  category: boolean = false;
+  checkArticleLength!:boolean;
+  pageNumberArray: number[] = [];
+  pageNum: number = 0;
+  subscriptions: Subscription[] = [];
+  active: boolean | undefined;
+   
 
-  testArray: any[] = [];
-
-  constructor( private articlesService:ArticlesService, private router: Router,
-               public tokenStorage: TokenStorageService) { }
-
-  previous(event: any) {
-  }
-
-  Next() {
-
-  }
-
-  setPage(i: any, event: any) {
-    event.preventDefault();
-    this.page = i;
-    this.getAllArticles();
+  constructor(private articlesService: ArticlesService, private router: Router,
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute) { }
+  ngOnDestroy(): void {
+    for(const sub of this.subscriptions){
+      sub.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
-   this.getCategories();
-   this.getAllArticles();
+    this.getAllArticles(this.pageNum, this.pageSize);
   }
-
-  handlePageChange(event:any){
-    this.pageSize = event;
-    this.getAllArticles();
-  }
-
-  incrementNum() {
-    this.page++
-  }
-
-  getCategories() {
-    this.articlesService.getCategory().subscribe(res=>
-    {
-      this.allCategories=res;
+  previous() {
+    this.activateRoute.queryParams.subscribe(params => {
+      if (params.page !== undefined) {
+        this.pageNum = parseInt(params.page) - 1;
+         
+      }
     })
-
+    this.getAllArticles(this.pageNum, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: this.pageNum } });
   }
 
-  getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: any) => {
-       this.allArticles = res.articleDtoList;
-       this.pages = res.totalPages;
-       this.testArray = (Array.from(Array(this.pages).keys()));
+  Next() {
+    this.activateRoute.queryParams.subscribe(params => {
+      if (params.page !== undefined) {
+        this.pageNum = parseInt(params.page) + 1;
+      }
     })
+    this.getAllArticles(this.pageNum, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: (this.pageNum) } });
   }
 
-  view(id: string)
-  {
+
+
+
+
+  setPage(currentPageIndex: number, currentPage:number) {
+    this.getAllArticles(currentPageIndex, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
+  }
+
+ 
+
+  getAllArticles(page: number, pageSize: number) {
+    
+    const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {
+      this.allArticles = response.articleDtoList
+      this.pages = response.totalPages;
+      this.pageNumberArray = (Array.from(Array(this.pages).keys()));
+       
+    }, (error: HttpErrorResponse) => {
+       
+    }
+    ).add(() => {
+      // loader here
+    })
+    this.subscriptions.push(subscription);
+  }
+
+  view(id: string) {
     this.router.navigate(['/articles-detail', id]);
   }
-  categoryAticle(catid: string)
-  {
-    this.articlesService.getArticlesByCategory(catid).subscribe(res=>
-    {
-      this.categoryArticles= res;
-      this.category=true
-    },
-      error => {
-      console.log(error);
-      })
-  }
+   
 
   selectedIndex!: number;
   select(index: number) {
