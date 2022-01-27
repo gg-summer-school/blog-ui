@@ -39,8 +39,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
       translate.addLangs(['en', 'fre']);
       translate.setDefaultLang('en');
-      translate.use('en');
-
+      // translate.use('en');
   }
 
   selectedLang: any;
