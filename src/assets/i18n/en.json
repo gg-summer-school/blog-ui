@@ -64,5 +64,18 @@
     "ArticleN": "Name of Article",
     "Payment": "Payment",
     "account2": "Create your account"
+  },
+  "YourArticles": {
+    "Articles": "",
+    "Publilsh": "",
+    "Articles1": "",
+    "Category": "",
+    "Price": "",
+    "Delete": "Delete",
+    "Edit": "",
+    "Delete2": "",
+    "Sure": "Are you sure you want to delete this book ?",
+    "Cancel": "Cancel",
+    "Success": "Article successfully deleted!!!"
   }
 }
