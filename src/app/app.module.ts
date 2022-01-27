@@ -16,7 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
@@ -30,9 +30,13 @@ import {QuillModule} from "ngx-quill";
 import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NavbarComponent } from './components/navbar/navbar.component';
- 
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -59,9 +63,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ViewTransactionsComponent,
     PageNotFoundComponent,
     PaymentComponent,
-     
-
-
   ],
   imports: [
     HttpClientModule,
@@ -75,7 +76,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     QuillModule.forRoot(),
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
 
   providers: [

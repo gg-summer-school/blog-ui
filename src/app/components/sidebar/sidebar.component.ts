@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { find } from 'rxjs/operators';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-sidebar',
@@ -16,17 +17,20 @@ export class SidebarComponent implements OnInit {
   reader: string | any = '';
   pubOrAdmin: boolean = false;
 
-  constructor(private tokenStore: TokenStorageService, private router: Router) { }
+  constructor(private tokenStore: TokenStorageService, private router: Router, public translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
     this.userRole = this.tokenStore.getUser().role;
     this.readerRole = this.userRole.includes('ROLE_READER');
     this.publisherRole = this.userRole.includes('ROLE_PUBLISHER');
-    this.adminRole = this.userRole.includes('ROLE_ADMIN');    
+    this.adminRole = this.userRole.includes('ROLE_ADMIN');
     }
 
-    checkPubOrAdmin() {      
-      
+    checkPubOrAdmin() {
+
     }
 
   logOut() {

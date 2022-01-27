@@ -42,6 +42,43 @@
           <hr>
         </div>
       </div>
+  </div>
+</div>
+</div>
+
+
+<!--download modal-->
+<div
+  class="modal fade"
+  id="editProfileModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content download">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">{{ 'articlePage.download' | translate }}</h5>
+        <button
+          type="button"
+          class="btn-close btn-sm "
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <span class="form-text">{{ 'articlePage.download2' | translate }}</span>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+      </div>
+      <br>
+      <br>
+      <div class="d-flex justify-content-end">
+        <button
+          type="submit"
+          class="btn  btn-sm btn-primary"
+          data-bs-dismiss="modal">
+          <a href="/signup" style="color: white;text-decoration: none;">{{ 'articlePage.Join' | translate }}</a>
+        </button>
+      </div>
     </div>
     <div class="col-md-1">
     </div>
@@ -53,6 +90,13 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ 'articlePage.proceed' | translate }}</h5>
+        <button
+          type="button"
+          class="btn-close btn-sm "
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
         <h5 class="modal-title" id="exampleModalLabel">Fill details to make Payment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -80,6 +124,101 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel1">{{ 'articlePage.Article' | translate }}</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>{{ 'articlePage.LoginTo' | translate }}</h5>
+        <div class="right">
+          <div class="register-form">
+            <div class="col-sm-10">
+              <form [formGroup]="signupForm" *ngFor="let f of form" (ngSubmit)="onSubmit()" class="form-items">
+                <h5><b>{{ 'articlePage.Account' | translate }}</b></h5>
+                <div class="form-group">
+                  <label>{{ 'articlePage.Name' | translate }}</label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">{{ 'articlePage.nameRequired' | translate }}</div>                    <div *ngIf="f.name.errors.required">nameRequirednameRequired</div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>{{ 'articlePage.Email1' | translate }}</label>
+                  <input
+                    type="text"
+                    formControlName="email"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                  />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">{{ 'articlePage.Email2' | translate }}</div>
+                    <div *ngIf="f.email.errors.email">{{ 'articlePage.Email3' | translate }}</div>
+                  </div>
+                </div>
+
+                <div class="form-group" >
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                  />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">{{ 'articlePage.Password' | translate }}</div>
+                    <div *ngIf="f.password.errors.minlength">
+                      {{ 'articlePage.password2' | translate }}
+                    </div>
+                    <div *ngIf="f.password.errors.maxlength">
+                      {{ 'articlePage.username' | translate }}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <br/>
+                  <label>{{ 'articlePage.role' | translate }}</label>
+                  <select
+                    [(ngModel)] = "role"
+                    class="form-select mt-3"
+                    required formControlName="role">
+                    <option value="USER">{{ 'articlePage.user' | translate }}</option>
+                    <option value="PUBLISHER">{{ 'articlePage.publisher' | translate }}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>{{ 'articlePage.ArticleN' | translate }}</label>
+                  <input
+                    type="text"
+                    formControlName="nameOfArticle"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>{{ 'articlePage.Payment' | translate }}</label>
+                  <input
+                    type="text"
+                    formControlName="payment"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-cl">{{ 'articlePage.account2' | translate }}</button>
+                </div>
+              </form>
+            </div>
+        <h5>Please register to read Article</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
         <h5>Please register to read Article</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

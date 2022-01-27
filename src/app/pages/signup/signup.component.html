@@ -37,7 +37,7 @@
                 <div *ngIf="f.email.errors.email">Email is invalid</div>
               </div>
             </div>
-    
+
             <div class="form-group">
               <label>Password</label>
               <input
@@ -59,15 +59,15 @@
             <div class="form-group">
               <br/>
               <label>Choose role</label>
-              <select 
+              <select
                     [(ngModel)] = "role"
-                    class="form-select mt-3" 
+                    class="form-select mt-3"
                     required formControlName="role">
-                <option value="READER">User</option>
+                <option value="READER">Reader</option>
                 <option value="PUBLISHER">Publisher</option>
               </select>
             </div>
-    
+
             <div class="form-group">
               <button type="submit" class="btn btn-cl">Create your account</button>
             </div>

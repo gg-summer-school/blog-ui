@@ -8,66 +8,124 @@
       <app-status></app-status>
     </div>
 
-
-<div class="container">
-  <div class="col-md-9">
+<div class="col-md-10">
+<!--  <h5 *ngIf="!readers.length" class="form-text">Oops!! You don't have Readers yet.</h5>-->
+  <table class="table table-borderless table-responsive" >
+    <thead>
+    <tr>
+      <th scope="col"><b>Number of Readers ({{number}})</b></th>
+      <th scope="col">Email</th>
+      <th scope="col-md-2">Role</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let read of readers">
     <br>
-    <br>
-
-    <div class="row">
-      <div class="col-md-3">
-        <b>Number of Readers ({{number}})</b>
+    <tr >
+      <td>{{read.name}}</td>
+      <td>{{read.email}}</td>
+      <td >
+        <span *ngFor="let roles of read.role">{{roles.role}}</span></td>
+      <td>
+    <tr>
+      <td>
+      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-dark but">Suspend</button>&nbsp;
+      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-dark but">Reactivate</button>&nbsp;
+      <div class="dropdown" style="display: inline-flex">
+        <button class="btn btn-outline-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Role</button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" ><b>Upgrade To</b></a></li>
+          <select class="form-select mt-1" (change)="addRoleToUser(read.id, $event)">
+            <option selected><b>Role</b></option>
+            <option value="0">Admin</option>
+            <option value="1">Publisher</option>
+          </select>
+          <li><a class="dropdown-item" ><b>Remove Role</b></a></li>
+          <select class="form-select mt-1" (change)="removeRoleToUser(read.id, $event)">
+            <option selected><b>Role</b></option>
+            <option value="0">Admin</option>
+            <option value="1">Publisher</option>
+          </select>
+        </ul>
       </div>
+      </td>
 
-      <div class="col-md-3">
-        <b>Email</b>
-      </div>
+    </tr>
+    </tbody>
+  </table>
+<!--  <div class="col-md-9">-->
+<!--    <br>-->
+<!--    <br>-->
 
-      <div class="col-md-3">
-        <b>Number of Articles</b>
-      </div>
+<!--    <div class="row">-->
+<!--      <div class="col-md-3">-->
+<!--        <b>Number of Readers ({{number}})</b>-->
+<!--      </div>-->
 
-      <div class="col-md-3">
-        <b>Action</b>
-      </div>
-    </div>
+<!--      <div class="col-md-3">-->
+<!--        <b>Email</b>-->
+<!--      </div>-->
 
-    <div *ngFor="let read of readers" class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>{{read.name}}</a><br>
-        </div>
+<!--      <div class="col-md-3">-->
+<!--        <b>roles</b>-->
+<!--      </div>-->
 
-        <div class="col-md-2">
-          <a>{{read.email}}</a><br>
-        </div>
+<!--      <div class="col-md-3">-->
+<!--        <b>Action</b>-->
+<!--      </div>-->
+<!--    </div>-->
 
-        <div class="col-md-3 art">
-          <a>Two</a><br>
-        </div>
+<!--    <div *ngFor="let read of readers" class="table">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-3">-->
+<!--          <a>{{read.name}}</a><br>-->
+<!--        </div>-->
 
-        <div class="col-md-3">
-<!--          <tr><button  class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;-->
-          <tr><button (click)="suspendPublisher(read.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
-            <button (click)="reactivateUser(read.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary" (click)="addRoleToUser(read.id)">Add Role</button>
+<!--        <div class="col-md-2">-->
+<!--          <a>{{read.email}}</a><br>-->
+<!--        </div>-->
 
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" >Admin</a></li>
-                <li><a class="dropdown-item" >Another action</a></li>
-              </ul>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--        <div class="col-md-3 art" *ngFor="let roles of read.role">-->
+<!--          <a>{{roles.role}}</a><br>-->
+<!--        </div>-->
 
+<!--        <div class="col-md-3">-->
+<!--&lt;!&ndash;          <tr><button  class="btn btn-dark but" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suspend</button>&nbsp;&nbsp;&ndash;&gt;-->
+<!--          <tr><button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-dark but">Suspend</button>&nbsp;-->
+<!--            <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-dark but">Reactivate</button>&nbsp;-->
+<!--            <div class="dropdown">-->
+<!--              <button class="btn btn-outline-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Role</button>-->
+<!--              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--                <li><a class="dropdown-item" ><b>Upgrade To</b></a></li>-->
+<!--                <select class="form-select mt-1" (change)="addRoleToUser(read.id, $event)">-->
+<!--                  <option selected><b>Role</b></option>-->
+<!--                  <option value="0">Admin</option>-->
+<!--                  <option value="1">Publisher</option>-->
+<!--                </select>-->
+<!--                <li><a class="dropdown-item" ><b>Remove Role</b></a></li>-->
+<!--                <select class="form-select mt-1" (change)="removeRoleToUser(read.id, $event)">-->
+<!--                  <option selected><b>Role</b></option>-->
+<!--                  <option value="0">Admin</option>-->
+<!--                  <option value="1">Publisher</option>-->
+<!--                </select>-->
+<!--              </ul>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+<!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
+<!--      Launch static backdrop modal-->
+<!--    </button>-->
 
 <!-- Modal to block and suspend user -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
@@ -84,3 +142,6 @@
 </div>
 </div>
 </div>
+
+<!-- Button trigger modal -->
+

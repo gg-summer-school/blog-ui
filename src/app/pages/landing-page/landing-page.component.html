@@ -9,22 +9,39 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=" ">Home</a>
+          <a class="nav-link active" aria-current="page" href=" ">{{ 'Navbar.Home' | translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
+          <a class="nav-link " href="#">{{ 'Navbar.About' | translate }}</a>
         </li>
       </ul>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
-          <input type="text" class="size" placeholder=" search articles..." [(ngModel)]="searchData" id="listSearch">
-
+          <input type="text" class="size" placeholder=" {{ 'Navbar.searchPlaceholder' | translate }}" [(ngModel)]="searchData" id="listSearch">
+          <button class="button"><i class="fa fa-search fa-1x "></i></button>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
+          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary">{{ 'Navbar.SignUp' | translate }}</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/login" ><button class="btn btn-outline-info">{{ 'Navbar.Login' | translate }}</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/users-article" ><button class="btn btn-outline-info">{{ 'Navbar.Dashboard' | translate }}</button></a>
+        </li>
+        <li class="nav-item">
+          <span class="form-inline">
+      <select class="form-control" #selectedLang (change)="switchLang">
+        <option *ngFor="let language of translate.getLangs()" [value]="language"
+                [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span>
           <a class="nav-link" href="/signup"><button class="btn btn-outline-primary"
               *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
         </li>
@@ -49,6 +66,22 @@
       <br>
       <br>
       <br>
+      <h2>{{ 'Page.Welcome' | translate }}<span style="color: indigo"> Blog site</span></h2>
+      <!--    <span>Publish your articles and books to the world.</span>-->
+      <span>{{ 'Page.Publish' | translate }}</span>
+      <br>
+      <!--    <span>View all kinds  of articles or books. We have it all installed for you.</span>-->
+      <span>{{ 'Page.Publish1' | translate }}</span>
+
+      <br>
+      <br>
+      <hr>
+      <!--      <button class=" btn btn-outline" style="color: indigo">View articles</button>-->
+      <button class=" btn btn-outline" style="color: indigo">{{ 'Page.ViewArticles' | translate }}</button>
+
+    </div>
+  </div>
+  <div class="col-md-8"> <div class="bg"></div>
       <h2>Welcome to <span style="color: indigo"> Blog site</span></h2>
       <span>Publish your articles and books to the world.</span>
       <br>
@@ -61,7 +94,27 @@
   </div>
   <div class="col-md-8">
     <div class="bg"></div>
+  </div>
 
+
+<div class="row">
+  <div class="col-md-2">
+    <br>
+    <div class="card">
+      <div class="card-header" style="background-color: darkblue; color: white">
+        {{ 'Page.categories' | translate }}
+      </div>
+      <ul class="list-group list-group-flush" *ngFor="let category of allCategories">
+        <li class="list-group-item">{{category.name}}</li>
+
+      </ul>
+    </div>
+    <br>
+  </div>
+  <div class="col-md-9 ">
+    <br>
+    <div class="row ">
+      <h4>{{ 'Page.popular' | translate }}</h4>
   </div>
 
 </div>
@@ -99,6 +152,10 @@
                 <div class="card-body">
                   <h5 class="card-title">Book title</h5>
                   <span class="card-text form-text">Category: education</span>
+<<<<<<< HEAD
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+=======
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
                   <p>Author(s): Chi Mah</p>
                 </div>
               </div>
@@ -123,6 +180,13 @@
             </div>
           </div>
         </a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      </div>
+
+=======
+=======
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
       </div>
 
     </div>
@@ -160,13 +224,80 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+=======
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
     </div>
     <div class="row ">
       <div class="col-md-6 d-flex">
         <div class="card mb-3" style="max-width: 540px; ">
           <div class="row g-0">
             <div class="col-md-4 ">
+<<<<<<< HEAD
+<<<<<<< HEAD
+              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
+=======
               <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+=======
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Book title</h5>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <span class="card-text form-text">Category: education yufvhfg tfufjfy ilgiuklij</span>
+                <p>Author(s): Chi Mah</p>
+=======
+                <span class="card-text form-text">Category: education </span>
+                <p>Author(s): Chi Mah, Chi Claudette</p>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+=======
+                <span class="card-text form-text">Category: education </span>
+                <p>Author(s): Chi Mah, Chi Claudette</p>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 d-flex">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+<<<<<<< HEAD
+<<<<<<< HEAD
+              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+=======
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+=======
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Book title</h5>
+                <span class="card-text form-text">Category: education</span>
+                <p>Author(s): Chi Mah</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <div class="row ">
+      <div class="col-md-6 d-flex">
+        <div class="card mb-3" style="max-width: 540px; ">
+          <div class="row g-0">
+            <div class="col-md-4 ">
+              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -183,7 +314,7 @@
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -194,12 +325,17 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+=======
   </div> -->
 
   <!-- <div class="col-md-9">
 
+=======
+  </div> -->
+
+  <!-- <div class="col-md-9">
+
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
     <div class="row">
       <h4></h4>
 
@@ -226,18 +362,45 @@
             </div>
           </div>
         </a>
+<<<<<<< HEAD
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
       </div>
       <br>
     </div>
+<<<<<<< HEAD
+  </div>
+=======
+=======
+      </div>
+      <br>
+    </div>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
   </div> -->
 
 
 </div>
 
 <br>
-
-<!--ALL ARTICLES DISPLAY-->
 <div class="container">
+  <h3 class="text-center mt-5 mb-5">
+    <!--    All articles and books-->
+    {{ 'Page.Allarticlesandbooks' | translate }}
+  </h3>
+  <div class="row" >
+
+    <div class="col-md-4 card-group"
+         style="margin-top: 30px"
+         *ngFor="let num of nums | paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index" [class.active]="i ">
+      <a href="/articles-detail">
+        <div class="card" style="width: 18rem;">
+          <img src="assets/com.jpg " class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   <h3 class="text-center mt-2 mb-2">
     All Articles and Books
   </h3>
@@ -258,9 +421,22 @@ height: 20vh; ">
             <br>
             <span class="form-text">{{article.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
           </div>
+          {{num}}
         </div>
       </a>
     </div>
+  </div>
+
+
+  <br>
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange()">
+    </pagination-controls>
+  </div>
 
   </div>
   <div class="d-flex justify-content-start mt-lg-4 mb-5">
@@ -288,8 +464,9 @@ height: 20vh; ">
 
 </div>
 
-
-
+<br>
+<div class="auth" >
+  <h5>{{ 'Page.author' | translate }}</h5>
 
 <br>
 <div class="auth">
@@ -299,6 +476,7 @@ height: 20vh; ">
       <div class="card">
 
         <div class="card-body">
+          <div><h6>{{ 'Page.authorName' | translate }}</h6></div>
           <div>
             <h6>Author name</h6>
           </div>
@@ -360,6 +538,8 @@ height: 20vh; ">
       <br>
     </div>
     <div class="col-md-3">
+      <span >About us</span>
+      <p>FAQ</p>
       <span>About us</span>
       <p>FAQ</p>
     </div>
@@ -369,11 +549,18 @@ height: 20vh; ">
       <h5>Subscribe to our newsletter</h5>
       <input placeholder=" enter email..." class="input-size"><button class="btn btn-outline-primary">Subscribe</button>
     </div>
+    <div class="col-md-3">
+      <p>Terms</p>
+      <p>Privacy</p>
+      <h5>Subscribe to our newsletter</h5>
+      <input placeholder=" enter email..." class="input-size" ><button class="btn btn-outline-primary">Subscribe</button>
+    </div>
 
   </div>
 
+  </div>
 
-</div>
-<div class="foot">
-  <p class="p">Copyright @2022 All rights reserved. <span class="blog">Blog site</span></p>
-</div>
+  </div>
+        <div class="foot">
+        <p class="p">Copyright @2022 All rights reserved. <span class="blog">Blog site</span></p>
+        </div>
