@@ -31,6 +31,8 @@ import { ViewTransactionsComponent } from './pages/view-transactions/view-transa
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TruncateTextPipe } from './pipe/truncate-text.pipe';
+ 
  
 
 
@@ -59,6 +61,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ViewTransactionsComponent,
     PageNotFoundComponent,
     PaymentComponent,
+    TruncateTextPipe,
      
 
 

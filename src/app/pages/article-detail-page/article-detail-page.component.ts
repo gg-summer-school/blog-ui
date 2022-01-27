@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { ResponseObject } from 'src/app/model/response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserDto } from 'src/app/model/UserDto';
+import { PayArticleDto } from 'src/app/model/articlesDto';
 
 declare var $: any;
 
@@ -22,19 +23,22 @@ declare var $: any;
 })
 export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   signupForm!: FormGroup;
-  submitted = false;
+  publisher!:UserDto;
   role = "PUBLISHER";
   errorMessage = '';
-  fileUrl: any;
-  sanitizer: any;
+  showAbs: boolean = false;
+  showTable: boolean = false
   articleId: string = '';
   categoryId: string = "";
   userId: string = '';
+  error: boolean = false;
+  submitted: boolean = false;
   article!: ArticleDto;
+  hasBought: boolean = false;
   subscriptions: Subscription[] = [];
   paymentForm = this.formBuilder.group({
-    nameOfArticle: ['', Validators.required],
-    accountNumber: ['', Validators.required],
+    nameOfArticle: '',
+    accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
   authUser: Users | undefined;
 
@@ -54,15 +58,18 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(256)]],
-        role: ['', Validators.required],
-        nameOfArticle: ['', Validators.required],
-        payment: ['', Validators.required]
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        role: "READER",
       }
     );
     this.articleId = this.route.snapshot.params.id;
     this.getArticle();
+    this.getPublisherByArticle(this.articleId);
+    
+    
   }
+
+
   getArticle() {
     const subscription = this.publisherService.getArticle(this.articleId).subscribe(res => {
       this.article = res;
@@ -72,14 +79,18 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   submitPayment() {
-    let articleId = this.article.id;
+    const articleId = this.article.id;
+    const payload: PayArticleDto = {
+      nameOfArticle: this.article.title,
+      accountNumber: this.paymentForm.value.accountNumber,
+    }
     let logginUserId: string = this.tokenStorage.getUser().id;
-    const subscription = this.articleService.PayArticle(logginUserId, articleId, this.paymentForm.value).subscribe((response: ResponseObject) => {
-      this.router.navigate(['/users-article'])
+    const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {
+      this.router.navigate(['/users-article']);
     }, (error: HttpErrorResponse) => {
       console.log(error);
     }).add(() => {
-      //loader her
+      //loader here
     })
     this.subscriptions.push(subscription);
 
@@ -87,6 +98,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   onSubmit(): void {
+    this.submitted = true;
     let loginPayload: loginData = {
       email: this.signupForm.value.email,
       password: this.signupForm.value.password,
@@ -98,7 +110,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
         //jquery code to open payment modal
         $("#editProfileModal").modal('show');
       }, (error: HttpErrorResponse) => {
-        //hanle error
+        //handle error
       }).add(() => { })
       this.subscriptions.push(subscription1);
     }, (error: HttpErrorResponse) => {
@@ -107,12 +119,50 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
+  showAbstract() {
+    this.showAbs = !this.showAbs;
+  }
+  showContent() {
+    this.showTable = !this.showTable;
+  }
+  requestText() {
+    const authUser = this.tokenStorage.getUser();
+    if (authUser === null) {
+      //jquery code to open register modal
+      $("#registerModal").modal('show');
+    } else {
+      const subscription = this.articleService.checkIfUserhasBoughtArticle(authUser.id, this.article.id).subscribe((response: boolean) => {
+        this.hasBought = response;
+        if (!this.hasBought) {
+          $("#editProfileModal").modal('show');
+        } else {
+          this.router.navigate(['/users-article']);
+        }
+      }, (error) => { }).add(() => { });
+      this.subscriptions.push(subscription);
+    }
+  }
 
-  //  getTotalNumberArticlesByPublisher(){
-  //    const subscription = this.ar
-  //  }
+  get registerFormControl() {
+    return this.signupForm.controls
+  }
 
+  get paymentFormControl() {
+    return this.paymentForm.controls;
+  }
 
+  getDocument() {
+    const subscription = this.articleService.previewArticle(this.article.id, this.userId).subscribe((response) => {
+    }, (error) => { }).add(() => { });
+    this.subscriptions.push(subscription);
+  }
+
+  getPublisherByArticle(id:string) {
+    const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {
+      this.publisher = response;
+    }, (error) => { }).add(() => { });
+    this.subscriptions.push(subscription);
+  }
 
 
 
