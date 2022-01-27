@@ -13,6 +13,9 @@
 <div class="col-md-10 ">
   <h4>{{'YourArticles.Articles1'| translate }}</h4>
   <br>
+  <button class="btn btn-primary" (click)="switchLang('en')">en</button>
+  <button class="btn btn-primary" (click)="switchLang('fre')">de</button>
+
   <h5 *ngIf="!pubArticles.length" class="form-text">{{'YourArticles.NoArt'| translate }} <a routerLink="/publish-article">{{'YourArticles.Publish'| translate }} <i class="fas fa-arrow-circle-right"></i></a></h5>
   <table class="table table-borderless table-responsive table-sm" *ngIf="pubArticles.length">
     <thead>

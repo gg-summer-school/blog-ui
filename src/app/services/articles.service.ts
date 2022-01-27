@@ -94,7 +94,7 @@ export class ArticlesService {
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
 
   }
- 
+
   PayArticle(user_id: string, article_id: string, article: PayArticleDto):Observable<ResponseObject>{
     return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/users/${user_id}/articles/${article_id}`, article)
       .pipe(
