@@ -1,105 +1,108 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticlesService} from "../../services/articles.service";
-import {Router} from "@angular/router";
-import {TokenStorageService} from "../../services/token-storage.service";
-import {Categories} from "../../model/categories";
-import {ArticleDto} from "../../model/articles";
-import {TranslateService} from "@ngx-translate/core";
-// import { ArticleDtoList } from 'src/app/model/articleDtoList';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import { ArticlesService } from "../../services/articles.service";
+import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { TokenStorageService } from "../../services/token-storage.service";
+import { Categories } from "../../model/categories";
+import { ArticleDto } from "../../model/articles";
+import { Subscription } from 'rxjs';
+import { ArticleResource } from 'src/app/model/articleDtoList';
+import { HttpErrorResponse } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, OnDestroy {
+
   page = 0;
+  tableSize = 6;
   count = 0;
   pageSize = 3;
-  nums:any;
-  searchData='';
-  tableSize = 6;
-
+  nums: any;
+  searchData = '';
   totalPages: number = 0;
-  //Allcategories:Categories[]=[];
-  allCategories:Categories[]=[];
-  allArticles!: any[];
-  categoryArticles:ArticleDto[]=[];
+  allArticles: ArticleDto[] = [];
   pages: any = 0;
   category:boolean=false;
+  subscriptions:Subscription[] = [];
+  pageNumberArray: number[] = [];
+  pageNum:number = 0;
+  allCategories: any;
 
-  testArray: any[] = [];
-
-  constructor( private articlesService:ArticlesService, private router: Router,
-               public tokenStorage: TokenStorageService, public translate: TranslateService) {
+  constructor( private articlesService:ArticlesService, private router: Router, private activateRoute:ActivatedRoute
+               ,public tokenStorage: TokenStorageService, public translate: TranslateService) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
+  }
+  ngOnDestroy(): void {
+    for(const sub of this.subscriptions){
+      sub.unsubscribe();
+    }
+  }
+  ngOnInit(): void {
+    this.getAllArticles(this.pageNum, this.pageSize)
   }
 
   switchLang(lang: string) {
     this.translate.use(lang);
   }
+  previous() {
+    this.activateRoute.queryParams.subscribe(params => {
+      if (params.page !== undefined) {
+        this.pageNum = parseInt(params.page) - 1;
 
-  setPage(i: any, event: any) {
-    event.preventDefault();
-    this.page = i;
-    this.getAllArticles();
-  }
-
-  ngOnInit(): void {
-    this.nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-   this.getCategories();
-   this.getAllArticles();
-  }
-
-  onTableDataChange(event: any) {
-    this.page = event;
-  }
-
-  handlePageChange(event:any){
-    this.pageSize = event;
-    this.getAllArticles();
-  }
-
-  incrementNum() {
-    this.page++
-  }
-
-  getCategories() {
-    this.articlesService.getCategory().subscribe(res=>
-    {
-      this.allCategories=res;
+      }
     })
-
+    this.getAllArticles(this.pageNum, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: this.pageNum } });
   }
 
-  getAllArticles() {
-    this.articlesService.getAllArticles(this.page, this.pageSize).subscribe((res: any) => {
-       this.allArticles = res.articleDtoList;
-       this.pages = res.totalPages;
-       this.testArray = (Array.from(Array(this.pages).keys()));
+  Next() {
+    this.activateRoute.queryParams.subscribe(params => {
+      if (params.page !== undefined) {
+        this.pageNum = parseInt(params.page) + 1;
+      }
     })
+    this.getAllArticles(this.pageNum, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: (this.pageNum) } });
   }
 
-  view(id: string)
-  {
+  setPage(currentPageIndex: number, currentPage:number) {
+    this.getAllArticles(currentPageIndex, this.pageSize);
+    this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
+  }
+
+
+
+  getAllArticles(page: number, pageSize: number) {
+
+    const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {
+      this.allArticles = response.articleDtoList
+      this.pages = response.totalPages;
+      this.pageNumberArray = (Array.from(Array(this.pages).keys()));
+
+    }, (error: HttpErrorResponse) => {
+
+    }
+    ).add(() => {
+      // loader here
+    })
+    this.subscriptions.push(subscription);
+  }
+
+  view(id: string) {
     this.router.navigate(['/articles-detail', id]);
   }
-  categoryAticle(catid: string)
-  {
-    this.articlesService.getArticlesByCategory(catid).subscribe(res=>
-    {
-      this.categoryArticles= res;
-      this.category=true
-    },
-      error => {
-      console.log(error);
-      })
-  }
+
 
   selectedIndex!: number;
   select(index: number) {
     this.selectedIndex = index;
   }
+
+  onTableDataChange(){}
 
 }

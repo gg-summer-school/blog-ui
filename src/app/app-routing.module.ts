@@ -82,6 +82,11 @@ const routes: Routes = [
   },
 
   {
+    path:"landing-page/articles",
+    component:LandingPageComponent
+  },
+
+  {
     path: 'articles-detail/:id',
     component: ArticleDetailPageComponent,
   },
@@ -107,6 +112,8 @@ const routes: Routes = [
     component: PaymentComponent,
     canActivate: [AuthGuard]
   },
+
+  
 
   {
     path: 'page-not-found',

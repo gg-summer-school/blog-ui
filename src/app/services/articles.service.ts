@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import {ArticleDto, ArticleList, Articles} from '../model/articles';
 import {ResponseObject} from "../model/response";
 import {Categories} from "../model/categories";
+import { ArticleResource } from '../model/articleDtoList';
+import { PayArticleDto } from '../model/articlesDto';
 
 
 @Injectable({
@@ -26,10 +28,9 @@ export class ArticlesService {
   //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
 
 
-  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleList>
+  getAllArticles(pageNo: number, pageSize: number): Observable<ArticleResource>
   {
-    return this.http.get<ArticleList>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
-
+    return this.http.get<ArticleResource>(this.baseUrl + `articles?pageNo=`+pageNo + `&pageSize=`+pageSize);
   }
 
   getArticle( articleId: string, userId: string): Observable<ArticleDto>
@@ -93,9 +94,9 @@ export class ArticlesService {
     return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + {userId} +'/' + 'paid-articles/' + {articleId})
 
   }
-  // tslint:disable-next-line:variable-name typedef
-  PayArticle(user_id: string, article_id: string, article: any){
-    return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/user/${user_id}/article/${article_id}`, article)
+ 
+  PayArticle(user_id: string, article_id: string, article: PayArticleDto):Observable<ResponseObject>{
+    return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/users/${user_id}/articles/${article_id}`, article)
       .pipe(
         retry(1),
         catchError(this.handleError)

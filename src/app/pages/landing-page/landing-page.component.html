@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Blog site</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand">Blog site</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,6 +25,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="/signup"><button class="btn btn-outline-primary">{{ 'Navbar.SignUp' | translate }}</button></a>
         </li>
         <li class="nav-item">
@@ -41,6 +43,16 @@
         </option>
       </select>
     </span>
+          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary"
+              *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/login"><button class="btn btn-outline-info"
+              *ngIf="!tokenStorage.getToken1()">Login</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
+              *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
         </li>
       </ul>
 
@@ -71,10 +83,20 @@
     </div>
   </div>
   <div class="col-md-8"> <div class="bg"></div>
-
+      <h2>Welcome to <span style="color: indigo"> Blog site</span></h2>
+      <span>Publish your articles and books to the world.</span>
+      <br>
+      <span>View all kinds of articles or books. We have it all installed for you.</span>
+      <br>
+      <br>
+      <hr>
+      <button class=" btn btn-outline" style="color: indigo">View articles</button>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="bg"></div>
   </div>
 
-</div>
 
 <div class="row">
   <div class="col-md-2">
@@ -94,6 +116,26 @@
     <br>
     <div class="row ">
       <h4>{{ 'Page.popular' | translate }}</h4>
+  <!-- <div class="col-md-2">
+    <br>
+    <div class="card">
+      <div class="card-header" style="background-color: darkblue; color: white">
+        Our Categories
+      </div>
+      <ul class="list-group list-group-flush" *ngFor="let category of allCategories  let i=index" (click)="select(i)"
+        [ngClass]="{'active': selectedIndex == i, 'list-group-item': true}">
+        <li class="list-group-item group" routerLinkActive="active" (click)="categoryAticle(category.id)">
+          {{category.name}}</li>
+
+      </ul>
+    </div>
+    <br>
+  </div> -->
+
+  <!-- <div class="col-md-9 " *ngIf="!category">
+    <br>
+    <div class="row ">
+      <h4>Popular articles</h4>
 
       <div class="col-md-6 d-flex">
         <a href="/articles-detail">
@@ -108,6 +150,13 @@
                     {{ 'Page.bookTitle' | translate }}
                   </h5>
                   <span class="card-text form-text">{{ 'Page.categories' | translate }}: education</span>
+                <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Book title</h5>
+                  <span class="card-text form-text">Category: education</span>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
                   <p>Author(s): Chi Mah</p>
                 </div>
               </div>
@@ -120,7 +169,7 @@
           <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+                <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
@@ -132,6 +181,10 @@
             </div>
           </div>
         </a>
+<<<<<<< HEAD
+      </div>
+
+=======
       </div>
 
     </div>
@@ -140,7 +193,7 @@
         <div class="card mb-3" style="max-width: 540px; ">
           <div class="row g-0">
             <div class="col-md-4 ">
-              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -157,7 +210,56 @@
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Book title</h5>
+                <span class="card-text form-text">Category: education</span>
+                <p>Author(s): Chi Mah</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+    </div>
+    <div class="row ">
+      <div class="col-md-6 d-flex">
+        <div class="card mb-3" style="max-width: 540px; ">
+          <div class="row g-0">
+            <div class="col-md-4 ">
+<<<<<<< HEAD
+              <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100"  alt="...">
+=======
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Book title</h5>
+<<<<<<< HEAD
+                <span class="card-text form-text">Category: education yufvhfg tfufjfy ilgiuklij</span>
+                <p>Author(s): Chi Mah</p>
+=======
+                <span class="card-text form-text">Category: education </span>
+                <p>Author(s): Chi Mah, Chi Claudette</p>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 d-flex">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+<<<<<<< HEAD
               <img src="assets/blog.JPG"  class="img-fluid rounded-start h-100" alt="...">
+=======
+              <img src="assets/blog.JPG" class="img-fluid rounded-start h-100" alt="...">
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -170,6 +272,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="row ">
       <div class="col-md-6 d-flex">
         <div class="card mb-3" style="max-width: 540px; ">
@@ -203,9 +306,47 @@
             </div>
           </div>
         </div>
+=======
+  </div> -->
+
+  <!-- <div class="col-md-9">
+
+    <div class="row">
+      <h4></h4>
+
+      <div class="col-md-6 d-flex card-group" *ngFor="let catArticle of categoryArticles" style="margin-top: 30px">
+        <a (click)="view(catArticle.id)" style="cursor: pointer">
+          <div class="card h-100 " style="width: 30rem">
+            <div class="row ">
+              <div class="col-md-5 ">
+                <img [src]="catArticle.coverPage" class="img-fluid img-thumbnail rounded-start h-100"
+                  alt="no book cover">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <h5 class="card-title">{{catArticle.title}}</h5>
+                  <span class="card-text form-text">Category: {{catArticle.categoryName}}</span>
+                  <br>
+                  Contributors: <span class="form-text" *ngFor="let contributor of catArticle.contributors">
+                    ({{contributor.name}})</span>
+                  <br>
+                  <br>
+                  <span class="card-text form-text">{{catArticle.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+>>>>>>> b174822febf4e3bf3b0ad7c4f54f8a72a3e61924
       </div>
+      <br>
     </div>
+<<<<<<< HEAD
   </div>
+=======
+  </div> -->
+
+
 </div>
 
 <br>
@@ -229,6 +370,25 @@
           <img src="assets/com.jpg " class="card-img-top" alt="...">
           <div class="card-body">
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <h3 class="text-center mt-2 mb-2">
+    All Articles and Books
+  </h3>
+  <div class="row">
+    <div class="col-md-4 col-sm-12 card-group" style="margin-top: 30px;"
+      *ngFor="let article of allArticles | searchFilter: searchData">
+      <a (click)="view(article.id)" style="cursor: pointer">
+        <div class="card h-100" style="width: 18rem;">
+          <img [src]="article.coverPage" class="card-img-top img-fluid img-thumbnail" alt="no book cover" style="object-fit: cover;width: 100%;
+height: 20vh; ">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <span class="form-text">Category: {{article.categoryName}}</span>
+            <br>
+            Contributors: <span class="form-text" *ngFor="let contributor of article.contributors">
+              ({{contributor.name}})</span>
+            <br>
+            <br>
+            <span class="form-text">{{article.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</span>
           </div>
           {{num}}
         </div>
@@ -243,8 +403,32 @@
 
       previousLabel="Prev"
       nextLabel="Next"
-      (pageChange)="onTableDataChange($event)">
+      (pageChange)="onTableDataChange()">
     </pagination-controls>
+  </div>
+
+  </div>
+  <div class="d-flex justify-content-start mt-lg-4 mb-5">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" aria-label="Previous" (click)="previous()" routerLinkActive="active"
+            style="cursor: pointer;">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item " *ngFor="let number of pageNumberArray; let i = index">
+          <a class="page-link " (click)="setPage(i, number)"
+            style="cursor: pointer;">{{i}}<span
+              class="sr-only"  >(current)</span></a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" aria-label="Next" (click)="Next()" routerLinkActive="active" style="cursor: pointer;">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
 </div>
@@ -252,18 +436,23 @@
 <br>
 <div class="auth" >
   <h5>{{ 'Page.author' | translate }}</h5>
+<div class="auth">
+  <h5>Our Authors</h5>
   <div class="row">
     <div class="col-md-3">
-      <div class="card" >
+      <div class="card">
 
         <div class="card-body">
           <div><h6>{{ 'Page.authorName' | translate }}</h6></div>
+          <div>
+            <h6>Author name</h6>
+          </div>
           <span class="card-text form-text">email@gmail.com</span>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card" >
+      <div class="card">
 
         <div class="card-body">
           <h6>Author name</h6>
@@ -272,7 +461,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card" >
+      <div class="card">
         <div class="card-body">
           <h6>Author name</h6>
           <span class="card-text form-text">email@gmail.com</span>
@@ -280,7 +469,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card" >
+      <div class="card">
         <div class="card-body">
           <h6>Author name</h6>
           <span class="card-text form-text">email@gmail.com</span>
@@ -318,6 +507,14 @@
     <div class="col-md-3">
       <span >About us</span>
       <p>FAQ</p>
+      <span>About us</span>
+      <p>FAQ</p>
+    </div>
+    <div class="col-md-3">
+      <p>Terms</p>
+      <p>Privacy</p>
+      <h5>Subscribe to our newsletter</h5>
+      <input placeholder=" enter email..." class="input-size"><button class="btn btn-outline-primary">Subscribe</button>
     </div>
     <div class="col-md-3">
       <p>Terms</p>
@@ -328,11 +525,10 @@
 
   </div>
 
+  </div>
+
 
 </div>
 <div class="foot">
   <p class="p">Copyright @2022 All rights reserved. <span class="blog">Blog site</span></p>
 </div>
-
-
-

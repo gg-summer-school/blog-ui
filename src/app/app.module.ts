@@ -32,6 +32,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PaymentComponent } from './pages/payment/payment.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,12 +59,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchFilterPipe,
     StatusComponent,
     EditArticleComponent,
-
+    NavbarComponent,
     ViewTransactionsComponent,
     PageNotFoundComponent,
-    PaymentComponent
-
-
+    PaymentComponent,
   ],
   imports: [
     HttpClientModule,
