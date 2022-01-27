@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from "../../services/articles.service";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { TokenStorageService } from "../../services/token-storage.service";
@@ -7,7 +7,7 @@ import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -26,28 +26,35 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   totalPages: number = 0;
   allArticles: ArticleDto[] = [];
   pages: any = 0;
-  category:boolean=false;
-  subscriptions:Subscription[] = [];
+  category: boolean = false;
+  checkArticleLength!:boolean;
   pageNumberArray: number[] = [];
-  pageNum:number = 0;
+  pageNum: number = 0;
+  subscriptions: Subscription[] = [];
+  active: boolean | undefined;
   allCategories: any;
 
-  constructor( private articlesService:ArticlesService, private router: Router, private activateRoute:ActivatedRoute
-               ,public tokenStorage: TokenStorageService, public translate: TranslateService) {
-    translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang('en');
+
+  constructor(private articlesService: ArticlesService, private router: Router,
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
+
+      translate.addLangs(['en', 'fre']);
+      translate.setDefaultLang('en');
+      translate.use('en');
+
   }
+
+  selectedLang: any;
+   switchLang(){}
+
   ngOnDestroy(): void {
     for(const sub of this.subscriptions){
       sub.unsubscribe();
     }
   }
-  ngOnInit(): void {
-    this.getAllArticles(this.pageNum, this.pageSize)
-  }
 
-  switchLang(lang: string) {
-    this.translate.use(lang);
+  ngOnInit(): void {
+    this.getAllArticles(this.pageNum, this.pageSize);
   }
   previous() {
     this.activateRoute.queryParams.subscribe(params => {
@@ -74,9 +81,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.getAllArticles(currentPageIndex, this.pageSize);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
   }
-
-
-
   getAllArticles(page: number, pageSize: number) {
 
     const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {

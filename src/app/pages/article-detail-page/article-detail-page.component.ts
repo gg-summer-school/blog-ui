@@ -39,7 +39,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   authUser: Users | undefined;
   form: any;
 
-
   constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
     private formBuilder: FormBuilder, private authService: AuthService,
     public tokenStorage: TokenStorageService, private articleService: ArticlesService) { }
