@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminPagesService } from "../../services/admin-services/admin-pages.service";
-import { Admin } from "../../model/admin";
+import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
+import {Admin, roleDTO, RolePayload} from "../../model/admin";
 
 @Component({
   selector: 'app-publisher-admin',
@@ -18,9 +18,8 @@ export class PublisherAdminComponent implements OnInit {
   numberOfArticles: Admin[] = [];
   status: string = 'Suspend';
   suspendUser: boolean = false;
-  addRole: boolean = false;
+  addRole!: RolePayload;
   reactivate: boolean = true;
-  active: boolean = false;
   number!: number
 
   constructor(private adminPagesService: AdminPagesService) { }
@@ -31,56 +30,51 @@ export class PublisherAdminComponent implements OnInit {
   }
 
   displayPublishers() {
-    // this.adminPagesService.getPublishers(this.isApproved)
-    //   .subscribe( res =>
-    //   {
-    //     this.publishers = res;
-    //     // console.log(this.publishers);
-    //   })
-  }
-
-  getArticlesById() {
-    // this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-    //   .subscribe( res =>
-    //   {
-    //     // console.log(res)
-    //   })
     this.adminPagesService.getPublishers(this.isApproved)
       .subscribe( res =>
       {
         this.publishers = res;
+        this.number= this.publishers.length;
       })
-    this.number= this.publishers.length;
-
   }
 
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
-
+      this.displayPublishers();
     })
-    this.active=true;
   }
 
-  onClickBlock() {
-    this.isBlocked = true;
-    this.isSuspended = false;
+  addRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+  }
+
+  removeRoleToUser(user_id: string, event:any) {
+    const role : roleDTO = {
+      role : (<any>RolePayload)[event.target.value]
+    }
+    this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
+      console.log(res);
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+  }
+
+  reactivateUser(publisherId: string) {
+    this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
+      this.displayPublishers();
+    })
   }
 
   onClickSuspend() {
     this.isSuspended = true;
     this.isBlocked = false;
-
-  }
-
-
-    addRoleToUser(publisherId: string) {
-      this.adminPagesService.addRole(publisherId, this.addRole).subscribe((res) => {
-      })
-    }
-
-    reactivateUser(publisherId: string) {
-      this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
-      })
     }
 
 

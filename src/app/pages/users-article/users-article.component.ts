@@ -20,6 +20,7 @@ export class UsersArticleComponent implements OnInit {
   userPaidArticle!: Articles[];
   pubArticles:ArticleDto[]=[];
   publisherId:string='';
+  number!: number;
 
   constructor(private articleService: ArticlesService, private tokenStorageService: TokenStorageService, private paidArticlesService: PaidArticlesService, private sanitizer: DomSanitizer) { }
   fileUrl: any;

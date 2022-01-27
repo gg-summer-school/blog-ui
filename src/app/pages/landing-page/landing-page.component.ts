@@ -7,6 +7,7 @@ import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -15,7 +16,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
- 
+
+  page = 0;
+  tableSize = 6;
   count = 0;
   pageSize = 3;
   nums: any;
@@ -29,10 +32,22 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   pageNum: number = 0;
   subscriptions: Subscription[] = [];
   active: boolean | undefined;
-   
+  allCategories: any;
+
 
   constructor(private articlesService: ArticlesService, private router: Router,
-    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute) { }
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
+      translate.addLangs(['en', 'fre']);
+      translate.setDefaultLang('en');
+      translate.use('en');
+
+  }
+
+  selectedLang: any;
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
   ngOnDestroy(): void {
     for(const sub of this.subscriptions){
       sub.unsubscribe();
@@ -46,7 +61,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.activateRoute.queryParams.subscribe(params => {
       if (params.page !== undefined) {
         this.pageNum = parseInt(params.page) - 1;
-         
+
       }
     })
     this.getAllArticles(this.pageNum, this.pageSize);
@@ -63,26 +78,19 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (this.pageNum) } });
   }
 
-
-
-
-
   setPage(currentPageIndex: number, currentPage:number) {
     this.getAllArticles(currentPageIndex, this.pageSize);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
   }
-
- 
-
   getAllArticles(page: number, pageSize: number) {
-    
+
     const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {
       this.allArticles = response.articleDtoList
       this.pages = response.totalPages;
       this.pageNumberArray = (Array.from(Array(this.pages).keys()));
-       
+
     }, (error: HttpErrorResponse) => {
-       
+
     }
     ).add(() => {
       // loader here
@@ -93,12 +101,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   view(id: string) {
     this.router.navigate(['/articles-detail', id]);
   }
-   
+
 
   selectedIndex!: number;
   select(index: number) {
     this.selectedIndex = index;
   }
 
-}
+  onTableDataChange(){}
 
+}

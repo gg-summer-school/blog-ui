@@ -41,7 +41,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
   authUser: Users | undefined;
-
+  form: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
     private formBuilder: FormBuilder, private authService: AuthService,
