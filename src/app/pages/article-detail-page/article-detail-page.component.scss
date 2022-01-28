@@ -26,9 +26,7 @@ h5 ,label{
   margin-top: 5rem;
   
 }
-.image {
-  margin-left: 23px;
-}
+ 
 
 img {
   border: 1px solid #ddd;
@@ -112,6 +110,7 @@ label {
   font-style: italic;
   padding: 5px;
   font-weight: lighter;
+  font-size: small;
 }
 
 .buy {
@@ -165,4 +164,10 @@ label {
   font-weight: bold;
  }
 
- 
+ a {
+   text-decoration: none;
+   color: blue;
+ }
+ a:link {
+   text-decoration: none;
+ }

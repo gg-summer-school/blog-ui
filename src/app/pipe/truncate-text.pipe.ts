@@ -5,10 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TruncateTextPipe implements PipeTransform {
 
-  transform(text: string =''): string {
-    if(text.length > 440){
-      return text.substr(0, 440)+"...";
-      
+  transform(text: string = ''): string {
+    if (text !== null) {
+      if (text.length > 440) {
+        return text.substr(0, 440) + "...";
+
+      }
     }
     return text;
   }
