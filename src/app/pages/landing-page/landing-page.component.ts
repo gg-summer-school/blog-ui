@@ -86,6 +86,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
     const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {
       this.allArticles = response.articleDtoList
+      this.allArticles.map(article => {
+        article.image ='data:'+article.contentType+';base64,'+ article.coverPage
+      })  
       this.pages = response.totalPages;
       this.pageNumberArray = (Array.from(Array(this.pages).keys()));
 
@@ -123,8 +126,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   getArticlesByCategory(categoryId:string){
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
-      this.allArticles = response
-      this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.allArticles[0].categoryName } });
+      this.allArticles = response;
+      this.allArticles.map(article => {
+        article.image ='data:'+article.contentType+';base64,'+ article.coverPage
+      })  
+      if(this.allArticles != undefined){
+        this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.allArticles[0].categoryName } });
+      }
     }, (error: HttpErrorResponse) => {
     }
     ).add(() => {

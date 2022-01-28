@@ -26,9 +26,11 @@ export interface ArticleDto{
   categoryId: string
   categoryName: string
   contributors: Contributors[]
-  coverPage: string
+  coverPage: Blob
+  contentType:string;
   createdAt: Date
   document: string
+  image:string;
   id: string
   price: number
   title: string
