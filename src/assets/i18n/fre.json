@@ -49,7 +49,6 @@
     "Article": "",
     "LoginTo": "",
     "Account": "",
-    "Name": "",
     "nameRequired": "",
     "Email1": "",
     "Email2": "",
@@ -79,11 +78,17 @@
     "Success": "Article Supprimer!!"
   },
   "ViewTransactions": {
-    "Details": "Details de vos Transactions",
+    "Details": "Details de Vos Transactions",
     "Motive": "Motive de votre Payement",
-    "Pay": "Payez L'article",
+    "Pay": "Article(s) Payer.",
     "Article": "Nom de L'article",
     "Date": "Date de payement",
     "ID": "Identification de Transaction"
+  },
+  "UsersArticle": {
+    "Pay": "Mes Articles Aquitter!",
+    "Book": "Articles",
+    "Contributor": "Auteurs",
+    "Download": "Télécharger"
   }
 }

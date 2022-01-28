@@ -15,7 +15,10 @@ export class ViewTransactionsComponent implements OnInit {
   userId: string = '';
 
   constructor(private adminPagesService: AdminPagesService, private tokenStorageService: TokenStorageService,
-              public translate: TranslateService) { }
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
 
   switchLang(lang: string) {
     console.log(lang)

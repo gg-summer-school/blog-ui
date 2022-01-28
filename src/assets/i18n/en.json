@@ -45,7 +45,7 @@
     "download2": "Downloading...",
     "Join": "Join For Free",
     "proceed": "To proceed effect payment",
-    "Name": "Name of Article",
+    "Name_article": "Name of Article",
     "Number": "Account Number",
     "Article": "Read full article",
     "LoginTo": "Please login to proceed !!!",
@@ -85,7 +85,12 @@
     "Pay": "Pay Book (s)",
     "Article": "Name of Article",
     "Date": "Payment Date",
-    "ID": "Transaction ID",
-    "": ""
+    "ID": "Transaction ID"
+  },
+  "UsersArticle": {
+    "Pay": "Mes Articles Aquitter!",
+    "Book": "Articles",
+    "Contributor": "Auteurs",
+    "Download": "Télécharger"
   }
 }
