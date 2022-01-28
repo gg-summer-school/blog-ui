@@ -3,251 +3,147 @@
 
 <div class="container-fluid mt-5">
   <div class="row coverPage">
-    <div class="col-md-3 mt-lg-3">
+    <div class="col-3 mt-lg-4">
       <div class="image">
-        <img src="{{article.coverPage}}" alt="article coverPage image" height="350px" width="250px" />
+        <img src="{{article?.coverPage}}" alt="article coverPage image" (click)="getDocument()" height="350px" width="250px" />
       </div>
       <hr>
       <div>
         <h5 class="label1">Follow the Author</h5>
-        <h6 class="label1"><label router-link="/user-profile">Mike Shel</label></h6>
-        <h6 class="label1"><label>mikeshel@gmail.com</label></h6>
+        <h6 class="label1"><label router-link="/user-profile">{{publisher?.name}}</label></h6>
+        <h6 class="label1"><label>{{publisher?.email}}</label></h6>
       </div>
     </div>
-    <div class="col-md-9">
-      <div class="row mt-4">
-        <div class="col-9">
-          <h6 class="label">{{article.title}} <br>
-            <p router-link="/user-profile">By Mike Shel | <span>Category: {{article.categoryName}}</span>
-              <br>
-              <small>Book 1 of 5</small>
-            </p>
-          </h6>
-          <hr>
+    <div class="col-md-7 mt-lg-4">
+      <h6 class="label">{{article?.title}} <br>
+        <p router-link="/user-profile">By {{publisher?.name}} | <span>Category: {{article?.categoryName}}</span>  
+        </p>
+      </h6>
+      <hr>
+      <div class="price">
+        <small class="pdf">Document(PDF format)</small><br>
+        CFA {{article?.price}}
+      </div>
+      <div class="mt-4 ">
+        <p class="articleAbstract" *ngIf="!showAbs"><span class="abstract text-muted">Abstract :
+          </span>{{article?.articleAbstract | truncateText }} <br>
+          <small class="readmore" (click)="showAbstract()"> <i class="fas fa-angle-down"></i> Read more</small>
+        </p>
+        <p class="articleAbstract" *ngIf="showAbs"><span class="abstract text-muted">Abstract :
+          </span>{{article?.articleAbstract}} <br>
+          <small class="readmore" (click)="showAbstract()"> <i class="fas fa-angle-up"></i> Show less</small>
+        </p>
+      </div>
 
-          <div class="price">
-            <small class="pdf">Document(PDF format)</small><br>
-            XCFA {{article.price}}
+      <div class="mt-3">
+        <div class="articleAbstract" *ngIf="!showTable"><span class="abstract text-muted">Table of Content : </span>
+          <p class="articleAbstract"> {{article?.toc | truncateText}} <br>
+            <small class="readmore" (click)="showContent()"> <i class="fas fa-angle-down"></i> Read more</small>
+          </p>
+        </div>
+        <p class="articleAbstract" *ngIf="showTable"><span class="abstract text-muted">Table of Content :
+          </span>{{article?.toc}} <br>
+          <small class="readmore" (click)="showContent()"> <i class="fas fa-angle-up"></i> Show less</small>
+        </p>
+      </div>
+      <hr>
+    </div>
+    <div class="col-md-2 mt-lg-4 d-flex justify-content-center">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">Read Full Article</h6>
+          <label class="card-text"> </label>
+          <label class="card-text"><small class="text-muted">Price: </small> <span class="purchase">CFA
+              {{article?.price}}</span></label>
+          <label class="card-text"><small class="text-muted">Format: </small> <span class="purchase">PDF</span></label>
+          <div>
+            <button type="button" class="btn btn-primary buy" (click)="requestText()">Buy with 1-click  </button>
           </div>
-          <div class="mt-4 ">
-            <p class="articleAbstract">{{article.articleAbstract}} <br>
-              <small class="readmore">Read more</small>
-            </p>
-          </div>
-          <div class="mt-4 ">
-            <p class="articleAbstract">{{article.toc}} <br>
-              <small class="readmore">Read more</small>
-            </p>
-          </div>
-          <hr>
         </div>
       </div>
-  </div>
-</div>
-</div>
-
-
-<!--download modal-->
-<div
-  class="modal fade"
-  id="editProfileModal2"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content download">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">{{ 'articlePage.download' | translate }}</h5>
-        <button
-          type="button"
-          class="btn-close btn-sm "
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <span class="form-text">{{ 'articlePage.download2' | translate }}</span>
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-      </div>
-      <br>
-      <br>
-      <div class="d-flex justify-content-end">
-        <button
-          type="submit"
-          class="btn  btn-sm btn-primary"
-          data-bs-dismiss="modal">
-          <a href="/signup" style="color: white;text-decoration: none;">{{ 'articlePage.Join' | translate }}</a>
-        </button>
-      </div>
-    </div>
-    <div class="col-md-1">
     </div>
   </div>
 </div>
 
 <!-- payment form -->
 <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ 'articlePage.proceed' | translate }}</h5>
-        <button
-          type="button"
-          class="btn-close btn-sm "
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-        <h5 class="modal-title" id="exampleModalLabel">Fill details to make Payment</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="d-flex justify-content-end">
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+          aria-label="Close"></button></h6>
+      </div>
+      <div>
+        <h6 class="createAccount1 mt-2" id="exampleModalLabel">Enter Account Number to make Payment</h6>
       </div>
       <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
         <div class="modal-body">
-          <div class="form-group mb-2">
-            <label>Article Title:</label>
-            <input formControlName="nameOfArticle" class="form-control" required />
-          </div>
-          <div class="form-group mb-2">
-            <label>Account Number:</label>
-            <input formControlName="accountNumber" class="form-control" required />
-
+          <div class="form-group">
+            <label class="mb-1 text-black">Account Number:</label>
+            <input type="tel" formControlName="accountNumber" class="form-control" required />
+            <span class="text-danger" *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors" >
+              
+              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> Account Number is required</div>
+              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> Account Number must be 9 digit</div>
+            </span>
           </div>
         </div>
-        <div class="modal-footer mt-4">
-          <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Make Payment</button>
+        <div class=" mt-1 account">
+          <button type="submit" id="payment"   [disabled]="!paymentForm.valid" class="btn btn-primary text-white btn-sm"
+            data-bs-dismiss="modal">Make Payment</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 <!-- Modal for users with no account-->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel1">{{ 'articlePage.Article' | translate }}</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h5>{{ 'articlePage.LoginTo' | translate }}</h5>
-        <div class="right">
-          <div class="register-form">
-            <div class="col-sm-10">
-              <form [formGroup]="signupForm" *ngFor="let f of form" (ngSubmit)="onSubmit()" class="form-items">
-                <h5><b>{{ 'articlePage.Account' | translate }}</b></h5>
-                <div class="form-group">
-                  <label>{{ 'articlePage.Name' | translate }}</label>
-                  <input
-                    type="text"
-                    formControlName="name"
-                    class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-                  />
-                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                    <div *ngIf="f.name.errors.required">{{ 'articlePage.nameRequired' | translate }}</div>                    <div *ngIf="f.name.errors.required">nameRequirednameRequired</div>
-
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>{{ 'articlePage.Email1' | translate }}</label>
-                  <input
-                    type="text"
-                    formControlName="email"
-                    class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                  />
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">{{ 'articlePage.Email2' | translate }}</div>
-                    <div *ngIf="f.email.errors.email">{{ 'articlePage.Email3' | translate }}</div>
-                  </div>
-                </div>
-
-                <div class="form-group" >
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    formControlName="password"
-                    class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                  />
-                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">{{ 'articlePage.Password' | translate }}</div>
-                    <div *ngIf="f.password.errors.minlength">
-                      {{ 'articlePage.password2' | translate }}
-                    </div>
-                    <div *ngIf="f.password.errors.maxlength">
-                      {{ 'articlePage.username' | translate }}
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <br/>
-                  <label>{{ 'articlePage.role' | translate }}</label>
-                  <select
-                    [(ngModel)] = "role"
-                    class="form-select mt-3"
-                    required formControlName="role">
-                    <option value="USER">{{ 'articlePage.user' | translate }}</option>
-                    <option value="PUBLISHER">{{ 'articlePage.publisher' | translate }}</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>{{ 'articlePage.ArticleN' | translate }}</label>
-                  <input
-                    type="text"
-                    formControlName="nameOfArticle"
-                    class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>{{ 'articlePage.Payment' | translate }}</label>
-                  <input
-                    type="text"
-                    formControlName="payment"
-                    class="form-control"
-                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn btn-cl">{{ 'articlePage.account2' | translate }}</button>
-                </div>
-              </form>
-            </div>
-        <h5>Please register to read Article</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-        <h5>Please register to read Article</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="d-flex justify-content-between">
+        <h5 class="createAccount">Create Account</h5>
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
       </div>
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
         <div class="modal-body">
           <div class="form-group ">
-            <label>Name</label>
+            <label class="regLabel">Name</label>
             <input type="text" formControlName="name" class="form-control" required />
+            <span class="text-danger" *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required" >
+              Name is required
+            </span>
           </div>
           <div class="form-group mt-2">
-            <label>Email</label>
+            <label class="regLabel">Email</label>
             <input type="email" formControlName="email" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+              Email is required
+            </span>
+            <span class="text-danger"
+              *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+              Invalid email address
+            </span>
           </div>
           <div class="form-group mt-2">
-            <label>Password</label>
+            <label class="regLabel"> Password</label>
             <input type="password" formControlName="password" class="form-control" required />
-          </div>
-          <div class="form-group mt-2">
-            <label>Choose role</label>
-            <select [(ngModel)]="role" class="form-select" required formControlName="role">
-              <option value="USER">User</option>
-              <option value="PUBLISHER">Publisher</option>
-            </select>
+            <span class="text-danger" *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors">
+              <div *ngIf="registerFormControl.password.errors?.required">Password is required</div>
+              <div *ngIf="registerFormControl.password.errors?.minlength">
+                Password must be at least 8 characters
+              </div>
+               
+            </span>
           </div>
         </div>
-        <div class="modal-footer mt-4">
-          <button type="submit" id="payment" class="btn btn-primary text-white btn-sm" data-bs-dismiss="modal">Create
+        <div class=" mt-1 account">
+          <button type="submit" id="payment" [disabled]="!signupForm.valid" class="btn btn-primary text-white btn-sm"
+            data-bs-dismiss="modal">Create
             Account</button>
         </div>
       </form>
     </div>
   </div>
+</div>
