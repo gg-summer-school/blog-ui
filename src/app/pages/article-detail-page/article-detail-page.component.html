@@ -13,6 +13,9 @@
         <h5 class="label1">Follow the Author</h5>
         <h6><label router-link="/user-profile">{{publisher?.name}}</label></h6>
         <h6><label> <a href="mailto:{{publisher?.email}}">{{publisher?.email}}</a></label></h6>
+        <div *ngFor="let contributor of article?.contributors">
+            <h6 class="label1 text-primary">{{contributor.name}}</h6>
+        </div>
       </div>
     </div>
     <div class="col-md-7 mt-lg-4">
