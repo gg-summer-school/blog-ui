@@ -100,5 +100,16 @@
     "Article": "Article",
     "Edit": "Rectifier",
     "Save": "Sauvegarder"
+  },
+  "UserAdmin": {
+    "Reader": "Lecteurs",
+    "Email": "Email",
+    "Role": "Role",
+    "Suspend": "Suspendre",
+    "Reactivate": "Réactiver",
+    "Upgrade": "Grader de",
+    "Admin": "Admin",
+    "Publisher": "Editeur",
+    "Remove": "Inferier Role"
   }
 }

@@ -102,5 +102,16 @@
    "Article": "Number of Articles",
    "Edit": "Edit Profile",
    "Save": "Save"
- }
+ },
+  "UserAdmin": {
+    "Reader": "Number of Readers",
+    "Email": "Email",
+    "Role": "Role",
+    "Suspend": "Suspend",
+    "Reactivate": "Reactivate",
+    "Upgrade": "Upgrade To",
+    "Admin": "Admin",
+    "Publisher": "Publisher",
+    "Remove": "Remove Role"
+  }
 }
