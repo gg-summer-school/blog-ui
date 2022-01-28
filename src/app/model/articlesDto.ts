@@ -17,6 +17,6 @@ export interface ArticleDto {
 }
 
 export interface PayArticleDto {
-    nameofarticle: string,
+    nameOfArticle: string,
     accountNumber:string,
 }
