@@ -33,6 +33,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   active: boolean | undefined;
   categories!: Categories[];
+  categoryName!:Categories;
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -131,7 +132,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
         article.image ='data:'+article.contentType+';base64,'+ article.coverPage
       })  
       if(this.allArticles != undefined){
-        this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.allArticles[0].categoryName } });
+        //to modify to use lambda
+        for(let cat of this.categories){
+          if(cat.id === categoryId){
+            this.categoryName = cat;
+          }
+        }
+        this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.categoryName.name } });
       }
     }, (error: HttpErrorResponse) => {
     }
@@ -139,6 +146,12 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       // loader here
     })
     this.subscriptions.push(subscription);
+  }
+
+  findCategory(categoryId:string) {
+    this.categories.forEach(element => {
+      return element.id === categoryId;
+    });
   }
 
 }
