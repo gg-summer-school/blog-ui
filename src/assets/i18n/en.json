@@ -92,5 +92,15 @@
     "Book": "Articles",
     "Contributor": "Auteurs",
     "Download": "Télécharger"
-  }
+  },
+ "UserProfile": {
+   "Profile": "My Profile",
+   "Name": "Name",
+   "Email": "Email",
+   "Role": "Roles",
+   "Publisher": "Publishers",
+   "Article": "Number of Articles",
+   "Edit": "Edit Profile",
+   "Save": "Save"
+ }
 }
