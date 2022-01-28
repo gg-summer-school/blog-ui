@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 import {Admin, roleDTO, RolePayload} from "../../model/admin";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-user-admin',
@@ -18,7 +19,15 @@ export class DashboardComponent implements OnInit {
   active: boolean = false;
   role: string = 'Role'
 
-  constructor(private adminPagesService: AdminPagesService) { }
+  constructor(private adminPagesService: AdminPagesService, public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
+
+  switchLang(lang: string) {
+    console.log(lang)
+    this.translate.use(lang);
+  }
 
   ngOnInit(): void {
     this.displayReaders()

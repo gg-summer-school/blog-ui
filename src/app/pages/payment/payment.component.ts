@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ArticlesService} from '../../services/articles.service';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-payment',
@@ -12,7 +13,11 @@ export class PaymentComponent implements OnInit {
   userid: string = '';
   articleid: string = '';
 
-  constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService) {}
+  constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
   paymentForm = this.formBuilder.group({
     nameOfArticle: '',
     payment: ''

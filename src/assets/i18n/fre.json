@@ -49,7 +49,6 @@
     "Article": "",
     "LoginTo": "",
     "Account": "",
-    "Name": "",
     "nameRequired": "",
     "Email1": "",
     "Email2": "",
@@ -77,5 +76,133 @@
     "Sure": "Voulez vous vraiment supprimer cette article?",
     "Cancel": "Non",
     "Success": "Article Supprimer!!"
+  },
+  "ViewTransactions": {
+    "Details": "Details de Vos Transactions",
+    "Motive": "Motive de votre Payement",
+    "Pay": "Article(s) Payer.",
+    "Article": "Nom de L'article",
+    "Date": "Date de payement",
+    "ID": "Identification de Transaction"
+  },
+  "UsersArticle": {
+    "Pay": "Mes Articles Aquitter!",
+    "Book": "Articles",
+    "Contributor": "Auteurs",
+    "Download": "Télécharger"
+  },
+  "UserProfile": {
+    "Profile": "Mon Profile",
+    "Name": "Nom",
+    "Email": "Email",
+    "Role": "Role",
+    "Publisher": "Editeur",
+    "Article": "Article",
+    "Edit": "Rectifier",
+    "Save": "Sauvegarder"
+  },
+  "UserAdmin": {
+    "Reader": "Lecteurs",
+    "Email": "Email",
+    "Role": "Role",
+    "Suspend": "Suspendre",
+    "Reactivate": "Réactiver",
+    "Upgrade": "Grader de",
+    "Admin": "Admin",
+    "Publisher": "Editeur",
+    "Remove": "Inferier Role"
+  },
+  "Status": {
+    "Profile": "Mon Profile",
+    "Welcome": "Bienvenu"
+  },
+  "Signup": {
+    "Account": "Créez Votre Compte",
+    "Name": "Nom",
+    "Required": "Votre nom est Obligatoire",
+    "Email": "Email",
+    "ERequired": "Votre Email est Obligatoire",
+    "Invalid": "Votre Email n'est pas Valid",
+    "Password": "Mot de passe",
+    "PRequired": "Votre Mot de passe est Obligatoire",
+    "Password1": "Entrez au moins 8 caractères pour le Mot de passe",
+    "Username": "Votre nom ne doit pas être plus de 40 lettres",
+    "Role": "Choisi Role",
+    "Reader": "Lecteur",
+    "Publisher": "Editeur",
+    "Account1": "Vous avez déjà un compte?",
+    "Login": "Se Connecter"
+  },
+  "Requests": {
+    "Request": "Requêtes",
+    "Pending": "Editeurs en Suspens",
+    "Email": "Email",
+    "Accept": "Accepter",
+    "Decline": "Rejeter"
+  },
+  "PublisherAdmin": {
+    "Publisher": "Editeurs",
+    "Email": "Email",
+    "Role": "Role",
+    "Suspend": "Suspendre",
+    "Reactivate": "Réactiver",
+    "Upgrade": "Grader de",
+    "Admin": "Admin",
+    "Publisher1": "Editeur",
+    "Remove": "Inferier Role"
+  },
+  "PublishArticle": {
+    "Publish": "Publier un article",
+    "Title": "Titre",
+    "placeholderT": "Titre",
+    "Field": "Ce champ de text Obligatoire.",
+    "Abstract": "Résumé",
+    "Content": "Table des matières",
+    "Contributor": "Contributeurs/Auteurs",
+    "placeholderC": "Entrez plusieurs contributeurs separer par une virgule",
+    "Category": "Categorie",
+    "Price": "Prix",
+    "placeholderP": "Prix de L'article",
+    "Upload": "Téléverser les Articles",
+    "Success": "Création d'article Réussi!!!",
+    "Error": "erreur",
+    "Upload1": "Téléverser les fichiers",
+    "Upload2": "Téléverser la couverture de livre",
+    "Upload3": "Téléverser le livre",
+    "Publish1": "Publiez l'article"
+  },
+  "PageNotFound": {
+    "Found": "Not Found",
+    "Page": "OOPS! La page que vous recherchez est hors de notre portée.",
+    "You": "Nous vous rejoindre",
+    "Back": "Retourner"
+  },
+  "Login": {
+    "Account": "Se connecter à Compte",
+    "PlaceholderE": "Adresse e-mail",
+    "ERequired": "Votre Email est Obligatoire",
+    "Invalid": "Entrer un email Valid",
+    "PlaceholderP": "Mot de passe",
+    "PRequired": "Votre Mot de passe est Obligatoire",
+    "Password1": "Entrez au moins 8 caractères pour le Mot de passe",
+    "Forgot": "Mot de passe oublié",
+    "Account1": "Pas encore un compte?",
+    "Login1": "Se Connecter",
+    "Signup": "S'inscrire"
+  },
+  "EditArticle": {
+    "Article": "Rectifier l'article",
+    "Success": "mise à jour d'article Réussi!!!",
+    "Error": "erreur",
+    "placeholderT": "Titre",
+    "Field": "Ce champ de text Obligatoire.",
+    "Price": "Prix",
+    "placeholderP": "Prix de L'article"
+  },
+  "Payment": {
+    "Detail": "Detail de Payement",
+    "Name": "Nom de l'article",
+    "Card": "Numéro de carte",
+    "Pay": "Payer $243"
   }
 }

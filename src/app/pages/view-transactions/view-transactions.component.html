@@ -9,14 +9,14 @@
     </div>
 
   <div class="col-md-8">
-    <h5>Transaction Details</h5>
+    <h5>{{'ViewTransactions.Details'| translate }}</h5>
 
     <br>
     <div >
-      <p>Payment Motive: <small class="m-lg-5"> Pay Book(s)</small></p>
-      <p>Name of Article: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.nameOfArticle }}</small> </p>
-      <p>Payment Date: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.createdAt }}</small></p>
-      <p>Transaction ID: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.id }}</small></p>
+      <p>{{'ViewTransactions.Motive'| translate }}: <small class="m-lg-5"> {{'ViewTransactions.Pay'| translate }}</small></p>
+      <p>{{'ViewTransactions.Article'| translate }}: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.nameOfArticle }}</small> </p>
+      <p>{{'ViewTransactions.Date'| translate }}: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.createdAt }}</small></p>
+      <p>{{'ViewTransactions.ID'| translate }}: <small class="m-lg-5" *ngFor="let trans of transactions">{{ trans.id }}</small></p>
     </div>
   </div>
   </div>

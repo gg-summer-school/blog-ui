@@ -7,6 +7,7 @@ import {Contributors} from "../../model/contributors";
 import {Articles} from "../../model/articles";
 import {ResponseObject} from "../../model/response";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-publish-article',
@@ -31,7 +32,15 @@ export class PublishArticleComponent implements OnInit {
 
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
-              private router: Router) { }
+              private router: Router, public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
+
+  // switchLang(lang: string) {
+  //   console.log(lang)
+  //   this.translate.use(lang);
+  // }
 
   ngOnInit(): void {
     this.publish= new FormGroup(

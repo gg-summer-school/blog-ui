@@ -1,18 +1,18 @@
 <div class="container p-0">
   <div class="card px-4">
-    <p class="h8 py-3">Payment Details</p>
+    <p class="h8 py-3">{{'Payment.Detail'| translate }}</p>
     <div class="row gx-3">
       <form [formGroup]="paymentForm" (ngSubmit)="payAnArticle()">
         <div class="col-12">
           <!--        <img class="img-thumbnail" src="assets/momo.jpeg">-->
           <!--        <img class="img-thumbnail" src="assets/orange.jpg">-->
           <div class="d-flex flex-column">
-            <p class="text mb-1">Article Name</p> <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen" formControlName="nameOfArticle">
+            <p class="text mb-1">{{'Payment.Name'| translate }}</p> <input class="form-control mb-3" type="text" placeholder="Name" value="Barry Allen" formControlName="nameOfArticle">
           </div>
         </div>
         <div class="col-12">
           <div class="d-flex flex-column">
-            <p class="text mb-1">Card Number</p> <input class="form-control mb-3" type="text" placeholder="(237) 5678 435678" formControlName="payment">
+            <p class="text mb-1">{{'Payment.Card'| translate }}</p> <input class="form-control mb-3" type="text" placeholder="(237) 5678 435678" formControlName="payment">
           </div>
         </div>
         <!--        <div class="col-12">-->
@@ -33,7 +33,7 @@
         <div class="col-12">
           <a routerLink="/users-article">
             <button type="submit" class="btn btn-primary mb-3">
-              <span class="ps-3">Pay $243</span> <span class="fa fa-arrow-right"></span> </button>
+              <span class="ps-3">{{'Payment.Pay'| translate }}</span> <span class="fa fa-arrow-right"></span> </button>
           </a>
         </div>
       </form>
