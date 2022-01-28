@@ -111,5 +111,9 @@
     "Admin": "Admin",
     "Publisher": "Editeur",
     "Remove": "Inferier Role"
+  },
+  "Status": {
+    "Profile": "Mon Profile",
+    "Welcome": "Bienvenu"
   }
 }
