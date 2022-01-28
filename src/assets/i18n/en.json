@@ -178,5 +178,18 @@
     "Page": "OOPS! The page you are looking for is beyond our reach.",
     "You": "Let's get to you...",
     "Back": "Back"
+  },
+  "Login": {
+    "Account": "Login to your account",
+    "placeholderE": "Email Address",
+    "ERequired": "Email is required",
+    "Invalid": "Enter a valid email address",
+    "PlaceholderP": "Password",
+    "PRequired": "Password is required",
+    "Password1": "Password must be at least 8 characters",
+    "Forgot": "Forgot Password",
+    "Account1": "Don't have an account yet?",
+    "Login1": "Login",
+    "Signup": "Sign up"
   }
 }

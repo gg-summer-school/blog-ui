@@ -176,5 +176,17 @@
     "Page": "OOPS! La page que vous recherchez est hors de notre portée.",
     "You": "Nous vous rejoindre",
     "Back": "Retourner"
+  },
+  "Login": {
+    "Account": "Se connecter à Compte",
+    "PlaceholderE": "Adresse e-mail",
+    "ERequired": "Votre Email est Obligatoire",
+    "Invalid": "Entrer un email Valid",
+    "PlaceholderP": "Mot de passe",
+    "PRequired": "Votre Mot de passe est Obligatoire",
+    "Password1": "Entrez au moins 8 caractères pour le Mot de passe",
+    "Forgot": "Mot de passe oublié",
+    "Account1": "Pas encore un compte?",
+    "Login1": "Se Connecter",
+    "Signup": "S'inscrire"
   }
-}
