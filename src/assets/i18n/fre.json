@@ -150,5 +150,25 @@
     "Admin": "Admin",
     "Publisher1": "Editeur",
     "Remove": "Inferier Role"
+  },
+  "PublishArticle": {
+    "Publish": "Publier un article",
+    "Title": "Titre",
+    "placeholderT": "Titre",
+    "Field": "Ce champ de text Obligatoire.",
+    "Abstract": "Résumé",
+    "Content": "Table des matières",
+    "Contributor": "Contributeurs/Auteurs",
+    "placeholderC": "Entrez plusieurs contributeurs separer par une virgule",
+    "Category": "Categorie",
+    "Price": "Prix",
+    "placeholderP": "Prix de L'article",
+    "Upload": "Téléverser les Articles",
+    "Success": "Création d'article Réussi!!!",
+    "Error": "erreur",
+    "Upload1": "Téléverser les fichiers",
+    "Upload2": "Téléverser la couverture de livre",
+    "Upload3": "Téléverser le livre",
+    "Publish1": "Publiez l'article"
   }
 }

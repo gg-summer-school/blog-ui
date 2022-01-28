@@ -152,5 +152,25 @@
     "Admin": "Admin",
     "Publisher1": "Publisher",
     "Remove": "Remove Role"
+  },
+  "PublishArticle": {
+    "Publish": "Publish an article",
+    "Title": "Title",
+    "placeholderT": "Title",
+    "Field": "This field is required",
+    "Abstract": "Abstract",
+    "Content": "Table of Content",
+    "Contributor": "Contributors/Authors",
+    "placeholderC": "Enter many contributors separated by comma",
+    "Category": "Category",
+    "Price": "Price",
+    "placeholderP": "Book price",
+    "Upload": "Upload Articles",
+    "Success": "Article successfully created!!!",
+    "Error": "error",
+    "Upload1": "Upload Files",
+    "Upload2": "Upload book cover",
+    "Upload3": "Upload book",
+    "Publish1": "Publish Article"
   }
 }
