@@ -170,5 +170,11 @@
     "Upload2": "Téléverser la couverture de livre",
     "Upload3": "Téléverser le livre",
     "Publish1": "Publiez l'article"
+  },
+  "PageNotFound": {
+    "Found": "Not Found",
+    "Page": "OOPS! La page que vous recherchez est hors de notre portée.",
+    "You": "Nous vous rejoindre",
+    "Back": "Retourner"
   }
 }

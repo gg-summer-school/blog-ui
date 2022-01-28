@@ -172,5 +172,11 @@
     "Upload2": "Upload book cover",
     "Upload3": "Upload book",
     "Publish1": "Publish Article"
+  },
+  "PageNotFound": {
+    "Found": "Not Found",
+    "Page": "OOPS! The page you are looking for is beyond our reach.",
+    "You": "Let's get to you...",
+    "Back": "Back"
   }
 }
