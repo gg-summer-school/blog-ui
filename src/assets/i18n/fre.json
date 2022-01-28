@@ -77,5 +77,13 @@
     "Sure": "Voulez vous vraiment supprimer cette article?",
     "Cancel": "Non",
     "Success": "Article Supprimer!!"
+  },
+  "ViewTransactions": {
+    "Details": "Details de vos Transactions",
+    "Motive": "Motive de votre Payement",
+    "Pay": "Payez L'article",
+    "Article": "Nom de L'article",
+    "Date": "Date de payement",
+    "ID": "Identification de Transaction"
   }
 }
