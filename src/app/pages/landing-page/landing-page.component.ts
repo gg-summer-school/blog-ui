@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
 import {TranslateService} from "@ngx-translate/core";
+import { Categories } from 'src/app/model/categories';
  
 
 @Component({
@@ -19,7 +20,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   page = 0;
   tableSize = 6;
   count = 0;
-  pageSize = 3;
+  pageSize = 8;
   nums: any;
   searchData = '';
   totalPages: number = 0;
@@ -31,7 +32,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   pageNum: number = 0;
   subscriptions: Subscription[] = [];
   active: boolean | undefined;
-  allCategories: any;
+  categories!: Categories[];
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -54,6 +55,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAllArticles(this.pageNum, this.pageSize);
+    this.getAllCategories();
   }
   previous() {
     this.activateRoute.queryParams.subscribe(params => {
@@ -107,5 +109,28 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   onTableDataChange(){}
+
+  getAllCategories(){
+    const subscription = this.articlesService.getCategory().subscribe((response:Categories[]) => {
+        this.categories = response;
+    }, (error: HttpErrorResponse) => {
+    }
+    ).add(() => {
+      // loader here
+    })
+    this.subscriptions.push(subscription);
+  }
+
+  getArticlesByCategory(categoryId:string){
+    const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
+      this.allArticles = response
+      this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.allArticles[0].categoryName } });
+    }, (error: HttpErrorResponse) => {
+    }
+    ).add(() => {
+      // loader here
+    })
+    this.subscriptions.push(subscription);
+  }
 
 }

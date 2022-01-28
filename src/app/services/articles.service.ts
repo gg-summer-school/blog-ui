@@ -49,12 +49,12 @@ export class ArticlesService {
     return this.http.put(this.baseUrl1 + 'publishers/' + publisherId + '/articles/' + articleId + '/file-uploads', uploadFile);
   }
 
-  getArticlesByCategory(catid: string) {
+  getArticlesByCategory(catid: string):Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(this.baseUrl + `articles/categories?categoryId=` + catid);
   }
 
 
-  getCategory() {
+  getCategory():Observable<Categories[]> {
     return this.http.get<Categories[]>(this.baseUrl + 'categories');
   }
 

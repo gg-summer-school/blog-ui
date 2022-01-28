@@ -85,6 +85,10 @@ const routes: Routes = [
     path:"landing-page/articles",
     component:LandingPageComponent
   },
+  {
+    path:"landing-page/articles/categories",
+    component:LandingPageComponent
+  },
 
   {
     path: 'articles-detail/:id',
