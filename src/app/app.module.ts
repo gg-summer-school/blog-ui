@@ -34,11 +34,6 @@ import { PaymentComponent } from './pages/payment/payment.component';
 // import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
-
-export function HttpLoaderFactory(http: HttpClient) {
-   
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,3 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

@@ -65,16 +65,17 @@
     "account2": ""
   },
   "YourArticles": {
-    "Articles": "",
-    "Publilsh": "",
-    "Articles1": "",
-    "Category": "",
-    "Price": "",
-    "Delete": "",
-    "Edit": "",
-    "Delete2": "",
-    "Sure": "",
-    "Cancel": "",
-    "Success": ""
+    "Articles": "Articles",
+    "Publish": "Publiez un Article",
+    "Articles1": "Vos articles publier",
+    "NoArt": "Oops!! Vous n'avez pas encore publier d'articles.",
+    "Category": "Categorie",
+    "Price": "Prix",
+    "Delete": "Supprimer",
+    "Edit": "Rectifier",
+    "Delete2": "Supprimer L'article",
+    "Sure": "Voulez vous vraiment supprimer cette article?",
+    "Cancel": "Non",
+    "Success": "Article Supprimer!!"
   }
 }

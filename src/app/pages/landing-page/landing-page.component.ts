@@ -35,11 +35,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
-    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute,  ) {
-      // translate.addLangs(['en', 'fre']);
-      // translate.setDefaultLang('en');
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
+      translate.addLangs(['en', 'fre']);
+      translate.setDefaultLang('en');
       // translate.use('en');
-
   }
 
   selectedLang: any;

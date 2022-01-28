@@ -89,7 +89,7 @@ export class ArticlesService {
 
   }
 
-  PayArticle(user_id: string, article_id: string, article: PayArticleDto): Observable<ResponseObject> {
+  PayArticle(user_id: string, article_id: string, article: PayArticleDto):Observable<ResponseObject>{
     return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/users/${user_id}/articles/${article_id}`, article)
       .pipe(
         retry(1),
