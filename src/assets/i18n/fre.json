@@ -189,4 +189,14 @@
     "Account1": "Pas encore un compte?",
     "Login1": "Se Connecter",
     "Signup": "S'inscrire"
+  },
+  "EditArticle": {
+    "Article": "Rectifier l'article",
+    "Success": "mise à jour d'article Réussi!!!",
+    "Error": "erreur",
+    "placeholderT": "Titre",
+    "Field": "Ce champ de text Obligatoire.",
+    "Price": "Prix",
+    "placeholderP": "Prix de L'article"
   }
+}

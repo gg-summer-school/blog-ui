@@ -191,5 +191,14 @@
     "Account1": "Don't have an account yet?",
     "Login1": "Login",
     "Signup": "Sign up"
+  },
+  "EditArticle": {
+    "Article": "Edit article",
+    "Success": "Article successfully updated!!!",
+    "Error": "error",
+    "placeholderT": "Title",
+    "Field": "This field is required",
+    "Price": "Price",
+    "placeholderP": "Book price"
   }
 }

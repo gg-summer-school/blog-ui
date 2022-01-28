@@ -5,6 +5,7 @@ import { loginData, Users } from 'src/app/model/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import {UserDto} from "../../model/UserDto";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,12 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private router: Router
-    ) { }
+    private router: Router,
+    public translate: TranslateService
+    ) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
 
@@ -53,7 +58,7 @@ onSubmit() {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       console.log(user);
-      
+
       if(user.length === 1){
         this.router.navigate(['/users-article']);
       } else if(user.length === 2) {
