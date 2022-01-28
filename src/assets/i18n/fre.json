@@ -139,5 +139,16 @@
     "Email": "Email",
     "Accept": "Accepter",
     "Decline": "Rejeter"
+  },
+  "PublisherAdmin": {
+    "Publisher": "Editeurs",
+    "Email": "Email",
+    "Role": "Role",
+    "Suspend": "Suspendre",
+    "Reactivate": "Réactiver",
+    "Upgrade": "Grader de",
+    "Admin": "Admin",
+    "Publisher1": "Editeur",
+    "Remove": "Inferier Role"
   }
 }

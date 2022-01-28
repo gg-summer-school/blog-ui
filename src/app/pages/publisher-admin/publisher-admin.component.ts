@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 import {Admin, roleDTO, RolePayload} from "../../model/admin";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-publisher-admin',
@@ -22,12 +23,21 @@ export class PublisherAdminComponent implements OnInit {
   reactivate: boolean = true;
   number!: number
 
-  constructor(private adminPagesService: AdminPagesService) { }
+  constructor(private adminPagesService: AdminPagesService, public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
     this.displayPublishers();
     // this.getArticlesById()
   }
+
+  switchLang(lang: string) {
+    console.log(lang)
+    this.translate.use(lang);
+  }
+
 
   displayPublishers() {
     this.adminPagesService.getPublishers(this.isApproved)
