@@ -198,5 +198,11 @@
     "Field": "Ce champ de text Obligatoire.",
     "Price": "Prix",
     "placeholderP": "Prix de L'article"
+  },
+  "Payment": {
+    "Detail": "Detail de Payement",
+    "Name": "Nom de l'article",
+    "Card": "Numéro de carte",
+    "Pay": "Payer $243"
   }
 }

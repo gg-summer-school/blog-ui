@@ -173,6 +173,12 @@
     "Upload3": "Upload book",
     "Publish1": "Publish Article"
   },
+  "Payment": {
+    "Detail": "Payment Details",
+    "Name": "Article Name",
+    "Card": "Card Number",
+    "Pay": "Pay $243"
+  },
   "PageNotFound": {
     "Found": "Not Found",
     "Page": "OOPS! The page you are looking for is beyond our reach.",
