@@ -115,5 +115,22 @@
   "Status": {
     "Profile": "Mon Profile",
     "Welcome": "Bienvenu"
+  },
+  "Signup": {
+    "Account": "Créez Votre Compte",
+    "Name": "Nom",
+    "Required": "Votre nom est Obligatoire",
+    "Email": "Email",
+    "ERequired": "Votre Email est Obligatoire",
+    "Invalid": "Votre Email n'est pas Valid",
+    "Password": "Mot de passe",
+    "PRequired": "Votre Mot de passe est Obligatoire",
+    "Password1": "Entrez au moins 8 caractères pour le Mot de passe",
+    "Username": "Votre nom ne doit pas être plus de 40 lettres",
+    "Role": "Choisi Role",
+    "Reader": "Lecteur",
+    "Publisher": "Editeur",
+    "Account1": "Vous avez déjà un compte?",
+    "Login": "Se Connecter"
   }
 }

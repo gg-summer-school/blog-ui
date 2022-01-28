@@ -117,5 +117,22 @@
   "Status": {
     "Profile": "My Profile",
     "Welcome": "Welcome"
+  },
+  "Signup": {
+    "Account": "Create your account",
+    "Name": "Name",
+    "Required": "Name is required",
+    "Email": "Email",
+    "ERequired": "Email is required",
+    "Invalid": "Email is Invalid",
+    "Password": "Password",
+    "PRequired": "Password is required",
+    "Password1": "Password must be at least 8 characters",
+    "Username": "Username must not exceed 40 characters",
+    "Role": "Chose Role",
+    "Reader": "Reader",
+    "Publisher": "Publisher",
+    "Account1": "Already have an account?",
+    "Login": "Login"
   }
 }
