@@ -132,5 +132,12 @@
     "Publisher": "Editeur",
     "Account1": "Vous avez déjà un compte?",
     "Login": "Se Connecter"
+  },
+  "Requests": {
+    "Request": "Requêtes",
+    "Pending": "Editeurs en Suspens",
+    "Email": "Email",
+    "Accept": "Accepter",
+    "Decline": "Rejeter"
   }
 }

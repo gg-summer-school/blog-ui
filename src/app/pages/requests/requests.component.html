@@ -7,13 +7,13 @@
   </div>
 
   <div class="col-md-10 ">
-    <h4>Requests</h4>
+    <h4>{{'Requests.Request'| translate }}</h4>
     <br>
     <table class="table table-borderless table-responsive table-sm">
       <thead>
       <tr>
-        <th scope="col"><b>Pending Publishers (03)</b></th>
-        <th scope="col"><b>Email</b></th>
+        <th scope="col"><b>{{'Requests.Pending'| translate }} ({{number}})</b></th>
+        <th scope="col"><b>{{'Requests.Email'| translate }}</b></th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -23,8 +23,8 @@
         <td>{{p.name}}</td>
         <td>{{p.email}}</td>
         <td>
-          <button class="btn btn-dark but" (click)="approvePublisher(p.id)">Accept</button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click)="declineUser(p.id)"> Decline</button>
+          <button class="btn btn-dark but" (click)="approvePublisher(p.id)">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="declineUser(p.id)"> {{'Requests.Decline'| translate }}</button>
         </td>
       </tr>
       </tbody>

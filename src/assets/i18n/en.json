@@ -134,5 +134,12 @@
     "Publisher": "Publisher",
     "Account1": "Already have an account?",
     "Login": "Login"
+  },
+  "Requests": {
+    "Request": "Requests",
+    "Pending": "Pending Publishers",
+    "Email": "Email",
+    "Accept": "Accept",
+    "Decline": "Decline"
   }
 }
