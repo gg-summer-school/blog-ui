@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from "../../services/articles.service";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { TokenStorageService } from "../../services/token-storage.service";
-import { Categories } from "../../model/categories";
 import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
+import {TranslateService} from "@ngx-translate/core";
  
 
 @Component({

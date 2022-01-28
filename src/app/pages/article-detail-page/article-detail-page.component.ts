@@ -28,6 +28,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   errorMessage = '';
   showAbs: boolean = false;
   showTable: boolean = false
+  showMore:boolean = false;
+  
   articleId: string = '';
   categoryId: string = "";
   userId: string = '';
@@ -73,6 +75,9 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   getArticle() {
     const subscription = this.publisherService.getArticle(this.articleId).subscribe(res => {
       this.article = res;
+      if(this.article.articleAbstract.length > 400 || this.article.toc.length > 100){
+        this.showMore = true;
+      }
     })
     this.subscriptions.push(subscription)
   }
