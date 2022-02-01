@@ -17,7 +17,7 @@ export class PublisherGuard implements CanActivate {
     if(role === 'ROLE_PUBLISHER') {
       return true;
     }else {
-      alert('You are a thief!!!');
+      alert('You are not authorized to access this page');
       this.router.navigate(['/user-admin'])
       return false;
     }
