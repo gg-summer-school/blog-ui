@@ -48,7 +48,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   selectedLang: any;
   switchLang(lang: string) {
-    // this.translate.use(lang);
+    console.log(lang)
+    this.translate.use(lang);
   }
 
   ngOnDestroy(): void {
