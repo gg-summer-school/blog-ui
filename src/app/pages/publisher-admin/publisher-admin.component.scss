@@ -53,18 +53,16 @@ button {
   }
 }
 
-//.table {
-//  margin-top: 50px;
-//  height: 70px;
-//  background-color: #eaeaea;
-//  border-radius: 7px;
-//  padding-top: 20px;
-//}
+@media (max-width: 550px) {
+  .table {
+    margin-left: 40px;
+  }
+}
 
   button {
     padding: 2px;
     font-size: smaller;
   }
 
-//}
+
 

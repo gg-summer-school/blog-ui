@@ -29,19 +29,9 @@ export class SidebarComponent implements OnInit {
     this.adminRole = this.userRole.includes('ROLE_ADMIN');
     }
 
-    checkPubOrAdmin() {
-
-    }
-
   logOut() {
     this.tokenStore.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/landing-page']);
   }
 
 }
-
-/*
-
-      const reader = user.find((role: any )=> role === 'ROLE_READER');
-      const publisher = user.find((role: any )=> role === 'ROLE_PUBLISHER');
-*/
