@@ -8,7 +8,7 @@ import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
 import {TranslateService} from "@ngx-translate/core";
 import { Categories } from 'src/app/model/categories';
- 
+
 
 @Component({
   selector: 'app-landing-page',
@@ -44,7 +44,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   selectedLang: any;
   switchLang(lang: string) {
-    // this.translate.use(lang);
+    console.log(lang)
+    this.translate.use(lang);
   }
 
   ngOnDestroy(): void {
