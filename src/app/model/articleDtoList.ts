@@ -1,7 +1,7 @@
 import { ArticleDto } from "./articles";
 
 export interface ArticleResource {
-  last: false;
+  last: boolean;
   pageNo: Number;
   pageSize: Number;
   totalElements: Number;

@@ -103,11 +103,13 @@ h2 {
 li.borderless {
   border: 0 none;
 }
-li.borderless:hover {
+
+.borderless:hover {
   background-color: lightgrey;
-  width: 100%;
   cursor: pointer;
   font-weight: lighter;
+  padding: 6px;
+  margin:0;
 }
 .title {
   font-weight: bolder;
@@ -121,9 +123,8 @@ li.borderless:hover {
   font-size: 13px;
 }
 
-.list-group-item[aria-expanded="true"]{
-  background-color: black !important;
-border-color: #aed248;
-
+.pagination {
+  padding: 3px;
+ 
 }
 
