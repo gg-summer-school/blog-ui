@@ -36,6 +36,17 @@
           <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
               *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
         </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              En
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li class="dropdown-item"><a  (click)="switchLang('en')">En</a></li>
+              <li class="dropdown-item"><a  (click)="switchLang('fre')">Fre</a></li>
+            </ul>
+          </div>
+        </li>
       </ul>
 
     </div>
@@ -185,8 +196,7 @@
       <a>{{'Page.Authors'| translate }}</a>
       <br>
       <a>{{'Navbar.SignUp'| translate }}</a><br>
-      <button class="btn btn-primary" (click)="switchLang('en')">English</button>&nbsp;
-      <button class="btn btn-primary" (click)="switchLang('fre')">French</button>
+
     </div>
     <div class="col-md-3">
       <h5>{{'Page.Contact'| translate }}</h5>
