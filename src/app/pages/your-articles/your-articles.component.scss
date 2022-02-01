@@ -40,4 +40,13 @@ a{
   text-decoration: none;
 }
 
+@media (max-width: 765px) {
+  h4 {
+    margin-left: 50px;
+  }
+  h5 {
+    margin-left: 50px;
+  }
+}
+
 

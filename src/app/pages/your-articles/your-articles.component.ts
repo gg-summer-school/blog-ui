@@ -26,11 +26,6 @@ export class YourArticlesComponent implements OnInit {
     translate.setDefaultLang('en');
   }
 
-  switchLang(lang: string) {
-    console.log(lang)
-    this.translate.use(lang);
-  }
-
   ngOnInit(): void {
     this.publisherId= this.tokenStorage.getUser().id;
     console.log(this.publisherId);

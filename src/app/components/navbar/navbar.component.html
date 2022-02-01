@@ -9,35 +9,26 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/">{{'Navbar.Home'| translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
+          <a class="nav-link " href="#">{{'Navbar.About'| translate }}</a>
         </li>
       </ul>
 
-      <ul class="navbar-nav">
-        <!-- <div class="row">
-            <div class="col-md-8">
-                <input type="text" class="form-control" placeholder="Have a question? Ask Now">
-                 
-            </div>
-            search bar here
-        </div> -->
-      </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary"
-              *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
+              *ngIf="!tokenStorage.getToken1()">{{'Navbar.SignUp'| translate }}</button></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/login"><button class="btn btn-outline-info"
-              *ngIf="!tokenStorage.getToken1()">Login</button></a>
+              *ngIf="!tokenStorage.getToken1()">{{'Navbar.Login'| translate }}</button></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
-              *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
+              *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
         </li>
       </ul>
 

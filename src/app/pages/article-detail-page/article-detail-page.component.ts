@@ -13,6 +13,7 @@ import { ResponseObject } from 'src/app/model/response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserDto } from 'src/app/model/UserDto';
 import { PayArticleDto } from 'src/app/model/articlesDto';
+import {TranslateService} from "@ngx-translate/core";
 
 declare var $: any;
 
@@ -29,7 +30,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   showAbs: boolean = false;
   showTable: boolean = false
   showMore:boolean = false;
-  
+
   articleId: string = '';
   categoryId: string = "";
   userId: string = '';
@@ -47,8 +48,15 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
     private formBuilder: FormBuilder, private authService: AuthService,
-    public tokenStorage: TokenStorageService, private articleService: ArticlesService) { }
+    public tokenStorage: TokenStorageService, private articleService: ArticlesService,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
 
+  switchLang(lang: string) {
+    // this.translate.use(lang);
+  }
 
   ngOnDestroy(): void {
     for (const sub of this.subscriptions) {
@@ -67,8 +75,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.articleId = this.route.snapshot.params.id;
     this.getArticle();
     this.getPublisherByArticle(this.articleId);
-    
-    
+
+
   }
 
 

@@ -32,40 +32,14 @@ button {
   padding: 2px;
 }
 
-@media (max-width: 600px) {
-  .table {
-    background-color: white;
-    border-radius: 30px;
-    text-align: center;
+@media (max-width: 800px) {
+  h4 {
+    margin-left: 50px;
   }
 
-  th td tr{
-    border-radius: 30px;
-  }
-  tr{
-    background-color: #eaeaea;
-  }
-  th
-  {
-    text-align: center;
-    background-color: white;
-  }
-  td{
-    text-align: center;
-    padding: 20px;
+  .table {
+    margin-left: 50px;
+    margin-right: 90px;
   }
 }
-
-//.table {
-//  margin-top: 50px;
-//  height: 70px;
-//  background-color: #eaeaea;
-//  border-radius: 7px;
-//  padding-top: 20px;
-//}
-
-//button {
-//  padding: 2px;
-//  font-size: smaller;
-//}
 
