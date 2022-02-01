@@ -16,11 +16,11 @@ export class AdminGuard implements CanActivate {
     if(role === 'ROLE_ADMIN') {
       return true;
     }else if(role === 'ROLE_READER') {
-      alert('You are a thief!!!');
+      alert('You are not authorized to access this page');
       this.router.navigate(['/user-admin'])
       return false;
     }else {
-      alert('You are a thief!!!');
+      alert('You are not authorized to access this page');
       this.router.navigate(['/publisher-admin'])
       return false;
     }

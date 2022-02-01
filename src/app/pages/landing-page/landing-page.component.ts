@@ -107,9 +107,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       if(response.last){
         this.isDisabledNext = !this.isDisabledNext;
       }
-      if(response.pageNo == this.pageNum){
-        this.isActive = true;
-      }
     }, (error: HttpErrorResponse) => {
 
     }
