@@ -8,7 +8,7 @@ import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
 import {TranslateService} from "@ngx-translate/core";
 import { Categories } from 'src/app/model/categories';
- 
+
 
 @Component({
   selector: 'app-landing-page',
@@ -17,7 +17,7 @@ import { Categories } from 'src/app/model/categories';
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 
-  page = 0;
+ 
   tableSize = 6;
   count = 0;
   pageSize = 8;
@@ -27,13 +27,16 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   allArticles: ArticleDto[] = [];
   pages: any = 0;
   category: boolean = false;
-  checkArticleLength!:boolean;
   pageNumberArray: number[] = [];
-  pageNum: number = 0;
+  pageNum: number = 1;
   subscriptions: Subscription[] = [];
   active: boolean | undefined;
   categories!: Categories[];
   categoryName!:Categories;
+  isDisabled:boolean = false;
+  isDisabledNext:boolean = false;
+  isActive:boolean = true;
+   
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -59,40 +62,54 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.getAllCategories();
   }
   previous() {
-    this.activateRoute.queryParams.subscribe(params => {
+    const subscription = this.activateRoute.queryParams.subscribe(params => {
       if (params.page !== undefined) {
         this.pageNum = parseInt(params.page) - 1;
 
       }
-    })
+    });
+    this.subscriptions.push(subscription);
     this.getAllArticles(this.pageNum, this.pageSize);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: this.pageNum } });
   }
 
   Next() {
-    this.activateRoute.queryParams.subscribe(params => {
+    const subscription  = this.activateRoute.queryParams.subscribe(params => {
       if (params.page !== undefined) {
         this.pageNum = parseInt(params.page) + 1;
       }
-    })
+    });
+    this.subscriptions.push(subscription);
     this.getAllArticles(this.pageNum, this.pageSize);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (this.pageNum) } });
   }
 
   setPage(currentPageIndex: number, currentPage:number) {
     this.getAllArticles(currentPageIndex, this.pageSize);
+    this.pageNum = (currentPage-1);
+    console.log(this.pageNum);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
   }
   getAllArticles(page: number, pageSize: number) {
 
-    const subscription = this.articlesService.getAllArticles(page, pageSize).subscribe((response: ArticleResource) => {
+    const subscription = this.articlesService.getAllArticles((page-1), pageSize).subscribe((response: ArticleResource) => {
       this.allArticles = response.articleDtoList
       this.allArticles.map(article => {
         article.image ='data:'+article.contentType+';base64,'+ article.coverPage
-      })  
+      })
       this.pages = response.totalPages;
       this.pageNumberArray = (Array.from(Array(this.pages).keys()));
-
+      if(page > 1) {
+        this.isDisabled = false;
+      }if(page <= 1){
+        this.isDisabled = true;
+      }
+      if(response.last){
+        this.isDisabledNext = !this.isDisabledNext;
+      }
+      if(response.pageNo == this.pageNum){
+        this.isActive = true;
+      }
     }, (error: HttpErrorResponse) => {
 
     }
@@ -128,9 +145,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   getArticlesByCategory(categoryId:string){
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
       this.allArticles = response;
+      
       this.allArticles.map(article => {
         article.image ='data:'+article.contentType+';base64,'+ article.coverPage
-      })  
+      })
       if(this.allArticles != undefined){
         //to modify to use lambda
         for(let cat of this.categories){
