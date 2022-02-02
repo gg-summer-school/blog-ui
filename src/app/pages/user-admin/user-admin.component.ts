@@ -39,12 +39,16 @@ export class DashboardComponent implements OnInit {
       {
         this.readers = res;
         this.number= this.readers.length;
+      }, (error: any) => {
+        alert(error.error.message);
       })
   }
 
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
       this.displayReaders();
+    }, (error: any) => {
+      alert(error.error.message);
     })
   }
 
@@ -73,6 +77,8 @@ export class DashboardComponent implements OnInit {
   reactivateUser(user_id: string) {
     this.adminPagesService.reactivateUser(user_id, this.reactivate).subscribe((res) => {
       this.displayReaders();
+    }, (error: any) => {
+      alert(error.error.message);
     })
   }
 
