@@ -51,6 +51,8 @@ export class PublisherAdminComponent implements OnInit {
   suspendPublisher(publisherId: string) {
     this.adminPagesService.suspendUser(publisherId, this.suspendUser).subscribe((res) => {
       this.displayPublishers();
+    }, (error: any) => {
+      alert(error.error.message);
     })
   }
 
@@ -79,6 +81,8 @@ export class PublisherAdminComponent implements OnInit {
   reactivateUser(publisherId: string) {
     this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
       this.displayPublishers();
+    }, (error: any) => {
+      alert(error.error.message);
     })
   }
 
