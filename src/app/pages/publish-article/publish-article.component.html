@@ -11,43 +11,43 @@
 <div class="container">
 
       <div class="card" style="width: 50rem;">
-        <h4 class="card-header" style="text-align: center">Publish an article</h4>
+        <h4 class="card-header" style="text-align: center">{{'PublishArticle.Publish'| translate }}</h4>
         <div class="card-body">
           <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
-            <label>Title</label>
-            <input type="text" placeholder="Title" class="form-control" formControlName="title">
-            <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> This field is required</span>
+            <label>{{'PublishArticle.Title'| translate }}</label>
+            <input type="text" placeholder="{{'PublishArticle.placeholderT'| translate }}" class="form-control" formControlName="title">
+            <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>Abstract</label>
+            <label>{{'PublishArticle.Abstract'| translate }}</label>
             <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="articleAbstract"></quill-editor>
-            <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> This field is required</span>
+            <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>Table of contents</label>
+            <label>{{'PublishArticle.Content'| translate }}</label>
             <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="toc"></quill-editor>
-            <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> This field is required</span>
+            <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>Contributors/Authors</label>
-            <input type="text" placeholder="Enter many contributors separated by comma" class="form-control" formControlName="contributors">
-            <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> This field is required</span>
+            <label>{{'PublishArticle.Contributor'| translate }}</label>
+            <input type="text" placeholder="{{'PublishArticle.placeholderC'| translate }}" class="form-control" formControlName="contributors">
+            <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
             <div class="row">
               <div class="col-md-6">
-                <label >Category</label>
+                <label >{{'PublishArticle.Category'| translate }}</label>
                 <select class="form-control form-select" formControlName="category" >
                   <option selected *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
                 </select>
-                <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> This field is required</span>
+                <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
               </div>
 
               <div class="col-md-6">
-                <label>Price(frs)</label>
-                <input type="number" placeholder="Book price" class="form-control" formControlName="price">
-                <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> This field is required</span>
+                <label>{{'PublishArticle.Price'| translate }}(frs)</label>
+                <input type="number" placeholder="{{'PublishArticle.placeholderP'| translate }}" class="form-control" formControlName="price">
+                <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
               </div>
             </div>
 
             <br>
-            <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="publish.invalid">upload article</button></div>
+            <div class="button"> <button class="btn btn-primary butt" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="publish.invalid">{{'PublishArticle.Upload'| translate }}</button></div>
           </form>
         </div>
       </div>
@@ -64,27 +64,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="alert alert-success" role="alert" *ngIf="success">
-        <h3>Article successfully created!!!</h3></div>
+        <h3>{{'PublishArticle.Success'| translate }}</h3></div>
       <div class="alert alert-danger" role="alert" *ngIf="error">
         <h3> {{errorMessage}}</h3>
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="error1">
-        <h3> {{errorMessage1}} error</h3>
+        <h3> {{errorMessage1}} {{'PublishArticle.Error'| translate }}</h3>
       </div>
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{'PublishArticle.Upload1'| translate }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <label >Upload book cover</label>
+            <label >{{'PublishArticle.Upload2'| translate }}</label>
             <input type="file"  accept="image/x-png,image/jpg,image/jpeg" (change)="select($event)" enctype="multipart/form-data" class="form-control" >
 <br>
-            <label >Upload book</label>
+            <label >{{'PublishArticle.Upload3'| translate }}</label>
             <input type="file" accept="application/pdf"  (change)="select1($event)" enctype="multipart/form-data" class="form-control">
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary upload"  (click)="upload()" >publish article</button>
+        <button type="button" class="btn btn-primary upload"  (click)="upload()" >{{'PublishArticle.Publish1'| translate }}</button>
       </div>
     </div>
   </div>

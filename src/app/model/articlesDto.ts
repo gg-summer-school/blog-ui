@@ -3,8 +3,10 @@ import { Contributors } from "./contributors";
 export interface ArticleDto {
     articleAbstract: string;
     categoryId: string;
+    categoryName:string;
     contributors: Contributors[];
-    coverPage: string
+    coverPage: Blob;
+    image:string;
     createdAt: string
     document:string
     id: string
@@ -13,4 +15,9 @@ export interface ArticleDto {
     toc: string
     updatedAt: string
     userId: string
+}
+
+export interface PayArticleDto {
+    nameOfArticle: string,
+    accountNumber:string,
 }

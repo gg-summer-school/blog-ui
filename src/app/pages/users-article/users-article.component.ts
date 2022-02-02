@@ -7,6 +7,7 @@ import {DashboardPublisherService} from "../../services/dashboard-publisher.serv
 import {PaidArticlesService} from "../../services/user-services/paid-articles.service";
 import {PaidArticles} from "../../model/paidArticles";
 import {TokenStorageService} from "../../services/token-storage.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-users-article',
@@ -20,10 +21,20 @@ export class UsersArticleComponent implements OnInit {
   userPaidArticle!: Articles[];
   pubArticles:ArticleDto[]=[];
   publisherId:string='';
+  number!: number;
 
-  constructor(private articleService: ArticlesService, private tokenStorageService: TokenStorageService, private paidArticlesService: PaidArticlesService, private sanitizer: DomSanitizer) { }
+  constructor(private articleService: ArticlesService, private tokenStorageService: TokenStorageService,
+              private paidArticlesService: PaidArticlesService, private sanitizer: DomSanitizer,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
   fileUrl: any;
 
+  switchLang(lang: string) {
+    console.log(lang)
+    this.translate.use(lang);
+  }
   ngOnInit(): void {
     this.userId = this.tokenStorageService.getUser().id;
     console.log(this.userId);

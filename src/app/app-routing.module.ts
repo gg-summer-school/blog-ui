@@ -51,6 +51,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, PublisherGuard],
   },
 
+  { path: 'user-admin',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+
   { path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard, PublisherGuard],
@@ -74,6 +79,15 @@ const routes: Routes = [
 
   { path: 'landing-page',
     component: LandingPageComponent
+  },
+
+  {
+    path:"landing-page/articles",
+    component:LandingPageComponent
+  },
+  {
+    path:"landing-page/articles/categories",
+    component:LandingPageComponent
   },
 
   {
@@ -102,6 +116,8 @@ const routes: Routes = [
     component: PaymentComponent,
     canActivate: [AuthGuard]
   },
+
+  
 
   {
     path: 'page-not-found',

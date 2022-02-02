@@ -5,6 +5,7 @@ import {TokenStorageService} from "../../services/token-storage.service";
 import {ArticleDto, updatePayload} from "../../model/articles";
 import {DashboardPublisherService} from "../../services/dashboard-publisher.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -31,7 +32,9 @@ export class EditArticleComponent implements OnInit {
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
               private publisherService: DashboardPublisherService, private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router, public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {

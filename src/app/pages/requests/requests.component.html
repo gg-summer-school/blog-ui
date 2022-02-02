@@ -1,45 +1,37 @@
-<div class="row d">
-  <div class="col-md-3">
+
+<div class="row">
+  <div class="col-md-2 " >
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col-md-5">
-    <app-status></app-status>
-  </div>
-</div>
 
-<div class="container">
-  <div class="col-md-9">
-
-    <div class="row">
-      <div class="col-md-3">
-        <b>Pending Publishers (03)</b>
-      </div>
-
-      <div class="col-md-3 em">
-        <b>Email</b>
-      </div>
-
-      <div class="col-md-3 em">
-        <b>Action</b>
-      </div>
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
     </div>
 
-    <div *ngFor="let p of publishers" class="table">
-      <div class="row">
-        <div class="col-md-4">
-          <a>{{p.name}}</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <a>{{p.email}}</a><br>
-        </div>
-
-        <div class="col-md-4">
-          <tr><button class="btn btn-dark but" (click)="approvePublisher(p.id)">Accept</button>&nbsp;&nbsp;
-            <button class="btn btn-danger" (click)="declineUser(p.id)"> Decline</button></tr>
-        </div>
-      </div>
-    </div>
-
+  <div class="col-md-10 ">
+    <h4>{{'Requests.Request'| translate }}</h4>
+    <br>
+    <table class="table table-borderless table-responsive table-sm">
+      <thead>
+      <tr>
+        <th scope="col"><b>{{'Requests.Pending'| translate }} ({{number}})</b></th>
+        <th scope="col"><b>{{'Requests.Email'| translate }}</b></th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let p of publishers">
+      <br>
+      <tr >
+        <td>{{p.name}}</td>
+        <td>{{p.email}}</td>
+        <td>
+          <button class="btn btn-dark but" (click)="approvePublisher(p.id)">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="declineUser(p.id)"> {{'Requests.Decline'| translate }}</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

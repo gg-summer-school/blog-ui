@@ -1,88 +1,58 @@
-<div class="row d">
-  <div class="col-md-3">
+
+<div class="row">
+  <div class="col-md-2 " >
     <app-sidebar></app-sidebar>
   </div>
-  <div class="col-md-5">
-    <app-status></app-status>
-  </div>
-</div>
 
-<div class="container">
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-3">
-        <b>Publishers ({{number}})</b>
-      </div>
-      <div class="col-md-3">
-        <b>Number of Articles</b>
-      </div>
-
-      <div class="col-md-3 em">
-        <b>Email</b>
-      </div>
-
-      <div class="col-md-2">
-        <b>Action</b>
-      </div>
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
     </div>
 
-    <div *ngFor="let publisher of publishers" class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>{{ publisher.name }}</a><br>
-        </div>
+  <div class="col-md-10">
+    <table class="table table-borderless table-responsive" >
+      <thead>
+      <tr>
+        <th scope="col"><b>{{'PublisherAdmin.Publisher'| translate }} ({{number}})</b></th>
+        <th scope="col">{{'PublisherAdmin.Email'| translate }}</th>
+        <th scope="col">{{'PublisherAdmin.Role'| translate }}</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let publisher of publishers">
+      <br>
+      <tr >
+        <td>{{ publisher.name }}</td>
+        <td>{{ publisher.email }}</td>
+        <td >
+          <span *ngFor="let roles of publisher.role">{{roles.role}}</span></td>
+        <td>
+      <tr>
+        <td>
+          <button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-dark but">{{'PublisherAdmin.Suspend'| translate }}</button>&nbsp;
+          <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-dark but">{{'PublisherAdmin.Reactivate'| translate }}</button>&nbsp;
+          <div class="dropdown" style="display: inline-flex">
+            <button class="btn btn-outline-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">{{'PublisherAdmin.Role'| translate }}</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" ><b>{{'PublisherAdmin.Upgrade'| translate }}</b></a></li>
+              <select class="form-select mt-1" (change)="addRoleToUser(publisher.id, $event)">
+                <option selected><b>{{'PublisherAdmin.Role'| translate }}</b></option>
+                <option value="0">{{'PublisherAdmin.Admin'| translate }}</option>
+              </select>
+              <li><a class="dropdown-item" ><b>{{'PublisherAdmin.Remove'| translate }}</b></a></li>
+              <select class="form-select mt-1" (change)="removeRoleToUser(publisher.id, $event)">
+                <option selected><b>{{'PublisherAdmin.Role'| translate }}</b></option>
+                <option value="0">{{'PublisherAdmin.Admin'| translate }}</option>
+                <option value="1">{{'PublisherAdmin.Publisher1'| translate }}</option>
+              </select>
+            </ul>
+          </div>
+        </td>
 
-        <div class="col-md-3 art">
-          <a>{{ numberOfArticles.length }}</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>{{ publisher.email }}</a><br>
-        </div>
-
-        <div class="col-md-3 ema">
-            <tr><button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;
-              <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;
-              <div class="dropdown">
-                <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" >Admin</a></li>
-                  <li><a class="dropdown-item" >Another action</a></li>
-                </ul>
-              </div>
-<!--            <button class="btn btn-outline-secondary" (click)="addRoleToUser(publisher.id)">Add Role</button></tr>-->
-        </div>
-      </div>
-    </div>
-
-    <div class="table">
-      <div class="row">
-        <div class="col-md-3">
-          <a>User one</a><br>
-        </div>
-
-        <div class="col-md-3 art">
-          <a>One</a><br>
-        </div>
-
-        <div class="col-md-2">
-          <a>Email one</a><br>
-        </div>
-
-        <div class="col-md-3">
-          <tr><button (click)="onClickSuspend()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-              class="btn btn-dark but">Suspend</button>&nbsp;&nbsp;
-            <button (click)="onClickBlock()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-              class="btn btn-danger"><i class="far fa-ban icon"></i> Block</button>
-          </tr>
-        </div>
-      </div>
-    </div><br>
-
-  </div>
-</div>
-
+      </tr>
+      </tbody>
+    </table>
 
 <!-- Modal to block and suspend publisher -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -110,13 +80,3 @@
 </div>
 
 <br>
-
- 
-<!--<div class="container">-->
-<!--<ul class="list-group"  *ngFor="let publisher of publishers">-->
-<!--  <li class="list-group-item-dark">{{ publisher.name }}</li>-->
-<!--  <li class="list-group-item-dark">{{ publisher.email }}}</li>-->
-<!--  <button (click)="suspendPublisher(publisher.id)" *ngIf="!active" class="btn btn-dark but">Suspend</button>&nbsp;-->
-<!--  <button (click)="reactivateUser(publisher.id)" *ngIf="active"  class="btn btn-dark but">Reactivate</button>&nbsp;-->
-<!--</ul>-->
-<!--</div>-->

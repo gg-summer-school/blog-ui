@@ -4,6 +4,7 @@ import {DashboardPublisherService} from "../../services/dashboard-publisher.serv
 import {TokenStorageService} from "../../services/token-storage.service";
 import {ArticleDto} from "../../model/articles";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-your-articles',
@@ -19,7 +20,11 @@ export class YourArticlesComponent implements OnInit {
   error:boolean=false;
 
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
-              private tokenStorage: TokenStorageService, private router: Router) { }
+              private tokenStorage: TokenStorageService, private router: Router,
+              public translate: TranslateService) {
+    translate.addLangs(['en', 'fre']);
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
     this.publisherId= this.tokenStorage.getUser().id;

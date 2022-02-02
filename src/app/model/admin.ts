@@ -17,3 +17,13 @@ export interface  Transactions {
   id: string,
   createdAt: string
 }
+
+export enum RolePayload {
+  ROLE_ADMIN,
+  ROLE_PUBLISHER,
+  ROLE_READER
+}
+
+export interface roleDTO {
+  role : string;
+}

@@ -16,7 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { PublisherAdminComponent } from './pages/publisher-admin/publisher-admin.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { UsersArticleComponent } from './pages/users-article/users-article.component';
@@ -30,7 +30,10 @@ import {QuillModule} from "ngx-quill";
 import { ViewTransactionsComponent } from './pages/view-transactions/view-transactions.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PaymentComponent } from './pages/payment/payment.component';
-
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 
 @NgModule({
   declarations: [
@@ -53,10 +56,12 @@ import { PaymentComponent } from './pages/payment/payment.component';
     SearchFilterPipe,
     StatusComponent,
     EditArticleComponent,
-
+    NavbarComponent,
     ViewTransactionsComponent,
     PageNotFoundComponent,
-    PaymentComponent
+    PaymentComponent,
+    TruncateTextPipe,
+     
 
 
   ],
@@ -72,7 +77,14 @@ import { PaymentComponent } from './pages/payment/payment.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     QuillModule.forRoot(),
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+   
   ],
 
   providers: [
@@ -84,3 +96,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

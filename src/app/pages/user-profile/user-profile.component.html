@@ -3,33 +3,33 @@
  <div class="col-xs-8">
    <br/>
       <div class="align-content-center profile">
-        <h4>My Profile</h4>
+        <h4>{{'UserProfile.Profile'| translate }}</h4>
         <img src="assets/avatar.png" class="image">
         <br/>
         <br/>
           <div class="form-group mb-4 mt-3 p">
-            <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> Name : </label>
+            <label class="text-muted"><i class="fas fa-user fa-lg  text-mute"></i> {{'UserProfile.Name'| translate }} : </label>
             <span><label>{{userProfile.name}}</label></span>
           </div>
         <br/>
         <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>Email : </label>
+          <label class="text-muted"><i class="fas fa-envelope fa-lg  text-mute"></i>{{'UserProfile.Email'| translate }} : </label>
           <span><label>{{userProfile.email}}</label></span>
         </div>
         <br/>
         <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-industry fa-lg text-mute"></i>Roles : </label>
-          <span><label>Publisher</label></span>
+          <label class="text-muted"><i class="fas fa-industry fa-lg text-mute"></i>{{'UserProfile.Role'| translate }} : </label>
+          <span><label>{{'UserProfile.Publisher'| translate }}</label></span>
         </div>
         <br/>
         <div class="form-group mb-4 p">
-          <label class="text-muted"><i class="fas fa-pen-nib fa-lg  text-mute"></i>Number of Articles : </label>
+          <label class="text-muted"><i class="fas fa-pen-nib fa-lg  text-mute"></i>{{'UserProfile.Article'| translate }} : </label>
           <span><label>2</label></span>
         </div>
         <div class="mb-4 col-md-4 d-grid gap-2">
           <div class="">
             <button class="btn btn-sm edit" data-bs-toggle="modal"
-                    data-bs-target="#editProfileModal">Edit profile</button>
+                    data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}</button>
           </div>
         </div>
         <br/>
@@ -47,7 +47,7 @@
    <div class="modal-dialog modal-sm">
      <div class="modal-content">
        <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+         <h5 class="modal-title" id="exampleModalLabel">{{'UserProfile.Edit'| translate }}</h5>
          <button
            type="button"
            class="btn-close btn-sm "
@@ -58,7 +58,7 @@
        <div class="modal-body">
          <form [formGroup]="usersEdit">
            <div class="form-group mb-2">
-             <label>Name</label>
+             <label>{{'UserProfile.Name'| translate }}</label>
              <input
                [(ngModel)] = "userProfile.name"
                id="firstName"
@@ -69,7 +69,7 @@
              />
            </div>
            <div class="form-group mb-2">
-             <label>Email</label>
+             <label>{{'UserProfile.Email'| translate }}</label>
              <input
                [(ngModel)] = "userProfile.email"
                id="email"
@@ -84,7 +84,7 @@
                type="submit"
                class="btn  btn-sm btn-primary"
                data-bs-dismiss="modal">
-               Save
+               {{'UserProfile.Save'| translate }}
              </button>
            </div>
          </form>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserDto } from '../model/UserDto';
 
 const  TOKEN_KEY = 'auth-token'
 const  USER_KEY = 'auth-user'
@@ -38,16 +39,14 @@ export class TokenStorageService {
 
   }
 
-  public saveUser(user: any): void {
+  public saveUser(user: UserDto): void {
     localStorage.removeItem(USER_KEY);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): any {
+  public getUser(): UserDto {
     const user = localStorage.getItem(USER_KEY)
-    if (user) {
-      return JSON.parse(user);
-    }
-    return {}
+    const userDto:UserDto = JSON.parse(user as string);
+    return userDto; 
   }
 }
