@@ -9,6 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class StatusComponent implements OnInit {
   userName: string='';
+  firstName = '';
 
   constructor(private tokenStorageService: TokenStorageService, translate: TranslateService) {
     translate.addLangs(['en', 'fre']);
@@ -22,6 +23,8 @@ export class StatusComponent implements OnInit {
 
   ngOnInit(): void {
    this.userName= this.tokenStorageService.getUser().name;
+    const name = this.tokenStorageService.getUser().name
+    this.firstName = name.split(' ').slice(0, -1).join(' ');
   }
 
 }

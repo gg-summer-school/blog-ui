@@ -36,6 +36,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { ViewArticleComponent } from './pages/view-article/view-article.component';
 import {SafePipe} from "./pipe/safe/safe.pipe";
+import { UserManagementComponent } from './pages/user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {SafePipe} from "./pipe/safe/safe.pipe";
     PaymentComponent,
     TruncateTextPipe,
     ViewArticleComponent,
+    UserManagementComponent,
     SafePipe,
 
 

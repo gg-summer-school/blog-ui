@@ -83,7 +83,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   getArticle() {
     const subscription = this.publisherService.getArticle(this.articleId).subscribe((res:ArticleDto) => {
       this.article = res;
-      this.doc = res.document;
       if(this.article.articleAbstract.length > 400 || this.article.toc.length > 100){
         this.showMore = true;
       }

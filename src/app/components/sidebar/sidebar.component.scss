@@ -54,3 +54,27 @@ a {
   }
 
 }
+
+.menu {
+  margin-left: 2rem;
+  display: none;
+}
+
+.x {
+  display: none;
+  font-size: .7rem;
+}
+@media (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+  .menu {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    display: block;
+  }
+  .x {
+    display: block;
+    font-size: .7rem;
+  }
+}
