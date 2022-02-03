@@ -5,8 +5,7 @@ export interface ArticleDto {
     categoryId: string;
     categoryName:string;
     contributors: Contributors[];
-    coverPage: Blob;
-    image:string;
+    coverPage: string;
     createdAt: string
     document:string
     id: string
