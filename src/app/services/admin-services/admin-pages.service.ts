@@ -22,6 +22,10 @@ export class AdminPagesService {
 
   //http://localhost:8000/api/protected/users/publishers/false
 
+  getUsers() {
+    return this.http.get<Admin[]>(this.baseUrlPro + 'users');
+  }
+
   getReaders() {
     return this.http.get<Admin[]>(this.baseUrlPro + 'users' + '/' + 'readers');
   }
