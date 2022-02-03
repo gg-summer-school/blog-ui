@@ -95,9 +95,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
     const subscription = this.articlesService.getAllArticles((page-1), pageSize).subscribe((response: ArticleResource) => {
       this.allArticles = response.articleDtoList
-      this.allArticles.map(article => {
-        article.image ='data:'+article.contentType+';base64,'+ article.coverPage
-      })
       this.pages = response.totalPages;
       this.pageNumberArray = (Array.from(Array(this.pages).keys()));
       if(page > 1) {
@@ -143,10 +140,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   getArticlesByCategory(categoryId:string){
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
       this.allArticles = response;
-      
-      this.allArticles.map(article => {
-        article.image ='data:'+article.contentType+';base64,'+ article.coverPage
-      })
       if(this.allArticles != undefined){
         //to modify to use lambda
         for(let cat of this.categories){
@@ -164,10 +157,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  findCategory(categoryId:string) {
-    this.categories.forEach(element => {
-      return element.id === categoryId;
-    });
-  }
+  
 
 }
