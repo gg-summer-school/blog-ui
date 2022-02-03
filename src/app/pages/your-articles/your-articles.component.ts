@@ -18,7 +18,7 @@ export class YourArticlesComponent implements OnInit {
   deleteMessage:boolean=false;
   errorMessage:string='';
   error:boolean=false;
-
+  doc:string = '';
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
               private tokenStorage: TokenStorageService, private router: Router,
               public translate: TranslateService) {
@@ -34,10 +34,10 @@ export class YourArticlesComponent implements OnInit {
 
   getArticlesByPublisher()
   {
-    this.publisherService.getArticlesByPublisher(this.publisherId).subscribe(res=>
+    this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
       this.pubArticles=res;
-      console.log(res);
+      
     })
   }
 
@@ -58,6 +58,18 @@ export class YourArticlesComponent implements OnInit {
   edit(id:string, catid:string)
   {
     this.router.navigate(['edit-article', id, catid]);
+  }
+
+  previewArticle(id:string){
+    let article:ArticleDto;
+    for(let art of this.pubArticles){
+      if(art.id === id){
+        article =  art;
+        this.doc = article.document;
+      }
+    }
+    
+    
   }
 
 
