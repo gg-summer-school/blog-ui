@@ -19,7 +19,8 @@ export class AuthService {
 
   baseUrl: string = environment.baseUrlPub;
   baseUrlAuth: string = environment.baseUrl;
-  baseUrlUserProfile: string = environment.baseUrlPro
+  baseUrlUserProfile: string = environment.baseUrlPro;
+  baseUrlUserProfile2: string = environment.baseUrlPro + 'users/user_profile';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -50,7 +51,7 @@ export class AuthService {
   }
 
   updateUserProfile(user:Users){
-    return this.http.put<Users>(this.baseUrlUserProfile,user,
+    return this.http.patch<Users>(this.baseUrlUserProfile2,user,
     {headers: this.headers}).pipe(
       map((res: Users) => {
         return res || {}

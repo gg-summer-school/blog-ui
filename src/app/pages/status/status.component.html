@@ -1,27 +1,115 @@
 <div class="profile">
  <div class="dropdown">
    <a class="bon">
-     <button class="btn btn-dark bt dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     <button class="btn btn-dark bt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
        <i class="fas fa-user-tie"></i>
      </button>
-     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-       <li><a class="dropdown-item" href="#">Action</a></li>
-       <li><a class="dropdown-item" href="#">Another action</a></li>
-       <li><a class="dropdown-item" href="#">Something else here</a></li>
-     </ul>
+     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+       <div class="wrapper">
+         <div class="left">
+           <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width="100">
+           <h4>{{ userName }}</h4>
+           <p>{{ role }}</p>
+         </div>
+         <div class="right">
+           <div class="info">
+             <h3>Profile Information</h3>
+             <div class="info_data">
+               <div class="data">
+                 <h4>Email</h4>
+                 <p>{{ email }}</p>
+               </div>
+               <div class="data">
+                 <h4>Name</h4>
+                 <p>{{ userName }}</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="projects">
+             <h3>Role(s)</h3>
+             <div class="projects_data">
+               <div class="data">
+                 <h4>{{ role }}</h4>
+               </div>
+             </div>
+           </div>
+
+           <div class="projects">
+             <h3>Role(s)</h3>
+             <div class="projects_data">
+               <div class="data">
+                 <button class="btn btn-sm edit" data-bs-toggle="modal"
+                         data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}</button>
+               </div>
+             </div>
+           </div>
+
+         </div>
+       </div>
+     </div>
      <br>
      <b>{{ firstName }}</b>
    </a>
  </div>
 </div>
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
+
+
+<!-- Modal for edit user profile -->
+<div
+  class="modal fade"
+  id="editProfileModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{'UserProfile.Edit'| translate }}</h5>
+        <button
+          type="button"
+          class="btn-close btn-sm "
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="usersEdit">
+          <div class="form-group mb-2">
+            <label>{{'UserProfile.Name'| translate }}</label>
+            <input
+              [(ngModel)] = "userName"
+              id="firstName"
+              type="text"
+              class="form-control"
+              required
+              formControlName="firstName"
+            />
+          </div>
+          <div class="form-group mb-2">
+            <label>{{'UserProfile.Email'| translate }}</label>
+            <input
+              [(ngModel)] = "email"
+              id="email"
+              type="text"
+              class="form-control"
+              required
+              formControlName="email"
+            />
+          </div>
+          <div class="d-flex justify-content-end">
+            <button
+              type="submit"
+              class="btn  btn-sm btn-primary"
+              data-bs-dismiss="modal"
+              (click)="editUserAccount()">
+              {{'UserProfile.Save'| translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
