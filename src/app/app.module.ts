@@ -35,6 +35,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { ViewArticleComponent } from './pages/view-article/view-article.component';
+import {SafePipe} from "./pipe/safe/safe.pipe";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,9 @@ import { ViewArticleComponent } from './pages/view-article/view-article.componen
     PaymentComponent,
     TruncateTextPipe,
     ViewArticleComponent,
-     
+    SafePipe,
+
+
 
 
   ],
@@ -86,7 +89,7 @@ import { ViewArticleComponent } from './pages/view-article/view-article.componen
         deps: [HttpClient]
       }
     })
-   
+
   ],
 
   providers: [
