@@ -3,6 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import { Users } from 'src/app/model/users';
 import { AuthService } from 'src/app/services/auth.service';
 import {TranslateService} from "@ngx-translate/core";
+import {TokenStorageService} from "../../services/token-storage.service";
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -10,12 +11,12 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class UserProfileComponent implements OnInit {
 
-  firstName = 'Ndzo Daniel';
+  firstName = '';
   email = 'ndzodaniel31@gmail.com';
   userProfile!: Users;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
-              public translate: TranslateService) {
+              public translate: TranslateService, private tokenStorage: TokenStorageService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -30,6 +31,8 @@ export class UserProfileComponent implements OnInit {
   });
 ngOnInit(): void {
      this.getUserDetail();
+     const name = this.tokenStorage.getUser().name
+     this.firstName = name.split(' ').slice(0, -1).join(' ');
   }
 
   getUserDetail() {
