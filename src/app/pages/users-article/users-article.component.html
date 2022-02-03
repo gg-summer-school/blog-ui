@@ -25,11 +25,11 @@
       <tr >
         <td>{{userPA.title}}</td>
         <td >
-          <span *ngFor="let contributor of userPA.contributors">{{contributor.name}}</span></td>
+
         <td>
       <tr>
         <td>
-          <button class="btn btn-dark but"><i class="fas fa-download"></i> {{'UsersArticle.Download'| translate }}</button>
+          <button class="btn btn-dark but" (click)="view(userPA.id)"><i class=""></i> View</button>
         </td>
 
       </tr>

@@ -18,6 +18,7 @@ import { AdminGuard } from './Guards/admin.guard';
 import { PublisherGuard } from './Guards/publisher.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
 import {PaymentComponent} from "./pages/payment/payment.component";
+import {ViewArticleComponent} from "./pages/view-article/view-article.component";
 
 
 
@@ -117,7 +118,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  
+  {
+    path: 'view-article/:id',
+    component: ViewArticleComponent,
+    canActivate: [AuthGuard]
+  },
 
   {
     path: 'page-not-found',

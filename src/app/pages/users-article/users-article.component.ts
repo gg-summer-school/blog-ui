@@ -6,8 +6,10 @@ import { saveAs } from 'file-saver';
 import {DashboardPublisherService} from "../../services/dashboard-publisher.service";
 import {PaidArticlesService} from "../../services/user-services/paid-articles.service";
 import {PaidArticles} from "../../model/paidArticles";
+
 import {TokenStorageService} from "../../services/token-storage.service";
 import {TranslateService} from "@ngx-translate/core";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-article',
@@ -25,7 +27,7 @@ export class UsersArticleComponent implements OnInit {
 
   constructor(private articleService: ArticlesService, private tokenStorageService: TokenStorageService,
               private paidArticlesService: PaidArticlesService, private sanitizer: DomSanitizer,
-              public translate: TranslateService) {
+              public translate: TranslateService, private router: Router) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -37,7 +39,6 @@ export class UsersArticleComponent implements OnInit {
   }
   ngOnInit(): void {
     this.userId = this.tokenStorageService.getUser().id;
-    console.log(this.userId);
     this.getBookTitle();
     // const data = 'some text';
     // const blob = new Blob([data], { type: 'application/octet-stream' }
@@ -48,8 +49,9 @@ export class UsersArticleComponent implements OnInit {
   getBookTitle() {
     this.paidArticlesService.getBookTitle(this.userId)
       .subscribe(
-        res => {
-          return this.userPaidArticles = res;
+        (res: PaidArticles[]) => {
+          this.userPaidArticles = res;
+          console.log(this.userPaidArticles);
         }
       )
   }
@@ -88,6 +90,11 @@ export class UsersArticleComponent implements OnInit {
   //   }), (error: any) => console.log('Error downloading the file'),
   //   () => console.info('File downloaded successfully');
   // }
+
+  view(id: string)
+  {
+    this.router.navigate(['/view-article', id])
+  }
 
 }
 

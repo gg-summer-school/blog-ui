@@ -59,6 +59,10 @@ onSubmit() {
       const user = userData.role;
       console.log(user);
 
+         // this.readerRole = this.userRole.includes('ROLE_READER');
+         // this.publisherRole = this.userRole.includes('ROLE_PUBLISHER');
+         // this.adminRole = this.userRole.includes('ROLE_ADMIN');
+
       if(user.length === 1){
         this.router.navigate(['/users-article']);
       } else if(user.length === 2) {
