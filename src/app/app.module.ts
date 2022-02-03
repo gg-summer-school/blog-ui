@@ -35,6 +35,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { SafePipe } from './pipe/safe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { UserManagementComponent } from './pages/user-management/user-management
     PaymentComponent,
     TruncateTextPipe,
     UserManagementComponent,
+    SafePipe,
      
 
 

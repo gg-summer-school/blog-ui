@@ -30,7 +30,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   showAbs: boolean = false;
   showTable: boolean = false
   showMore:boolean = false;
-
+  doc:string = '';
   articleId: string = '';
   categoryId: string = "";
   userId: string = '';
@@ -81,9 +81,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   getArticle() {
-    const subscription = this.publisherService.getArticle(this.articleId).subscribe(res => {
+    const subscription = this.publisherService.getArticle(this.articleId).subscribe((res:ArticleDto) => {
       this.article = res;
-      this.article.image = 'data:'+ this.article.contentType+';base64,'+ this.article.coverPage
       if(this.article.articleAbstract.length > 400 || this.article.toc.length > 100){
         this.showMore = true;
       }
