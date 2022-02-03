@@ -26,9 +26,9 @@
       <tr >
         <td>{{p.name}}</td>
         <td>{{p.email}}</td>
-        <td>
+        <td style="display: inline-flex">
           <button class="btn btn-dark but" (click)="approvePublisher(p.id)">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click)="declineUser(p.id)"> {{'Requests.Decline'| translate }}</button>
+          <button class="btn btn-dark but1" (click)="declineUser(p.id)"> {{'Requests.Decline'| translate }}</button>
         </td>
       </tr>
       </tbody>

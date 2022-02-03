@@ -34,4 +34,18 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/landing-page']);
   }
 
+  onOpen() {
+    // @ts-ignore
+    document.getElementById("side").style.display = "block";
+    // @ts-ignore
+    document.getElementById("menubar").style.display = "none";
+  }
+
+  onClose() {
+    // @ts-ignore
+    document.getElementById("side").style.display = "none";
+    // @ts-ignore
+    document.getElementById("menubar").style.display = "block";
+  }
+
 }
