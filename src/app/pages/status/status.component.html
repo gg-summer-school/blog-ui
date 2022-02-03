@@ -1,8 +1,19 @@
-<a routerLink="/user-profile" class="bon">
-  <button class="btn btn-dark bt">P</button>
-  {{'Status.Profile'| translate }}</a>
-<h4><marquee>{{'Status.Welcome'| translate }} <span style="color: rebeccapurple">{{userName}}</span>!!</marquee></h4>
-
+<div class="profile">
+ <div class="dropdown">
+   <a class="bon">
+     <button class="btn btn-dark bt dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+       <i class="fas fa-user-tie"></i>
+     </button>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+       <li><a class="dropdown-item" href="#">Action</a></li>
+       <li><a class="dropdown-item" href="#">Another action</a></li>
+       <li><a class="dropdown-item" href="#">Something else here</a></li>
+     </ul>
+     <br>
+     <b>{{ firstName }}</b>
+   </a>
+ </div>
+</div>
 
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

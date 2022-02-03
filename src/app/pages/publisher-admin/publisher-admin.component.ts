@@ -56,28 +56,6 @@ export class PublisherAdminComponent implements OnInit {
     })
   }
 
-  addRoleToUser(user_id: string, event:any) {
-    const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
-    }
-    this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
-      console.log(res);
-    }, (error: any) => {
-      alert(error.error.message);
-    })
-  }
-
-  removeRoleToUser(user_id: string, event:any) {
-    const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
-    }
-    this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
-      console.log(res);
-    }, (error: any) => {
-      alert(error.error.message);
-    })
-  }
-
   reactivateUser(publisherId: string) {
     this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
       this.displayPublishers();
@@ -90,14 +68,5 @@ export class PublisherAdminComponent implements OnInit {
     this.isSuspended = true;
     this.isBlocked = false;
     }
-
-
-    // getArticlesById() {
-    //   this.adminPagesService.getArticlesByPublisher(this.publisherId, this.isApproved)
-    //     .subscribe( res =>
-    //     {
-    //       // console.log(res)
-    //     })
-    // }
 
   }

@@ -52,28 +52,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  addRoleToUser(user_id: string, event:any) {
-    const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
-    }
-    this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
-      console.log(res);
-    }, (error: any) => {
-      alert(error.error.message);
-    })
-  }
-
-  removeRoleToUser(user_id: string, event:any) {
-    const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
-    }
-    this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
-      console.log(res);
-    }, (error: any) => {
-      alert(error.error.message);
-    })
-  }
-
   reactivateUser(user_id: string) {
     this.adminPagesService.reactivateUser(user_id, this.reactivate).subscribe((res) => {
       this.displayReaders();
