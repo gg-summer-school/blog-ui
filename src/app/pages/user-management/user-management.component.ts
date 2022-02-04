@@ -12,6 +12,7 @@ export class UserManagementComponent implements OnInit {
   isApproved: boolean = true;
   publishers: Admin[] = [];
   readers: Admin[] = [];
+  allUsers: Admin[] = [];
 
   constructor(private adminPagesService: AdminPagesService) { }
 
@@ -20,30 +21,11 @@ export class UserManagementComponent implements OnInit {
   }
 
   displayAllUsers() {
-    this.adminPagesService.getPublishers(this.isApproved)
+    this.adminPagesService.getUsers()
       .subscribe( res =>
       {
-        this.displayPublishers();
-        this.displayReaders();
-        this.number= this.publishers.length && this.readers.length;
-      })
-  }
-
-  displayPublishers() {
-    this.adminPagesService.getPublishers(this.isApproved)
-      .subscribe( res =>
-      {
-        this.publishers = res;
-        this.number= this.publishers.length;
-      })
-  }
-
-  displayReaders() {
-    this.adminPagesService.getReaders()
-      .subscribe( res=>
-      {
-        this.readers = res;
-        this.number= this.readers.length;
+        this.allUsers = res;
+        this.number= this.allUsers.length;
       })
   }
 

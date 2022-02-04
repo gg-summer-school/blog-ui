@@ -6,16 +6,16 @@
 
 }
 
- .card-main
- {
+.card-main
+{
 
-   box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-   0 2px 4px rgba(0,0,0,0.07),
-   0 4px 8px rgba(0,0,0,0.07),
-   0 8px 16px rgba(0,0,0,0.07),
-   0 16px 32px rgba(0,0,0,0.07),
-   0 32px 64px rgba(0,0,0,0.07);
- }
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+  0 2px 4px rgba(0,0,0,0.07),
+  0 4px 8px rgba(0,0,0,0.07),
+  0 8px 16px rgba(0,0,0,0.07),
+  0 16px 32px rgba(0,0,0,0.07),
+  0 32px 64px rgba(0,0,0,0.07);
+}
 
 
 h5 ,label{
@@ -88,7 +88,7 @@ label {
 
 .card {
   width: 100%;
-  height: 35%;
+  height: 33%;
 }
 
 .purchase {
@@ -97,7 +97,7 @@ label {
   color: black;
 }
 .text-muted {
- padding-left: 10px;
+  padding-left: 10px;
 }
 
 .card-title {
@@ -130,9 +130,9 @@ label {
 }
 
 .account {
- padding: 3px;
- margin-left: 12px;
- margin-right: 12px;
+  padding: 3px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 #payment {
   width: 100%;
@@ -141,14 +141,13 @@ label {
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
-#payment1{
+#payment1 {
   width: 100%;
   border-radius: 13px;
   padding: 4px;
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .close {
   font-size: xx-small;
   font-weight: bolder;
@@ -166,16 +165,16 @@ label {
 .text-danger {
   font-size: small;
 }
- .createAccount1 {
+.createAccount1 {
   font-size: 14px;
   text-align: center;
   font-weight: bold;
- }
+}
 
- a {
-   text-decoration: none;
-   color: blue;
- }
- a:link {
-   text-decoration: none;
- }
+a {
+  text-decoration: none;
+  color: blue;
+}
+a:link {
+  text-decoration: none;
+}

@@ -164,15 +164,13 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     return this.paymentForm.controls;
   }
 
-  getDocument() {
-    const subscription = this.articleService.previewArticle(this.article.id, this.userId).subscribe((response) => {
-    }, (error) => { }).add(() => { });
-    this.subscriptions.push(subscription);
-  }
+  
 
   getPublisherByArticle(id:string) {
     const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {
       this.publisher = response;
+      console.log(this.publisher);
+      
     }, (error) => { }).add(() => { });
     this.subscriptions.push(subscription);
   }
