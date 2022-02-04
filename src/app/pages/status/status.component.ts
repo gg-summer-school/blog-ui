@@ -4,8 +4,9 @@ import {TranslateService} from "@ngx-translate/core";
 import {Users} from "../../model/users";
 import {FormBuilder} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {Articles} from "../../model/admin";
+import {} from "../../model/admin";
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
+import { Articles } from 'src/app/model/articles';
 
 @Component({
   selector: 'app-status',
@@ -90,7 +91,7 @@ export class StatusComponent implements OnInit {
     console.log(this.passwordChange.value)
     this.authService.changePassword(this.passwordChange.value).subscribe((response: any) => {
       console.log(response);
-    }, error => {
+    }, (error) => {
       console.log(error.message)
     })
   }
