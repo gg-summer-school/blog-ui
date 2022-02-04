@@ -3,6 +3,8 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import {TranslateService} from "@ngx-translate/core";
+import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
+import { NotificationType } from 'src/app/model/NotificationMessage';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +18,7 @@ export class SignupComponent implements OnInit {
   errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router:Router,
-              public translate: TranslateService) {
+              public translate: TranslateService, private notificationService:NotificationMessageService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -47,9 +49,11 @@ export class SignupComponent implements OnInit {
     }
     else{
       this.authService.register(this.signupForm.value).subscribe(userData => {
+        this.notificationService.sendMessage({message:"Account created Successfully", type:NotificationType.success})
         this.router.navigate(['/login'])
       }, error => {
-        this.errorMessage = error.error.message;
+        // this.errorMessage = error.error.message;
+        this.notificationService.sendMessage({message:error.error.message, type:NotificationType.error})
       })
     }
   }

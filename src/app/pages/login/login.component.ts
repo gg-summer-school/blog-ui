@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import {UserDto} from "../../model/UserDto";
 import {TranslateService} from "@ngx-translate/core";
+import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
+import { NotificationType } from 'src/app/model/NotificationMessage';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private router: Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private notificationService:NotificationMessageService
     ) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
@@ -54,11 +57,10 @@ onSubmit() {
 
   this.submitted = true;
   if (this.loginForm.valid) {
-    console.log("button is clicked");
+     
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
-      console.log(user);
-
+      this.notificationService.sendMessage({message:"Login Successfully", type:NotificationType.success})
       if(user.length === 1){
         this.router.navigate(['/users-article']);
       } else if(user.length === 2) {
@@ -71,8 +73,7 @@ onSubmit() {
        this.tokenStorage.saveUser(userData);
     },
     err => {
-      console.log(err.error)
-      this.errorMessage = err.error.message;
+      this.notificationService.sendMessage({message:err.error.message, type:NotificationType.error})
     }
   );
   }
