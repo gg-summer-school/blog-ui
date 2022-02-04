@@ -35,9 +35,12 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { ViewArticleComponent } from './pages/view-article/view-article.component';
-import {SafePipe} from "./pipe/safe/safe.pipe";
+ 
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { RoleComponent } from './role/role.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { SafePipe } from './pipe/safe/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -85,6 +88,8 @@ import { RoleComponent } from './role/role.component';
     NgxPaginationModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     QuillModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -92,8 +97,9 @@ import { RoleComponent } from './role/role.component';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
-
+    }),
+    
+   
   ],
 
   providers: [

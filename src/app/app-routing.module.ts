@@ -50,7 +50,7 @@ const routes: Routes = [
 
   { path: 'publisher-admin',
     component: PublisherAdminComponent,
-    canActivate: [AuthGuard, PublisherGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
 
   { path: 'user-admin',

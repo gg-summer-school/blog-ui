@@ -5,7 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import {TranslateService} from "@ngx-translate/core";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
-import {Articles} from "../../model/admin";
+import {} from "../../model/admin";
+import { Articles } from 'src/app/model/articles';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

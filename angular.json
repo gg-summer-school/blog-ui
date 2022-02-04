@@ -40,7 +40,8 @@
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
     "./node_modules/quill/dist/quill.min.js",
@@ -114,7 +115,9 @@
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
+              
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

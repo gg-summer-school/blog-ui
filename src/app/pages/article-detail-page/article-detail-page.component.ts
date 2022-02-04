@@ -14,6 +14,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UserDto } from 'src/app/model/UserDto';
 import { PayArticleDto } from 'src/app/model/articlesDto';
 import {TranslateService} from "@ngx-translate/core";
+import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
+import { NotificationType } from 'src/app/model/NotificationMessage';
 
 declare var $: any;
 
@@ -49,7 +51,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
     private formBuilder: FormBuilder, private authService: AuthService,
     public tokenStorage: TokenStorageService, private articleService: ArticlesService,
-              public translate: TranslateService) {
+              public translate: TranslateService,
+              private notificationService:NotificationMessageService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -99,9 +102,10 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     }
     let logginUserId: string = this.tokenStorage.getUser().id;
     const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {
+      this.notificationService.sendMessage({message: 'Payment made Successfully', type:NotificationType.success})
       this.router.navigate(['/users-article']);
     }, (error: HttpErrorResponse) => {
-      console.log(error);
+      this.notificationService.sendMessage({message: 'Payment failed', type:NotificationType.error})
     }).add(() => {
       //loader here
     })
@@ -120,14 +124,15 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       const subscription1 = this.authService.login(loginPayload).subscribe((response: UserDto) => {
         this.tokenStorage.saveToken(response.accessToken);
         this.tokenStorage.saveUser(response);
+        this.notificationService.sendMessage({message: 'Account created Successfully', type:NotificationType.success})
         //jquery code to open payment modal
         $("#editProfileModal").modal('show');
       }, (error: HttpErrorResponse) => {
-        //handle error
+        this.notificationService.sendMessage({message: 'An error occurred could not create account', type:NotificationType.error})
       }).add(() => { })
       this.subscriptions.push(subscription1);
     }, (error: HttpErrorResponse) => {
-      console.log(error)
+      this.notificationService.sendMessage({message: 'An error occurred could not create account', type:NotificationType.error})
     }).add(() => { })
     this.subscriptions.push(subscription);
   }
@@ -169,8 +174,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   getPublisherByArticle(id:string) {
     const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {
       this.publisher = response;
-      console.log(this.publisher);
-      
     }, (error) => { }).add(() => { });
     this.subscriptions.push(subscription);
   }
