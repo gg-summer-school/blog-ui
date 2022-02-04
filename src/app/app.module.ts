@@ -37,6 +37,7 @@ import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { ViewArticleComponent } from './pages/view-article/view-article.component';
 import {SafePipe} from "./pipe/safe/safe.pipe";
 import { UserManagementComponent } from './pages/user-management/user-management.component';
+import { RoleComponent } from './role/role.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { UserManagementComponent } from './pages/user-management/user-management
     ViewArticleComponent,
     UserManagementComponent,
     SafePipe,
+    RoleComponent,
 
 
 

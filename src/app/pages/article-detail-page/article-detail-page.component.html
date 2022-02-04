@@ -117,7 +117,7 @@
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
         <div class="modal-body">
           <div class="form-group ">
-            <label class="regLabel">{{'articlePage.Name'}}</label>
+            <label class="regLabel">{{'articlePage.Name' | translate}}</label>
             <input type="text" formControlName="name" class="form-control" required />
             <span class="text-danger"
               *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
@@ -150,7 +150,7 @@
           </div>
         </div>
         <div class=" mt-1 account">
-          <button type="submit" id="payment" [disabled]="!signupForm.valid" class="btn btn-primary text-white btn-sm"
+          <button type="submit" id="payment1" [disabled]="!signupForm.valid" class="btn btn-primary text-white btn-sm"
             data-bs-dismiss="modal">{{'articlePage.Create'| translate}}</button>
         </div>
       </form>

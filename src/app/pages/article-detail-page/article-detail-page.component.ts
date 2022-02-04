@@ -127,7 +127,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       }).add(() => { })
       this.subscriptions.push(subscription1);
     }, (error: HttpErrorResponse) => {
-      //handle error
+      console.log(error)
     }).add(() => { })
     this.subscriptions.push(subscription);
   }

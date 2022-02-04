@@ -1,9 +1,9 @@
- 
+
 .size
 {
   width: 350px;
   border-radius: 15px;
-   
+
 }
 
  .card-main
@@ -16,7 +16,7 @@
    0 16px 32px rgba(0,0,0,0.07),
    0 32px 64px rgba(0,0,0,0.07);
  }
- 
+
 
 h5 ,label{
   font-family: 'Times New Roman', Times, serif;
@@ -24,18 +24,18 @@ h5 ,label{
 
 .coverPage {
   margin-top: 5rem;
-  
+
 }
- 
+
 
 img {
   border: 1px solid #ddd;
- 
+
   padding: 7px;
   cursor: pointer;
-  
+
 }
- 
+
 .label1 {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bolder;
@@ -88,7 +88,7 @@ label {
 
 .card {
   width: 100%;
-  height: 30%;
+  height: 35%;
 }
 
 .purchase {
@@ -126,7 +126,7 @@ label {
 .modal-content {
   font-family: Arial, Helvetica, sans-serif;
   padding: 15px;
-   
+
 }
 
 .account {
@@ -141,10 +141,18 @@ label {
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
+#payment1{
+  width: 100%;
+  border-radius: 13px;
+  padding: 4px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .close {
   font-size: xx-small;
   font-weight: bolder;
-  
+
 }
 .required {
   color: red;
