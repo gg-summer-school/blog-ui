@@ -17,7 +17,7 @@ import { Categories } from 'src/app/model/categories';
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 
- 
+
   tableSize = 6;
   count = 0;
   pageSize = 8;
@@ -36,7 +36,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   isDisabled:boolean = false;
   isDisabledNext:boolean = false;
   isActive:boolean = true;
-   
+
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -48,8 +48,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   selectedLang: any;
   switchLang(lang: string) {
-    console.log(lang)
-    this.translate.use(lang);
+    // this.translate.use(lang);
   }
 
   ngOnDestroy(): void {
@@ -88,7 +87,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   setPage(currentPageIndex: number, currentPage:number) {
     this.getAllArticles(currentPageIndex, this.pageSize);
     this.pageNum = (currentPage-1);
-    console.log(this.pageNum);
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
   }
   getAllArticles(page: number, pageSize: number) {
@@ -104,6 +102,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       }
       if(response.last){
         this.isDisabledNext = !this.isDisabledNext;
+      }
+      if(response.pageNo == this.pageNum){
+        this.isActive = true;
       }
     }, (error: HttpErrorResponse) => {
 
@@ -140,6 +141,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   getArticlesByCategory(categoryId:string){
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
       this.allArticles = response;
+      this.pages = 0;
       if(this.allArticles != undefined){
         //to modify to use lambda
         for(let cat of this.categories){
@@ -157,6 +159,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  
+
 
 }

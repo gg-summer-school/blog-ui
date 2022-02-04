@@ -115,7 +115,7 @@ export class ArticlesService {
   }
 
   getPublisherByArticleId(articleId:string):Observable<UserDto> {
-    return this.http.get<UserDto>(this.baseUrl1+ `publisher/articles?articleId=${articleId}`).pipe(
+    return this.http.get<UserDto>(this.baseUrl+ `publisher/articles?articleId=${articleId}`).pipe(
       retry(1),
       catchError(this.handleError)
     );
