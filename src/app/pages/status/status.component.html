@@ -7,9 +7,12 @@
      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
        <div class="wrapper">
          <div class="left">
-           <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width="100">
+           <img src="assets/avatar.png" alt="user" width="100">
            <h4>{{ userName }}</h4>
            <p>{{ role }}</p>
+           <div class="data">
+             <button (click)="logout()" class="btn btn-sm mt-5 edit">Logout</button>
+           </div>
          </div>
          <div class="right">
            <div class="info">
@@ -17,16 +20,16 @@
              <div class="info_data">
                <div class="data">
                  <h4>Name</h4>
-                 <p>{{ userName }}</p>
+                 <h3>{{ userName }}</h3>
                </div>
              </div>
              <div class="data">
                <h4>Email</h4>
-               <p>{{ email }}</p>
+               <h3>{{ email }}</h3>
              </div>
-             <div style="cursor: pointer" class="data">
-               <h4 class="btn btn-sm mt-5 edit" data-bs-toggle="modal"
-                   data-bs-target="#editProfileModal2" style="font-size: 16px">Change password &nbsp; <span><i style="color: blue" class="far fa-edit"></i></span></h4>
+             <div class="changePassword">
+               <h4 data-bs-toggle="modal"
+                   data-bs-target="#editProfileModal2">Change password &nbsp; <span><i style="color: blue" class="far fa-edit"></i></span></h4>
              </div>
            </div>
 
@@ -43,7 +46,7 @@
              <div *ngIf = "publisherRole">
                <h3>Number of Articles: <b><span>{{ number }}</span></b></h3>
              </div>
-             <div *ngIf="readerRole">
+             <div *ngIf="readerRole || adminRole">
                <h3>Number of Paid Articles: <b><span>{{ numberOfPaid }}</span></b></h3>
              </div>
              <div class="projects_data">
@@ -62,7 +65,6 @@
    </a>
  </div>
 </div>
-
 
 <!-- Modal for change user password -->
 <div
@@ -122,27 +124,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal for edit user profile -->
 <div

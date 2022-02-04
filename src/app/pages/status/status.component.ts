@@ -6,6 +6,7 @@ import {FormBuilder} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {Articles} from "../../model/admin";
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-status',
@@ -36,7 +37,7 @@ export class StatusComponent implements OnInit {
   role2: string = '';
 
   constructor(private tokenStorageService: TokenStorageService, translate: TranslateService, private formBuilder: FormBuilder, private authService: AuthService,
-              private adminPagesService: AdminPagesService) {
+              private adminPagesService: AdminPagesService, private router: Router) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -114,6 +115,11 @@ export class StatusComponent implements OnInit {
        this.numberOfPaid = this.paidArticles.length;
       console.log(this.numberOfPaid);
     })
+  }
+
+  logout() {
+    this.tokenStorageService.signOut();
+    this.router.navigate(['/landing-page'])
   }
 
 }
