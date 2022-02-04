@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from "../../services/token-storage.service";
 import {TranslateService} from "@ngx-translate/core";
 import {Users} from "../../model/users";
 import {FormBuilder} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {} from "../../model/admin";
 import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
 import {Router} from "@angular/router";
-import { Articles } from 'src/app/model/articles';
+import {Articles} from 'src/app/model/articles';
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NotificationType} from "../../model/NotificationMessage";
 
 @Component({
   selector: 'app-status',
@@ -38,7 +39,8 @@ export class StatusComponent implements OnInit {
   role2: string = '';
 
   constructor(private tokenStorageService: TokenStorageService, translate: TranslateService, private formBuilder: FormBuilder, private authService: AuthService,
-              private adminPagesService: AdminPagesService, private router: Router) {
+              private adminPagesService: AdminPagesService, private router: Router,
+              private notificationService:NotificationMessageService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -84,7 +86,10 @@ export class StatusComponent implements OnInit {
         role: user.role,
       }
       this.tokenStorageService.saveUser(newUser);
-      window.location.reload();
+      this.notificationService.sendMessage({message: 'Your name has been updated successfully', type:NotificationType.success})
+      // window.location.reload();
+    }, error => {
+      this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     });
   }
 
@@ -92,8 +97,9 @@ export class StatusComponent implements OnInit {
     console.log(this.passwordChange.value)
     this.authService.changePassword(this.passwordChange.value).subscribe((response: any) => {
       console.log(response);
+      this.notificationService.sendMessage({message: 'Password updated successfully', type:NotificationType.success})
     }, (error) => {
-      console.log(error.message)
+      this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
   }
 
