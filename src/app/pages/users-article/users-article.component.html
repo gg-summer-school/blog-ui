@@ -13,29 +13,27 @@
 
     <h4>{{'UsersArticle.Pay'| translate }}</h4><br>
     <br>
-    <table class="table table-borderless table-responsive" >
-      <thead>
-      <tr>
-        <th scope="col">{{'UsersArticle.Book'| translate }} ({{number}})</th>
-        <th scope="col">{{'UsersArticle.Contributor'| translate }}</th>
-        <th scope="col">Action</th>
-      </tr>
-      </thead>
 
-      <tbody *ngFor="let userPA of userPaidArticles">
-      <br>
-      <tr >
-        <td>{{userPA.title}}</td>
-        <td >
-          <span *ngFor="let contributor of userPA.contributors">{{contributor.name}}</span></td>
-        <td>
-      <tr>
-        <td>
-          <button class="btn btn-dark but"><i class="fas fa-download"></i> {{'UsersArticle.Download'| translate }}</button>
-        </td>
+  <table class="table table-borderless table-responsive" >
+    <thead>
+    <tr>
+      <th scope="col"><b>{{'UsersArticle.Book'| translate }} ({{number}})</b></th>
+      <th scope="col">Categories</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let userPA of userPaidArticles">
+    <br>
+    <tr >
+      <td>{{userPA.title}}</td>
+      <td>{{userPA.categoryName}}</td>
+      <td>
+        <button class="btn btn-dark but" (click)="view(userPA.id, userPA.document)">View</button>&nbsp;
+      </td>
 
-      </tr>
-      </tbody>
-
-    </table>
+    </tr>
+    </tbody>
+  </table>
   </div>
+  </div>
+</div>

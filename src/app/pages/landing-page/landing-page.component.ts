@@ -25,12 +25,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   searchData = '';
   totalPages: number = 0;
   allArticles: ArticleDto[] = [];
+  searchedArticles: ArticleDto[] = [];
   pages: any = 0;
   category: boolean = false;
   pageNumberArray: number[] = [];
   pageNum: number = 1;
   subscriptions: Subscription[] = [];
-  active: boolean | undefined;
+  active: boolean =false;
   categories!: Categories[];
   categoryName!:Categories;
   isDisabled:boolean = false;
@@ -157,6 +158,15 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     })
     this.subscriptions.push(subscription);
   }
+  searchArticle()
+  {
+    this.articlesService.searchArticle(this.searchData).subscribe(res=>
+    {
+      this.searchedArticles=res;
+      this.active=true;
+    })
+  }
+
 
 
 

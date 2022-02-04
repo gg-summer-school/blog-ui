@@ -18,6 +18,7 @@ import { AdminGuard } from './Guards/admin.guard';
 import { PublisherGuard } from './Guards/publisher.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
 import {PaymentComponent} from "./pages/payment/payment.component";
+import {ViewArticleComponent} from "./pages/view-article/view-article.component";
 import {UserManagementComponent} from "./pages/user-management/user-management.component";
 
 
@@ -123,6 +124,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+  {
+    path: 'view-article/:id/:doc',
+    component: ViewArticleComponent,
+    canActivate: [AuthGuard]
+  },
 
 
   {

@@ -67,6 +67,7 @@ export class YourArticlesComponent implements OnInit {
       if(art.id === id){
         article =  art;
         this.doc = article.document;
+        console.log(this.doc)
       }
     }
 
