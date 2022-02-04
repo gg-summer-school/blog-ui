@@ -12,14 +12,10 @@ export class PublisherAdminComponent implements OnInit {
 
   isBlocked = false;
   isSuspended = false;
-
   publishers: Admin[] = [];
   isApproved: boolean = true;
-  publisherId: string = 'e4ab681b-34c8-4f54-8b0a-88423122bffd';
-  numberOfArticles: Admin[] = [];
   status: string = 'Suspend';
   suspendUser: boolean = false;
-  addRole!: RolePayload;
   reactivate: boolean = true;
   number!: number
 

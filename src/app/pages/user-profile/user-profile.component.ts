@@ -4,6 +4,9 @@ import { Users } from 'src/app/model/users';
 import { AuthService } from 'src/app/services/auth.service';
 import {TranslateService} from "@ngx-translate/core";
 import {TokenStorageService} from "../../services/token-storage.service";
+import {AdminPagesService} from "../../services/admin-services/admin-pages.service";
+import {} from "../../model/admin";
+import { Articles } from 'src/app/model/articles';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -14,9 +17,14 @@ export class UserProfileComponent implements OnInit {
   firstName = '';
   email = 'ndzodaniel31@gmail.com';
   userProfile!: Users;
+  publisherId: string = '';
+  articles: Articles[] = [];
+  number!: number;
+  user_id = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
-              public translate: TranslateService, private tokenStorage: TokenStorageService) {
+              public translate: TranslateService, private tokenStorage: TokenStorageService,
+              private adminPagesService: AdminPagesService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -27,19 +35,20 @@ export class UserProfileComponent implements OnInit {
   usersEdit = this.formBuilder.group({
     firstName: '',
     email: '',
-    password: ''
+    password: '',
   });
 ngOnInit(): void {
      this.getUserDetail();
      const name = this.tokenStorage.getUser().name
+      this.user_id = this.tokenStorage.getUser().id;
+     console.log(this.user_id);
+     this.getAllArticlesByPublisher();
      this.firstName = name.split(' ').slice(0, -1).join(' ');
   }
 
   getUserDetail() {
     this.authService.getUserProfile().subscribe((response: any) => {
       this.userProfile = response;
-      console.log(response);
-
     });
   }
 
@@ -49,5 +58,13 @@ ngOnInit(): void {
     });
   }
 
+  getAllArticlesByPublisher() {
+  this.adminPagesService.getAllArticlesByPublisher(this.user_id)
+    .subscribe( (res: Articles[]) => {
+      this.articles = res;
+      this.number= this.articles.length;
+      console.log("length "+ this.number);
+    })
+  }
 
 }
