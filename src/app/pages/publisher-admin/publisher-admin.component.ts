@@ -12,7 +12,6 @@ export class PublisherAdminComponent implements OnInit {
 
   isBlocked = false;
   isSuspended = false;
-
   publishers: Admin[] = [];
   isApproved: boolean = true;
   status: string = 'Suspend';

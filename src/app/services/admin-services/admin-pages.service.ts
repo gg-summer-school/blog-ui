@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
-import {Admin, roleDTO, RolePayload, Transactions} from "../../model/admin";
+import {Admin, Articles, roleDTO, RolePayload, Transactions} from "../../model/admin";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,8 @@ export class AdminPagesService {
     return this.http.get<Admin[]>(this.baseUrlPro + 'users' + '/' + 'readers');
   }
 
-  getArticlesByPublisher(publisherId: string, isApproved: boolean) {
-    return this.http.get<Admin>(this.baseUrlPro + 'publishers' + '/' + publisherId + '/' + 'articles');
+  getAllArticlesByPublisher(publisherId: string): Observable<Articles[]> {
+    return this.http.get<Articles[]>(this.baseUrlPro + 'publishers' + '/' + publisherId + '/' + 'articles');
   }
 
   approveUser(user_id: string, approve: boolean) {
@@ -61,5 +62,8 @@ export class AdminPagesService {
     return this.http.get<Transactions[]>(this.baseUrlPro + 'transactions' + '/' + 'users' + '/' + user_id);
   }
 
+  getPaidArticlesByUser(user_id: string): Observable<Articles[]> {
+    return this.http.get<Articles[]>(this.baseUrlPro + 'users' + '/' + user_id + '/' + 'paid-articles')
+  }
 
 }
