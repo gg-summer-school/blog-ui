@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
-import {Admin, Articles, roleDTO, RolePayload, Transactions} from "../../model/admin";
+import {Admin, roleDTO, RolePayload, Transactions} from "../../model/admin";
 import {Observable} from "rxjs";
+import { Articles } from 'src/app/model/articles';
 
 @Injectable({
   providedIn: 'root'

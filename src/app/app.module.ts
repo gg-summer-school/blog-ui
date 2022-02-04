@@ -36,6 +36,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { SafePipe } from './pipe/safe/safe.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { SafePipe } from './pipe/safe/safe.pipe';
     NgxPaginationModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     QuillModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -87,7 +91,8 @@ import { SafePipe } from './pipe/safe/safe.pipe';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    
    
   ],
 

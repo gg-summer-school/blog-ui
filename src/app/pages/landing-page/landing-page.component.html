@@ -9,16 +9,16 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=" ">Home</a>
+          <a class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
+          <a class="nav-link " href="#">{{'Navbar.About'| translate }}</a>
         </li>
       </ul>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
-          <input type="text" class="size" placeholder=" search articles..." [(ngModel)]="searchData" id="listSearch">
+          <input type="text" class="size" placeholder=" {{'Navbar.placeholderS'| translate }}" [(ngModel)]="searchData" id="listSearch">
 
         </li>
       </ul>
@@ -26,21 +26,33 @@
 
         <li class="nav-item">
           <a class="nav-link" href="/signup"><button class="btn btn-outline-primary"
-              *ngIf="!tokenStorage.getToken1()">SignUp</button></a>
+              *ngIf="!tokenStorage.getToken1()">{{'Navbar.SignUp'| translate }}</button></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="/login"><button class="btn btn-outline-info"
-              *ngIf="!tokenStorage.getToken1()">Login</button></a>
+              *ngIf="!tokenStorage.getToken1()">{{'Navbar.Login'| translate }}</button></a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
-              *ngIf="tokenStorage.getToken1()">Dashboard</button></a>
+              *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              En
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li class="dropdown-item"><a  (click)="switchLang('en')">En</a></li>
+              <li class="dropdown-item"><a  (click)="switchLang('fre')">Fre</a></li>
+            </ul>
+          </div>
         </li>
       </ul>
 
     </div>
   </div>
 </nav>
+
 
 <div class="row color">
   <div class="col-md-4 about">
@@ -49,14 +61,14 @@
       <br>
       <br>
       <br>
-      <h2>Welcome to <span style="color: indigo"> Blog site</span></h2>
-      <span>Publish your articles and books to the world.</span>
+      <h2>{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
+      <span>{{'Page.Publish'| translate }}</span>
       <br>
-      <span>View all kinds of articles or books. We have it all installed for you.</span>
+      <span>{{'Page.View'| translate }}</span>
       <br>
       <br>
       <hr>
-      <button class=" btn btn-outline" style="color: indigo">View articles</button>
+      <button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button>
     </div>
   </div>
   <div class="col-md-8">
@@ -69,7 +81,7 @@
 <div class="container-fluid">
   <div class="row text-center mt-5">
     <h2>
-      All Articles and Books
+      {{'Page.All'| translate }}
     </h2>
   </div>
   <div class="row mt-5 articles">
@@ -137,16 +149,17 @@
 
 
 
+
 <br>
 <div class="auth">
-  <h5>Our Authors</h5>
+  <h5>{{'Page.Authors'| translate }}</h5>
   <div class="row">
     <div class="col-md-3">
       <div class="card">
 
         <div class="card-body">
           <div>
-            <h6>Author name</h6>
+            <h6>{{'Page.Name'| translate }}Author name</h6>
           </div>
           <span class="card-text form-text">email@gmail.com</span>
         </div>
@@ -156,7 +169,7 @@
       <div class="card">
 
         <div class="card-body">
-          <h6>Author name</h6>
+          <h6>{{'Page.Name'| translate }}</h6>
           <span class="card-text form-text">email@gmail.com</span>
         </div>
       </div>
@@ -164,7 +177,7 @@
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <h6>Author name</h6>
+          <h6>{{'Page.Name'| translate }}</h6>
           <span class="card-text form-text">email@gmail.com</span>
         </div>
       </div>
@@ -172,7 +185,7 @@
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <h6>Author name</h6>
+          <h6>{{'Page.Name'| translate }}</h6>
           <span class="card-text form-text">email@gmail.com</span>
         </div>
       </div>
@@ -185,17 +198,18 @@
 <div class="footer ">
   <div class="row">
     <div class="col-md-3">
-      <h5>Quick links</h5>
-      <a>View categories</a>
+      <h5>{{'Page.Link'| translate }}</h5>
+      <a>{{'Page.Categories'| translate }}</a>
       <br>
-      <a>View articles</a>
+      <a>{{'Page.Article'| translate }}</a>
       <br>
-      <a>Our authors</a>
+      <a>{{'Page.Authors'| translate }}</a>
       <br>
-      <a>Signup</a>
+      <a>{{'Navbar.SignUp'| translate }}</a><br>
+
     </div>
     <div class="col-md-3">
-      <h5>Contact us</h5>
+      <h5>{{'Page.Contact'| translate }}</h5>
       <span>Whatsapp</span>
       <br>
       <span>Instagram</span>
@@ -206,14 +220,14 @@
       <br>
     </div>
     <div class="col-md-3">
-      <span>About us</span>
+      <span>{{'Page.About'| translate }}</span>
       <p>FAQ</p>
     </div>
     <div class="col-md-3">
-      <p>Terms</p>
-      <p>Privacy</p>
-      <h5>Subscribe to our newsletter</h5>
-      <input placeholder=" enter email..." class="input-size"><button class="btn btn-outline-primary">Subscribe</button>
+      <p>{{'Page.Terms'| translate }}</p>
+      <p>{{'Page.Privacy'| translate }}</p>
+      <h5>{{'Page.Suscribe'| translate }}</h5>
+      <input placeholder=" {{'Page.placeholderE'| translate }}" class="input-size"><button class="btn btn-outline-primary">{{'Page.Suscribe1'| translate }}</button>
     </div>
 
   </div>
@@ -221,5 +235,6 @@
 
 </div>
 <div class="foot">
-  <p class="p">Copyright @2022 All rights reserved. <span class="blog">Blog site</span></p>
+  <p class="p">{{'Page.Copy'| translate }}<span class="blog">Blog site</span></p>
 </div>
+
