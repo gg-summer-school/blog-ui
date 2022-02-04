@@ -10,10 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class NotificationMessageService {
 
   private notificationSubject:Subject<NotificationMessage> = new Subject<NotificationMessage>();
-  constructor(private toastr:ToastrService, public translate:TranslateService) {
-    translate.addLangs(['en', 'fre']);
-    translate.setDefaultLang('en');
-    
+  constructor(private toastr:ToastrService) {
       this.notificationSubject.subscribe(message => {
         switch(message.type){
           case NotificationType.success:

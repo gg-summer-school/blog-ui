@@ -60,7 +60,7 @@ onSubmit() {
      
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
-      this.notificationService.sendMessage({message:"Login Successfully", type:NotificationType.success})
+      this.notificationService.sendMessage({message: 'Login Successfully', type:NotificationType.success})
       if(user.length === 1){
         this.router.navigate(['/users-article']);
       } else if(user.length === 2) {

@@ -6,7 +6,6 @@ import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
-import {TranslateService} from "@ngx-translate/core";
 import { Categories } from 'src/app/model/categories';
 
 
@@ -40,15 +39,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
-    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
-      translate.addLangs(['en', 'fre']);
-      translate.setDefaultLang('en');
-      // translate.use('en');
-  }
-
-  selectedLang: any;
-  switchLang(lang: string) {
-    // this.translate.use(lang);
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute) {
+     
   }
 
   ngOnDestroy(): void {
