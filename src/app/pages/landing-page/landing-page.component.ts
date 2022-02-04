@@ -17,7 +17,7 @@ import { Categories } from 'src/app/model/categories';
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 
- 
+
   tableSize = 6;
   count = 0;
   pageSize = 8;
@@ -25,18 +25,19 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   searchData = '';
   totalPages: number = 0;
   allArticles: ArticleDto[] = [];
+  searchedArticles: ArticleDto[] = [];
   pages: any = 0;
   category: boolean = false;
   pageNumberArray: number[] = [];
   pageNum: number = 1;
   subscriptions: Subscription[] = [];
-  active: boolean | undefined;
+  active: boolean =false;
   categories!: Categories[];
   categoryName!:Categories;
   isDisabled:boolean = false;
   isDisabledNext:boolean = false;
   isActive:boolean = true;
-   
+
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -156,7 +157,15 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     })
     this.subscriptions.push(subscription);
   }
+  searchArticle()
+  {
+    this.articlesService.searchArticle(this.searchData).subscribe(res=>
+    {
+      this.searchedArticles=res;
+      this.active=true;
+    })
+  }
 
-  
+
 
 }

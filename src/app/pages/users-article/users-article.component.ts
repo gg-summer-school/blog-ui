@@ -17,11 +17,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./users-article.component.scss']
 })
 export class UsersArticleComponent implements OnInit {
-  userPaidArticles!: PaidArticles[];
+  userPaidArticles!: ArticleDto[];
   userId: string = '';
   articleId!: string;
-  userPaidArticle!: Articles[];
-  pubArticles:ArticleDto[]=[];
   publisherId:string='';
   number!: number;
 
@@ -49,7 +47,7 @@ export class UsersArticleComponent implements OnInit {
   getBookTitle() {
     this.paidArticlesService.getBookTitle(this.userId)
       .subscribe(
-        (res: PaidArticles[]) => {
+        (res: ArticleDto[]) => {
           this.userPaidArticles = res;
           console.log(this.userPaidArticles);
         }
@@ -91,9 +89,9 @@ export class UsersArticleComponent implements OnInit {
   //   () => console.info('File downloaded successfully');
   // }
 
-  view(id: string)
+  view(id: string, doc:string)
   {
-    this.router.navigate(['/view-article', id])
+    this.router.navigate(['/view-article', id, doc]);
   }
 
 }

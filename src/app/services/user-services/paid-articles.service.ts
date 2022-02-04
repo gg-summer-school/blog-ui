@@ -15,8 +15,8 @@ export class PaidArticlesService {
 
   constructor(private http: HttpClient) { }
 
-  getBookTitle(userId: string): Observable<PaidArticles[]>{
-    return this.http.get<PaidArticles[]>(this.baseUrl1 + 'users/' + userId + '/paid-articles');
+  getBookTitle(userId: string): Observable<ArticleDto[]>{
+    return this.http.get<ArticleDto[]>(this.baseUrl1 + 'users/' + userId + '/paid-articles');
   }
 
   // deleteArticle(userId:string, articleId:string, categoryId:string)

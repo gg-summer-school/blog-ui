@@ -125,7 +125,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'view-article/:id',
+    path: 'view-article/:id/:doc',
     component: ViewArticleComponent,
     canActivate: [AuthGuard]
   },

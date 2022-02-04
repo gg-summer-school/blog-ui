@@ -32,8 +32,8 @@ export class ArticlesService {
     return this.http.get<ArticleResource>(this.baseUrl + `articles?pageNo=` + pageNo + `&pageSize=` + pageSize);
   }
 
-  getArticle(articleId: string, userId: string): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(this.baseUrl1 + `articles?articleId=` + articleId + `&userId=` + userId);
+  searchArticle(articleTitle: string): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(this.baseUrl + `articles-search?title=`+ articleTitle);
 
   }
 

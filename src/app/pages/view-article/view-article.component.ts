@@ -9,15 +9,15 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./view-article.component.scss']
 })
 export class ViewArticleComponent implements OnInit {
-  publisherId: string = '';
+  doc: string = '';
   articleId: string = '';
 
   constructor(private tokenStorage: TokenStorageService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.publisherId = this.tokenStorage.getUser().id;
     this.articleId = this.activatedRoute.snapshot.params.id;
-    console.log(this.publisherId, this.articleId)
+    this.doc = this.activatedRoute.snapshot.params.doc;
+    console.log(this.articleId, this.doc);
   }
 
 }

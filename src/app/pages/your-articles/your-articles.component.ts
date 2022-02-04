@@ -37,7 +37,7 @@ export class YourArticlesComponent implements OnInit {
     this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
       this.pubArticles=res;
-      
+
     })
   }
 
@@ -66,10 +66,11 @@ export class YourArticlesComponent implements OnInit {
       if(art.id === id){
         article =  art;
         this.doc = article.document;
+        console.log(this.doc)
       }
     }
-    
-    
+
+
   }
 
 
