@@ -9,7 +9,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 export class AdminGuard implements CanActivate {
 
   constructor(private tokenStorageService: TokenStorageService, private router: Router){}
-  
+
   canActivate(): boolean {
     const user = this.tokenStorageService.getUser().role;
     let role = user.find((role: any )=> role === 'ROLE_ADMIN')
@@ -24,6 +24,6 @@ export class AdminGuard implements CanActivate {
       this.router.navigate(['/publisher-admin'])
       return false;
     }
-  } 
-  
+  }
+
 }
