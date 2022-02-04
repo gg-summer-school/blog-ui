@@ -19,6 +19,7 @@ export class YourArticlesComponent implements OnInit {
   errorMessage:string='';
   error:boolean=false;
   doc:string = '';
+  number!: number;
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
               private tokenStorage: TokenStorageService, private router: Router,
               public translate: TranslateService) {
@@ -37,7 +38,7 @@ export class YourArticlesComponent implements OnInit {
     this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
       this.pubArticles=res;
-      
+
     })
   }
 
@@ -68,8 +69,8 @@ export class YourArticlesComponent implements OnInit {
         this.doc = article.document;
       }
     }
-    
-    
+
+
   }
 
 

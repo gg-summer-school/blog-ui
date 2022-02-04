@@ -9,58 +9,83 @@
       <app-status></app-status>
     </div>
 
-    <div class="col-md-10 ">
+    <div class="col-md-10">
       <h4>{{'YourArticles.Articles1'| translate }}</h4>
       <br>
-
       <h5 *ngIf="!pubArticles.length" class="form-text">{{'YourArticles.NoArt'| translate }} <a
-          routerLink="/publish-article">{{'YourArticles.Publish'| translate }} <i
-            class="fas fa-arrow-circle-right"></i></a></h5>
-      <table class="table table-borderless table-responsive table-sm" *ngIf="pubArticles.length">
+        routerLink="/publish-article">{{'YourArticles.Publish'| translate }} <i
+        class="fas fa-arrow-circle-right"></i></a></h5>
+      <table class="table table-borderless table-responsive" >
         <thead>
-          <tr>
-            <th scope="col">{{'YourArticles.Articles'| translate }}</th>
-            <th scope="col">{{'YourArticles.Category'| translate }}</th>
-            <th scope="col">{{'YourArticles.Price'| translate }}</th>
-            <th scope="col">Action</th>
-          </tr>
+        <tr>
+          <th scope="col">{{'YourArticles.Articles'| translate }} ({{number}})</th>
+          <th scope="col">{{'YourArticles.Category'| translate }}</th>
+          <th scope="col">{{'YourArticles.Price'| translate }}</th>
+          <th scope="col">Action</th>
+        </tr>
         </thead>
         <tbody *ngFor="let article of pubArticles">
-          <br>
-          <tr>
-            <td><a class="preview" (click)="previewArticle(article.id)"  data-bs-toggle="modal" data-bs-target="#articlePreview">{{article.title}}</a></td>
-            <td>{{article.categoryName}}</td>
-            <td>{{article.price}} frs</td>
-            <td>
-              <!-- <button class="btn btn-danger" data-bs-target="#staticBackdrop" data-bs-toggle="modal" ><i class="fa fa-trash 2px"></i> {{'YourArticles.Delete'| translate }}</button>&nbsp;&nbsp; -->
-              <button class="btn btn-primary edit" (click)="edit(article.id, article.categoryId)"><i
-                  class="fa fa-edit 2px"></i> {{'YourArticles.Edit'| translate }}</button>
-            </td>
-          </tr>
-          <tr>
-            <!-- Delete Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">{{'YourArticles.Delete2'| translate }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <h5>{{'YourArticles.Sure'| translate }}</h5>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{'YourArticles.Cancel'|
-                      translate }}</button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                      (click)="delete(article.userId, article.id, article.categoryId)">{{'YourArticles.Delete'|
-                      translate }}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <br>
+        <tr >
+          <td><a class="preview" (click)="previewArticle(article.id)"  data-bs-toggle="modal" data-bs-target="#articlePreview">{{article.title}}</a></td>
+          <td>{{article.categoryName}}</td>
+          <td>{{article.price}} frs</td>
+          <td>
+            <button class="btn btn-primary edit" (click)="edit(article.id, article.categoryId)"><i
+              class="fa fa-edit 2px"></i> {{'YourArticles.Edit'| translate }}</button>
+          </td>
+
+        </tr>
         </tbody>
+<!--        -->
+<!--        -->
+<!--    <div class="col-md-10 ">-->
+<!--      -->
+<!--      <table class="table table-borderless table-responsive table-sm" *ngIf="pubArticles.length">-->
+<!--        <thead>-->
+<!--          <tr>-->
+<!--            <th scope="col">{{'YourArticles.Articles'| translate }}</th>-->
+<!--            <th scope="col">{{'YourArticles.Category'| translate }}</th>-->
+<!--            <th scope="col">{{'YourArticles.Price'| translate }}</th>-->
+<!--            <th scope="col">Action</th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--        <tbody *ngFor="let article of pubArticles">-->
+<!--          <br>-->
+<!--          <tr>-->
+<!--            <td><a class="preview" (click)="previewArticle(article.id)"  data-bs-toggle="modal" data-bs-target="#articlePreview">{{article.title}}</a></td>-->
+<!--            <td>{{article.categoryName}}</td>-->
+<!--            <td>{{article.price}} frs</td>-->
+<!--            <td>-->
+<!--              &lt;!&ndash; <button class="btn btn-danger" data-bs-target="#staticBackdrop" data-bs-toggle="modal" ><i class="fa fa-trash 2px"></i> {{'YourArticles.Delete'| translate }}</button>&nbsp;&nbsp; &ndash;&gt;-->
+<!--              <button class="btn btn-primary edit" (click)="edit(article.id, article.categoryId)"><i-->
+<!--                  class="fa fa-edit 2px"></i> {{'YourArticles.Edit'| translate }}</button>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            &lt;!&ndash; Delete Modal &ndash;&gt;-->
+<!--            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
+<!--              aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--              <div class="modal-dialog">-->
+<!--                <div class="modal-content">-->
+<!--                  <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="staticBackdropLabel">{{'YourArticles.Delete2'| translate }}</h5>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                  </div>-->
+<!--                  <div class="modal-body">-->
+<!--                    <h5>{{'YourArticles.Sure'| translate }}</h5>-->
+<!--                  </div>-->
+<!--                  <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{'YourArticles.Cancel'|-->
+<!--                      translate }}</button>-->
+<!--                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+<!--                      (click)="delete(article.userId, article.id, article.categoryId)">{{'YourArticles.Delete'|-->
+<!--                      translate }}</button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--        </tbody>-->
       </table>
     </div>
 
