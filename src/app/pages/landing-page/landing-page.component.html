@@ -19,18 +19,18 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
 
-         <input (keyup)="searchArticle()" type="text" class="size" placeholder=" {{'Navbar.placeholderS'| translate }}" [(ngModel)]="searchData" id="listSearch" >
+         <input  (keyup)="searchArticle()" type="text" class="form-control size" placeholder=" {{'Navbar.placeholderS'| translate }}" [(ngModel)]="searchData" id="listSearch" >
 
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="/signup"><button class="btn btn-outline-primary"
+          <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary"
               *ngIf="!tokenStorage.getToken1()">{{'Navbar.SignUp'| translate }}</button></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="/login"><button class="btn btn-outline-info"
+          <a class="nav-link " routerLink="/login"><button class="btn btn-outline-info"
               *ngIf="!tokenStorage.getToken1()">{{'Navbar.Login'| translate }}</button></a>
         </li>
         <li class="nav-item">
@@ -166,9 +166,6 @@
 
 
 
-
-
-<br>
 <div class="auth">
   <h5>{{'Page.Authors'| translate }}</h5>
   <div class="row">
@@ -255,4 +252,7 @@
 <div class="foot">
   <p class="p">{{'Page.Copy'| translate }}<span class="blog">Blog site</span></p>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
 

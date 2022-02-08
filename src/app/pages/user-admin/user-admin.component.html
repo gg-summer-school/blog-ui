@@ -27,8 +27,8 @@
       <td>{{read.email}}</td>
 
       <td>
-      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-dark but">{{'UserAdmin.Suspend'| translate }}</button>&nbsp;
-      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-dark but">{{'UserAdmin.Reactivate'| translate }}</button>&nbsp;
+      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-danger ">{{'UserAdmin.Suspend'| translate }}</button>&nbsp;
+      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-success">{{'UserAdmin.Reactivate'| translate }}</button>&nbsp;
 
 
     </tr>
@@ -54,6 +54,10 @@
 </div>
 </div>
 </div>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait.</p>
+  </ngx-spinner>
 
-<!-- Button trigger modal -->
+
+  <!-- Button trigger modal -->
 

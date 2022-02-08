@@ -6,6 +6,9 @@ import {ArticleDto, updatePayload} from "../../model/articles";
 import {DashboardPublisherService} from "../../services/dashboard-publisher.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationType} from "../../model/NotificationMessage";
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -32,7 +35,9 @@ export class EditArticleComponent implements OnInit {
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
               private publisherService: DashboardPublisherService, private route: ActivatedRoute,
-              private router: Router, public translate: TranslateService) {
+              private router: Router, public translate: TranslateService,
+              private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -52,7 +57,7 @@ export class EditArticleComponent implements OnInit {
     this.articleId= this.route.snapshot.params.id;
     this.categoryId= this.route.snapshot.params.catid;
     this.getOneArticle();
-    this.  getCategories()
+    this.getCategories()
   }
 
   get f()
@@ -62,16 +67,18 @@ export class EditArticleComponent implements OnInit {
   }
   onSubmit(form:updatePayload)
   {
-
+     this.spinnerService.show();
     this.publisherService.editArticle(this.publisherId, this.articleId, this.categoryId, form).subscribe((response) => {
        console.log(response)
-      this.success=true;
-       this.router.navigate(['/your-articles'])
+        this.notificationService.sendMessage({message: 'Article edited Successfully', type:NotificationType.success})
+       this.router.navigate(['/your-articles']);
+       this.spinnerService.hide();
       },
       error1 =>
       {
-        this.error1=true;
         this.errorMessage1= error1.error.message;
+        this.notificationService.sendMessage({message: this.errorMessage1, type:NotificationType.error})
+        this.spinnerService.hide()
 
       })
   }
@@ -87,11 +94,18 @@ export class EditArticleComponent implements OnInit {
 
   getOneArticle()
   {
+    this.spinnerService.show()
     this.publisherService.getOneArticle(this.publisherId, this.articleId, this.categoryId).subscribe(res=>
     {
       this.oneArticle=res;
-      console.log(res)
-    }
+      this.spinnerService.hide()
+
+    },
+      error =>
+      {
+        this.notificationService.sendMessage({message: this.errorMessage1, type:NotificationType.error})
+        this.spinnerService.hide()
+      }
     )
   }
 

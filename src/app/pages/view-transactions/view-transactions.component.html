@@ -14,6 +14,7 @@
 
     <h5>{{'ViewTransactions.Details'| translate }}</h5>
     <br>
+    <h5 class="form-text" *ngIf="!transactions.length">You haven't done any transaction yet!</h5>
     <div *ngFor="let trans of transactions">
       <p>Article Name: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;{{trans.nameOfArticle}}</p>
       <p>Payment date: &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;   {{trans.createdAt|date:'dd/MM/yyyy'}}, {{trans.createdAt| date: 'shortTime'}}</p>
@@ -25,3 +26,6 @@
   </div>
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
