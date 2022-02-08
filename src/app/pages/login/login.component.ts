@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { loginData, Users } from 'src/app/model/users';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import {UserDto} from "../../model/UserDto";
-import {TranslateService} from "@ngx-translate/core";
+import {UserDto} from '../../model/UserDto';
+import {TranslateService} from '@ngx-translate/core';
 import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
 import { NotificationType } from 'src/app/model/NotificationMessage';
-import {NgxSpinnerService} from "ngx-spinner";
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private router: Router,
     public translate: TranslateService,
-    private notificationService:NotificationMessageService,
+    private notificationService: NotificationMessageService,
     private  spinnerService: NgxSpinnerService
     ) {
     translate.addLangs(['en', 'fre']);
@@ -61,13 +61,13 @@ onSubmit() {
 
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
-      this.notificationService.sendMessage({message: 'Login Successfully', type:NotificationType.success})
-      if(user.includes("ROLE_ADMIN")){
+      this.notificationService.sendMessage({message: 'Login Successfully', type: NotificationType.success})
+      if(user.includes('ROLE_ADMIN')){
         this.router.navigate(['/requests']);
       }
-      if(user.includes("ROLE_PUBLISHER") && !user.includes("ROLE_ADMIN")){
+      if(user.includes('ROLE_PUBLISHER') && !user.includes('ROLE_ADMIN')){
         this.router.navigate(['/your-articles']);
-      }if(user.includes("ROLE_READER") && !user.includes("ROLE_ADMIN") && !user.includes("ROLE_PUBLISHER") ){
+      }if(user.includes('ROLE_READER') && !user.includes('ROLE_ADMIN') && !user.includes('ROLE_PUBLISHER') ){
         this.router.navigate(['/users-article']);
       }
         this.tokenStorage.saveToken(userData.accessToken);
