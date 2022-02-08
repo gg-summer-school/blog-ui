@@ -1,0 +1,87 @@
+.col-md-2{
+  background-color: indigo;
+  height: 100%;
+  width: 50px;
+  position: fixed;
+  text-align: center;
+  color: white;
+  font-size: 7px;
+  font-weight: lighter;
+  padding-right: 5px;
+}
+
+// $col-md-2 (
+//  background-color: $indigo-800;
+// );
+
+.icon {
+  color: white;
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.col-md-12 {
+  color: white;
+}
+
+img {
+  border-right: 100px;
+  width: 50px;
+  height: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.log {
+  font-size: 8px;
+}
+
+#logout-btn{
+  background-color: indigo;
+  color: white;
+  border: 0;
+}
+.active
+{
+  color: aqua;
+  .fas
+  {
+    color: aqua;
+  }
+
+}
+
+.menu {
+  margin-left: 2rem;
+  display: none;
+}
+
+.x {
+  display: none;
+  font-size: .7rem;
+}
+
+.logout {
+  position: absolute;
+  left: 1px;
+  bottom: 12px;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+  .menu {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    display: block;
+  }
+  .x {
+    display: block;
+    font-size: .7rem;
+  }
+}

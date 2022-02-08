@@ -1,0 +1,63 @@
+.but{
+  background-color: indigo;
+}
+
+.but1{
+  background-color: red;
+}
+//.main{
+//  margin-right: 200px;
+//  margin-left: 200px;
+//}
+
+.table {
+  background-color: white;
+  border-radius: 30px;
+  text-align: center;
+}
+th td tr{
+  border-radius: 30px;
+}
+tr{
+  background-color: #eaeaea;
+}
+th
+{
+  text-align: center;
+  background-color: white;
+}
+td{
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  width: 80px;
+  padding: 2px;
+  font-size: smaller;
+
+}
+
+@media (max-width: 800px) {
+  h4 {
+    margin-left: 50px;
+  }
+
+  .table {
+    margin-left: 50px;
+    margin-right: 90px;
+  }
+}
+
+@media (max-width: 750px) {
+  .table {
+    position: center;
+    width: 50px;
+    height: 50px;
+    margin-left: 100px;
+  }
+}
+
+
+
+

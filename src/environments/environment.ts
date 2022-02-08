@@ -3,14 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+  baseUrl: 'http://localhost:8000/api/public/auth',
+  baseUrlPro: 'http://localhost:8000/api/protected/',
+  baseUrlPub: 'http://localhost:8000/api/public/',
+
+  // baseUrl: 'http://192.168.8.101:8000/api/public/auth',
+  // baseUrlPro: 'http://192.168.8.101:8000/api/protected/',
+  // baseUrlPub: 'http://192.168.8.101:8000/api/public/',
+
+};

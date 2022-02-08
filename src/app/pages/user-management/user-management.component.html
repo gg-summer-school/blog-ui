@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-2 " >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
+    </div>
+
+    <div class="col-md-10">
+      <table class="table table-borderless table-responsive" >
+        <thead>
+        <tr>
+          <th scope="col"><b>All Users ({{number}})</b></th>
+          <th scope="col">{{'PublisherAdmin.Email'| translate }}</th>
+          <th scope="col-md-2">{{'UserAdmin.Role'| translate }}</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let user of allUsers">
+        <br>
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <div class="dropdown" >
+              <i class="fas fa-id-badge mt-3 role" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li *ngFor="let roles of user.role"><a class="dropdown-item" href="#">{{roles.role}}</a></li>
+            </ul>
+          </div>
+      <td>
+        <div class="dropdown" style="display: inline-flex">
+          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Mange Role</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" ><b>{{'UserAdmin.Upgrade'| translate }}</b></a></li>
+            <select  class="form-select mt-1" (change)="addRoleToUser(user.id, $event)">
+              <option selected><b>{{'UserAdmin.Role'| translate }}</b></option>
+              <option value="0">{{'UserAdmin.Admin'| translate }}</option>
+              <option value="1">{{'UserAdmin.Publisher'| translate }}</option>
+            </select>
+            <li><a class="dropdown-item" ><b>{{'UserAdmin.Remove'| translate }}</b></a></li>
+            <select class="form-select mt-1" (change)="removeRoleToUser(user.id, $event)">
+              <option selected><b>{{'UserAdmin.Role'| translate }}</b></option>
+              <option value="0">{{'UserAdmin.Admin'| translate }}</option>
+              <option value="1">{{'UserAdmin.Publisher'| translate }}</option>
+            </select>
+          </ul>
+          </div>
+        </td>
+
+    </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>

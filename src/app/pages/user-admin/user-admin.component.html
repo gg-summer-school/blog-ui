@@ -1,0 +1,59 @@
+
+<div class="row">
+  <div class="col-md-2 " >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
+    </div>
+
+<div class="col-md-10">
+<!--  <h5 *ngIf="!readers.length" class="form-text">Oops!! You don't have Readers yet.</h5>-->
+  <table class="table table-borderless table-responsive" >
+    <thead>
+    <tr>
+      <th scope="col"><b>{{'UserAdmin.Reader'| translate }} ({{number}})</b></th>
+      <th scope="col">{{'UserAdmin.Email'| translate }}</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let read of readers">
+    <br>
+    <tr >
+      <td>{{read.name}}</td>
+      <td>{{read.email}}</td>
+
+      <td>
+      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-dark but">{{'UserAdmin.Suspend'| translate }}</button>&nbsp;
+      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-dark but">{{'UserAdmin.Reactivate'| translate }}</button>&nbsp;
+
+
+    </tr>
+    </tbody>
+  </table>
+
+<!-- Modal to block and suspend user -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Button trigger modal -->
+

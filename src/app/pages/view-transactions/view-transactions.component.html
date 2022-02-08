@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-2 " >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
+    </div>
+
+  <div class="container">
+  <div class="col-md-8 trans">
+
+    <h5>{{'ViewTransactions.Details'| translate }}</h5>
+    <br>
+    <div *ngFor="let trans of transactions">
+      <p>Article Name: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;{{trans.nameOfArticle}}</p>
+      <p>Payment date: &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;   {{trans.createdAt|date:'dd/MM/yyyy'}}, {{trans.createdAt| date: 'shortTime'}}</p>
+      <p>Transaction Id: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  {{trans.id}}</p>
+      <hr>
+    </div>
+
+  </div>
+  </div>
+  </div>
+</div>

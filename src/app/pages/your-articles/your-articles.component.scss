@@ -1,0 +1,64 @@
+.but{
+  background-color: indigo;
+
+}
+//.main{
+//  margin-right: 200px;
+//  margin-left: 200px;
+//}
+
+.table {
+  background-color: white;
+  border-radius: 30px;
+ text-align: center;
+}
+
+th td tr{
+  border-radius: 30px;
+}
+tr{
+  background-color: #eaeaea;
+}
+th
+{
+  text-align: center;
+ background-color: white;
+}
+td{
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  font-size: smaller;
+  width: 80px;
+}
+.edit{
+  background-color: indigo;
+}
+a{
+  text-decoration: none;
+}
+
+@media (max-width: 765px) {
+  h4 {
+    margin-left: 50px;
+  }
+  h5 {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 750px) {
+  .table {
+    position: center;
+    width: 50px;
+    height: 50px;
+    margin-left: 100px;
+  }
+}
+
+.preview {
+  cursor: pointer;
+}
+

@@ -1,0 +1,61 @@
+
+<div class="row">
+  <div class="col-md-2 " >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10" >
+    <br>
+    <div style="text-align: right">
+      <app-status></app-status>
+    </div>
+
+  <div class="col-md-10">
+    <table class="table table-borderless table-responsive" >
+      <thead>
+      <tr>
+        <th scope="col"><b>{{'PublisherAdmin.Publisher'| translate }} ({{number}})</b></th>
+        <th scope="col">{{'PublisherAdmin.Email'| translate }}</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let publisher of publishers">
+      <br>
+      <tr >
+        <td>{{ publisher.name }}</td>
+        <td>{{ publisher.email }}</td>
+        <td>
+          <button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-dark but">{{'PublisherAdmin.Suspend'| translate }}</button>&nbsp;
+          <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-dark but">{{'PublisherAdmin.Reactivate'| translate }}</button>&nbsp;
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+
+<!-- Modal to block and suspend publisher -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span
+            *ngIf="isSuspended">Suspend</span> "User Name"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this
+        user?
+      </div>
+      <div class="modal-footer">
+        <!--Block publisher-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
+        <!--suspend publisher-->
+        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>

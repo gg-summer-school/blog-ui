@@ -1,0 +1,159 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid mt-5">
+  <div class="row coverPage">
+    <div class="col-md-3 mt-lg-4">
+      <div>
+        <img src="{{article?.coverPage}}"  class="img-thumbnail" alt="article coverPage image"   height="350px"
+          width="100%" />
+      </div>
+      <hr>
+      <div>
+        <h5 class="label1">{{'articlePage.Follow' | translate}}</h5>
+        <h6><label>{{publisher?.name}}</label></h6>
+        <h6><label> <a href="mailto:{{publisher?.email}}">{{publisher?.email}}</a></label></h6>
+        <h6 class="label1">{{'articlePage.Arts'| translate}}</h6>
+        <div *ngFor="let contributor of article?.contributors">
+            <h6><label>{{contributor.name}}</label></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 mt-lg-4">
+      <h6 class="label">{{article?.title}} <br>
+        <p router-link="/user-profile">{{'articlePage.By'| translate}} {{publisher?.name}} | <span>{{'articlePage.Category'| translate}}: {{article?.categoryName}}</span>
+        </p>
+      </h6>
+      <hr>
+      <div class="price">
+        <small class="pdf">{{'articlePage.Pdf'| translate}}</small><br>
+        CFA {{article?.price}}
+      </div>
+      <div class="mt-4 ">
+        <p class="articleAbstract" *ngIf="!showAbs"><span class="abstract text-muted">{{'articlePage.Abstract'| translate}} :
+          </span>
+          <quill-view-html content="{{article?.articleAbstract | truncateText }}"></quill-view-html>
+          <small class="readmore" (click)="showAbstract()" *ngIf="showMore"> <i class="fas fa-angle-down"></i> {{'articlePage.Show'| translate}}</small>
+        </p>
+        <p class="articleAbstract" *ngIf="showAbs"><span class="abstract text-muted">{{'articlePage.Abstract'| translate}} :
+          </span>
+          <quill-view-html content="{{article?.articleAbstract}}"></quill-view-html>
+          <small class="readmore" (click)="showAbstract()"> <i class="fas fa-angle-up"></i> {{'articlePage.Show1'| translate}}</small>
+        </p>
+      </div>
+      <div class="mt-3">
+        <div class="articleAbstract" *ngIf="!showTable"><span class="abstract text-muted"> {{'articlePage.Content'| translate}} : </span>
+          <p class="articleAbstract">
+            <quill-view-html content="{{article?.toc | truncateText}}"></quill-view-html>
+            <small class="readmore" (click)="showContent()" *ngIf="showMore"> <i class="fas fa-angle-down"></i>  {{'articlePage.Show'| translate}}</small>
+          </p>
+        </div>
+        <p class="articleAbstract" *ngIf="showTable"><span class="abstract text-muted">{{'articlePage.Content'| translate}} :
+          </span>
+          <quill-view-html content="{{article?.toc}}"></quill-view-html>
+          <small class="readmore" (click)="showContent()"> <i class="fas fa-angle-up"></i>  {{'articlePage.Show1'| translate}}</small>
+        </p>
+      </div>
+      <hr>
+    </div>
+    <div class="col-md-2 mt-lg-4 d-flex justify-content-center">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h6 class="card-title">{{'articlePage.Article'| translate}}</h6>
+          <label class="card-text"> </label>
+          <label class="card-text"><small class="text-muted">{{'articlePage.Price'| translate}}: </small> <span class="purchase">CFA
+              {{article?.price}}</span></label>
+          <label class="card-text"><small class="text-muted">{{'articlePage.Format'| translate}}: </small> <span class="purchase">PDF</span></label>
+          <div>
+            <button type="button" class="btn btn-primary buy" (click)="requestText()">{{'articlePage.Buy'| translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- payment form -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="d-flex justify-content-end">
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
+      </div>
+      <div>
+        <h6 class="createAccount1 mt-2" id="exampleModalLabel">{{'articlePage.Account'| translate}}</h6>
+      </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="mb-1 text-black">{{'articlePage.Account1'| translate}}:</label>
+            <input type="tel" formControlName="accountNumber" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
+
+              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> {{'articlePage.Account2'| translate}}</div>
+              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
+            </span>
+          </div>
+        </div>
+        <div class=" mt-1 account">
+          <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn btn-primary text-white btn-sm"
+            data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal for users with no account-->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="d-flex justify-content-between">
+        <h5 class="createAccount">{{'articlePage.Create'| translate}}</h5>
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
+        <div class="modal-body">
+          <div class="form-group ">
+            <label class="regLabel">{{'articlePage.Name' | translate}}</label>
+            <input type="text" formControlName="name" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
+              {{'articlePage.NameRequired'| translate}}
+            </span>
+          </div>
+          <div class="form-group mt-2">
+            <label class="regLabel">{{'articlePage.Email1'| translate}}</label>
+            <input type="email" formControlName="email" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+              {{'articlePage.Email2'| translate}}
+            </span>
+            <span class="text-danger"
+              *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+              {{'articlePage.Email3'| translate}}
+            </span>
+          </div>
+          <div class="form-group mt-2">
+            <label class="regLabel"> {{'articlePage.Password'| translate}}</label>
+            <input type="password" formControlName="password" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors">
+              <div *ngIf="registerFormControl.password.errors?.required">{{'articlePage.Password1'| translate}}</div>
+              <div *ngIf="registerFormControl.password.errors?.minlength">
+                {{'articlePage.Password2'| translate}}
+              </div>
+
+            </span>
+          </div>
+        </div>
+        <div class=" mt-1 account">
+          <button type="submit" id="payment1" [disabled]="!signupForm.valid" class="btn btn-primary text-white btn-sm"
+            data-bs-dismiss="modal">{{'articlePage.Create'| translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
