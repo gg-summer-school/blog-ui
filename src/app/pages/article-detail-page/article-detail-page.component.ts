@@ -164,7 +164,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.showTable = !this.showTable;
   }
   requestText() {
-    
     const authUser = this.tokenStorage.getUser();
     if (authUser === null) {
       //jquery code to open register modal

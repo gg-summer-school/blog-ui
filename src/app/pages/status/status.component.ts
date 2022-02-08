@@ -19,6 +19,8 @@ export class StatusComponent implements OnInit {
   userProfile!: Users;
   isDisabled = true;
 
+  test2: string[] = [];
+
   articles: Articles[] = [];
   paidArticles: Articles[] = [];
   numberOfPaid!: number;
@@ -62,8 +64,11 @@ export class StatusComponent implements OnInit {
    this.userName= this.tokenStorageService.getUser().name;
     const name = this.tokenStorageService.getUser().name;
     const role = this.tokenStorageService.getUser().role;
-    this.firstName = name.split(' ').slice(0, -1).join(' ');
+    // this.firstName = name.split(' ').slice(0, -1).join(' ');
     this.email = this.tokenStorageService.getUser().email;
+    this.test2 = name.split(" ");
+    this.firstName = this.test2[0];
+    
     for (let i of role) {
       this.role2 = i.split('_').slice(-1).join(' ');
       this.role.push(this.role2);
