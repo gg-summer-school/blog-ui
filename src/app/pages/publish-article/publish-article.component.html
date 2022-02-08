@@ -63,7 +63,7 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="!errorMessage1">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="!error">
   <div class="modal-dialog">
     <div class="modal-content" >
 
@@ -80,7 +80,7 @@
 
       </div>
       <div class="modal-footer">
-        <button  type="button" class="btn btn-primary upload"  (click)="upload()" >{{'PublishArticle.Publish1'| translate }}</button>
+        <button  type="button" class="btn btn-primary upload"  [disabled]="error || negative"  (click)="upload()" >{{'PublishArticle.Publish1'| translate }}</button>
       </div>
     </div>
   </div>

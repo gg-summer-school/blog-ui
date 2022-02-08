@@ -27,6 +27,7 @@ export class PublishArticleComponent implements OnInit {
   articleId:string='';
  success:boolean=false;
  errorMessage='';
+ error:boolean=false;
  errorMessage1='';
  negative:boolean=false;
   contributor:[]=[];
@@ -104,6 +105,7 @@ export class PublishArticleComponent implements OnInit {
    },
      error1 =>
      {
+       this.error=true;
        this.errorMessage1= error1.error.message;
        this.notificationService.sendMessage({message: this.errorMessage1, type:NotificationType.error})
        this.spinnerService.hide();
