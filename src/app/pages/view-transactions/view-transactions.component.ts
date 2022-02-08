@@ -32,7 +32,6 @@ export class ViewTransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.tokenStorageService.getUser().id;
-    console.log(this.userId);
     this.transactionDetails();
   }
 
