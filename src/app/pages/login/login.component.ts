@@ -54,11 +54,10 @@ get registerFormControl() {
 }
 
 onSubmit() {
-
-    this.spinnerService.show()
   this.submitted = true;
   if (this.loginForm.valid) {
 
+    this.spinnerService.show();
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       this.notificationService.sendMessage({message: 'Login Successfully', type:NotificationType.success})
