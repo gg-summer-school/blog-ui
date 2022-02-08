@@ -4,13 +4,10 @@
   </div>
 
   <div class="col-md-10" >
-
-    <div style="margin-top: 5px">
-      <a routerLink="/users-article" style="text-decoration: none"><i class="fas fa-arrow-circle-left"></i>Back</a>
-    </div>
-    <div style="text-align: right">
+    <div style="text-align: right;margin-top: 10px">
       <app-status></app-status>
     </div>
+    <br>
 
     <div class="col-md-10 ">
       <div id="app">
@@ -18,8 +15,15 @@
       </div>
 
     </div>
+    <div >
+      <a routerLink="/users-article" style="text-decoration: none"><i class="fas fa-arrow-circle-left"></i>Back</a>
+    </div>
 
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
+
 
 <br>

@@ -8,6 +8,9 @@ import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Categories } from 'src/app/model/categories';
 import { TranslateService } from '@ngx-translate/core';
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NotificationType} from "../../model/NotificationMessage";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -41,7 +44,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
-    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute, public translate:TranslateService) {
+    public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute,
+              public translate:TranslateService,   private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
       translate.addLangs(['en', 'fre']);
       translate.setDefaultLang('en');
   }
@@ -90,7 +95,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.router.navigate(['/landing-page/articles'], { queryParams: { page: (currentPageIndex) } });
   }
   getAllArticles(page: number, pageSize: number) {
-
+     this.spinnerService.show()
     const subscription = this.articlesService.getAllArticles((page-1), pageSize).subscribe((response: ArticleResource) => {
       this.allArticles = response.articleDtoList
       this.pages = response.totalPages;
@@ -106,7 +111,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       if(response.pageNo == this.pageNum){
         this.isActive = true;
       }
+      this.spinnerService.hide()
     }, (error: HttpErrorResponse) => {
+      this.spinnerService.hide()
+        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
 
     }
     ).add(() => {
@@ -131,6 +139,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     const subscription = this.articlesService.getCategory().subscribe((response:Categories[]) => {
         this.categories = response;
     }, (error: HttpErrorResponse) => {
+        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     }
     ).add(() => {
       // loader here
@@ -139,6 +148,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   getArticlesByCategory(categoryId:string){
+    this.spinnerService.show()
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response:ArticleDto[]) => {
       this.allArticles = response;
       this.pages = 0;
@@ -151,7 +161,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
         }
         this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.categoryName.name } });
       }
+      this.spinnerService.hide()
     }, (error: HttpErrorResponse) => {
+      this.spinnerService.hide()
+        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     }
     ).add(() => {
       // loader here
@@ -160,10 +173,16 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
   searchArticle()
   {
+    this.spinnerService.show()
     this.articlesService.searchArticle(this.searchData).subscribe(res=>
     {
       this.searchedArticles=res;
       this.active=true;
+      this.spinnerService.hide()
+    }, error =>
+    {
+      this.spinnerService.hide()
+      this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
   }
 

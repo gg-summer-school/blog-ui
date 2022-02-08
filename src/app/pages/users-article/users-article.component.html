@@ -4,17 +4,20 @@
   </div>
 
   <div class="col-md-10" >
-    <br>
-    <div style="text-align: right">
+    <div style="text-align: right; margin-top: 10px">
       <app-status></app-status>
     </div>
 
+
 <div class="col-md-9">
 
-    <h4>{{'UsersArticle.Pay'| translate }}</h4><br>
-    <br>
+    <h5>{{'UsersArticle.Pay'| translate }}</h5><br>
+  <h5 class="form-text" *ngIf="!userPaidArticles.length">Oops!! You haven't bought any articles yet.
+    <a style="text-decoration: none"
+      routerLink="/"> Buy an article <i
+      class="fas fa-arrow-circle-right"></i></a></h5>
 
-  <table class="table table-borderless table-responsive" >
+  <table class="table table-borderless table-responsive" *ngIf="userPaidArticles.length">
     <thead>
     <tr>
       <th scope="col"><b>{{'UsersArticle.Book'| translate }} ({{number}})</b></th>
@@ -34,6 +37,16 @@
     </tr>
     </tbody>
   </table>
+  <div *ngIf="userPaidArticles.length">
+    <br>
+    <p><a style="text-decoration: none" routerLink="/">Buy more articles <i
+      class="fas fa-arrow-circle-right"></i></a>
+    </p>
+  </div>
   </div>
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
+
