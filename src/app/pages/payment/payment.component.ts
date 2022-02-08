@@ -3,6 +3,9 @@ import {FormBuilder} from '@angular/forms';
 import {ArticlesService} from '../../services/articles.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationType} from "../../model/NotificationMessage";
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-payment',
@@ -14,7 +17,8 @@ export class PaymentComponent implements OnInit {
   articleid: string = '';
 
   constructor(private formBuilder: FormBuilder, private article: ArticlesService, private tokenservice: TokenStorageService,
-              public translate: TranslateService) {
+              public translate: TranslateService, private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -28,10 +32,15 @@ export class PaymentComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   payAnArticle() {
-    console.log(this.paymentForm.value);
+this.spinnerService.show()
     this.article.PayArticle(this.userid, this.articleid, this.paymentForm.value).subscribe((response) => {
-      console.log(response); }
-    );
+      this.spinnerService.hide()
+     },
+      error => {
+      this.spinnerService.hide()
+        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
+      }
+    ) ;
   }
 
 

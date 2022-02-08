@@ -8,6 +8,7 @@ import {UserDto} from "../../model/UserDto";
 import {TranslateService} from "@ngx-translate/core";
 import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
 import { NotificationType } from 'src/app/model/NotificationMessage';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private router: Router,
     public translate: TranslateService,
-    private notificationService:NotificationMessageService
+    private notificationService:NotificationMessageService,
+    private  spinnerService: NgxSpinnerService
     ) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
@@ -55,6 +57,7 @@ get registerFormControl() {
 
 onSubmit() {
 
+    this.spinnerService.show()
   this.submitted = true;
   if (this.loginForm.valid) {
 
@@ -71,8 +74,12 @@ onSubmit() {
 
         this.tokenStorage.saveToken(userData.accessToken);
        this.tokenStorage.saveUser(userData);
+       this.spinnerService.hide(
+
+       )
     },
     err => {
+      this.spinnerService.hide()
       this.notificationService.sendMessage({message:err.error.message, type:NotificationType.error})
     }
   );
