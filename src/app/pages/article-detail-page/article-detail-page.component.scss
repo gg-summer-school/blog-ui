@@ -1,23 +1,4 @@
 
-.size
-{
-  width: 350px;
-  border-radius: 15px;
-
-}
-
-.card-main
-{
-
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-  0 2px 4px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 8px 16px rgba(0,0,0,0.07),
-  0 16px 32px rgba(0,0,0,0.07),
-  0 32px 64px rgba(0,0,0,0.07);
-}
-
-
 h5 ,label{
   font-family: 'Times New Roman', Times, serif;
 }
@@ -30,32 +11,48 @@ h5 ,label{
 
 img {
   border: 1px solid #ddd;
-
   padding: 7px;
-  cursor: pointer;
 
 }
 
-.label1 {
+.follow {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bolder;
+  font-size: medium;
+}
+.contributors {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.author-details {
+  font-family: 'Times New Roman', Times, serif;
+  font-size:15px;
+   
+}
+.contributor-details {
+  font-family: 'Times New Roman', Times, serif;
+  font-size:15px;
+}
+.author-email {
+  color: black;
 }
 
 .label {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bolder;
-  font-size: x-large;
+  font-size: large;
 }
 p {
   font-weight:lighter;
-  color: blue;
+  color: black;
   font-size: medium;
 }
 
 label {
-  cursor: pointer;
   font-size: medium;
-  color: blue;
+  color: black;
 }
 
 .price {
@@ -75,20 +72,26 @@ label {
   font-weight:normal;
   font-family: Arial, Helvetica, sans-serif;
 }
+.articleToc {
+  color: black;
+  font-weight:normal;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 .readmore {
-  color: blue;
+  color: black;
   cursor: pointer;
 }
 .readmore:hover {
-  color: orange;
+  color: indigo;
   cursor: pointer;
 }
 
-
-.card {
-  width: 100%;
-  height: 33%;
+ 
+.buy-card {
+  height: 40%;
+  max-height:40%;
+  border-radius: 20px;
 }
 
 .purchase {
@@ -114,10 +117,13 @@ label {
 }
 
 .buy {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 20px;
+}
+.buy:hover {
+  color: #fff;
 }
 
 .regLabel {
