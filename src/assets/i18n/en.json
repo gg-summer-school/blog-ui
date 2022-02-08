@@ -214,5 +214,14 @@
     "Field": "This field is required",
     "Price": "Price",
     "placeholderP": "Book price"
+  },
+  "UserManagement": {
+    "User": "All Users",
+    "Email": "Email",
+    "Role": "Manage Role",
+    "Upgrade": "Upgrade To",
+    "Admin": "Admin",
+    "Publisher1": "Publisher",
+    "Remove": "Remove Role"
   }
 }
