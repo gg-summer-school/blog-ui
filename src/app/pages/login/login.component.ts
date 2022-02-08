@@ -16,7 +16,6 @@ import {NgxSpinnerService} from "ngx-spinner";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
      this.roles = this.tokenStorage.getUser().role;
@@ -64,19 +62,17 @@ onSubmit() {
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
       this.notificationService.sendMessage({message: 'Login Successfully', type:NotificationType.success})
-      if(user.length === 1){
-        this.router.navigate(['/users-article']);
-      } else if(user.length === 2) {
-        this.router.navigate(['/your-articles']);
-      }else if(user.length === 3) {
+      if(user.includes("ROLE_ADMIN")){
         this.router.navigate(['/requests']);
       }
-
+      if(user.includes("ROLE_PUBLISHER") && !user.includes("ROLE_ADMIN")){
+        this.router.navigate(['/your-articles']);
+      }if(user.includes("ROLE_READER") && !user.includes("ROLE_ADMIN") && !user.includes("ROLE_PUBLISHER") ){
+        this.router.navigate(['/users-article']);
+      }
         this.tokenStorage.saveToken(userData.accessToken);
        this.tokenStorage.saveUser(userData);
-       this.spinnerService.hide(
-
-       )
+       this.spinnerService.hide()
     },
     err => {
       this.spinnerService.hide()
