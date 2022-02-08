@@ -16,6 +16,7 @@ import { PayArticleDto } from 'src/app/model/articlesDto';
 import {TranslateService} from "@ngx-translate/core";
 import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
 import { NotificationType } from 'src/app/model/NotificationMessage';
+import {NgxSpinnerService} from "ngx-spinner";
 
 declare var $: any;
 
@@ -52,7 +53,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder, private authService: AuthService,
     public tokenStorage: TokenStorageService, private articleService: ArticlesService,
               public translate: TranslateService,
-              private notificationService:NotificationMessageService) {
+              private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -84,17 +86,20 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   getArticle() {
+    this.spinnerService.show()
     const subscription = this.publisherService.getArticle(this.articleId).subscribe((res:ArticleDto) => {
       this.article = res;
       if(this.article.articleAbstract.length > 400 || this.article.toc.length > 100){
         this.showMore = true;
       }
+      this.spinnerService.hide();
     })
     this.subscriptions.push(subscription)
   }
 
 
   submitPayment() {
+    this.spinnerService.show();
     const articleId = this.article.id;
     const payload: PayArticleDto = {
       nameOfArticle: this.article.title,
@@ -104,8 +109,11 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({message: 'Payment made Successfully', type:NotificationType.success})
       this.router.navigate(['/users-article']);
+      this.spinnerService.hide()
     }, (error: HttpErrorResponse) => {
+      this.spinnerService.hide()
       this.notificationService.sendMessage({message: 'Payment failed', type:NotificationType.error})
+
     }).add(() => {
       //loader here
     })
@@ -115,6 +123,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   onSubmit(): void {
+    this.spinnerService.show()
     this.submitted = true;
     let loginPayload: loginData = {
       email: this.signupForm.value.email,
@@ -127,7 +136,9 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
         this.notificationService.sendMessage({message: 'Account created Successfully', type:NotificationType.success})
         //jquery code to open payment modal
         $("#editProfileModal").modal('show');
+        this.spinnerService.hide()
       }, (error: HttpErrorResponse) => {
+        this.spinnerService.hide()
         this.notificationService.sendMessage({message: 'An error occurred could not create account', type:NotificationType.error})
       }).add(() => { })
       this.subscriptions.push(subscription1);
@@ -144,6 +155,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.showTable = !this.showTable;
   }
   requestText() {
+    this.spinnerService.show()
     const authUser = this.tokenStorage.getUser();
     if (authUser === null) {
       //jquery code to open register modal
@@ -154,9 +166,11 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
         if (!this.hasBought) {
           $("#editProfileModal").modal('show');
         } else {
+          this.notificationService.sendMessage({message: 'You have bought this article already!', type:NotificationType.info})
           this.router.navigate(['/users-article']);
+          this.spinnerService.hide()
         }
-      }, (error) => { }).add(() => { });
+      }, (error) => { }).add(() => {this.spinnerService.hide() });
       this.subscriptions.push(subscription);
     }
   }
@@ -169,7 +183,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     return this.paymentForm.controls;
   }
 
-  
+
 
   getPublisherByArticle(id:string) {
     const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {

@@ -5,6 +5,9 @@ import {TokenStorageService} from "../../services/token-storage.service";
 import {ArticleDto} from "../../model/articles";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NotificationType} from "../../model/NotificationMessage";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-your-articles',
@@ -15,14 +18,14 @@ export class YourArticlesComponent implements OnInit {
 
   pubArticles:ArticleDto[]=[];
   publisherId:string='';
-  deleteMessage:boolean=false;
-  errorMessage:string='';
-  error:boolean=false;
+  error:string='';
   doc:string = '';
   number!: number;
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
               private tokenStorage: TokenStorageService, private router: Router,
-              public translate: TranslateService) {
+              public translate: TranslateService,
+              private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -35,27 +38,24 @@ export class YourArticlesComponent implements OnInit {
 
   getArticlesByPublisher()
   {
+    this.spinnerService.show();
     this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
       this.pubArticles=res;
-
-    })
-  }
-
-  delete(userId:string, articleId:string, categoryId:string)
-  {
-    this.publisherService.deleteArticle(userId,articleId,categoryId).subscribe(res=>
-    {
-      this.deleteMessage=true;
-      this.getArticlesByPublisher();
-      window.location.reload()
+      this.number= this.pubArticles.length;
+      this.spinnerService.hide();
 
     },
-      error => {
-      this.error=true;
-      this.errorMessage=error.error.errorMessage;
-      })
+      error1 =>
+      {
+        this.error= error1.error.message;
+        this.notificationService.sendMessage({message: this.error, type:NotificationType.error})
+        this.spinnerService.hide();
+      }
+    )
   }
+
+
   edit(id:string, catid:string)
   {
     this.router.navigate(['edit-article', id, catid]);
