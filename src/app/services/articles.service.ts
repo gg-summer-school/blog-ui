@@ -33,7 +33,7 @@ export class ArticlesService {
   }
 
   searchArticle(articleTitle: string): Observable<ArticleDto[]> {
-    return this.http.get<ArticleDto[]>(this.baseUrl + `articles-search?title=`+ articleTitle);
+    return this.http.get<ArticleDto[]>(this.baseUrl + `articles-search?title=${articleTitle}`);
 
   }
 
