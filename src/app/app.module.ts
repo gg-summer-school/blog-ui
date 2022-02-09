@@ -43,6 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SafePipe } from './pipe/safe/safe.pipe';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { TruncateArticleTitlePipe } from './pipe/truncate-article-title.pipe';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,8 @@ import { TruncateArticleTitlePipe } from './pipe/truncate-article-title.pipe';
     SafePipe,
     RoleComponent,
     TruncateArticleTitlePipe,
+    AboutComponent,
+
 
 
 

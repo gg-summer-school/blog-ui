@@ -14,25 +14,25 @@
         <h4 class="card-header" style="text-align: center">{{'PublishArticle.Publish'| translate }}</h4>
         <div class="card-body">
           <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
-            <label>{{'PublishArticle.Title'| translate }}</label>
+            <label>{{'PublishArticle.Title'| translate }}</label><span style="font-weight: bolder; color: crimson"> *</span>
             <input type="text" placeholder="{{'PublishArticle.placeholderT'| translate }}" class="form-control" formControlName="title">
             <span *ngIf="f.title.invalid && f.title.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>{{'PublishArticle.Abstract'| translate }}</label>
+            <label>{{'PublishArticle.Abstract'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
             <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="articleAbstract"></quill-editor>
             <span *ngIf="f.articleAbstract.invalid && f.articleAbstract.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>{{'PublishArticle.Content'| translate }}</label>
+            <label>{{'PublishArticle.Content'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
             <quill-editor [styles]="{height: '150px', backgroundColor: 'white'}" theme="snow" formControlName="toc"></quill-editor>
             <span *ngIf="f.toc.invalid && f.toc.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
-            <label>{{'PublishArticle.Contributor'| translate }}</label>
+            <label>{{'PublishArticle.Contributor'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
             <input type="text" placeholder="{{'PublishArticle.placeholderC'| translate }}" class="form-control" formControlName="contributors">
             <span *ngIf="f.contributors.invalid && f.contributors.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
             <br>
             <div class="row">
               <div class="col-md-6">
-                <label >{{'PublishArticle.Category'| translate }}</label>
+                <label >{{'PublishArticle.Category'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
                 <select class="form-control form-select" formControlName="category" >
                   <option [selected]="category.name" *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
                 </select>
@@ -40,7 +40,7 @@
               </div>
 
               <div class="col-md-6">
-                <label>{{'PublishArticle.Price'| translate }}(frs)</label>
+                <label>{{'PublishArticle.Price'| translate }}(frs)</label> <span style="font-weight: bolder; color: crimson"> *</span>
                 <input type="number" placeholder="{{'PublishArticle.placeholderP'| translate }}" class="form-control" formControlName="price">
                 <span *ngIf="f.price.invalid && f.price.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
                 <span *ngIf="negative" class="form-text" style="color: red">Negative price is not allowed</span>
@@ -72,10 +72,10 @@
 <!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
       </div>
       <div class="modal-body">
-            <label >{{'PublishArticle.Upload2'| translate }}</label>
+            <label >{{'PublishArticle.Upload2'| translate }}</label><span style="font-weight: bolder; color: crimson"> *</span>
             <input type="file"  accept="image/x-png,image/jpg,image/jpeg" (change)="select($event)" enctype="multipart/form-data" class="form-control" >
 <br>
-            <label >{{'PublishArticle.Upload3'| translate }}</label>
+            <label >{{'PublishArticle.Upload3'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
             <input type="file" accept="application/pdf"  (change)="select1($event)" enctype="multipart/form-data" class="form-control">
 
       </div>

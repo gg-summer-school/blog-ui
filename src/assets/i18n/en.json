@@ -5,8 +5,8 @@
     "Dashboard": "Dashboard",
     "Home": "Home",
     "About": "About",
-    "placeholderS": "  search articles...",
-    "searchPlaceholder": "search articles..."
+    "placeholderS": "  Search articles...",
+    "searchPlaceholder": "Search articles..."
 
   },
   "Page": {
@@ -128,7 +128,7 @@
     "Welcome": "Welcome"
   },
   "Signup": {
-    "Account": "Create your account",
+    "Account": "Create Account",
     "Name": "Name",
     "Required": "Name is required",
     "Email": "Email",
@@ -215,5 +215,15 @@
     "Field": "This field is required",
     "Price": "Price",
     "placeholderP": "Book price"
+  },
+  "UserManagement": {
+    "User": "All Users",
+    "Email": "Email",
+    "Role": "Manage Role",
+    "Role1": "Role",
+    "Upgrade": "Upgrade To",
+    "Admin": "Admin",
+    "Publisher1": "Publisher",
+    "Remove": "Remove Role"
   }
 }

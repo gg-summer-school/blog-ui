@@ -41,6 +41,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   isDisabledNext: boolean = false;
   isActive: boolean = true;
   articleExist: boolean = false;
+  isDisabled:boolean = false;
+  isDisabledNext:boolean = false;
+  isActive:boolean = true;
+  email: string= '';
 
 
   constructor(private articlesService: ArticlesService, private router: Router,
@@ -200,7 +204,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
    return category
   }
 
-
+  subscribe(email:string)
+  {
+    this.notificationService.sendMessage({message: email+' subscribed successfully', type:NotificationType.success})
+  }
 
 
 }

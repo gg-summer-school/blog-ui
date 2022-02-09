@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand">Blog site</a>
+    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">Blogint</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,10 +9,10 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
+          <a style="font-family: Helvetica" class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">{{'Navbar.About'| translate }}</a>
+          <a style="font-family: Helvetica" class="nav-link " routerLink="/about">{{'Navbar.About'| translate }}</a>
         </li>
       </ul>
 
@@ -43,8 +43,8 @@
               En
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li class="dropdown-item"><a  (click)="switchLang('en')">En</a></li>
-              <li class="dropdown-item"><a  (click)="switchLang('fre')">Fre</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('en')">En</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('fre')">Fr</a></li>
             </ul>
           </div>
         </li>
@@ -62,14 +62,14 @@
       <br>
       <br>
       <br>
-      <h2>{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
-      <span>{{'Page.Publish'| translate }}</span>
+      <h2 style="text-shadow: 2px 1px white">{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
+      <span >{{'Page.Publish'| translate }}</span>
       <br>
       <span>{{'Page.View'| translate }}</span>
       <br>
       <br>
       <hr>
-      <button class="btn btn-outline-info publish" (click)="publishArticle()" >{{'Page.ViewArticles'| translate }}</button>
+      <a href="#articles"><button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button></a>
     </div>
   </div>
   <div class="col-md-8">
@@ -79,6 +79,7 @@
 
 </div>
 <!--ALL ARTICLES DISPLAY-->
+<a name="articles"></a>
 <div class="container-fluid">
   <div class="row text-center mt-5">
     <h2>
@@ -161,7 +162,7 @@
 </div>
 
 
-
+<a name="authors"></a>
 <div class="auth">
   <h5>{{'Page.Authors'| translate }}</h5>
   <div class="row">
@@ -170,9 +171,9 @@
 
         <div class="card-body">
           <div>
-            <h6>{{'Page.Name'| translate }}Author name</h6>
+
           </div>
-          <span class="card-text form-text">email@gmail.com</span>
+          <span class="card-text form-text">pauldoe@gmail.com</span>
         </div>
       </div>
     </div>
@@ -180,24 +181,24 @@
       <div class="card">
 
         <div class="card-body">
-          <h6>{{'Page.Name'| translate }}</h6>
-          <span class="card-text form-text">email@gmail.com</span>
+          <h6>Deray French</h6>
+          <span class="card-text form-text">frenchderay@gmail.com</span>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <h6>{{'Page.Name'| translate }}</h6>
-          <span class="card-text form-text">email@gmail.com</span>
+          <h6>Chi Mah</h6>
+          <span class="card-text form-text">mahchi26@gmail.com</span>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <h6>{{'Page.Name'| translate }}</h6>
-          <span class="card-text form-text">email@gmail.com</span>
+          <h6>DaReal Deray</h6>
+          <span class="card-text form-text">darealderay@gmail.com</span>
         </div>
       </div>
     </div>
@@ -210,35 +211,36 @@
   <div class="row">
     <div class="col-md-3">
       <h5>{{'Page.Link'| translate }}</h5>
-      <a>{{'Page.Categories'| translate }}</a>
+      <a style="cursor: pointer" href="#articles">{{'Page.Categories'| translate }}</a>
       <br>
-      <a>{{'Page.Article'| translate }}</a>
+      <a style="cursor: pointer" href="#articles">{{'Page.Article'| translate }}</a>
       <br>
-      <a>{{'Page.Authors'| translate }}</a>
+      <a style="cursor: pointer" href="#authors">{{'Page.Authors'| translate }}</a>
       <br>
-      <a>{{'Navbar.SignUp'| translate }}</a><br>
+      <a style="cursor: pointer" routerLink="/signup">{{'Navbar.SignUp'| translate }}</a><br>
 
     </div>
     <div class="col-md-3">
       <h5>{{'Page.Contact'| translate }}</h5>
-      <span>Whatsapp</span>
+      <span><i class="fab fa-whatsapp" style="color: lightgreen"></i> Whatsapp</span>
       <br>
-      <span>Instagram</span>
+      <span><i class="fab fa-instagram" style="background: linear-gradient(orange, purple)"></i> Instagram</span>
       <br>
-      <span>Twitter</span>
+      <span><i class="fab fa-twitter" style="color: dodgerblue"></i> Twitter</span>
       <br>
-      <span>LinkedIn</span>
+      <span><i class="fab fa-linkedin" style="color: deepskyblue"></i> LinkedIn</span>
       <br>
     </div>
     <div class="col-md-3">
-      <span>{{'Page.About'| translate }}</span>
+      <a routerLink="/about"><span>{{'Page.About'| translate }}</span></a>
       <p>FAQ</p>
     </div>
     <div class="col-md-3">
       <p>{{'Page.Terms'| translate }}</p>
       <p>{{'Page.Privacy'| translate }}</p>
       <h5>{{'Page.Suscribe'| translate }}</h5>
-      <input placeholder=" {{'Page.placeholderE'| translate }}" class="input-size"><button class="btn btn-outline-primary">{{'Page.Suscribe1'| translate }}</button>
+      <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size" [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'| translate }}</button>
+
     </div>
 
   </div>
