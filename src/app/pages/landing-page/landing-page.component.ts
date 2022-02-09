@@ -40,6 +40,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   isDisabled:boolean = false;
   isDisabledNext:boolean = false;
   isActive:boolean = true;
+  email: string= '';
 
 
 
@@ -186,7 +187,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     })
   }
 
-
+  subscribe(email:string)
+  {
+    this.notificationService.sendMessage({message: email+' subscribed successfully', type:NotificationType.success})
+  }
 
 
 }
