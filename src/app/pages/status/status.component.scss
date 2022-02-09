@@ -24,7 +24,7 @@
 
 .profile {
   margin-right: 50px;
-  //margin-top: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .upper {
@@ -100,7 +100,7 @@
   color: #353c4e;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
 }
 
 .wrapper .right .info_data,
@@ -177,4 +177,15 @@
   height: 8rem;
   margin-left: 10rem;
   margin-top: 1rem;
+}
+
+.user-name {
+  font-size: small;
+   
+}
+.name-label {
+  font-size: 15px;
+}
+.name-icon {
+  padding-right: 13px;
 }

@@ -169,7 +169,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       //jquery code to open register modal
       $("#registerModal").modal('show');
     } else {
-      this.spinnerService.show();
+      
       const subscription = this.articleService.checkIfUserhasBoughtArticle(authUser.id, this.article.id).subscribe((response: boolean) => {
         this.hasBought = response;
         if (!this.hasBought) {
@@ -179,7 +179,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
           this.router.navigate(['/users-article']); 
         }
       }, (error) => { }).add(() => {
-        this.spinnerService.hide();
+        
        });
       this.subscriptions.push(subscription);
     }

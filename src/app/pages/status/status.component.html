@@ -1,121 +1,94 @@
 <div class="profile">
- <div class="dropdown">
-   <a class="bon">
-     <button class="btn btn-dark bt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-       <i class="fas fa-user-tie"></i>
-     </button>
-     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-       <div class="wrapper">
-         <div class="left">
-           <img src="assets/avatar.png" alt="user" width="100">
-           <h4>{{ userName }}</h4>
-           <p>{{ role }}</p>
-           <div class="data">
-             <button (click)="logout()" class="btn btn-danger btn-sm mt-5 edit logout">Logout</button>
-           </div>
-         </div>
-         <div class="right">
-           <div class="info">
-             <h3>My Profile</h3>
-             <div class="info_data">
-               <div class="data">
-                 <h4>Name</h4>
-                 <h3>{{ userName }}</h3>
-               </div>
-             </div>
-             <div class="data">
-               <h4>Email</h4>
-               <h3>{{ email }}</h3>
-             </div>
-             <div class="changePassword">
-               <h4 data-bs-toggle="modal"
-                   data-bs-target="#editProfileModal2">Change password &nbsp; <span><i style="color: blue" class="far fa-edit"></i></span></h4>
-             </div>
-           </div>
+  <div class="dropdown">
+    <a class="bon">
+      <button class="btn btn-dark bt" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="fas fa-user-tie"></i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <div class="wrapper">
+          <div class="left">
+            <img src="assets/avatar.png" alt="user" width="100">
+            <h4>{{ userName }}</h4>
+            <p>{{ role }}</p>
+            <div class="data">
+              <button (click)="logout()" class="btn btn-danger btn-sm mt-5 edit logout">Logout</button>
+            </div>
+          </div>
+          <div class="right">
+            <div class="info">
+              <h3>My Profile</h3>
+              <div class="info_data">
+                <div class="data">
+                  <h6 class="name-label"><i class="fas fa-user name-icon"></i> Name <br> <span class="user-name text-muted">{{ userName }}</span> </h6>
+                </div>
+              </div>
+              <div class="data">
+                <h4>Email</h4>
+                <h3>{{ email }}</h3>
+              </div>
+            </div>
 
-           <div class="projects">
-             <h4>Role(s)</h4>
-             <div class="projects_data">
-               <div class="data">
-                 <h3>{{ role }}</h3>
-               </div>
-             </div>
-           </div>
+            <div class="projects">
+              <h4>Role(s)</h4>
+              <div class="projects_data">
+                <div class="data">
+                  <h3>{{ role }}</h3>
+                </div>
+              </div>
+            </div>
 
-           <div class="projects">
-             <div *ngIf = "publisherRole">
-               <h3>Number of Articles: <b><span>{{ number }}</span></b></h3>
-             </div>
-             <div *ngIf="readerRole || adminRole">
-               <h3>Number of Paid Articles: <b><span>{{ numberOfPaid }}</span></b></h3>
-             </div>
-             <div class="projects_data">
-               <div class="data">
-                 <button class="btn btn-sm mt-5 edit" data-bs-toggle="modal"
-                         data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}</button>
-               </div>
-             </div>
-           </div>
+            <div class="projects">
+              <div *ngIf="publisherRole">
+                <h3>Number of Articles: <b><span>{{ number }}</span></b></h3>
+              </div>
+              <div *ngIf="readerRole || adminRole">
+                <h3>Number of Paid Articles: <b><span>{{ numberOfPaid }}</span></b></h3>
+              </div>
+              <div class="projects_data">
+                <div class="data">
+                  <button class="btn btn-sm mt-5 edit" data-bs-toggle="modal"
+                    data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}</button>
+                </div>
+                
+              </div>
+              <div class="changePassword">
+                <h4 data-bs-toggle="modal" data-bs-target="#editProfileModal2">Change password &nbsp; <span><i
+                      style="color: blue" class="far fa-edit"></i></span></h4>
+              </div>
+            </div>
 
-         </div>
-       </div>
-     </div>
-     <br>
-     <b>{{ firstName }}</b>
-   </a>
- </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <b>{{ firstName }}</b>
+    </a>
+  </div>
 </div>
 
 <!-- Modal for change user password -->
-<div
-  class="modal fade"
-  id="editProfileModal2"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="editProfileModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel2">{{'UserProfile.Edit'| translate }}</h5>
-        <button
-          type="button"
-          class="btn-close btn-sm "
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close btn-sm " data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="passwordChange">
           <div class="form-group mb-2">
             <label>Old password</label>
-            <input
-              [(ngModel)] = "old_pass"
-              id="new_pass"
-              type="password"
-              class="form-control disabled"
-              formControlName="oldPassword"
-              placeholder="Enter your old password"
-            />
+            <input [(ngModel)]="old_pass" id="new_pass" type="password" class="form-control disabled"
+              formControlName="oldPassword" placeholder="Enter your old password" />
           </div>
           <div class="form-group mb-2">
             <label>New password</label>
-            <input
-              [(ngModel)] = "new_pass"
-              id="old_pass"
-              type="password"
-              class="form-control"
-              required
-              formControlName="newPassword"
-              placeholder="Enter your new password"
-            />
+            <input [(ngModel)]="new_pass" id="old_pass" type="password" class="form-control" required
+              formControlName="newPassword" placeholder="Enter your new password" />
           </div>
           <div class="d-flex justify-content-end">
-            <button
-              type="submit"
-              class="btn  btn-sm btn-primary"
-              data-bs-dismiss="modal"
-              (click)="passwordChanged()">
+            <button type="submit" class="btn  btn-sm btn-primary" data-bs-dismiss="modal" (click)="passwordChanged()">
               Password change
             </button>
           </div>
@@ -126,54 +99,26 @@
 </div>
 
 <!-- Modal for edit user profile -->
-<div
-  class="modal fade"
-  id="editProfileModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{'UserProfile.Edit'| translate }}</h5>
-        <button
-          type="button"
-          class="btn-close btn-sm "
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close btn-sm " data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="usersEdit">
           <div class="form-group mb-2">
             <label>{{'UserProfile.Name'| translate }}</label>
-            <input
-              [(ngModel)] = "userName"
-              id="firstName"
-              type="text"
-              class="form-control"
-              required
-              formControlName="name"
-            />
+            <input [(ngModel)]="userName" id="firstName" type="text" class="form-control" required
+              formControlName="name" />
           </div>
           <div class="form-group mb-2">
             <label>{{'UserProfile.Email'| translate }}</label>
-            <input
-
-              [(ngModel)] = "email"
-              id="email"
-              type="text"
-              class="form-control disabled"
-              formControlName="email"
-            />
+            <input [(ngModel)]="email" id="email" type="text" class="form-control disabled" formControlName="email" />
           </div>
           <div class="d-flex justify-content-end">
-            <button
-              type="submit"
-              class="btn  btn-sm btn-primary"
-              data-bs-dismiss="modal"
-              (click)="editUserAccount()">
+            <button type="submit" class="btn  btn-sm btn-primary" data-bs-dismiss="modal" (click)="editUserAccount()">
               {{'UserProfile.Save'| translate }}
             </button>
           </div>
