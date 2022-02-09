@@ -19,7 +19,7 @@
     "Current": "Courant",
     "Authors": "Nos Auteurs",
     "Name": "Nom de l'auteur",
-    "Link": "Liens Facile",
+    "Link": "Liens Accessible",
     "Categories": "View Categories",
     "Article": "Nos catégories",
     "Contact": "Contactez Nous",
@@ -213,5 +213,14 @@
     "Name": "Nom de l'article",
     "Card": "Numéro de carte",
     "Pay": "Payer $243"
+  },
+  "UserManagement": {
+    "User": "Utilisateurs",
+    "Email": "Email",
+    "Role": "Manier Role",
+    "Upgrade": "Grader de",
+    "Admin": "Admin",
+    "Publisher1": "Editeur",
+    "Remove": "Inferier Role"
   }
 }

@@ -43,7 +43,6 @@ export class RequestsComponent implements OnInit {
       }, error =>
       {
         this.spinnerService.hide()
-        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
       })
   }
 
@@ -71,7 +70,6 @@ export class RequestsComponent implements OnInit {
         this.spinnerService.hide()
         this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
       })
-
   }
 
 
