@@ -179,11 +179,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
   searchArticle() {
-    this.spinnerService.show()
+    this.spinnerService.show();
+    this.articleExist = false;
     const subscription =this.articlesService.searchArticle(this.searchData).subscribe(res => {
-      this.searchedArticles = res;
-      this.articleExist=true;
-     
+      this.allArticles = res;
+      if (this.allArticles.length > 0) {
+        this.articleExist = true;
+      }
     }, error => {
       this.spinnerService.hide()
       this.notificationService.sendMessage({ message: error.error.message, type: NotificationType.error })

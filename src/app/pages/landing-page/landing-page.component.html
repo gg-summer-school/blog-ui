@@ -131,17 +131,6 @@
         </div>
       </div>
       <!--search result-->
-      <div class="row">
-        <div class="col-md-3 mb-3" *ngFor="let article of searchedArticles ">
-          <div class="card"(click)="view(article.id)" >
-            <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page">
-            <div class="card-body">
-              <h5 class="card-title title"> {{ article.title | truncateText }}</h5>
-              <p class="card-text date">{{article.createdAt |date:'fullDate'}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="row" *ngIf="pages > 0 && articleExist">
