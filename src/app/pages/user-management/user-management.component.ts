@@ -12,14 +12,10 @@ import {TokenStorageService} from "../../services/token-storage.service";
   styleUrls: ['./user-management.component.scss']
 })
 
-// export enum RolePayload {
-//   ROLE_ADMIN= "ROLE_ADMIN",
-//   ROLE_PUBLISHER ="ROLE_PUBLISHER",
-//   ROLE_READER="ROLE_READER"
-// }
-
 export class UserManagementComponent implements OnInit {
   user2: any[] = [];
+  addRoles: string[] = [];
+  userRoles: any[] = [];
 
   number!: number;
   publishers: Admin[] = [];
@@ -39,6 +35,22 @@ export class UserManagementComponent implements OnInit {
     this.displayAllUsers();
   }
 
+  getUserRoles(userId : string) {
+    const user = this.allUsers.find((user) => user.id === userId);
+    const role = [...this.user2];
+    const tes: string[] = [];
+    // @ts-ignore
+    this.userRoles.push(user.role);
+
+    // @ts-ignore
+    const test2 = user.role.map(function (obj) {
+      return obj.role;
+    });
+
+    const filteredArray = role.filter(value => !test2.includes(value));
+    this.addRoles = filteredArray;
+  }
+
   displayAllUsers() {
     this.spinnerService.show()
     this.adminPagesService.getUsers()
@@ -50,6 +62,8 @@ export class UserManagementComponent implements OnInit {
         this.spinnerService.hide()
       })
   }
+
+
 
   addRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()
