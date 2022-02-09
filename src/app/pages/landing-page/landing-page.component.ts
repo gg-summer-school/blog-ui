@@ -56,7 +56,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
   selectedLang: any;
   switchLang(lang: string) {
-    console.log(lang)
     this.translate.use(lang);
   }
 
@@ -144,7 +143,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   
 
-  onTableDataChange() { }
+  // onTableDataChange() { }
 
   getAllCategories() {
     this.spinnerService.show();
@@ -166,8 +165,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.articleExist = false;
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response: ArticleDto[]) => {
       this.allArticles = response;
-      console.log(this.allArticles);
-      
       this.pages = 0;
       if (this.allArticles.length > 0) {
         this.articleExist = true;
