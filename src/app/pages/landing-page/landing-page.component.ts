@@ -41,9 +41,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   isDisabledNext: boolean = false;
   isActive: boolean = true;
   articleExist: boolean = false;
-  isDisabled:boolean = false;
-  isDisabledNext:boolean = false;
-  isActive:boolean = true;
+  // isDisabled:boolean = false;
+  // isDisabledNext:boolean = false;
+  // isActive:boolean = true;
   email: string= '';
 
 
@@ -120,7 +120,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       }
       
     }, (error: HttpErrorResponse) => {
-      this.spinnerService.hide()
+      this.spinnerService.hide();
       this.notificationService.sendMessage({ message: "Could not fetch articles", type: NotificationType.error })
     }
     ).add(() => {
@@ -142,10 +142,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedIndex!: number;
-  select(index: number) {
-    this.selectedIndex = index;
-  }
+  
 
   onTableDataChange() { }
 
@@ -154,19 +151,23 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     const subscription = this.articlesService.getCategory().subscribe((response: Categories[]) => {
       this.categories = response;
     }, (error: HttpErrorResponse) => {
+      this.spinnerService.hide();
       this.notificationService.sendMessage({ message: "Could not fetch categories", type: NotificationType.error })
     }
     ).add(() => {
-      this.spinnerService.show()
+      this.spinnerService.hide()
     })
     this.subscriptions.push(subscription);
   }
-
-  getArticlesByCategory(categoryId: string) {
+  selectedIndex!: number;
+  getArticlesByCategory(categoryId: string, index:number) {
+    this.selectedIndex = index;
     this.spinnerService.show()
     this.articleExist = false;
     const subscription = this.articlesService.getArticlesByCategory(categoryId).subscribe((response: ArticleDto[]) => {
       this.allArticles = response;
+      console.log(this.allArticles);
+      
       this.pages = 0;
       if (this.allArticles.length > 0) {
         this.articleExist = true;
