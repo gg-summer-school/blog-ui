@@ -38,7 +38,7 @@
 
             <select class="form-select mt-1" (change)="addRoleToUser(user.id, $event)">
               <option selected><b>{{'UserManagement.Role'| translate }}</b></option>
-              <option *ngFor="let roles of user.role" value="{{roles.role}}">{{roles.role}}</option>
+              <option *ngFor="let rol of user2" value="{{rol}}">{{rol}}</option>
             </select>
             <li><a class="dropdown-item" ><b>{{'UserManagement.Remove'| translate }}</b></a></li>
             <select class="form-select mt-1" (change)="removeRoleToUser(user.id, $event)">

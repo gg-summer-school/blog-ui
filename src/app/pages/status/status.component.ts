@@ -112,7 +112,6 @@ export class StatusComponent implements OnInit {
       .subscribe( (res: Articles[]) => {
         this.articles = res;
         this.number= this.articles.length;
-        console.log("length "+ this.number);
       })
   }
 
@@ -120,7 +119,6 @@ export class StatusComponent implements OnInit {
     this.adminPagesService.getPaidArticlesByUser(this.user_id).subscribe((response: Articles[]) => {
        this.paidArticles = response;
        this.numberOfPaid = this.paidArticles.length;
-      console.log(this.numberOfPaid);
     })
   }
 

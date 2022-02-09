@@ -25,7 +25,7 @@ export class UserManagementComponent implements OnInit {
   publishers: Admin[] = [];
   readers: Admin[] = [];
   allUsers: Admin[] = [];
-  RolePayload: RolePayload[] = [];
+  rolePayload: Admin[] = [];
 
   constructor(private adminPagesService: AdminPagesService,  private notificationService:NotificationMessageService,
               private  spinnerService: NgxSpinnerService, private tokenStore: TokenStorageService) { }
@@ -45,6 +45,7 @@ export class UserManagementComponent implements OnInit {
       .subscribe( res =>
       {
         this.allUsers = res;
+        this.rolePayload = this.allUsers;
         this.number= this.allUsers.length;
         this.spinnerService.hide()
       })
