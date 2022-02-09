@@ -135,12 +135,12 @@ export class PublishArticleComponent implements OnInit {
     this.articlesService.uploadArticleFiles(formData,this.publisherId, this.articleId).subscribe(res=>
     {
       this.notificationService.sendMessage({message: 'Article created Successfully!', type:NotificationType.success})
-      this.router.navigate(['/your-articles']);
+      window.location.reload()
       this.spinnerService.hide();
 
     },
       error => {
-      this.errorMessage=error.error.message;
+        this.errorMessage=error.error.message;
         this.notificationService.sendMessage({message: this.errorMessage, type:NotificationType.error})
         this.spinnerService.hide();
       })

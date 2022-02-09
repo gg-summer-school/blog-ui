@@ -58,6 +58,7 @@ export class UserManagementComponent implements OnInit {
     this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide()
     }, (error: any) => {
+      this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
     window.location.reload();

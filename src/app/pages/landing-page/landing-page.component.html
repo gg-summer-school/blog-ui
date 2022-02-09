@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand">Blog site</a>
+    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">Blog Web Application</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,10 +9,10 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
+          <a style="font-family: Helvetica" class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">{{'Navbar.About'| translate }}</a>
+          <a style="font-family: Helvetica" class="nav-link " href="#">{{'Navbar.About'| translate }}</a>
         </li>
       </ul>
 
@@ -43,8 +43,8 @@
               En
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li class="dropdown-item"><a  (click)="switchLang('en')">En</a></li>
-              <li class="dropdown-item"><a  (click)="switchLang('fre')">Fr</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('en')">En</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('fre')">Fr</a></li>
             </ul>
           </div>
         </li>
@@ -62,14 +62,14 @@
       <br>
       <br>
       <br>
-      <h2>{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
-      <span>{{'Page.Publish'| translate }}</span>
+      <h2 style="text-shadow: 2px 1px white">{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
+      <span >{{'Page.Publish'| translate }}</span>
       <br>
       <span>{{'Page.View'| translate }}</span>
       <br>
       <br>
       <hr>
-      <button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button>
+      <a href="#articles"><button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button></a>
     </div>
   </div>
   <div class="col-md-8">
@@ -79,6 +79,7 @@
 
 </div>
 <!--ALL ARTICLES DISPLAY-->
+<a name="articles"></a>
 <div class="container-fluid">
   <div class="row text-center mt-5">
     <h2>

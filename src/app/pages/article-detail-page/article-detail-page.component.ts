@@ -36,6 +36,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   doc:string = '';
   articleId: string = '';
   categoryId: string = "";
+  showTocMore:boolean = false;
   userId: string = '';
   error: boolean = false;
   submitted: boolean = false;
@@ -69,6 +70,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
+    
     this.signupForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
@@ -89,9 +91,14 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.spinnerService.show()
     const subscription = this.publisherService.getArticle(this.articleId).subscribe((res:ArticleDto) => {
       this.article = res;
-      if(this.article.articleAbstract.length > 400 || this.article.toc.length > 100){
+      if(this.article.articleAbstract.length > 400){
         this.showMore = true;
+      }if(this.article.toc.length > 400){
+        this.showTocMore = true;
       }
+    }, (error:HttpErrorResponse) => {
+      this.spinnerService.hide();
+    }).add(() => {
       this.spinnerService.hide();
     })
     this.subscriptions.push(subscription)
@@ -99,23 +106,20 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   submitPayment() {
-    this.spinnerService.show();
     const articleId = this.article.id;
     const payload: PayArticleDto = {
       nameOfArticle: this.article.title,
       accountNumber: this.paymentForm.value.accountNumber,
     }
+    this.spinnerService.show();
     let logginUserId: string = this.tokenStorage.getUser().id;
     const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({message: 'Payment made Successfully', type:NotificationType.success})
       this.router.navigate(['/users-article']);
-      this.spinnerService.hide()
     }, (error: HttpErrorResponse) => {
-      this.spinnerService.hide()
       this.notificationService.sendMessage({message: 'Payment failed', type:NotificationType.error})
-
     }).add(() => {
-      //loader here
+      this.spinnerService.hide()
     })
     this.subscriptions.push(subscription);
 
@@ -123,12 +127,13 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   onSubmit(): void {
-    this.spinnerService.show()
+    
     this.submitted = true;
     let loginPayload: loginData = {
       email: this.signupForm.value.email,
       password: this.signupForm.value.password,
     }
+    this.spinnerService.show();
     const subscription = this.authService.register(this.signupForm.value).subscribe((response: ResponseObject) => {
       const subscription1 = this.authService.login(loginPayload).subscribe((response: UserDto) => {
         this.tokenStorage.saveToken(response.accessToken);
@@ -136,15 +141,19 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
         this.notificationService.sendMessage({message: 'Account created Successfully', type:NotificationType.success})
         //jquery code to open payment modal
         $("#editProfileModal").modal('show');
-        this.spinnerService.hide()
+        
       }, (error: HttpErrorResponse) => {
         this.spinnerService.hide()
         this.notificationService.sendMessage({message: 'An error occurred could not create account', type:NotificationType.error})
-      }).add(() => { })
+      }).add(() => { 
+        this.spinnerService.hide();
+      })
       this.subscriptions.push(subscription1);
     }, (error: HttpErrorResponse) => {
       this.notificationService.sendMessage({message: 'An error occurred could not create account', type:NotificationType.error})
-    }).add(() => { })
+    }).add(() => {
+      this.spinnerService.hide();
+     })
     this.subscriptions.push(subscription);
   }
 
@@ -160,16 +169,18 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       //jquery code to open register modal
       $("#registerModal").modal('show');
     } else {
+      this.spinnerService.show();
       const subscription = this.articleService.checkIfUserhasBoughtArticle(authUser.id, this.article.id).subscribe((response: boolean) => {
         this.hasBought = response;
         if (!this.hasBought) {
           $("#editProfileModal").modal('show');
         } else {
           this.notificationService.sendMessage({message: 'You have bought this article already!', type:NotificationType.info})
-          this.router.navigate(['/users-article']);
-          this.spinnerService.hide()
+          this.router.navigate(['/users-article']); 
         }
-      }, (error) => { }).add(() => {this.spinnerService.hide() });
+      }, (error) => { }).add(() => {
+        this.spinnerService.hide();
+       });
       this.subscriptions.push(subscription);
     }
   }
@@ -185,9 +196,12 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
 
 
   getPublisherByArticle(id:string) {
+    this.spinnerService.show();
     const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {
       this.publisher = response;
-    }, (error) => { }).add(() => { });
+    }, (error) => { }).add(() => { 
+      this.spinnerService.hide();
+    });
     this.subscriptions.push(subscription);
   }
 
