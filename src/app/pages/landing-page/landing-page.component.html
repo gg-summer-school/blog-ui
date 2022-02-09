@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">Blogint</a>
+    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">{{'Navbar.title'| translate}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,8 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a style="font-family: Helvetica" class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'| translate }}</a>
+          <a style="font-family: Helvetica" class="nav-link active" aria-current="page" href=" ">{{'Navbar.Home'|
+            translate }}</a>
         </li>
         <li class="nav-item">
           <a style="font-family: Helvetica" class="nav-link " routerLink="/about">{{'Navbar.About'| translate }}</a>
@@ -19,7 +20,8 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item boder">
 
-         <input  (keyup)="searchArticle()" type="text" class="form-control size" placeholder=" {{'Navbar.placeholderS'| translate }}" [(ngModel)]="searchData" id="listSearch" >
+          <input (keyup)="searchArticle()" type="text" class="form-control size"
+            placeholder=" {{'Navbar.placeholderS'| translate }}" [(ngModel)]="searchData" id="listSearch">
 
         </li>
       </ul>
@@ -39,12 +41,13 @@
         </li>
         <li class="nav-item">
           <div class="dropdown">
-            <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
               En
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('en')">En</a></li>
-              <li class="dropdown-item" style="cursor: pointer"><a  (click)="switchLang('fre')">Fr</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a (click)="switchLang('en')">En</a></li>
+              <li class="dropdown-item" style="cursor: pointer"><a (click)="switchLang('fre')">Fr</a></li>
             </ul>
           </div>
         </li>
@@ -62,14 +65,16 @@
       <br>
       <br>
       <br>
-      <h2 style="text-shadow: 2px 1px white">{{'Page.Welcome'| translate }}<span style="color: indigo"> Blog site</span></h2>
-      <span >{{'Page.Publish'| translate }}</span>
+      <h2  class="welcome">{{'Page.Welcome'| translate }}<span class="blogSiteSpan">{{'Page.blogSite'|translate}}</span>
+      </h2>
+      <span>{{'Page.Publish'| translate }}</span>
       <br>
       <span>{{'Page.View'| translate }}</span>
       <br>
       <br>
       <hr>
-      <a href="#articles"><button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button></a>
+      <a href="#articles"><button class=" btn btn-outline-info viewArticles">{{'Page.ViewArticles'| translate
+          }}</button></a>
     </div>
   </div>
   <div class="col-md-8">
@@ -88,22 +93,24 @@
   </div>
   <div class="row mt-5 articles">
     <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
+      <div class="card category-card">
+        <div class="mt-2">
           <h5 class="card-title categories fw-bold">{{'Page.All1' | translate}}</h5>
-          <div class="mt-2">
-            <div  (click)="getAllArticles(1, 8)" class="borderless d-flex justify-content-between mb-3"  >
-              <div>
-                <div>{{'Page.All2'|translate}}</div>
+          <div class="list-group list-group-mine">
+            <a class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">{{'Page.All2'|translate}} </h6>
+                <small><i class="fas fa-angle-right"></i></small>
               </div>
-              <span><i class="fas fa-angle-right" ></i></span>
-            </div>
-            <div *ngFor="let category of categories" (click)="getArticlesByCategory(category.id)" class="borderless d-flex justify-content-between mb-3"  >
-              <div>
-                <div>{{category.name}}</div>
+            </a>
+            <a class="list-group-item list-group-item-action" *ngFor="let category of categories; let i=index"
+              (click)="getArticlesByCategory(category.id, i)"
+              [ngClass]="{'active': selectedIndex === i, 'list-group-item':true}">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">{{category.name}} </h6>
+                <small><i class="fas fa-angle-right"></i></small>
               </div>
-              <span><i class="fas fa-angle-right"></i></span>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -111,7 +118,7 @@
     <div class="col-md-9">
       <div class="row" *ngIf="articleExist">
         <div class="col-md-3 mb-3" *ngFor="let article of allArticles ">
-          <div class="card"(click)="view(article.id)" >
+          <div class="card article-card" (click)="view(article.id)">
             <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page">
             <div class="card-body">
               <h5 class="card-title title"> {{ article.title | truncateArticleTitle }}</h5>
@@ -124,11 +131,11 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-4">
-          <img src="assets/product-not-found.svg" alt="not found" class="notFoundArticles" >
+          <img src="assets/product-not-found.svg" alt="not found" class="notFoundArticles">
           <p class="text-center">{{'Page.notFound'| translate}}</p>
         </div>
         <div class="col-md-4">
-          
+
         </div>
       </div>
       <!--search result-->
@@ -144,13 +151,12 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item " *ngFor="let number of pageNumberArray; let i = index"    >
+          <li class="page-item " *ngFor="let number of pageNumberArray; let i = index">
             <a class="page-link " (click)="setPage(i+1, number)" style="cursor: pointer;">{{number +1}}<span
                 class="sr-only">(current)</span></a>
           </li>
           <li class="page-item" [ngClass]="isDisabledNext ? 'disabled' : ''">
-            <a class="page-link" aria-label="Next" (click)="Next()" routerLinkActive="active"
-              style="cursor: pointer;">
+            <a class="page-link" aria-label="Next" (click)="Next()" routerLinkActive="active" style="cursor: pointer;">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
@@ -162,95 +168,93 @@
 </div>
 
 
-<a name="authors"></a>
-<div class="auth">
-  <h5>{{'Page.Authors'| translate }}</h5>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card">
 
-        <div class="card-body">
-          <div>
-
+<section>
+  <div class=" authors">
+    <div class="text-center popular-authors">
+      <h2>{{'Page.Authors'| translate }}</h2>
+    </div>
+    <div class="card-body">
+      <div class="row authors-name">
+        <div class="col-md-3">
+          <div class="text-center">
+            <div class="avatar">
+              <img src="assets/avatar.png" class="image">
+            </div>
+            <h6>Paul Doe</h6>
+            <span><a href="mailto:pauldoe@gmail.com" class="text-muted ">pauldoe@gmail.com</a></span>
           </div>
-          <span class="card-text form-text">pauldoe@gmail.com</span>
         </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-
-        <div class="card-body">
-          <h6>Deray French</h6>
-          <span class="card-text form-text">frenchderay@gmail.com</span>
+        <div class="col-md-3">
+          <div class="text-center">
+            <img src="assets/avatar.png" class="image">
+            <h6>Nzo Daniel</h6>
+            <span><a href="mailto:frenchderay@gmail.com" class="text-muted ">nzodaniel@gmail.com</a></span>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h6>Chi Mah</h6>
-          <span class="card-text form-text">mahchi26@gmail.com</span>
+        <div class="col-md-3">
+          <div class="text-center">
+            <img src="assets/avatar.png" class="image">
+            <h6>Chi Mah</h6>
+            <span><a href="mailto:mahchi26@gmail.com" class="text-muted ">mahchi26@gmail.com</a></span>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h6>DaReal Deray</h6>
-          <span class="card-text form-text">darealderay@gmail.com</span>
+        <div class="col-md-3">
+          <div class="text-center">
+            <img src="assets/avatar.png" class="image">
+            <h6>Deray French</h6>
+            <span><a href="mailto:derayfrench@gmail.com" class="text-muted ">derayfrench@gmail.com</a></span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-</div>
-
-<br>
-<div class="footer ">
-  <div class="row">
+<section class="footer">
+  <div class="row footer-row">
     <div class="col-md-3">
       <h5>{{'Page.Link'| translate }}</h5>
-      <a style="cursor: pointer" href="#articles">{{'Page.Categories'| translate }}</a>
+      <a  href="#articles" class="quick-links">{{'Page.Categories'| translate }}</a>
       <br>
-      <a style="cursor: pointer" href="#articles">{{'Page.Article'| translate }}</a>
+      <a  href="#articles" class="quick-links">{{'Page.Article'| translate }}</a>
       <br>
-      <a style="cursor: pointer" href="#authors">{{'Page.Authors'| translate }}</a>
+      <a  href="#authors" class="quick-links">{{'Page.Authors'| translate }}</a>
       <br>
-      <a style="cursor: pointer" routerLink="/signup">{{'Navbar.SignUp'| translate }}</a><br>
+      <a  routerLink="/signup" class="quick-links">{{'Navbar.SignUp'| translate }}</a><br>
 
     </div>
     <div class="col-md-3">
       <h5>{{'Page.Contact'| translate }}</h5>
-      <span><i class="fab fa-whatsapp" style="color: lightgreen"></i> Whatsapp</span>
+      <span><i class="fab fa-whatsapp" style="color: lightgreen"></i> <a href="#" class="whatsapp quick-links">Whatsapp</a></span>
       <br>
-      <span><i class="fab fa-instagram" style="background: linear-gradient(orange, purple)"></i> Instagram</span>
+      <span><i class="fab fa-instagram" style="background: linear-gradient(orange, purple)"></i> <a href="#" class="instagram quick-links">Instagram</a></span>
       <br>
-      <span><i class="fab fa-twitter" style="color: dodgerblue"></i> Twitter</span>
+      <span><i class="fab fa-twitter" style="color: dodgerblue"></i> <a href="#" class="twitter quick-links">Twitter</a></span>
       <br>
-      <span><i class="fab fa-linkedin" style="color: deepskyblue"></i> LinkedIn</span>
+      <span><i class="fab fa-linkedin" style="color: deepskyblue"></i> <a href="#" class="linkedIn quick-links">LinkedIn</a></span>
       <br>
     </div>
     <div class="col-md-3">
       <a routerLink="/about"><span>{{'Page.About'| translate }}</span></a>
-      <p>FAQ</p>
+      <p>{{'Page.faq' |translate}}</p>
     </div>
     <div class="col-md-3">
-      <p>{{'Page.Terms'| translate }}</p>
+      <a routerLink="/about"><span>{{'Page.Terms'| translate }}</span></a>
       <p>{{'Page.Privacy'| translate }}</p>
+      
       <h5>{{'Page.Suscribe'| translate }}</h5>
-      <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size" [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'| translate }}</button>
+      <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size"
+        [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'|
+        translate }}</button>
 
     </div>
 
   </div>
-
-
-</div>
+</section>
 <div class="foot">
-  <p class="p">{{'Page.Copy'| translate }}<span class="blog">Blog site</span></p>
+  <p class="p">{{'Page.Copy'| translate }}<span class="blog">{{'Navbar.title'| translate}}</span></p>
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait.</p>
 </ngx-spinner>
-
