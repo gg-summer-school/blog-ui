@@ -42,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SafePipe } from './pipe/safe/safe.pipe';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { TruncateArticleTitlePipe } from './pipe/truncate-article-title.pipe';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     UserManagementComponent,
     SafePipe,
     RoleComponent,
+    TruncateArticleTitlePipe,
 
 
 

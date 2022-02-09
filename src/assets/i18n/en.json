@@ -13,7 +13,7 @@
     "Welcome": "Welcome to",
     "Publish": "Publish your articles and books to the world.",
     "View": "View all kinds of articles or books. We have it all installed for you.",
-    "ViewArticles": "Show articles",
+    "ViewArticles": "Publish Article",
     "All": "All Articles and Books",
     "All1": "Available Categories",
     "All2": "All",
@@ -30,7 +30,8 @@
     "Suscribe": "Subscribe to our newsletter",
     "placeholderE": " Enter email...",
     "Suscribe1": "Suscribe",
-    "Copy": "Copyright @2022 All rights reserved. "
+    "Copy": "Copyright @2022 All rights reserved. ",
+    "notFound":"Ooops! Articles not Found."
   },
   "sidebar": {
     "Home": "Home",

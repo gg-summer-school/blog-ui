@@ -69,7 +69,7 @@
       <br>
       <br>
       <hr>
-      <button class=" btn btn-outline" style="color: indigo">{{'Page.ViewArticles'| translate }}</button>
+      <button class="btn btn-outline-info publish" (click)="publishArticle()" >{{'Page.ViewArticles'| translate }}</button>
     </div>
   </div>
   <div class="col-md-8">
@@ -108,19 +108,28 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div class="row" *ngIf="!active">
+      <div class="row" *ngIf="articleExist">
         <div class="col-md-3 mb-3" *ngFor="let article of allArticles ">
           <div class="card"(click)="view(article.id)" >
             <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page">
             <div class="card-body">
-              <h5 class="card-title title"> {{ article.title | truncateText }}</h5>
+              <h5 class="card-title title"> {{ article.title | truncateArticleTitle }}</h5>
               <p class="card-text date">{{article.createdAt |date:'fullDate'}} </p>
             </div>
           </div>
         </div>
       </div>
-
-
+      <div class="row" *ngIf="!articleExist">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+          <img src="assets/product-not-found.svg" alt="not found" class="notFoundArticles" >
+          <p class="text-center">{{'Page.notFound'| translate}}</p>
+        </div>
+        <div class="col-md-4">
+          
+        </div>
+      </div>
       <!--search result-->
       <div class="row">
         <div class="col-md-3 mb-3" *ngFor="let article of searchedArticles ">
@@ -133,11 +142,9 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-  <div class="row" *ngIf="pages > 0">
+  <div class="row" *ngIf="pages > 0 && articleExist">
     <div class="d-flex justify-content-end mt-4 mb-5">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
