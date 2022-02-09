@@ -21,9 +21,9 @@ export interface  Transactions {
 }
 
 export enum RolePayload {
-  ROLE_ADMIN,
-  ROLE_PUBLISHER,
-  ROLE_READER
+  ROLE_ADMIN= "ROLE_ADMIN",
+  ROLE_PUBLISHER ="ROLE_PUBLISHER",
+  ROLE_READER="ROLE_READER"
 }
 
 export interface roleDTO {

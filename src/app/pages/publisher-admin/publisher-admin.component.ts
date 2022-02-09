@@ -21,6 +21,7 @@ export class PublisherAdminComponent implements OnInit {
   suspendUser: boolean = false;
   reactivate: boolean = true;
   number!: number
+  success: any;
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService:NotificationMessageService,
@@ -64,6 +65,7 @@ export class PublisherAdminComponent implements OnInit {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
+    // this.success = this.notificationService.sendMessage({message: "User successfully Suspended", type:NotificationType.success})
   }
 
   reactivateUser(publisherId: string) {
@@ -72,6 +74,7 @@ export class PublisherAdminComponent implements OnInit {
     this.adminPagesService.reactivateUser(publisherId, this.reactivate).subscribe((res) => {
       this.displayPublishers();
       this.spinnerService.hide()
+      this.notificationService.sendMessage({message: 'User successfully reactivated', type:NotificationType.success})
     }, (error: any) => {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})

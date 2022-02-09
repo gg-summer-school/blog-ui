@@ -46,7 +46,7 @@ export class ViewTransactionsComponent implements OnInit {
       {
         this.error= error.error.message;
         this.spinnerService.hide()
-        this.notificationService.sendMessage({message: this.error, type:NotificationType.error})
+        // this.notificationService.sendMessage({message: this.error, type:NotificationType.error})
       })
   }
 
