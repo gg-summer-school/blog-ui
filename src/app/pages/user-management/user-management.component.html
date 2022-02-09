@@ -32,13 +32,13 @@
           </div>
       <td>
         <div class="dropdown" style="display: inline-flex">
-          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">{{'UserManagement.Role'| translate }}</button>
+          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" (click)="getUserRoles(user.id)" data-bs-toggle="dropdown">{{'UserManagement.Role'| translate }}</button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" ><b>{{'UserManagement.Upgrade'| translate }}</b></a></li>
 
             <select class="form-select mt-1" (change)="addRoleToUser(user.id, $event)">
               <option selected><b>{{'UserManagement.Role'| translate }}</b></option>
-              <option *ngFor="let rol of user2" value="{{rol}}">{{rol}}</option>
+              <option *ngFor="let rol of addRoles" value="{{rol}}">{{rol}}</option>
             </select>
             <li><a class="dropdown-item" ><b>{{'UserManagement.Remove'| translate }}</b></a></li>
             <select class="form-select mt-1" (change)="removeRoleToUser(user.id, $event)">
