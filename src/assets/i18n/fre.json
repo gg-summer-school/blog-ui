@@ -123,10 +123,10 @@
   },
   "Status": {
     "Profile": "Mon Profile",
-    "Welcome": "Bienvenu"
+    "Welcome": "Bienvenue"
   },
   "Signup": {
-    "Account": "Créez Votre Compte",
+    "Account": "Créez Un Compte",
     "Name": "Nom",
     "Required": "Votre nom est Obligatoire",
     "Email": "Email",
