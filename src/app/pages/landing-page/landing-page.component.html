@@ -46,8 +46,8 @@
               En
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li class="dropdown-item" style="cursor: pointer"><a (click)="switchLang('en')">En</a></li>
-              <li class="dropdown-item" style="cursor: pointer"><a (click)="switchLang('fre')">Fr</a></li>
+              <li (click)="switchLang('en')" class="dropdown-item" style="cursor: pointer"><a>En</a></li>
+              <li (click)="switchLang('fre')" class="dropdown-item" style="cursor: pointer"><a>Fr</a></li>
             </ul>
           </div>
         </li>
@@ -242,7 +242,7 @@
     <div class="col-md-3">
       <a routerLink="/about"><span>{{'Page.Terms'| translate }}</span></a>
       <p>{{'Page.Privacy'| translate }}</p>
-      
+
       <h5>{{'Page.Suscribe'| translate }}</h5>
       <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size"
         [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'|
