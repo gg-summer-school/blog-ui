@@ -16,6 +16,7 @@ export class UserManagementComponent implements OnInit {
   user2: any[] = [];
   addRoles: string[] = [];
   userRoles: any[] = [];
+  enableRole = '';
 
   number!: number;
   publishers: Admin[] = [];
@@ -48,6 +49,14 @@ export class UserManagementComponent implements OnInit {
     });
 
     const filteredArray = role.filter(value => !test2.includes(value));
+    for(let filter of filteredArray){
+      this.enableRole = (filter)
+    }
+
+    // for(let i = 0; i<=filteredArray.length; i++) {
+    //   this.enableRole = filteredArray[i];
+    // }
+
     this.addRoles = filteredArray;
   }
 
@@ -68,7 +77,7 @@ export class UserManagementComponent implements OnInit {
   addRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()
     const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
+      role : (<any>RolePayload)[event]
     }
     this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide()
@@ -76,22 +85,20 @@ export class UserManagementComponent implements OnInit {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
-    window.location.reload();
-
+    // window.location.reload();
   }
 
   removeRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()
     const role : roleDTO = {
-      role : (<any>RolePayload)[event.target.value]
+      role : (<any>RolePayload)[event]
     }
-    console.log(event.target.value);
     this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide()
     }, (error: any) => {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
-    window.location.reload();
+    // window.location.reload();
   }
 }
