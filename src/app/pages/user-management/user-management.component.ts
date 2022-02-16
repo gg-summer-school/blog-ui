@@ -77,7 +77,7 @@ export class UserManagementComponent implements OnInit {
   addRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()
     const role : roleDTO = {
-      role : (<any>RolePayload)[event]
+      role : (<any>RolePayload)[event.target.value]
     }
     this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide()
@@ -85,13 +85,13 @@ export class UserManagementComponent implements OnInit {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
-    // window.location.reload();
+    window.location.reload();
   }
 
   removeRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()
     const role : roleDTO = {
-      role : (<any>RolePayload)[event]
+      role : (<any>RolePayload)[event.target.value]
     }
     this.adminPagesService.removeRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide()
@@ -99,6 +99,6 @@ export class UserManagementComponent implements OnInit {
       this.spinnerService.hide()
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
-    // window.location.reload();
+    window.location.reload();
   }
 }
