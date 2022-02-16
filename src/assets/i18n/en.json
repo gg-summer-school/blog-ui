@@ -5,20 +5,20 @@
     "Dashboard": "Dashboard",
     "Home": "Home",
     "About": "About",
-    "placeholderS": "  search articles...",
-    "searchPlaceholder": "search articles..."
-
+    "placeholderS": "  Search articles...",
+    "searchPlaceholder": "Search articles...",
+    "title":"Blogint"
   },
   "Page": {
     "Welcome": "Welcome to",
     "Publish": "Publish your articles and books to the world.",
     "View": "View all kinds of articles or books. We have it all installed for you.",
-    "ViewArticles": "Show articles",
+    "ViewArticles": "View Articles",
     "All": "All Articles and Books",
     "All1": "Available Categories",
     "All2": "All",
     "Current": "Current",
-    "Authors": "Our Authors",
+    "Authors": "Popular Authors",
     "Name": "Author's Name",
     "Link": "Quick links",
     "Categories": "View Categories",
@@ -30,7 +30,10 @@
     "Suscribe": "Subscribe to our newsletter",
     "placeholderE": " Enter email...",
     "Suscribe1": "Suscribe",
-    "Copy": "Copyright @2022 All rights reserved. "
+    "Copy": "Copyright @2022 All rights reserved. ",
+    "notFound":"Ooops! Articles not Found.",
+    "faq":"FAQ",
+    "blogSite":"Blog site"
   },
   "sidebar": {
     "Home": "Home",
@@ -127,7 +130,7 @@
     "Welcome": "Welcome"
   },
   "Signup": {
-    "Account": "Create your account",
+    "Account": "Create Account",
     "Name": "Name",
     "Required": "Name is required",
     "Email": "Email",
@@ -214,5 +217,15 @@
     "Field": "This field is required",
     "Price": "Price",
     "placeholderP": "Book price"
+  },
+  "UserManagement": {
+    "User": "All Users",
+    "Email": "Email",
+    "Role": "Manage Role",
+    "Role1": "Role",
+    "Upgrade": "Upgrade To",
+    "Admin": "Admin",
+    "Publisher1": "Publisher",
+    "Remove": "Remove Role"
   }
 }

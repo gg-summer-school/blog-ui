@@ -7,10 +7,8 @@ export class TruncateTextPipe implements PipeTransform {
 
   transform(text: string = ''): string {
     if (text !== null) {
-      if (text.length > 440) {
-        return text.substring(0, 440) + "...";
-      }else if(text.length > 20){
-        return text.substring(0, 20) + "..."
+      if (text.length > 1000) {
+        return text.substring(0, 1000) + "...";
       }
     }
     return text;

@@ -14,13 +14,6 @@
       <div class="card-body">
     <h4>{{'EditArticle.Article'| translate }}</h4>
     <br>
-    <div class="alert alert-success" role="alert" *ngIf="success">
-      <h3>{{'EditArticle.Success'| translate }}</h3>
-    </div>
-    <br>
-    <div class="alert alert-danger" role="alert" *ngIf="error1">
-      <h3> {{errorMessage1}} {{'EditArticle.Error'| translate }}</h3>
-    </div>
 
     <form [formGroup]="publish" (submit)="onSubmit(publish.value)">
       <input type="text" placeholder="{{'EditArticle.placeholderT'| translate }}" class="form-control" formControlName="title" [(ngModel)]="oneArticle.title">
@@ -39,6 +32,8 @@
 
       <br>
       <div class="button"> <button class="btn btn-primary butt">{{'EditArticle.Article'| translate }}</button></div>
+      <br>
+      <div class="button" routerLink="/your-articles"> <button class="btn btn-danger butt1">Cancel</button></div>
 
       <br>
     </form>
@@ -51,6 +46,8 @@
 </div>
 </div>
 
-
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
 
 <br>

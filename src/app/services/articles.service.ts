@@ -26,15 +26,14 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
-  //http://192.168.8.103:8000/api/public/articles?pageNo=0&pageSize=10&sortBy=title&sortDir=asc
 
 
   getAllArticles(pageNo: number, pageSize: number): Observable<ArticleResource> {
     return this.http.get<ArticleResource>(this.baseUrl + `articles?pageNo=` + pageNo + `&pageSize=` + pageSize);
   }
 
-  getArticle(articleId: string, userId: string): Observable<ArticleDto> {
-    return this.http.get<ArticleDto>(this.baseUrl1 + `articles?articleId=` + articleId + `&userId=` + userId);
+  searchArticle(articleTitle: string): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(this.baseUrl + `articles-search?title=${articleTitle}`);
 
   }
 
@@ -58,9 +57,6 @@ export class ArticlesService {
     return this.http.get<Categories[]>(this.baseUrl + 'categories');
   }
 
-  updateArticle(articleId: string, article: any) {
-
-  }
 
   // downloadFile
   downloadArticle(): any {
@@ -75,21 +71,6 @@ export class ArticlesService {
       );
   }
 
-  //display one user article
-  getOneUserArticle(articleId: string, userId: string): Observable<Articles> {
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + { userId } + '/' + 'paid-articles/' + { articleId })
-  }
-  //get all user-role paid articles
-  getAllUserPaidArticles(userId: string) {
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + { userId } + '/' + 'paid-articles')
-  }
-  //get all user-role paid article
-  getAllOneUserPaidArticle(userId: string, articleId: string) {
-    return this.http.get<Articles>(this.baseUrl1 + 'users' + '/' + { userId } + '/' + 'paid-articles/' + { articleId })
-
-  }
-
-  
 
   PayArticle(user_id: string, article_id: string, article: PayArticleDto):Observable<ResponseObject>{
     return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/users/${user_id}/articles/${article_id}`, article)

@@ -1,3 +1,9 @@
+.logout {
+  position: absolute;
+  left: 25px;
+  bottom: 15px;
+}
+
 .bt {
   color: #efefef;
   background-color: indigo;
@@ -18,7 +24,7 @@
 
 .profile {
   margin-right: 50px;
-  margin-top: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .upper {
@@ -70,7 +76,7 @@
   margin-top: 250px;
   font-size: 14px;
   color: white;
-  background-color: red;
+
 }
 
 .wrapper .right{
@@ -94,7 +100,7 @@
   color: #353c4e;
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
 }
 
 .wrapper .right .info_data,
@@ -142,8 +148,6 @@
 }
 
 .edit{
-  background-color: indigo;
-  color: white;
   width: 6rem;
 }
 
@@ -164,7 +168,6 @@
   border-radius: 5px;
   padding: 7px;
   color: white;
-  background-color: red;
   border: 0;
 }
 
@@ -174,4 +177,15 @@
   height: 8rem;
   margin-left: 10rem;
   margin-top: 1rem;
+}
+
+.user-name {
+  font-size: small;
+   
+}
+.name-label {
+  font-size: 15px;
+}
+.name-icon {
+  padding-right: 13px;
 }

@@ -18,7 +18,9 @@ import { AdminGuard } from './Guards/admin.guard';
 import { PublisherGuard } from './Guards/publisher.guard';
 import { DashboardComponent } from './pages/user-admin/user-admin.component';
 import {PaymentComponent} from "./pages/payment/payment.component";
+import {ViewArticleComponent} from "./pages/view-article/view-article.component";
 import {UserManagementComponent} from "./pages/user-management/user-management.component";
+import {AboutComponent} from "./pages/about/about.component";
 
 
 
@@ -36,6 +38,10 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
   { path: 'your-articles',
     component: YourArticlesComponent,
@@ -123,6 +129,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+  {
+    path: 'view-article/:id/:doc',
+    component: ViewArticleComponent,
+    canActivate: [AuthGuard]
+  },
 
 
   {

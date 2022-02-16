@@ -8,6 +8,9 @@ import {Articles} from "../../model/articles";
 import {ResponseObject} from "../../model/response";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationMessageService} from "../../services/Notification/notification-message.service";
+import {NotificationType} from "../../model/NotificationMessage";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-publish-article',
@@ -23,16 +26,18 @@ export class PublishArticleComponent implements OnInit {
   categories:any;
   articleId:string='';
  success:boolean=false;
- error:boolean= false;
- error1:boolean= false;
  errorMessage='';
+ error:boolean=false;
  errorMessage1='';
+ negative:boolean=false;
   contributor:[]=[];
   publisherId:string='';
 
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
-              private router: Router, public translate: TranslateService) {
+              private router: Router, public translate: TranslateService,
+              private notificationService:NotificationMessageService,
+              private  spinnerService: NgxSpinnerService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -54,9 +59,13 @@ export class PublishArticleComponent implements OnInit {
 
       }
     );
+
+
     this.getCategories();
     this.publisherId= this.tokenStorage.getUser().id;
     console.log(this.tokenStorage.getUser().id);
+
+
   }
 
   get f()
@@ -66,6 +75,7 @@ export class PublishArticleComponent implements OnInit {
 
   onSubmit(categoryId:string)
   {
+    this.spinnerService.show();
     let contributors:Contributors[] = [];
     this.contributor= this.publish.value.contributors.split(',');
     for(let i =0; i < this.contributor.length; i++){
@@ -82,14 +92,23 @@ export class PublishArticleComponent implements OnInit {
       price: this.publish.value.price,
       contributors:contributors
     }
+
+      if(payload.price < 0)
+      {
+        this.negative =true;
+      }
+
    this.articlesService.createArticle(payload, this.publisherId, categoryId).subscribe((response:ResponseObject) => {
     this.articleId = response.details;
+    this.spinnerService.hide();
 
    },
      error1 =>
      {
-       this.error1=true;
+       this.error=true;
        this.errorMessage1= error1.error.message;
+       this.notificationService.sendMessage({message: this.errorMessage1, type:NotificationType.error})
+       this.spinnerService.hide();
 
      })
   }
@@ -104,6 +123,7 @@ export class PublishArticleComponent implements OnInit {
 
   upload()
   {
+    this.spinnerService.show();
     this.currentFile=this.selectedFile.item(0);
     this.currentFile1=this.selectedFile1.item(0);
 
@@ -114,13 +134,15 @@ export class PublishArticleComponent implements OnInit {
     console.log(formData)
     this.articlesService.uploadArticleFiles(formData,this.publisherId, this.articleId).subscribe(res=>
     {
-      this.success=true;
-     window.location.reload();
+      this.notificationService.sendMessage({message: 'Article created Successfully!', type:NotificationType.success})
+      window.location.reload()
+      this.spinnerService.hide();
 
     },
       error => {
-      this.error=true;
-      this.errorMessage=error.error.message;
+        this.errorMessage=error.error.message;
+        this.notificationService.sendMessage({message: this.errorMessage, type:NotificationType.error})
+        this.spinnerService.hide();
       })
 
   }

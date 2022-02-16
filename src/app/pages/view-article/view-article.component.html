@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-2 " >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="col-md-10" >
+    <div style="text-align: right;margin-top: 10px">
+      <app-status></app-status>
+    </div>
+    <br>
+
+    <div class="col-md-10 ">
+      <div id="app">
+        <iframe [src]="doc | safe" width="100%" height="500rem"  frameborder="0"></iframe>
+      </div>
+
+    </div>
+    <div >
+      <a routerLink="/users-article" style="text-decoration: none"><i class="fas fa-arrow-circle-left"></i>Back</a>
+    </div>
+
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
+
+
+<br>

@@ -13,9 +13,9 @@
       <table class="table table-borderless table-responsive" >
         <thead>
         <tr>
-          <th scope="col"><b>All Users ({{number}})</b></th>
-          <th scope="col">{{'PublisherAdmin.Email'| translate }}</th>
-          <th scope="col-md-2">{{'UserAdmin.Role'| translate }}</th>
+          <th scope="col"><b>{{'UserManagement.User'| translate }} ({{number}})</b></th>
+          <th scope="col">{{'UserManagement.Email'| translate }}</th>
+          <th scope="col-md-2">{{'UserManagement.Role1'| translate }}</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -31,23 +31,23 @@
             </ul>
           </div>
       <td>
+
         <div class="dropdown" style="display: inline-flex">
-          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">Mange Role</button>
+          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" (click)="getUserRoles(user.id)" data-bs-toggle="dropdown">{{'UserManagement.Role'| translate }}</button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" ><b>{{'UserAdmin.Upgrade'| translate }}</b></a></li>
-            <select  class="form-select mt-1" (change)="addRoleToUser(user.id, $event)">
-              <option selected><b>{{'UserAdmin.Role'| translate }}</b></option>
-              <option value="0">{{'UserAdmin.Admin'| translate }}</option>
-              <option value="1">{{'UserAdmin.Publisher'| translate }}</option>
+            <li><a class="dropdown-item" ><b>{{'UserManagement.Upgrade'| translate }}</b></a></li>
+
+            <select class="form-select mt-1" (change)="addRoleToUser(user.id, $event)">
+              <option selected><b>{{'UserManagement.Role'| translate }}</b></option>
+              <option *ngFor="let rol of addRoles" value="{{rol}}">{{rol}}</option>
             </select>
-            <li><a class="dropdown-item" ><b>{{'UserAdmin.Remove'| translate }}</b></a></li>
+            <li><a class="dropdown-item" ><b>{{'UserManagement.Remove'| translate }}</b></a></li>
             <select class="form-select mt-1" (change)="removeRoleToUser(user.id, $event)">
-              <option selected><b>{{'UserAdmin.Role'| translate }}</b></option>
-              <option value="0">{{'UserAdmin.Admin'| translate }}</option>
-              <option value="1">{{'UserAdmin.Publisher'| translate }}</option>
+              <option selected><b>{{'UserManagement.Role'| translate }}</b></option>
+              <option *ngFor="let roles of user.role" value="{{roles.role}}">{{roles.role}}</option>
             </select>
           </ul>
-          </div>
+        </div>
         </td>
 
     </tr>
@@ -56,3 +56,17 @@
     </div>
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>
+
+<!--        <div class="dropdown" style="display: inline-flex">-->
+<!--          <button class="btn btn-dark but " type="button" id="dropdownMenuButton1" (click)="getUserRoles(user.id)" data-bs-toggle="dropdown">{{'UserManagement.Role'| translate }}</button>-->
+<!--          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
+<!--              <li *ngFor="let roles of user2"><a class="dropdown-item">{{roles}} &nbsp; &nbsp;-->
+<!--                <i [ngClass]="{fa_plus: enableRole !== roles}" (click)="addRoleToUser(user.id, roles)" style="color: blue; cursor: pointer" class="fas fa-plus"></i>-->
+<!--                 &nbsp; &nbsp;-->
+<!--                <i (click)="removeRoleToUser(user.id, roles)" style="color: red; cursor: pointer" class="fas fa-minus"></i></a>-->
+<!--              </li>-->
+<!--          </ul>-->
+<!--          </div>-->

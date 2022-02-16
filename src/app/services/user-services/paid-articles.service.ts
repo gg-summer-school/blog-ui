@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ArticleDto, updatePayload} from "../../model/articles";
 import {PaidArticles} from "../../model/paidArticles";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class PaidArticlesService {
 
   constructor(private http: HttpClient) { }
 
-  getBookTitle(userId: string){
-    return this.http.get<PaidArticles[]>(this.baseUrl1 + 'users/' + userId + '/paid-articles');
+  getBookTitle(userId: string): Observable<ArticleDto[]>{
+    return this.http.get<ArticleDto[]>(this.baseUrl1 + 'users/' + userId + '/paid-articles');
   }
 
   // deleteArticle(userId:string, articleId:string, categoryId:string)
