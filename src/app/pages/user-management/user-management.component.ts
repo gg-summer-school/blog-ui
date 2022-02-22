@@ -23,6 +23,9 @@ export class UserManagementComponent implements OnInit {
   readers: Admin[] = [];
   allUsers: Admin[] = [];
   rolePayload: Admin[] = [];
+  page = 1;
+  count = 0;
+  tableSize = 5;
 
   constructor(private adminPagesService: AdminPagesService,  private notificationService:NotificationMessageService,
               private  spinnerService: NgxSpinnerService, private tokenStore: TokenStorageService) { }
@@ -71,8 +74,10 @@ export class UserManagementComponent implements OnInit {
         this.spinnerService.hide()
       })
   }
-
-
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.displayAllUsers();
+  }
 
   addRoleToUser(user_id: string, event:any) {
     this.spinnerService.show()

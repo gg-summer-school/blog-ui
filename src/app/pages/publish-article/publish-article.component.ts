@@ -32,6 +32,7 @@ export class PublishArticleComponent implements OnInit {
  negative:boolean=false;
   contributor:[]=[];
   publisherId:string='';
+  categ='SCIENCE';
 
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
@@ -131,19 +132,19 @@ export class PublishArticleComponent implements OnInit {
     formData.append('files', this.currentFile);
     formData.append('files', this.currentFile1)
 
-    console.log(formData)
+    console.log(formData);
     this.articlesService.uploadArticleFiles(formData,this.publisherId, this.articleId).subscribe(res=>
     {
       this.notificationService.sendMessage({message: 'Article created Successfully!', type:NotificationType.success})
-      window.location.reload()
+      window.location.reload();
       this.spinnerService.hide();
 
     },
       error => {
-        this.errorMessage=error.error.message;
+        this.errorMessage = error.error.message;
         this.notificationService.sendMessage({message: this.errorMessage, type:NotificationType.error})
         this.spinnerService.hide();
-      })
+      });
 
   }
 
@@ -151,8 +152,9 @@ export class PublishArticleComponent implements OnInit {
   {
     this.articlesService.getCategory().subscribe(res=>
     {
-      this.categories= res;
-    })
+      this.categories = res;
+    }
+    )
   }
 
 

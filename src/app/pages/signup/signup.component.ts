@@ -15,7 +15,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted = false;
-  role = 'PUBLISHER';
+  role = 'READER';
   errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router,

@@ -18,15 +18,24 @@
       <table class="table table-borderless table-responsive"  *ngIf="pubArticles.length">
         <thead>
         <tr>
+
           <th scope="col">{{'YourArticles.Articles'| translate }} ({{number}})</th>
           <th scope="col">{{'YourArticles.Category'| translate }}</th>
           <th scope="col">{{'YourArticles.Price'| translate }}</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
-        <tbody *ngFor="let article of pubArticles">
+        <tbody *ngFor="let article of pubArticles| paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        ">
         <br>
         <tr >
+
           <td >{{article.title}}</td>
           <td>{{article.categoryName}}</td>
           <td>{{article.price}} frs</td>
@@ -41,6 +50,13 @@
 
       </table>
     </div>
+    <pagination-controls
+      *ngIf="pubArticles.length"
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait.</p>

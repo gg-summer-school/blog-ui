@@ -20,7 +20,11 @@ export class DashboardComponent implements OnInit {
   addRole!: RolePayload;
   reactivate: boolean = true;
   active: boolean = false;
-  role: string = 'Role'
+  role: string = 'Role';
+  page = 1;
+  count = 0;
+  tableSize = 5;
+
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService:NotificationMessageService,
@@ -51,6 +55,11 @@ export class DashboardComponent implements OnInit {
         this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
       })
   }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.displayReaders();
+  }
+
 
   suspendPublisher(publisherId: string) {
     this.spinnerService.show()

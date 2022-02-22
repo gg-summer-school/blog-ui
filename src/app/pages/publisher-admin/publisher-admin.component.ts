@@ -20,8 +20,11 @@ export class PublisherAdminComponent implements OnInit {
   status: string = 'Suspend';
   suspendUser: boolean = false;
   reactivate: boolean = true;
-  number!: number
+  number!: number;
   success: any;
+  page = 1;
+  count = 0;
+  tableSize = 5;
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService:NotificationMessageService,
@@ -54,6 +57,10 @@ export class PublisherAdminComponent implements OnInit {
         this.spinnerService.hide()
         this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
       })
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.displayPublishers();
   }
 
   suspendPublisher(publisherId: string) {

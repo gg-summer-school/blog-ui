@@ -15,6 +15,9 @@ export class RequestsComponent implements OnInit {
   publishers: any;
   approveUser: boolean = true;
   number!: number;
+  page = 1;
+  count = 0;
+  tableSize = 5;
 
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
@@ -35,15 +38,20 @@ export class RequestsComponent implements OnInit {
   displayPendingPublishers() {
     this.spinnerService.show()
     this.adminPagesService.getPublishers(this.isApproved)
-      .subscribe( res=>
+      .subscribe( res =>
       {
-        this.publishers = res;
-        this.number= this.publishers.length;
+        const pub = res;
+        this.publishers = pub.reverse();
+        this.number = this.publishers.length;
         this.spinnerService.hide()
       }, error =>
       {
         this.spinnerService.hide()
       })
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.displayPendingPublishers();
   }
 
   approvePublisher(publisherId: string) {

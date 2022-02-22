@@ -10,7 +10,8 @@
     </div>
 
   <div class="col-md-10">
-    <table class="table table-borderless table-responsive" >
+    <h5 *ngIf="!publishers.length" class="form-text">Oops!! No publishers are available yet.</h5>
+    <table class="table table-borderless table-responsive" *ngIf="publishers.length" >
       <thead>
       <tr>
         <th scope="col"><b>{{'PublisherAdmin.Publisher'| translate }} ({{number}})</b></th>
@@ -18,7 +19,12 @@
         <th scope="col">Action</th>
       </tr>
       </thead>
-      <tbody *ngFor="let publisher of publishers">
+      <tbody *ngFor="let publisher of publishers | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                }">
       <br>
       <tr >
         <td>{{ publisher.name }}</td>
@@ -31,6 +37,13 @@
       </tr>
       </tbody>
     </table>
+    <pagination-controls
+      *ngIf="publishers.length"
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
 
 <!-- Modal to block and suspend publisher -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

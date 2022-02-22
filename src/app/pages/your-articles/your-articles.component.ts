@@ -21,6 +21,9 @@ export class YourArticlesComponent implements OnInit {
   error:string='';
   doc:string = '';
   number!: number;
+  page = 1;
+  count = 0;
+  tableSize = 5;
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
               private tokenStorage: TokenStorageService, private router: Router,
               public translate: TranslateService,
@@ -53,6 +56,11 @@ export class YourArticlesComponent implements OnInit {
         this.spinnerService.hide();
       }
     )
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getArticlesByPublisher();
   }
 
 
