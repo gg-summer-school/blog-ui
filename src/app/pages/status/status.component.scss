@@ -1,3 +1,5 @@
+@import "../../Abstract/mixins";
+
 .logout {
   position: absolute;
   left: 25px;
@@ -188,4 +190,10 @@
 }
 .name-icon {
   padding-right: 13px;
+}
+
+.profile {
+  @include respond(phone) {
+    display: none;
+  }
 }

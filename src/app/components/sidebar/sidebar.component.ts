@@ -42,6 +42,8 @@ export class SidebarComponent implements OnInit {
   }
 
   onClose() {
+    console.log("closed");
+    
     // @ts-ignore
     document.getElementById("side").style.display = "none";
     // @ts-ignore
