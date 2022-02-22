@@ -1,3 +1,5 @@
+@import "../../../app/Abstract/mixins";
+
 .bg
 {
   background-size: cover;
@@ -7,6 +9,7 @@
   height: 550px;
   margin-top: 55px;
 }
+
 .color
 {
   background-color: lavender;
@@ -134,11 +137,26 @@ h6 {
 .card-img-top {
  height: 25vh;
 }
+
 .notFoundArticles {
   text-align: center;
   width: 400px;
   margin-top: 50px;
+
+  @include respond(tab-land) {
+    max-width: 70rem;
+  }
+
+  @include respond(tab-port) {
+    max-width: 50rem;
+  }
+
+  @include respond(phone) {
+    max-width: 15rem;
+  }
+
 }
+
 a{
   color:black;
   text-decoration: none;
@@ -149,7 +167,6 @@ h2 {
   font-weight: bolder;
   color: black;
 }
-
 
 .group
 {
@@ -262,4 +279,3 @@ h2 {
 .blogSiteSpan {
   padding-left: 7px;
 }
- 

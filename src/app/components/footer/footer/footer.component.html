@@ -1,0 +1,43 @@
+<div class="footer ">
+    <div class="row">
+      <div class="col-md-3">
+        <h5>{{'Page.Link'| translate }}</h5>
+        <a style="cursor: pointer" href="#articles">{{'Page.Categories'| translate }}</a>
+        <br>
+        <a style="cursor: pointer" href="#articles">{{'Page.Article'| translate }}</a>
+        <br>
+        <a style="cursor: pointer" href="#authors">{{'Page.Authors'| translate }}</a>
+        <br>
+        <a style="cursor: pointer" routerLink="/signup">{{'Navbar.SignUp'| translate }}</a><br>
+  
+      </div>
+      <div class="col-md-3">
+        <h5>{{'Page.Contact'| translate }}</h5>
+        <span><i class="fab fa-whatsapp" style="color: lightgreen"></i> Whatsapp</span>
+        <br>
+        <span><i class="fab fa-instagram" style="background: linear-gradient(orange, purple)"></i> Instagram</span>
+        <br>
+        <span><i class="fab fa-twitter" style="color: dodgerblue"></i> Twitter</span>
+        <br>
+        <span><i class="fab fa-linkedin" style="color: deepskyblue"></i> LinkedIn</span>
+        <br>
+      </div>
+      <div class="col-md-3">
+        <a routerLink="/about"><span>{{'Page.About'| translate }}</span></a>
+        <p>FAQ</p>
+      </div>
+      <div class="col-md-3">
+        <p>{{'Page.Terms'| translate }}</p>
+        <p>{{'Page.Privacy'| translate }}</p>
+        <h5>{{'Page.Suscribe'| translate }}</h5>
+        <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size" [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'| translate }}</button>
+  
+      </div>
+  
+    </div>
+  
+  
+  </div>
+  <div class="foot">
+    <p class="p">{{'Page.Copy'| translate }}<span class="blog">Blog site</span></p>
+  </div>

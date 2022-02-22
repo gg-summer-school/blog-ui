@@ -44,6 +44,7 @@ import { SafePipe } from './pipe/safe/safe.pipe';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { TruncateArticleTitlePipe } from './pipe/truncate-article-title.pipe';
 import { AboutComponent } from './pages/about/about.component';
+import { FooterComponent } from './components/footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { AboutComponent } from './pages/about/about.component';
     RoleComponent,
     TruncateArticleTitlePipe,
     AboutComponent,
+    FooterComponent,
 
 
 
