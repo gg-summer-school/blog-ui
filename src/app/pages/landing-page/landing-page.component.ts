@@ -73,7 +73,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.getAllCategories();
     this.getCachedCartItems();
     this.calculateTotalCostItems(this.cardItems);
-    console.log(this.cardItems);
 
   }
   previous() {
@@ -261,7 +260,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     //   accountNumber: this.paymentForm.value.accountNumber,
     //   userId: this.tokenStorage.getUser().id
     // }
-    
+
     // this.spinnerService.show();
     // let logginUserId: string = this.tokenStorage.getUser().id;
     // const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {

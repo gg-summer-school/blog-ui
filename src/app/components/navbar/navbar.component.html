@@ -15,9 +15,7 @@
           <a class="nav-link " routerLink="/about">{{'Navbar.About'| translate }}</a>
         </li>
       </ul>
-
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
         <li class="nav-item">
           <a class="nav-link" routerLink="/signup"><button class="btn btn-outline-primary"
               *ngIf="!tokenStorage.getToken1()">{{'Navbar.SignUp'| translate }}</button></a>
@@ -30,8 +28,100 @@
           <a class="nav-link " routerLink="/users-article"><button class="btn btn-outline-info"
               *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <button class="btn btn-outline-link position-relative cart-button" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" *ngIf="tokenStorage.getToken1()"> <i
+                class=" fas fa-shopping-cart cart text-info"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill totalArticles">
+              99
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+          </a>
+        </li>
       </ul>
-
     </div>
   </div>
 </nav>
+
+
+<!-- offcanvas for checkout -->
+<div class="row" >
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel">{{'articlePage.shoppingCart'| translate}}</h4>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="row shoppingCartItems" *ngFor="let item of cardItems">
+        <div class="col-md-5">
+          <img src="{{item?.coverPage}}" class="articleCoverPageImage" alt="article CoverPage image" width="100%" />
+          <p class="imageBorder"></p>
+        </div>
+        <div class="col-md-7">
+          <h5 class="shoppingCartArticleTitle">{{item?.title}}</h5>
+          <h6 class="articleDetailPrice">1 x {{item?.price}} XFA</h6>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-light delete  btn-sm" type="button" (click)="removeArticleCard(item)">
+              <i class="fas fa-trash-alt delete-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="emptyCard" *ngIf="cardItems.length == 0">
+        <label>Card is Empty </label>
+      </div>
+    </div>
+    <div class="offcanvas-footer">
+      <div *ngIf="cardItems.length > 0">
+        <div class="totalItemsCart">
+          <label for="total" class="articleTotal">Total: {{totalCostCartItems}} XFA</label>
+        </div>
+        <button type="button" class="btn buy" data-bs-toggle="modal" data-bs-target="#paymentModal"
+          >{{'articlePage.checkout'|
+          translate}}
+        </button>
+
+        <button type="button" class="btn addArticles" routerLink=""
+          >{{'articlePage.addMoreArticle'|
+          translate}}
+        </button>
+      </div>
+    </div>
+  </div> 
+</div>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="d-flex justify-content-end">
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
+      </div>
+      <div>
+        <h6 class="createAccount1 mt-2" id="exampleModalLabel">{{'articlePage.Account'| translate}}</h6>
+      </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="mb-1 text-black">{{'articlePage.Account1'| translate}}:</label>
+            <input type="tel" formControlName="accountNumber" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
+
+              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> {{'articlePage.Account2'| translate}}
+              </div>
+              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
+            </span>
+          </div>
+          <div class=" mt-4 account">
+            <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn text-white btn-sm"
+              data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
