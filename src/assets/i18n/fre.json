@@ -212,7 +212,8 @@
     "Detail": "Detail de Payement",
     "Name": "Nom de l'article",
     "Card": "Numéro de carte",
-    "Pay": "Payer $243"
+    "Pay": "Payer $243",
+    "Date": "Date"
   },
   "UserManagement": {
     "User": "Utilisateurs",

@@ -1,63 +1,110 @@
-
 <div class="row">
-  <div class="col-md-2 " >
+  <div class="col-md-2 ">
     <app-sidebar></app-sidebar>
   </div>
 
-  <div class="col-md-10" >
+  <div class="col-md-10">
     <br>
     <div style="text-align: right">
       <app-status></app-status>
     </div>
 
-<div class="col-md-10">
-<!--  <h5 *ngIf="!readers.length" class="form-text">Oops!! You don't have Readers yet.</h5>-->
-  <table class="table table-borderless table-responsive" >
-    <thead>
-    <tr>
-      <th scope="col"><b>{{'UserAdmin.Reader'| translate }} ({{number}})</b></th>
-      <th scope="col">{{'UserAdmin.Email'| translate }}</th>
-      <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let read of readers">
-    <br>
-    <tr >
-      <td>{{read.name}}</td>
-      <td>{{read.email}}</td>
+    <div class="col-md-10">
+      <!--  <h5 *ngIf="!readers.length" class="form-text">Oops!! You don't have Readers yet.</h5>-->
+      <table class="table table-borderless table-responsive">
+        <thead>
+        <tr>
+          <th scope="col"><b>{{'UserAdmin.Reader'| translate }} ({{number}})</b></th>
+          <th scope="col">{{'UserAdmin.Email'| translate }}</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let read of readers">
+        <br>
+        <tr>
+          <td>{{read.name}}</td>
+          <td>{{read.email}}</td>
 
-      <td>
-      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-danger ">{{'UserAdmin.Suspend'| translate }}</button>&nbsp;
-      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-success">{{'UserAdmin.Reactivate'| translate }}</button>&nbsp;
+          <td>
+            <!--      <button (click)="suspendPublisher(read.id)" *ngIf="read.active" class="btn btn-danger ">{{'UserAdmin.Suspend'| translate }}</button>&nbsp;-->
+            <!--      <button (click)="reactivateUser(read.id)" *ngIf="!read.active"  class="btn btn-success">{{'UserAdmin.Reactivate'| translate }}</button>&nbsp;-->
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="getPublisherId(read.id)"
+                    *ngIf="read.active"
+                    data-bs-target="#exampleModal">
+              {{'UserAdmin.Suspend'| translate }}
+            </button>
+            <button type="button" class="btn btn-success" *ngIf="!read.active" (click)="getPublisherId(read.id)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal1">
+              {{'UserAdmin.Reactivate'| translate }}
+            </button>
+          </td>
+        </tr>
+        </tbody>
+        <!--        modal for suspend-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Suspend</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to suspend user?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger " (click)="supend()">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
-    </tr>
-    </tbody>
-  </table>
+        <!--         modal for reactivate-->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Reactivate</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to reactivate the user?
+              </div>
+              <div class="modal-footer">
+                <button type="button" (click)="reactivatePub()" class="btn btn-success">Yes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<!-- Modal to block and suspend user -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger">Suspend</button>
-      </div>
+
+      </table>
+
+      <!-- Modal to block and suspend user -->
+      <!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+      <!--  <div class="modal-dialog modal-dialog-centered">-->
+      <!--    <div class="modal-content">-->
+      <!--      <div class="modal-header">-->
+      <!--        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span *ngIf="isSuspended">Suspend</span> "User Name"</h5>-->
+      <!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+      <!--      </div>-->
+      <!--      <div class="modal-body">-->
+      <!--        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this user?-->
+      <!--      </div>-->
+      <!--      <div class="modal-footer">-->
+      <!--        <button type="button" class="btn btn-danger">Suspend</button>-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
   </div>
-</div>
-</div>
-</div>
   <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait.</p>
   </ngx-spinner>
-
-
-  <!-- Button trigger modal -->
-
+</div>
