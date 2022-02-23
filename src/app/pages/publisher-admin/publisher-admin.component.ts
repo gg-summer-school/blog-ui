@@ -25,6 +25,7 @@ export class PublisherAdminComponent implements OnInit {
   page = 1;
   count = 0;
   tableSize = 5;
+  pub:any;
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService:NotificationMessageService,
@@ -92,5 +93,10 @@ export class PublisherAdminComponent implements OnInit {
     this.isSuspended = true;
     this.isBlocked = false;
     }
-
+  view(pub:any)
+  {
+    this.pub = pub;
   }
+
+
+}

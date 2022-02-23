@@ -10,6 +10,24 @@
     </div>
 
   <div class="col-md-10">
+    <!-- View reason Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="pub">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel" style="color:indigo;">Publisher's reason</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>{{pub.reason}}</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <h5 *ngIf="!publishers.length" class="form-text">Oops!! No publishers are available yet.</h5>
     <table class="table table-borderless table-responsive" *ngIf="publishers.length" >
       <thead>
@@ -30,6 +48,7 @@
         <td>{{ publisher.name }}</td>
         <td>{{ publisher.email }}</td>
         <td>
+          <i (click)="view(publisher)" class="fas fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal" title="View reason" style="color: indigo; cursor: pointer" ></i>&nbsp;&nbsp;&nbsp;
           <button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-danger">{{'PublisherAdmin.Suspend'| translate }}</button>&nbsp;
           <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-success">{{'PublisherAdmin.Reactivate'| translate }}</button>&nbsp;
         </td>

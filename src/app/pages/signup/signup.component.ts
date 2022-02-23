@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   role = 'READER';
   errorMessage = '';
 
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router,
               public translate: TranslateService, private notificationService: NotificationMessageService,
               private  spinnerService: NgxSpinnerService) {
@@ -36,7 +37,8 @@ export class SignupComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(256)])],
-        role: ['', Validators.required]
+        role: ['', Validators.required],
+        reason: ['']
       }
     );
   }
@@ -65,6 +67,13 @@ export class SignupComponent implements OnInit {
   onReset(): void {
     this.submitted = false;
     this.signupForm.reset();
+  }
+
+  toggleTextBox(): boolean {
+    if (this.signupForm.controls.role.value === 'PUBLISHER') {
+      return true;
+    }
+    return false;
   }
 
 }

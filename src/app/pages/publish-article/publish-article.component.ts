@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ArticlesService} from "../../services/articles.service";
-import {Categories} from "../../model/categories";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {Contributors} from "../../model/contributors";
 import {Articles} from "../../model/articles";
@@ -17,7 +16,7 @@ import {NgxSpinnerService} from "ngx-spinner";
   templateUrl: './publish-article.component.html',
   styleUrls: ['./publish-article.component.scss']
 })
-export class PublishArticleComponent implements OnInit {
+export class PublishArticleComponent implements OnInit{
   publish= new FormGroup({});
   selectedFile:any;
   currentFile:any;
@@ -32,7 +31,9 @@ export class PublishArticleComponent implements OnInit {
  negative:boolean=false;
   contributor:[]=[];
   publisherId:string='';
-  categ='SCIENCE';
+  accountApproved: boolean= false;
+  name:string='';
+
 
 
   constructor(private  articlesService: ArticlesService, private tokenStorage: TokenStorageService,
@@ -61,12 +62,13 @@ export class PublishArticleComponent implements OnInit {
       }
     );
 
-
     this.getCategories();
     this.publisherId= this.tokenStorage.getUser().id;
-    console.log(this.tokenStorage.getUser().id);
-
-
+    this.accountApproved = this.tokenStorage.getUser().approved;
+    this.name = this.tokenStorage.getUser().name;
+    if (this.accountApproved) {
+      this.notificationService.sendMessage({message: 'Your account has been approved!', type: NotificationType.success});
+    }
   }
 
   get f()
@@ -156,6 +158,35 @@ export class PublishArticleComponent implements OnInit {
     }
     )
   }
+  // ngOnChanges() {
+  //   console.log('ngOnChanges - data is');
+  // }
+  //
+  // ngDoCheck() {
+  //   console.log("ngDoCheck");
+  // }
+  //
+  // ngAfterContentInit() {
+  //   console.log("ngAfterContentInit");
+  // }
+  //
+  // ngAfterContentChecked() {
+  //   console.log("ngAfterContentChecked");
+  // }
+  //
+  // ngAfterViewInit() {
+  //   console.log("ngAfterViewInit");
+  // }
+  //
+  // ngAfterViewChecked() {
+  //   console.log("ngAfterViewChecked");
+  // }
+  //
+  // ngOnDestroy() {
+  //   console.log("ngOnDestroy");
+  //   this.approved = this.tokenStorage.getUser().approved;
+  //
+  // }
 
 
 }

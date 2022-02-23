@@ -68,7 +68,7 @@ export class StatusComponent implements OnInit {
     this.email = this.tokenStorageService.getUser().email;
     this.test2 = name.split(" ");
     this.firstName = this.test2[0];
-    
+
     for (let i of role) {
       this.role2 = i.split('_').slice(-1).join(' ');
       this.role.push(this.role2);
@@ -89,6 +89,7 @@ export class StatusComponent implements OnInit {
         refreshToken: user.refreshToken,
         type: user.type,
         role: user.role,
+        approved: user.approved
       }
       this.tokenStorageService.saveUser(newUser);
       this.notificationService.sendMessage({message: 'Your name has been updated successfully', type:NotificationType.success})

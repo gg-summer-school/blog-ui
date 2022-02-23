@@ -70,16 +70,20 @@
           <div class="form-group">
             <br/>
             <label>{{'Signup.Role'| translate }}</label>
-            <select
+            <select id="selectRole"
               [(ngModel)]="role"
               class="form-select mt-3"
               required formControlName="role">
               <option value="READER">{{'Signup.Reader'| translate }}</option>
               <option value="PUBLISHER">{{'Signup.Publisher'| translate }}</option>
             </select>
+
           </div>
-
-
+          <br>
+          <div class="form-group" *ngIf="toggleTextBox()">
+            <label>Enter reasons for becoming a publisher</label>
+            <textarea rows="3" cols="40" class="form-control" formControlName="reason"></textarea>
+          </div>
 
           <div class="form-group">
             <button type="submit" class="btn btn-cl" [disabled]="signupForm.invalid"

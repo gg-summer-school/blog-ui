@@ -10,10 +10,31 @@
       <app-status></app-status>
     </div>
 
-  <div class="col-md-10 ">
+
+    <div class="col-md-10 ">
+      <!-- View reason Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="pub">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel" style="color:indigo;">Publisher's reason</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>{{pub.reason}}</p>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <h4>{{'Requests.Request'| translate }}</h4>
     <br>
+
     <table class="table table-borderless table-responsive table-sm">
+
       <thead>
       <tr>
         <th scope="col"><b>{{'Requests.Pending'| translate }} ({{number}})</b></th>
@@ -32,12 +53,18 @@
         <td>{{p.name}}</td>
         <td>{{p.email}}</td>
         <td style="display: inline-flex">
-          <button class="btn btn-dark but" (click)="approvePublisher(p.id)">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click)="declineUser(p.id)"> {{'Requests.Decline'| translate }}</button>
+        <i (click)="view(p)" class="fas fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal" title="View reason" style="color: indigo; cursor: pointer" ></i>&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-dark but" (click)=" approvePublisher(p.id) ">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)=" declineUser(p.id) "> {{'Requests.Decline'| translate }}</button>
         </td>
       </tr>
+
+
       </tbody>
+
+
     </table>
+
   </div>
     <pagination-controls
       previousLabel="Prev"
@@ -50,3 +77,5 @@
   <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait.</p>
   </ngx-spinner>
+
+</div>

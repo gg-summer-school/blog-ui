@@ -18,7 +18,7 @@ export class RequestsComponent implements OnInit {
   page = 1;
   count = 0;
   tableSize = 5;
-
+  pub:any;
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService:NotificationMessageService,  private  spinnerService: NgxSpinnerService) {
@@ -78,6 +78,10 @@ export class RequestsComponent implements OnInit {
         this.spinnerService.hide()
         this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
       })
+  }
+  view(pub:any)
+  {
+    this.pub = pub;
   }
 
 
