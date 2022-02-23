@@ -5,7 +5,7 @@
 
   <div class="col-md-10" >
     <br>
-    <div style="text-align: right">
+    <div style="text-align: left">
       <app-status></app-status>
     </div>
 
@@ -24,40 +24,94 @@
         <td>{{ publisher.name }}</td>
         <td>{{ publisher.email }}</td>
         <td>
-          <button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-danger">{{'PublisherAdmin.Suspend'| translate }}</button>&nbsp;
-          <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-success">{{'PublisherAdmin.Reactivate'| translate }}</button>&nbsp;
+<!--          <button (click)="suspendPublisher(publisher.id)" *ngIf="publisher.active" class="btn btn-danger">{{'PublisherAdmin.Suspend'| translate }}</button>&nbsp;-->
+<!--          <button (click)="reactivateUser(publisher.id)" *ngIf="!publisher.active"  class="btn btn-success">{{'PublisherAdmin.Reactivate'| translate }}</button>&nbsp;-->
+          <!-- Button to trigger modal -->
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" (click)="getPublisherId(publisher.id)"
+                  *ngIf="publisher.active"
+                  data-bs-target="#exampleModal">
+            {{'UserAdmin.Suspend'| translate }}
+          </button>
+          <button type="button" class="btn btn-success" *ngIf="!publisher.active" (click)="getPublisherId(publisher.id)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal1">
+            {{'UserAdmin.Reactivate'| translate }}
+          </button>
         </td>
 
       </tr>
       </tbody>
+      <!--        modal for suspend-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Suspend</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to suspend user?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger " (click)="supend()">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--         modal for reactivate-->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel1">Reactivate</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to reactivate the user?
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="reactivatePub()" class="btn btn-success">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </table>
 
 <!-- Modal to block and suspend publisher -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span
-            *ngIf="isSuspended">Suspend</span> "User Name"</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this
-        user?
-      </div>
-      <div class="modal-footer">
-        <!--Block publisher-->
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>
-        <!--suspend publisher-->
-        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
+<!--  aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="staticBackdropLabel"><span *ngIf="isBlocked">Block</span> <span-->
+<!--            *ngIf="isSuspended">Suspend</span> "User Name"</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        Are you sure you want to <span *ngIf="isBlocked">block</span> <span *ngIf="isSuspended">suspend</span> this-->
+<!--        user?-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        &lt;!&ndash;Block publisher&ndash;&gt;-->
+<!--        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>-->
+<!--        <button *ngIf="isBlocked" type="button" class="btn btn-danger">Block</button>-->
+<!--        &lt;!&ndash;suspend publisher&ndash;&gt;-->
+<!--        <button *ngIf="isSuspended" type="button" class="btn btn-danger">Suspend</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
       <p style="color: white">Please Wait.</p>
     </ngx-spinner>
 
 <br>
+  </div>
+  </div>
+</div>

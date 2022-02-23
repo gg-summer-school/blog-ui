@@ -55,6 +55,7 @@ export class RequestsComponent implements OnInit {
     this.adminPagesService.approveUser(publisherId, this.approveUser).subscribe((res) => {
       this.spinnerService.hide();
       window.location.reload();
+      this.notificationService.sendMessage({message: 'User successfully approved', type: NotificationType.success});
     },
       error => {
       this.spinnerService.hide();
@@ -68,11 +69,12 @@ export class RequestsComponent implements OnInit {
     this.adminPagesService.declineUser(publisherId).subscribe((res) => {
       this.spinnerService.hide();
       window.location.reload();
+      this.notificationService.sendMessage({message: 'User successfully reactivated', type: NotificationType.error});
     },
       error =>
       {
         this.spinnerService.hide();
-        this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
+        this.notificationService.sendMessage({message: error.error.message, type: NotificationType.error});
       });
   }
   getPublisherId(publisherId: string): any{

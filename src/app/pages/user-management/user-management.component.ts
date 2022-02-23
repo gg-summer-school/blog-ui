@@ -87,10 +87,11 @@ export class UserManagementComponent implements OnInit {
 
 
 
+  // tslint:disable-next-line:typedef
   addRoleToUser(user_id: string, event:any) {
     this.spinnerService.show();
     const role: roleDTO = {
-      role : (<any> RolePayload)[event.target.value]
+      role : ( <any> RolePayload)[event.target.value]
     };
     this.adminPagesService.appendRole(user_id, role).subscribe((res: any) => {
   this.spinnerService.hide();
@@ -101,6 +102,7 @@ export class UserManagementComponent implements OnInit {
     window.location.reload();
   }
 
+  // tslint:disable-next-line:typedef
   removeRoleToUser(user_id: string, event:any) {
     this.spinnerService.show();
     const role: roleDTO = {

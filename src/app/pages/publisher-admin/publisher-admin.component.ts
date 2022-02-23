@@ -22,6 +22,8 @@ export class PublisherAdminComponent implements OnInit {
   reactivate = true;
   number!: number;
   success: any;
+  user: Admin | undefined;
+
 
   constructor(private adminPagesService: AdminPagesService, public translate: TranslateService,
               private notificationService: NotificationMessageService,
@@ -87,5 +89,18 @@ export class PublisherAdminComponent implements OnInit {
     this.isSuspended = true;
     this.isBlocked = false;
     }
+  getPublisherId(pubId: string): any {
+    // console.log(pubId);
+    this.user = this.publishers.find((item) => item.id === pubId);
+  }
+
+  supend(): any {
+    // @ts-ignore
+    this.suspendPublisher(this.user.id);
+  }
+  reactivatePub(): any{
+    // @ts-ignore
+    this.reactivateUser(this.user.id);
+  }
 
   }
