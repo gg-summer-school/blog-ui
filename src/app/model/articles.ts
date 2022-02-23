@@ -48,8 +48,8 @@ export interface Payment {
   payment: number
 }
 
-export interface PayListArticleDto {
-  articles: ArticleDto[],
-  accountNumber:string,
-  userId:string
+export interface PaymentListPayload {
+  articleIds:String[]
 }
+
+ 

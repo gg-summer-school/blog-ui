@@ -11,7 +11,8 @@ import { NotificationMessageService } from "../../services/Notification/notifica
 import { NotificationType } from "../../model/NotificationMessage";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormBuilder, Validators } from '@angular/forms';
-import { ArticleDto } from 'src/app/model/articles';
+import { ArticleDto, PaymentListPayload } from 'src/app/model/articles';
+import { ResponseObject } from 'src/app/model/response';
 // import { CardItems, PayArticleDto, PayListArticleDto } from 'src/app/model/articlesDto';
 // import { ResponseObject } from 'src/app/model/response';
 
@@ -254,24 +255,25 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   submitPayment() {
-
-    // const payload: PayListArticleDto = {
-    //   articles: this.cardItems,
-    //   accountNumber: this.paymentForm.value.accountNumber,
-    //   userId: this.tokenStorage.getUser().id
-    // }
-
-    // this.spinnerService.show();
-    // let logginUserId: string = this.tokenStorage.getUser().id;
-    // const subscription = this.articleService.PayArticle(logginUserId, articleId, payload).subscribe((response: ResponseObject) => {
-    //   this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
-    //   this.router.navigate(['/users-article']);
-    // }, (error: HttpErrorResponse) => {
-    //   this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
-    // }).add(() => {
-    //   this.spinnerService.hide()
-    // })
-    // this.subscriptions.push(subscription);
+    const data: string[] = []
+    this.cardItems.forEach(item => {
+      data.push(item.id)
+    })
+    const payload: PaymentListPayload = {
+      articleIds: data
+    }
+    this.spinnerService.show();
+    const subscription = this.articleService.makeOrder(payload).subscribe((response: ResponseObject) => {
+      console.log(response);
+      
+      this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
+      // this.router.navigate(['/users-article']);
+    }, (error: HttpErrorResponse) => {
+      this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
+    }).add(() => {
+      this.spinnerService.hide()
+    })
+    this.subscriptions.push(subscription);
 
   }
 

@@ -84,6 +84,7 @@ li a {
   .totalItemsCart {
     border: 1px solid lightgray;
     padding: 13px;
+    
   } 
   .cardPayment{
     border: 1px solid lightgray;
@@ -152,6 +153,17 @@ li a {
     font-size: medium;
   }
   
+  .canvasFooter {
+    margin-top: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+  
+  }
+
+  .required {
+    color: red;
+    padding-left: 3px;
+  }
    
   
   
