@@ -7,7 +7,7 @@ import { ArticleDto, Articles } from '../model/articles';
 import { ResponseObject } from "../model/response";
 import { Categories } from "../model/categories";
 import { ArticleResource } from '../model/articleDtoList';
-import { PayArticleDto } from '../model/articlesDto';
+import { PayArticleDto, PayListArticleDto } from '../model/articlesDto';
 import { UserDto } from '../model/UserDto';
 
 
@@ -78,7 +78,6 @@ export class ArticlesService {
         retry(1),
         catchError(this.handleError)
       );
-
   }
 
   checkIfUserhasBoughtArticle(userId: string, articleId: string): Observable<boolean> {
@@ -101,6 +100,7 @@ export class ArticlesService {
       catchError(this.handleError)
     );
   }
+
 
   // Error handling
   handleError(error: any) {
