@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from "../../services/articles.service";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { TokenStorageService } from "../../services/token-storage.service";
-import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,8 +11,9 @@ import { NotificationMessageService } from "../../services/Notification/notifica
 import { NotificationType } from "../../model/NotificationMessage";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormBuilder, Validators } from '@angular/forms';
-import { CardItems, PayArticleDto, PayListArticleDto } from 'src/app/model/articlesDto';
-import { ResponseObject } from 'src/app/model/response';
+import { ArticleDto } from 'src/app/model/articles';
+// import { CardItems, PayArticleDto, PayListArticleDto } from 'src/app/model/articlesDto';
+// import { ResponseObject } from 'src/app/model/response';
 
 
 @Component({
@@ -255,15 +255,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   submitPayment() {
-    // const myCartItems:CardItems[] = [];
-    // this.cardItems.forEach(item => {
-    //   const selectedItem:CardItems = {
-    //     id: item.id
-    //   }
-    //   myCartItems.push(selectedItem);
-    // })
+
     // const payload: PayListArticleDto = {
-    //   articles: myCartItems,
+    //   articles: this.cardItems,
     //   accountNumber: this.paymentForm.value.accountNumber,
     //   userId: this.tokenStorage.getUser().id
     // }

@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ArticleDto, Articles } from '../model/articles';
+import { ArticleDto, Articles, PayListArticleDto } from '../model/articles';
 import { ResponseObject } from "../model/response";
 import { Categories } from "../model/categories";
 import { ArticleResource } from '../model/articleDtoList';
-import { PayArticleDto, PayListArticleDto } from '../model/articlesDto';
+import { PayArticleDto } from '../model/articlesDto';
 import { UserDto } from '../model/UserDto';
 
 
@@ -102,6 +102,12 @@ export class ArticlesService {
   }
 
 
+  makeOrder(payload:PayListArticleDto){
+    return this.http.post(this.baseUrl + `user/orders`, payload) .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
   // Error handling
   handleError(error: any) {
     let errorMessage = '';

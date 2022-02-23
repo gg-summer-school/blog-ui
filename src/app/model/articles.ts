@@ -47,3 +47,9 @@ export interface Payment {
   nameOfArticle: string,
   payment: number
 }
+
+export interface PayListArticleDto {
+  articles: ArticleDto[],
+  accountNumber:string,
+  userId:string
+}
