@@ -73,8 +73,8 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  changePassword(data: {new_pass: any, old_pass: any}) {
-    return this.http.patch('http://localhost:8000/api/protected/users/user_profile/change_password', data)
+  changePassword(data: {new_pass: any, old_pass: any}): any {
+    return this.http.patch('http://localhost:8000/api/protected/users/user_profile/change_password', data);
   }
 
 }

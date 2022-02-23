@@ -112,7 +112,8 @@
    "Publisher": "Publishers",
    "Article": "Number of Articles",
    "Edit": "Edit Profile",
-   "Save": "Save"
+   "Save": "Save",
+   "pwd": "Change Password"
  },
   "UserAdmin": {
     "Reader": "Number of Readers",
