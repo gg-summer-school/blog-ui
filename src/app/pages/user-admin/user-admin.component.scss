@@ -10,15 +10,15 @@
   background-color: red;
 }
 .table {
-  // width: 80%;
-  // background-color: white;
-  // border-radius: 30px;
-  // text-align: center;
+  width: 80%;
+  background-color: white;
+  border-radius: 30px;
+  text-align: center;
 
-//   @include respond(phone) {
-//     background-color: red;
-//     text-align: center;
-// }
+  @include respond(phone) {
+    background-color: red;
+    text-align: center;
+}
 
 }
 th td tr{

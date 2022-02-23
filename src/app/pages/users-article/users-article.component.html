@@ -11,7 +11,7 @@
 
 <div class="col-md-9">
 
-    <h5>{{'UsersArticle.Pay'| translate }}</h5><br>
+    <h5 class="paid-articles">{{'UsersArticle.Pay'| translate }}</h5><br>
   <h5 class="form-text" *ngIf="!userPaidArticles.length">Oops!! You haven't bought any articles yet.
     <a style="text-decoration: none"
       routerLink="/"> Buy an article <i
@@ -39,7 +39,7 @@
   </table>
   <div *ngIf="userPaidArticles.length">
     <br>
-    <p><a style="text-decoration: none" routerLink="/">Buy more articles <i
+    <p class="buy-more"><a style="text-decoration: none" routerLink="/">Buy more articles <i
       class="fas fa-arrow-circle-right"></i></a>
     </p>
   </div>
