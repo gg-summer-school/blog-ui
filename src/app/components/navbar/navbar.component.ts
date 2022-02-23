@@ -14,6 +14,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class NavbarComponent implements OnInit {
   totalCostCartItems: number = 0;
   cardItems: ArticleDto[] = [];
+  controlCanvas:boolean = false;
   paymentForm = this.formBuilder.group({
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
@@ -35,6 +36,7 @@ export class NavbarComponent implements OnInit {
   }
 
   addToCart(item: ArticleDto) {
+    
     if (this.tokenStorage.getUser() === null) {
       this.notificationService.sendMessage({ message: 'Login is required to add articles to cart', type: NotificationType.error })
       this.router.navigate(['login']);
@@ -66,9 +68,11 @@ export class NavbarComponent implements OnInit {
       this.cardItems = this.tokenStorage.getCartItems();
     }
   }
+  
+
 
   submitPayment() {
-
+    this.controlCanvas = false;
     // const payload: PayListArticleDto = {
     //   articles: this.cardItems,
     //   accountNumber: this.paymentForm.value.accountNumber,
@@ -89,4 +93,5 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  
 }

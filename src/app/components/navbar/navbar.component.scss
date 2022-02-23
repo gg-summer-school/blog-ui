@@ -85,6 +85,11 @@ li a {
     border: 1px solid lightgray;
     padding: 13px;
   } 
+  .cardPayment{
+    border: 1px solid lightgray;
+    padding: 13px;
+    margin: 20px;
+  }
   .emptyCard {
     border: 1px solid lightgray;
     padding: 13px;
@@ -136,6 +141,15 @@ li a {
     margin-bottom: 10px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: indigo;
+  }
+
+  .paymentForm {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .accountNumber {
+    font-size: medium;
   }
   
    

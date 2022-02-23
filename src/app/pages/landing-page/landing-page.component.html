@@ -214,13 +214,13 @@
         </div>
       </div>
       <div class="emptyCard" *ngIf="cardItems.length == 0">
-        <label>Card is Empty </label>
+        <label>{{'articlePage.cardEmpty'|translate}} </label>
       </div>
     </div>
-    <div class="offcanvas-footer">
+    <div class="offcanvas-footer canvasFooter">
       <div *ngIf="cardItems.length > 0">
         <div class="totalItemsCart">
-          <label for="total" class="articleTotal">Total: {{totalCostCartItems}} XFA</label>
+          <label for="total" class="articleTotal">{{'articlePage.subTotal'|translate}}: {{totalCostCartItems}} XFA</label>
         </div>
         <button type="button" class="btn buy" data-bs-toggle="modal" data-bs-target="#paymentModal"
           >{{'articlePage.checkout'|
@@ -234,7 +234,7 @@
 
 
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
+  <div class="modal-dialog modal-dialog-centered ">
     <div class="modal-content">
       <div class="d-flex justify-content-end">
         <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
@@ -245,8 +245,14 @@
       </div>
       <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
         <div class="modal-body">
-          <div class="form-group">
-            <label class="mb-1 text-black">{{'articlePage.Account1'| translate}}:</label>
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalArticles'|translate}}: {{cardItems.length}}</label>
+          </div>
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalAmount'|translate}}: {{totalCostCartItems}} XFA</label>
+          </div>
+          <div class="form-group paymentForm">
+            <label class="mb-1 text-black accountNumber">{{'articlePage.Account1'| translate}}:</label>
             <input type="tel" formControlName="accountNumber" class="form-control" required />
             <span class="text-danger"
               *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
@@ -255,10 +261,10 @@
               </div>
               <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
             </span>
-          </div>
-          <div class=" mt-4 account">
-            <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn text-white btn-sm"
-              data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+            <div class=" mt-4 account">
+              <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn text-white btn-sm"
+                data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+            </div>
           </div>
         </div>
       </form>

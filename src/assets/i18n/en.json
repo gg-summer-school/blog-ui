@@ -78,7 +78,11 @@
     "addToCart":"ADD TO CART",
     "shoppingCart":"My Shopping Cart",
     "addMoreArticle":"Add more Article",
-    "checkout":"CHECKOUT"
+    "checkout":"CHECKOUT",
+    "totalArticles":"Total Articles",
+    "totalAmount":"Total Amount",
+    "cardEmpty":"Card is Empty",
+    "subTotal":"SubTotal"
   },
   "YourArticles": {
     "Articles": "Articles",
