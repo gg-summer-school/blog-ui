@@ -90,8 +90,8 @@ label {
 
  
 .buy-card {
-  height: 40%;
-  max-height:40%;
+  height: 60%;
+  max-height:60%;
   border-radius: 20px;
 }
 
@@ -120,12 +120,15 @@ label {
 .buy {
   margin-top: 10px;
   width: 100%;
+  border-radius: 13px;
+  padding-left: 13px;
+  margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  border-radius: 20px;
+  background-color: indigo;
+  color: white;
+  font-size: small;
 }
-.buy:hover {
-  color: #fff;
-}
+ 
 
 .regLabel {
   color: black;
@@ -184,4 +187,10 @@ a {
 }
 a:link {
   text-decoration: none;
+}
+
+
+.articleInfo {
+  margin-top: 5px;
+  margin-bottom: 15px;
 }

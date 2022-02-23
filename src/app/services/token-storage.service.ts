@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
+import { ArticleDto } from '../model/articles';
 import { UserDto } from '../model/UserDto';
 
 const  TOKEN_KEY = 'auth-token'
 const  USER_KEY = 'auth-user'
 const REFRESHTOKEN_KEY = 'auth-refreshtoken';
+const MYCART ='my-cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
 
+ 
   constructor() { }
 
   signOut(): void {
-    localStorage.clear();
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY)
   }
 
   public saveRefreshToken(token: string): void {
@@ -49,4 +53,17 @@ export class TokenStorageService {
     const userDto:UserDto = JSON.parse(user as string);
     return userDto; 
   }
+
+  public addToCart(items:ArticleDto[]){
+    localStorage.setItem(MYCART, JSON.stringify(items))
+  }
+
+  public getCartItems():ArticleDto[]{
+    const items = localStorage.getItem(MYCART);
+    const articles:ArticleDto[] = JSON.parse(items as string);
+    return articles
+
+  }
+
+  
 }

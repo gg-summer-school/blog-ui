@@ -17,6 +17,12 @@ export interface ArticleDto {
 }
 
 export interface PayArticleDto {
-    nameOfArticle: string,
+    nameOfArticle:string
     accountNumber:string,
+   
 }
+
+export interface CardItems{
+    id:string
+}
+

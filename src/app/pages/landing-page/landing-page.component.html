@@ -40,6 +40,18 @@
               *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
         </li>
         <li class="nav-item">
+          <a class="nav-link">
+            <button class="btn btn-outline-link position-relative cart-button" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" *ngIf="tokenStorage.getToken1()"> <i
+                class=" fas fa-shopping-cart cart text-info"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill totalArticles">
+               {{cardItems.length}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
           <div class="dropdown">
             <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -118,11 +130,13 @@
     <div class="col-md-9">
       <div class="row" *ngIf="articleExist">
         <div class="col-md-3 mb-3" *ngFor="let article of allArticles ">
-          <div class="card article-card" (click)="view(article.id)">
-            <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page">
+          <div class="card article-card" >
+            <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page" (click)="view(article.id)">
             <div class="card-body">
               <h5 class="card-title title"> {{ article.title | truncateArticleTitle }}</h5>
-              <p class="card-text date">{{article.createdAt |date:'fullDate'}} </p>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-sm addToCart" (click)="addToCart(article)"><i class="fas fa-cart-plus card-icon"></i>{{'articlePage.addToCart'|translate|uppercase}}</button>
+              </div>
             </div>
           </div>
         </div>
@@ -133,6 +147,7 @@
         <div class="col-md-4">
           <img src="assets/product-not-found.svg" alt="not found" class="notFoundArticles">
           <p class="text-center">{{'Page.notFound'| translate}}</p>
+          
         </div>
         <div class="col-md-4">
 
@@ -170,6 +185,89 @@
 
 <app-footer></app-footer>
 
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+<!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait.</p>
-</ngx-spinner>
+</ngx-spinner> -->
+
+<!-- offcanvas for checkout -->
+<div class="row" >
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel">{{'articlePage.shoppingCart'| translate}}</h4>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="row shoppingCartItems" *ngFor="let item of cardItems">
+        <div class="col-md-5">
+          <img src="{{item?.coverPage}}" class="articleCoverPageImage" alt="article CoverPage image" width="100%" />
+          <p class="imageBorder"></p>
+        </div>
+        <div class="col-md-7">
+          <h5 class="shoppingCartArticleTitle">{{item?.title}}</h5>
+          <h6 class="articleDetailPrice">1 x {{item?.price}} XFA</h6>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-light delete  btn-sm" type="button" (click)="removeArticleCard(item)">
+              <i class="fas fa-trash-alt delete-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="emptyCard" *ngIf="cardItems.length == 0">
+        <label>{{'articlePage.cardEmpty'|translate}} </label>
+      </div>
+    </div>
+    <div class="offcanvas-footer canvasFooter">
+      <div *ngIf="cardItems.length > 0">
+        <div class="totalItemsCart">
+          <label for="total" class="articleTotal">{{'articlePage.subTotal'|translate}}: {{totalCostCartItems}} XFA</label>
+        </div>
+        <button type="button" class="btn buy" data-bs-toggle="modal" data-bs-target="#paymentModal"
+          >{{'articlePage.checkout'|
+          translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <div class="d-flex justify-content-end">
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
+      </div>
+      <div>
+        <h6 class="createAccount1 mt-2" id="exampleModalLabel">{{'articlePage.Account'| translate}}</h6>
+      </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="modal-body">
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalArticles'|translate}}: {{cardItems.length}}</label>
+          </div>
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalAmount'|translate}}: {{totalCostCartItems}} XFA</label>
+          </div>
+          <div class="form-group paymentForm">
+            <label class="mb-1 text-black accountNumber">{{'articlePage.Account1'| translate}}<span class="required">*</span></label>
+            <input type="tel" formControlName="accountNumber" class="form-control" required />
+            <span class="text-danger"
+              *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
+
+              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> {{'articlePage.Account2'| translate}}
+              </div>
+              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
+            </span>
+            <div class=" mt-4 account">
+              <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn text-white btn-sm"
+                data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
