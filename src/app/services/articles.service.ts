@@ -103,8 +103,8 @@ export class ArticlesService {
   }
 
 
-  makeOrder(payload: PaymentListPayload): Observable<ResponseObject> {
-    return this.http.post<ResponseObject>(this.baseUrl1 + `users/user/orders/`, payload);
+  makeOrder(payload: PaymentListPayload, userId:string): Observable<ResponseObject> {
+    return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/articles/users?userId=${userId}`, payload);
   }
   // Error handling
   handleError(error: any) {
