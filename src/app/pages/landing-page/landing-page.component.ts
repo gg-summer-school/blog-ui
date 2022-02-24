@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticlesService } from "../../services/articles.service";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 import { TokenStorageService } from "../../services/token-storage.service";
-import { ArticleDto } from "../../model/articles";
 import { Subscription } from 'rxjs';
 import { ArticleResource } from 'src/app/model/articleDtoList';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,6 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { NotificationMessageService } from "../../services/Notification/notification-message.service";
 import { NotificationType } from "../../model/NotificationMessage";
 import { NgxSpinnerService } from "ngx-spinner";
+import { FormBuilder, Validators } from '@angular/forms';
+import { ArticleDto, PaymentListPayload } from 'src/app/model/articles';
+import { ResponseObject } from 'src/app/model/response';
+// import { CardItems, PayArticleDto, PayListArticleDto } from 'src/app/model/articlesDto';
+// import { ResponseObject } from 'src/app/model/response';
 
 
 @Component({
@@ -41,16 +45,16 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   isDisabledNext: boolean = false;
   isActive: boolean = true;
   articleExist: boolean = false;
-  // isDisabled:boolean = false;
-  // isDisabledNext:boolean = false;
-  // isActive:boolean = true;
-  email: string= '';
-
-
-  constructor(private articlesService: ArticlesService, private router: Router,
+  cardItems: ArticleDto[] = [];
+  email: string = '';
+  totalCostCartItems: number = 0;
+  paymentForm = this.formBuilder.group({
+    accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
+  });
+  constructor(private formBuilder: FormBuilder, private articlesService: ArticlesService, private router: Router,
     public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute,
     public translate: TranslateService, private notificationService: NotificationMessageService,
-    private spinnerService: NgxSpinnerService) {
+    private spinnerService: NgxSpinnerService, private articleService: ArticlesService,) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -68,6 +72,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getAllArticles(this.pageNum, this.pageSize);
     this.getAllCategories();
+    this.getCachedCartItems();
+    this.calculateTotalCostItems(this.cardItems);
+
   }
   previous() {
     const subscription = this.activateRoute.queryParams.subscribe(params => {
@@ -117,7 +124,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       if (response.pageNo == this.pageNum) {
         this.isActive = true;
       }
-      
+
     }, (error: HttpErrorResponse) => {
       this.spinnerService.hide();
       this.notificationService.sendMessage({ message: "Could not fetch articles", type: NotificationType.error })
@@ -141,7 +148,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  
+
 
   // onTableDataChange() { }
 
@@ -159,7 +166,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
   selectedIndex!: number;
-  getArticlesByCategory(categoryId: string, index:number) {
+  getArticlesByCategory(categoryId: string, index: number) {
     this.selectedIndex = index;
     this.spinnerService.show()
     this.articleExist = false;
@@ -169,7 +176,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       if (this.allArticles.length > 0) {
         this.articleExist = true;
       }
-      this.categoryInfo = this.getCategoryById(categoryId); 
+      this.categoryInfo = this.getCategoryById(categoryId);
       this.router.navigate(['/landing-page/articles/categories'], { queryParams: { 'category-name': this.categoryInfo?.name } });
     }, (error: HttpErrorResponse) => {
       this.spinnerService.hide()
@@ -183,7 +190,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   searchArticle() {
     this.spinnerService.show();
     this.articleExist = false;
-    const subscription =this.articlesService.searchArticle(this.searchData).subscribe(res => {
+    const subscription = this.articlesService.searchArticle(this.searchData).subscribe(res => {
       this.allArticles = res;
       if (this.allArticles.length > 0) {
         this.articleExist = true;
@@ -198,13 +205,76 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   getCategoryById(id: string) {
-   let category = this.categories.find(cat => cat.id === id)
-   return category
+    let category = this.categories.find(cat => cat.id === id)
+    return category
   }
 
-  subscribe(email:string)
-  {
-    this.notificationService.sendMessage({message: email+' subscribed successfully', type:NotificationType.success})
+  subscribe(email: string) {
+    this.notificationService.sendMessage({ message: email + ' subscribed successfully', type: NotificationType.success })
+  }
+  addToCart(item: ArticleDto) {
+    if (this.tokenStorage.getUser() === null) {
+      this.notificationService.sendMessage({ message: 'Login is required to add articles to cart', type: NotificationType.error })
+      this.router.navigate(['login']);
+    } else {
+      this.cardItems = this.tokenStorage.getCartItems();
+      if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
+        this.cardItems.push(item);
+        this.tokenStorage.addToCart(this.cardItems);
+        this.cardItems = this.tokenStorage.getCartItems();
+        this.calculateTotalCostItems(this.cardItems);
+        this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
+      } else {
+        this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
+      }
+    }
+  }
+
+  calculateTotalCostItems(items: ArticleDto[]) {
+    if (items != null) {
+      items.forEach(item => {
+        this.totalCostCartItems += item.price
+      })
+    }
+    return this.totalCostCartItems;
+  }
+
+  getCachedCartItems() {
+    if (this.tokenStorage.getCartItems() != null) {
+      this.cardItems = this.tokenStorage.getCartItems();
+    }
+  }
+
+  removeArticleCard(item: ArticleDto) {
+    this.totalCostCartItems -= item.price;
+    this.cardItems.splice(this.cardItems.indexOf(item), 1);
+    this.tokenStorage.addToCart(this.cardItems);
+  }
+  get paymentFormControl() {
+    return this.paymentForm.controls;
+  }
+
+  submitPayment() {
+    const data: string[] = []
+    this.cardItems.forEach(item => {
+      data.push(item.id)
+    })
+    const payload: PaymentListPayload = {
+      articleIds: data
+    }
+    this.spinnerService.show();
+    const subscription = this.articleService.makeOrder(payload).subscribe((response: ResponseObject) => {
+      console.log(response);
+      
+      this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
+      // this.router.navigate(['/users-article']);
+    }, (error: HttpErrorResponse) => {
+      this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
+    }).add(() => {
+      this.spinnerService.hide()
+    })
+    this.subscriptions.push(subscription);
+
   }
 
 

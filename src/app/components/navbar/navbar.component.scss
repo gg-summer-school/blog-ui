@@ -6,3 +6,164 @@ li a {
     font-family: 'Times New Roman', Times, serif;   
 }
 
+.cart {
+    font-size: larger;
+    color: black;
+   
+  }
+  .totalArticles{
+    background-color: indigo;
+  }
+  .cart-button {
+    margin-right: 15px;
+  }
+
+  offcanvas-body {
+    margin-top: 0;
+    padding: 25px;
+  }
+  .shoppingCartTitle {
+    color: indigo;
+    padding-bottom: 20px;
+    font-weight: 300;
+  }
+  .offcanvas-header {
+    padding: 30px;
+  }
+  .articleCoverPageImage {
+    height: 100px;
+  }
+  .shoppingCartArticleTitle {
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .articleDetailPrice {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+  }
+  .offcanvas-title {
+    color: indigo;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .delete-icon {
+    font-size: smaller;
+  }
+  .delete {
+    border-radius: 20px;
+    color: black;
+  }
+  .delete:hover{
+    background-color: lightgray;
+  }
+  
+   
+  .imageBorder {
+    border: 2px solid black;
+  }
+  
+  .shoppingCartItems {
+    margin-bottom: 45px;
+    border-right:3px solid black;
+    height: 100px;
+  }
+  
+  .addArticles {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    border: 1px solid indigo;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .addArticles:hover {
+    background-color: indigo;
+    color: white;
+  }
+  
+  .totalItemsCart {
+    border: 1px solid lightgray;
+    padding: 13px;
+    
+  } 
+  .cardPayment{
+    border: 1px solid lightgray;
+    padding: 13px;
+    margin: 20px;
+  }
+  .emptyCard {
+    border: 1px solid lightgray;
+    padding: 13px;
+    font-weight: 400;
+  }
+  .articleTotal {
+    font-weight: bold;
+  }
+  .moreArticles {
+    margin-top: 10px;
+  }
+  
+  .buy {
+    margin-top: 20px;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: small;
+    color: white;
+    margin-bottom: 10px;
+    background-color: indigo;
+  }
+  .buy:hover {
+    color: #fff;
+  }
+  .btn-close {
+    font-size: x-small;
+  }
+
+
+  .createAccount1 {
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .text-danger {
+    font-size: small;
+  }
+  .modal-content {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+  }
+  
+  #payment {
+    width: 100%;
+    border-radius: 13px;
+    padding-left: 13px;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: indigo;
+  }
+
+  .paymentForm {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .accountNumber {
+    font-size: medium;
+  }
+  
+  .canvasFooter {
+    margin-top: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+  
+  }
+
+  .required {
+    color: red;
+    padding-left: 3px;
+  }
+   
+  
+  
