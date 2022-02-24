@@ -1,3 +1,5 @@
+@import "../../../app/Abstract/mixins";
+
 .but{
   background-color: red;
 }
@@ -5,12 +7,30 @@
   background-color: white;
   border-radius: 30px;
   text-align: center;
+
+  @include respond(phone) {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0;
+    font-size: .6rem;
+  }
 }
 th td tr{
   border-radius: 30px;
+
+  @include respond(phone) {
+    font-size: .6rem;
+  }
 }
 tr{
   background-color: #eaeaea;
+
+  @include respond(phone) {
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0;
+    font-size: .6rem;
+  }
 }
 th
 {
@@ -27,36 +47,42 @@ button {
   padding: 2px;
 }
 
+@media (max-width: 765px) {
+  h4 {
+    margin-left: 50px;
+  }
+}
+
 @media (max-width: 600px) {
   body {
-    .table {
-      background-color: white;
-      border-radius: 30px;
-      text-align: center;
-    }
+    //.table {
+    //  background-color: white;
+    //  border-radius: 30px;
+    //  text-align: center;
+    //}
 
-    th td tr{
-      border-radius: 30px;
-    }
-    tr{
-      background-color: #eaeaea;
-    }
-    th
-    {
-      text-align: center;
-      background-color: white;
-    }
-    td{
-      text-align: center;
-      padding: 20px;
-    }
+    //th td tr{
+    //  border-radius: 30px;
+    //}
+    //tr{
+    //  background-color: #eaeaea;
+    //}
+    //th
+    //{
+    //  text-align: center;
+    //  background-color: white;
+    //}
+    //td{
+    //  text-align: center;
+    //  padding: 20px;
+    //}
   }
 }
 
 @media (max-width: 550px) {
-  .table {
-    margin-left: 40px;
-  }
+  //.table {
+  //  margin-left: 40px;
+  //}
 }
 
   button {
@@ -65,18 +91,18 @@ button {
   }
 
 @media (max-width: 1000px) {
-  .table {
-    margin-right: 150px;
-  }
+  //.table {
+  //  margin-right: 150px;
+  //}
 }
 
 @media (max-width: 750px) {
-  .table {
-    position: center;
-    width: 50px;
-    height: 50px;
-    margin-left: 100px;
-  }
+  //.table {
+  //  position: center;
+  //  width: 50px;
+  //  height: 50px;
+  //  margin-left: 100px;
+  //}
 }
 
 
