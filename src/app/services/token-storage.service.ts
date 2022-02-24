@@ -62,8 +62,12 @@ export class TokenStorageService {
     const items = localStorage.getItem(MYCART);
     const articles:ArticleDto[] = JSON.parse(items as string);
     return articles
-
   }
 
+  public emptyCart(){
+    const  articles:ArticleDto[] = [];
+    localStorage.removeItem(MYCART);
+    this.addToCart(articles);
+  }
   
 }

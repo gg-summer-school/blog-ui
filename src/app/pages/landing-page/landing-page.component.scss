@@ -178,7 +178,6 @@ h2 {
 }
 .articles {
   font-family: Arial, Helvetica, sans-serif;
-   
   padding: 10px;
 }
 .card {
@@ -356,7 +355,7 @@ h2 {
 }
 
 .shoppingCartItems {
-  margin-bottom: 45px;
+  margin-bottom: 50px;
   border-right:3px solid black;
   height: 100px;
 }
@@ -456,5 +455,56 @@ h2 {
   color: red;
   padding-left: 3px;
 }
- 
 
+.details {
+  margin-top: 20px;
+}
+ 
+@media screen and (max-width: 500px){
+  .shoppingCartArticleTitle {
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .articleDetailPrice {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    padding: 0px;
+    margin: 0;
+  }
+
+  .shoppingCartItems {
+    margin-bottom: 140px;
+    height: 50%;
+  }
+
+  .articleCoverPageImage {
+    height: 150px;
+  }
+  .canvasFooter {
+    margin-top: 40px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .paymentForm {
+    margin-left: 8px;
+    margin-right:8px;
+  }
+
+  .cardPayment{
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right:5px;
+  }
+
+  .btn-close {
+    font-size: small;
+  }
+
+  .details {
+    margin-top: 0px;
+  }
+   
+}

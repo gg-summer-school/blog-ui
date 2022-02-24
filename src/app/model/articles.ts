@@ -49,7 +49,13 @@ export interface Payment {
 }
 
 export interface PaymentListPayload {
-  articleIds:String[]
+  articles:CartItems[],
+  totalAmount:number
+}
+
+export interface CartItems {
+  articleIds: string,
+  nameOfArticle: string
 }
 
  

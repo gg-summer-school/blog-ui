@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ArticleDto, PaymentListPayload } from 'src/app/model/articles';
+import { ArticleDto, CartItems, PaymentListPayload } from 'src/app/model/articles';
 import { NotificationType } from 'src/app/model/NotificationMessage';
 import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import {NgxSpinnerService} from "ngx-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
 import { ArticlesService } from 'src/app/services/articles.service';
 import { ResponseObject } from 'src/app/model/response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-
+declare var $: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   paymentForm = this.formBuilder.group({
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
-  constructor(private articleService: ArticlesService, private  spinnerService: NgxSpinnerService, private router: Router, public tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private notificationService: NotificationMessageService) { }
+  constructor(private articleService: ArticlesService, private spinnerService: NgxSpinnerService, private router: Router, public tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private notificationService: NotificationMessageService) { }
 
   ngOnInit(): void {
     this.getCachedCartItems();
@@ -84,19 +84,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 
   submitPayment1() {
-    const data: string[] = []
+    const data: CartItems[] = [];
     this.cardItems.forEach(item => {
-      data.push(item.id)
+      const item2:CartItems = {
+        articleIds: item.id,
+        nameOfArticle: item.title
+      }
+      data.push(item2)
     })
-    const payload:PaymentListPayload = {
-      articleIds: data
+    const payload: PaymentListPayload = {
+      articles: data,
+      totalAmount:this.totalCostCartItems
     }
+    const userId = this.tokenStorage.getUser().id;
     this.spinnerService.show();
-    const subscription = this.articleService.makeOrder(payload).subscribe((response: ResponseObject) => {
-      console.log(response);
-      
+    const subscription = this.articleService.makeOrder(payload, userId).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
-      this.router.navigate(['/users-article']);
+      // this.router.navigate(['/users-article']);
+      this.tokenStorage.emptyCart();
     }, (error: HttpErrorResponse) => {
       this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
     }).add(() => {
@@ -104,6 +109,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     })
     this.subscriptions.push(subscription);
 
+  }
+
+  clickOffCanvas(){
+    $('#offcanvasRight').offcanvas('hide');
   }
 
 

@@ -11,12 +11,13 @@ import { NotificationMessageService } from "../../services/Notification/notifica
 import { NotificationType } from "../../model/NotificationMessage";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormBuilder, Validators } from '@angular/forms';
-import { ArticleDto, PaymentListPayload } from 'src/app/model/articles';
+import { ArticleDto, CartItems, PaymentListPayload } from 'src/app/model/articles';
 import { ResponseObject } from 'src/app/model/response';
+import { PaidArticlesService } from 'src/app/services/user-services/paid-articles.service';
 // import { CardItems, PayArticleDto, PayListArticleDto } from 'src/app/model/articlesDto';
 // import { ResponseObject } from 'src/app/model/response';
 
-
+declare var $: any;
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -51,7 +52,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   paymentForm = this.formBuilder.group({
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
-  constructor(private formBuilder: FormBuilder, private articlesService: ArticlesService, private router: Router,
+  constructor(private paidArticleService:PaidArticlesService, private formBuilder: FormBuilder, private articlesService: ArticlesService, private router: Router,
     public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute,
     public translate: TranslateService, private notificationService: NotificationMessageService,
     private spinnerService: NgxSpinnerService, private articleService: ArticlesService,) {
@@ -255,21 +256,26 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   submitPayment() {
-    const data: string[] = []
+    const data: CartItems[] = [];
     this.cardItems.forEach(item => {
-      data.push(item.id)
+      const item2:CartItems = {
+        articleIds: item.id,
+        nameOfArticle: item.title
+      }
+      data.push(item2)
     })
     const payload: PaymentListPayload = {
-      articleIds: data
+      articles: data,
+      totalAmount:this.totalCostCartItems
     }
     this.spinnerService.show();
-    const subscription = this.articleService.makeOrder(payload).subscribe((response: ResponseObject) => {
-      console.log(response);
-      
+    const userId = this.tokenStorage.getUser().id;
+    const subscription = this.articleService.makeOrder(payload, userId).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
-      // this.router.navigate(['/users-article']);
+      this.router.navigate(['/users-article']);
+      // this.tokenStorage.emptyCart();
     }, (error: HttpErrorResponse) => {
-      this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
+      this.notificationService.sendMessage({ message:error.error.message, type: NotificationType.error })
     }).add(() => {
       this.spinnerService.hide()
     })
@@ -277,5 +283,26 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   }
 
+  clickOffCanvas(){
+    $('#offcanvasRight').offcanvas('hide');
+  }
 
+
+  filterBoughtArticles(userId:string){
+    const updatedUserCard:ArticleDto[] = [];
+
+    const subscription = this.paidArticleService.getBookTitle(userId).subscribe((response:ArticleDto[]) => {
+      this.tokenStorage.getCartItems().forEach(item => {
+        if(response.indexOf(item) != -1){
+          updatedUserCard.push(item)
+        }
+      })
+      this.tokenStorage.addToCart(updatedUserCard);
+    }, (error:HttpErrorResponse)  => {
+
+    }).add(() => {
+      this.spinnerService.hide();
+    })
+    this.subscriptions.push(subscription);
+  }
 }
