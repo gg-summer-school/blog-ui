@@ -1,4 +1,6 @@
-<i class="fas fa-bars menu" id="menubar" (click)="onOpen()"></i>
+<div class="col-md-3" >
+  <i class="fas fa-bars menu" id="menubar" (click)="onOpen()"></i>
+</div>
 <div class="col-md-12">
 
   <div class="col-md-2 sidebar" id="side">
@@ -15,7 +17,7 @@
       <a *ngIf = "publisherRole" routerLink="/publish-article" routerLinkActive="active" class="mb-4"><i class="fas fa-newspaper icon"></i><br>{{ 'sidebar.Publish' | translate }}</a>
       <a routerLink="/users-article" routerLinkActive="active" class="mb-4"><i class="fas fa-book-reader icon"></i><br> {{ 'sidebar.Paid' | translate }}</a>
       <a routerLink="/view-transactions" routerLinkActive="active" class="mb-4 "><i class="fas fa-exchange-alt icon"></i><br> {{ 'sidebar.Transactions' | translate }}</a>
-      
+
       <a (click)="logOut()" class="logout"><i class="fa fa-sign-out icon"></i><br>{{ 'sidebar.Logout' | translate }}</a>
     </div>
   </div>
