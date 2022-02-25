@@ -26,7 +26,7 @@ export class ViewTransactionsComponent implements OnInit {
   }
 
   switchLang(lang: string) {
-    console.log(lang)
+    
     this.translate.use(lang);
   }
 

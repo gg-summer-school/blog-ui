@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit {
     translate.setDefaultLang('en');
   }
   switchLang(lang: string) {
-    console.log(lang)
+   
     this.translate.use(lang);
   }
   usersEdit = this.formBuilder.group({
@@ -41,7 +41,7 @@ ngOnInit(): void {
      this.getUserDetail();
      const name = this.tokenStorage.getUser().name
       this.user_id = this.tokenStorage.getUser().id;
-     console.log(this.user_id);
+    
      this.getAllArticlesByPublisher();
      this.firstName = name.split(' ').slice(0, -1).join(' ');
   }
@@ -63,7 +63,7 @@ ngOnInit(): void {
     .subscribe( (res: Articles[]) => {
       this.articles = res;
       this.number= this.articles.length;
-      console.log("length "+ this.number);
+    
     })
   }
 

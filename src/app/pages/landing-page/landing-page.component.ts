@@ -75,7 +75,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.getAllCategories();
     this.getCachedCartItems();
     this.calculateTotalCostItems(this.cardItems);
-    // this.filterBoughtArticles(this.tokenStorage.getUser()?.id);
   }
   previous() {
     const subscription = this.activateRoute.queryParams.subscribe(params => {
@@ -151,7 +150,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
 
 
-  // onTableDataChange() { }
+
 
   getAllCategories() {
     this.spinnerService.show();

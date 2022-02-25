@@ -32,7 +32,7 @@ export class YourArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.publisherId= this.tokenStorage.getUser().id;
-    console.log(this.publisherId);
+ 
     this.getArticlesByPublisher();
   }
 
@@ -67,7 +67,7 @@ export class YourArticlesComponent implements OnInit {
       if(art.id === id){
         article =  art;
         this.doc = article.document;
-        console.log(this.doc)
+         
       }
     }
 
