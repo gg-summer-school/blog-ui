@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ArticleDto, Articles} from 'src/app/model/articles';
+import {ArticleDto} from 'src/app/model/articles';
 import { ArticlesService } from 'src/app/services/articles.service';
 import {PaidArticlesService} from "../../services/user-services/paid-articles.service";
 
@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 import {NotificationType} from "../../model/NotificationMessage";
 import {NotificationMessageService} from "../../services/Notification/notification-message.service";
 import {NgxSpinnerService} from "ngx-spinner";
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-users-article',
@@ -25,7 +26,7 @@ export class UsersArticleComponent implements OnInit {
   count = 0;
   tableSize = 5;
 
-  constructor(private articleService: ArticlesService, private tokenStorageService: TokenStorageService,
+  constructor(private location: Location, private articleService: ArticlesService, private tokenStorageService: TokenStorageService,
               private paidArticlesService: PaidArticlesService, private sanitizer: DomSanitizer,
               public translate: TranslateService, private router: Router, private notificationService:NotificationMessageService,
               private  spinnerService: NgxSpinnerService) {
@@ -35,7 +36,7 @@ export class UsersArticleComponent implements OnInit {
 
 
   switchLang(lang: string) {
-    console.log(lang)
+     
     this.translate.use(lang);
   }
   ngOnInit(): void {
@@ -69,6 +70,10 @@ export class UsersArticleComponent implements OnInit {
   view(id: string, doc:string)
   {
     this.router.navigate(['/view-article', id, doc]);
+  }
+
+  back(){
+    this.location.back()
   }
 
 }
