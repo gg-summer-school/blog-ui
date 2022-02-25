@@ -17,6 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 import { NotificationMessageService } from 'src/app/services/Notification/notification-message.service';
 import { NotificationType } from 'src/app/model/NotificationMessage';
 import {NgxSpinnerService} from "ngx-spinner";
+import { PaidArticlesService } from 'src/app/services/user-services/paid-articles.service';
 
 declare var $: any;
 
@@ -52,7 +53,7 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   authUser: Users | undefined;
   form: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
+  constructor(private paidArticleService: PaidArticlesService,private router: Router, private route: ActivatedRoute, private publisherService: DashboardPublisherService,
     private formBuilder: FormBuilder, private authService: AuthService,
     public tokenStorage: TokenStorageService, private articleService: ArticlesService,
               public translate: TranslateService,
@@ -178,15 +179,24 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
       this.router.navigate(['login']);
     } else {
       this.cardItems = this.tokenStorage.getCartItems();
-      if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
-        this.cardItems.push(item);
-        this.tokenStorage.addToCart(this.cardItems);
-        this.cardItems = this.tokenStorage.getCartItems();
-        this.calculateTotalCostItems(this.cardItems);
-        this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
-      } else {
-        this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
-      }
+      const subscription = this.paidArticleService.getBookTitle(this.tokenStorage.getUser().id).subscribe((response: ArticleDto[]) => {
+        const paidItems: ArticleDto[] = response
+        if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
+          if (paidItems.find(item1 => item1.id === item.id) === undefined) {
+            this.cardItems.push(item);
+            this.tokenStorage.addToCart(this.cardItems);
+            this.cardItems = this.tokenStorage.getCartItems();
+            this.calculateTotalCostItems(this.cardItems);
+            this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
+          } else {
+            this.notificationService.sendMessage({ message: 'User has already buy this Article', type: NotificationType.error })
+            this.router.navigate(['/users-article']);
+          }
+        } else {
+          this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
+        }
+      })
+      this.subscriptions.push(subscription);
     }
   }
 

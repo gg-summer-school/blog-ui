@@ -58,4 +58,10 @@ button {
   @include respond(phone) {
     text-align: center;
   }
+
+  
+}
+
+.goBack{
+    cursor: pointer;
 }
