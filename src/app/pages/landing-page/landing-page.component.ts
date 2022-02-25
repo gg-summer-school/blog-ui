@@ -214,22 +214,29 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.notificationService.sendMessage({ message: email + ' subscribed successfully', type: NotificationType.success })
   }
   addToCart(item: ArticleDto) {
-    console.log(item);
-    
     if (this.tokenStorage.getUser() === null) {
       this.notificationService.sendMessage({ message: 'Login is required to add articles to cart', type: NotificationType.error })
       this.router.navigate(['login']);
     } else {
       this.cardItems = this.tokenStorage.getCartItems();
-      if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
-        this.cardItems.push(item);
-        this.tokenStorage.addToCart(this.cardItems);
-        this.cardItems = this.tokenStorage.getCartItems();
-        this.calculateTotalCostItems(this.cardItems);
-        this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
-      } else {
-        this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
-      }
+      const subscription = this.paidArticleService.getBookTitle(this.tokenStorage.getUser().id).subscribe((response: ArticleDto[]) => {
+        const paidItems: ArticleDto[] = response
+        if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
+          if (paidItems.find(item1 => item1.id === item.id) === undefined) {
+            this.cardItems.push(item);
+            this.tokenStorage.addToCart(this.cardItems);
+            this.cardItems = this.tokenStorage.getCartItems();
+            this.calculateTotalCostItems(this.cardItems);
+            this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
+          } else {
+            this.notificationService.sendMessage({ message: 'User has already buy this Article', type: NotificationType.error })
+            this.router.navigate(['/users-article']);
+          }
+        } else {
+          this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
+        }
+      })
+      this.subscriptions.push(subscription);
     }
   }
 
