@@ -3,7 +3,7 @@ import { UserDto } from '../model/UserDto';
 
 const  TOKEN_KEY = 'auth-token'
 const  USER_KEY = 'auth-user'
-const REFRESHTOKEN_KEY = 'auth-refreshtoken';
+const REFRESHTOKEN_KEY = 'auth-refreshtoken'
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +47,6 @@ export class TokenStorageService {
   public getUser(): UserDto {
     const user = localStorage.getItem(USER_KEY)
     const userDto:UserDto = JSON.parse(user as string);
-    return userDto; 
+    return userDto;
   }
 }

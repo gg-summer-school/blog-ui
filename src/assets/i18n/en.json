@@ -112,7 +112,8 @@
    "Publisher": "Publishers",
    "Article": "Number of Articles",
    "Edit": "Edit Profile",
-   "Save": "Save"
+   "Save": "Save",
+   "pwd": "Change Password"
  },
   "UserAdmin": {
     "Reader": "Number of Readers",
@@ -188,7 +189,8 @@
     "Detail": "Payment Details",
     "Name": "Article Name",
     "Card": "Card Number",
-    "Pay": "Pay $243"
+    "Pay": "Pay $243",
+    "Date": "Date"
   },
   "PageNotFound": {
     "Found": "Not Found",

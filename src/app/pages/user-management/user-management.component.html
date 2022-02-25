@@ -10,6 +10,28 @@
     </div>
 
     <div class="col-md-10">
+      <div class="input-group search">
+
+<!--       <form [formGroup]="searchForm">-->
+         <input id="search-input" type="search" class="form-control"
+                placeholder="Search user..."
+                name="searchTerm" [(ngModel)]="searchTerm"
+               >
+
+
+<!--       </form>-->
+        <button id="search-button" type="submit" class="btn btn-primary">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+
+<!--      <form class="wrap">-->
+<!--        <div class="search">-->
+<!--          <h3>Search country by name filter : </h3>-->
+<!--          <input class="searchTerm" type="text" name="searchTerm" placeholder="Filter by publisher name" [(ngModel)]="searchTerm"/>-->
+<!--                 (input)="search($event.target.value)"-->
+<!--        </div>-->
+<!--      </form>-->
       <table class="table table-borderless table-responsive" >
         <thead>
         <tr>
@@ -19,14 +41,16 @@
           <th scope="col">Action</th>
         </tr>
         </thead>
+
         <tbody *ngFor="let user of allUsers| paginate
               : {
                   itemsPerPage: tableSize,
                   currentPage: page,
                   totalItems: count
-                }">
+                }|searchFilter: searchTerm ">
         <br>
         <tr>
+<!--          <td scope="row">{{ i + 1 }}</td>-->
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <div class="dropdown" >

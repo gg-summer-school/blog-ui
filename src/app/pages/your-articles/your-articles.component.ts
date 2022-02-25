@@ -44,8 +44,9 @@ export class YourArticlesComponent implements OnInit {
     this.spinnerService.show();
     this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
-      this.pubArticles=res;
-      this.number= this.pubArticles.length;
+      const article = res;
+      this.pubArticles = article.reverse();
+      this.number = this.pubArticles.length;
       this.spinnerService.hide();
 
     },

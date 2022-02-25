@@ -13,11 +13,11 @@
 
     <div class="col-md-10 ">
       <!-- View reason Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="pub">
+      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" *ngIf="pub">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel" style="color:indigo;">Publisher's reason</h3>
+              <h3 class="modal-title" id="exampleModalLabel3" style="color:indigo;">Publisher's reason</h3>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -53,19 +53,65 @@
         <td>{{p.name}}</td>
         <td>{{p.email}}</td>
         <td style="display: inline-flex">
-        <i (click)="view(p)" class="fas fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal" title="View reason" style="color: indigo; cursor: pointer" ></i>&nbsp;&nbsp;&nbsp;
-          <button class="btn btn-dark but" (click)=" approvePublisher(p.id) ">{{'Requests.Accept'| translate }}</button>&nbsp;&nbsp;
-          <button class="btn btn-danger" (click)=" declineUser(p.id) "> {{'Requests.Decline'| translate }}</button>
+
+        <i (click)="view(p)" class="fas fa-info" data-bs-toggle="modal" data-bs-target="#exampleModal3" title="View reason" style="color: indigo; cursor: pointer" ></i>&nbsp;&nbsp;&nbsp;
+         <button type="button" class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" (click)="getPublisherId(p.id)">
+            {{'Requests.Accept'| translate }}</button> &nbsp; &nbsp;
+          <!--          decline publisher-->
+          <button type="button" class="btn btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" (click)="getPublisherId(p.id)">
+            {{'Requests.Decline'| translate }}</button>
+
         </td>
       </tr>
 
 
       </tbody>
-
-
     </table>
 
-  </div>
+    </div>
+
+      <!--        modal for approve-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Approve publisher</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to approve this publisher?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger " (click)="approvePub()">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--        modal for decline-->
+      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel1">Suspend</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to decline this publisher?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger " (click)="declinePub()">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     <pagination-controls
       previousLabel="Prev"
       nextLabel="Next"
@@ -77,5 +123,5 @@
   <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait.</p>
   </ngx-spinner>
-
+<
 </div>
