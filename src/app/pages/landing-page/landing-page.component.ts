@@ -52,7 +52,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   paymentForm = this.formBuilder.group({
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
-  constructor(private paidArticleService:PaidArticlesService, private formBuilder: FormBuilder, private articlesService: ArticlesService, private router: Router,
+  constructor(private paidArticleService: PaidArticlesService, private formBuilder: FormBuilder, private articlesService: ArticlesService, private router: Router,
     public tokenStorage: TokenStorageService, private activateRoute: ActivatedRoute,
     public translate: TranslateService, private notificationService: NotificationMessageService,
     private spinnerService: NgxSpinnerService, private articleService: ArticlesService,) {
@@ -75,7 +75,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.getAllCategories();
     this.getCachedCartItems();
     this.calculateTotalCostItems(this.cardItems);
-
+    // this.filterBoughtArticles(this.tokenStorage.getUser()?.id);
   }
   previous() {
     const subscription = this.activateRoute.queryParams.subscribe(params => {
@@ -214,6 +214,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.notificationService.sendMessage({ message: email + ' subscribed successfully', type: NotificationType.success })
   }
   addToCart(item: ArticleDto) {
+    console.log(item);
+    
     if (this.tokenStorage.getUser() === null) {
       this.notificationService.sendMessage({ message: 'Login is required to add articles to cart', type: NotificationType.error })
       this.router.navigate(['login']);
@@ -258,7 +260,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   submitPayment() {
     const data: CartItems[] = [];
     this.cardItems.forEach(item => {
-      const item2:CartItems = {
+      const item2: CartItems = {
         articleIds: item.id,
         nameOfArticle: item.title
       }
@@ -266,16 +268,17 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     })
     const payload: PaymentListPayload = {
       articles: data,
-      totalAmount:this.totalCostCartItems
+      totalAmount: this.totalCostCartItems
     }
     this.spinnerService.show();
     const userId = this.tokenStorage.getUser().id;
     const subscription = this.articleService.makeOrder(payload, userId).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
       this.router.navigate(['/users-article']);
-      // this.tokenStorage.emptyCart();
+      this.tokenStorage.emptyCart();
     }, (error: HttpErrorResponse) => {
-      this.notificationService.sendMessage({ message:error.error.message, type: NotificationType.error })
+      this.tokenStorage.emptyCart();
+      this.notificationService.sendMessage({ message: error.error.message, type: NotificationType.error })
     }).add(() => {
       this.spinnerService.hide()
     })
@@ -283,26 +286,12 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   }
 
-  clickOffCanvas(){
+  clickOffCanvas() {
+    this.spinnerService.show();
     $('#offcanvasRight').offcanvas('hide');
+    this.spinnerService.hide();
   }
 
 
-  filterBoughtArticles(userId:string){
-    const updatedUserCard:ArticleDto[] = [];
 
-    const subscription = this.paidArticleService.getBookTitle(userId).subscribe((response:ArticleDto[]) => {
-      this.tokenStorage.getCartItems().forEach(item => {
-        if(response.indexOf(item) != -1){
-          updatedUserCard.push(item)
-        }
-      })
-      this.tokenStorage.addToCart(updatedUserCard);
-    }, (error:HttpErrorResponse)  => {
-
-    }).add(() => {
-      this.spinnerService.hide();
-    })
-    this.subscriptions.push(subscription);
-  }
 }

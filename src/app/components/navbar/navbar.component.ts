@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticleDto, CartItems, PaymentListPayload } from 'src/app/model/articles';
@@ -10,6 +10,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 import { ResponseObject } from 'src/app/model/response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { PaidArticlesService } from 'src/app/services/user-services/paid-articles.service';
 declare var $: any;
 @Component({
   selector: 'app-navbar',
@@ -17,14 +18,14 @@ declare var $: any;
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  totalCostCartItems: number = 0;
-  cardItems: ArticleDto[] = [];
+  @Input() totalCostCartItems: number = 0;
+  @Input() cardItems: ArticleDto[] = [];
   controlCanvas: boolean = false;
   subscriptions: Subscription[] = [];
   paymentForm = this.formBuilder.group({
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
   });
-  constructor(private articleService: ArticlesService, private spinnerService: NgxSpinnerService, private router: Router, public tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private notificationService: NotificationMessageService) { }
+  constructor(private paidArticleService: PaidArticlesService, private articleService: ArticlesService, private spinnerService: NgxSpinnerService, private router: Router, public tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private notificationService: NotificationMessageService) { }
 
   ngOnInit(): void {
     this.getCachedCartItems();
@@ -86,7 +87,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   submitPayment1() {
     const data: CartItems[] = [];
     this.cardItems.forEach(item => {
-      const item2:CartItems = {
+      const item2: CartItems = {
         articleIds: item.id,
         nameOfArticle: item.title
       }
@@ -94,16 +95,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
     })
     const payload: PaymentListPayload = {
       articles: data,
-      totalAmount:this.totalCostCartItems
+      totalAmount: this.totalCostCartItems
     }
     const userId = this.tokenStorage.getUser().id;
     this.spinnerService.show();
     const subscription = this.articleService.makeOrder(payload, userId).subscribe((response: ResponseObject) => {
       this.notificationService.sendMessage({ message: 'Payment made Successfully', type: NotificationType.success })
-      // this.router.navigate(['/users-article']);
+      this.router.navigate(['/users-article']);
       this.tokenStorage.emptyCart();
     }, (error: HttpErrorResponse) => {
-      this.notificationService.sendMessage({ message: 'Payment failed', type: NotificationType.error })
+      this.tokenStorage.emptyCart();
+      this.notificationService.sendMessage({ message: error.error.message, type: NotificationType.error });
+      this.router.navigate(['/users-article']);
+
     }).add(() => {
       this.spinnerService.hide()
     })
@@ -111,9 +115,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   }
 
-  clickOffCanvas(){
+  clickOffCanvas() {
+    this.spinnerService.show();
     $('#offcanvasRight').offcanvas('hide');
+    this.spinnerService.hide();
   }
+
 
 
 }
