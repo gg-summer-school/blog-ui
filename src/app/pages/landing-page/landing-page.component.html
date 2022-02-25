@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">{{'Navbar.title'| translate}}</a>
+    <a class="navbar-brand" style="font-family: 'Brush Script MT'; font-size: 23px;color: indigo">{{'Navbar.title'|
+      translate}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -40,6 +41,19 @@
               *ngIf="tokenStorage.getToken1()">{{'Navbar.Dashboard'| translate }}</button></a>
         </li>
         <li class="nav-item">
+          <a class="nav-link">
+            <button class="btn btn-outline-link position-relative cart-button" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" *ngIf="tokenStorage.getToken1()"> <i
+                class=" fas fa-shopping-cart cart text-info"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill totalArticles"
+                *ngIf="cardItems.length > 0">
+                {{cardItems.length}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
           <div class="dropdown">
             <button class="btn btn-outline-info dropdown-toggle mt-2" type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +79,7 @@
       <br>
       <br>
       <br>
-      <h2  class="welcome">{{'Page.Welcome'| translate }}<span class="blogSiteSpan">{{'Page.blogSite'|translate}}</span>
+      <h2 class="welcome">{{'Page.Welcome'| translate }}<span class="blogSiteSpan">{{'Page.blogSite'|translate}}</span>
       </h2>
       <span>{{'Page.Publish'| translate }}</span>
       <br>
@@ -118,11 +132,14 @@
     <div class="col-md-9">
       <div class="row" *ngIf="articleExist">
         <div class="col-md-3 mb-3" *ngFor="let article of allArticles ">
-          <div class="card article-card" (click)="view(article.id)">
-            <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page">
+          <div class="card article-card">
+            <img [src]="article.coverPage" class="card-img-top" alt="Article Cover Page" (click)="view(article.id)">
             <div class="card-body">
               <h5 class="card-title title"> {{ article.title | truncateArticleTitle }}</h5>
-              <p class="card-text date">{{article.createdAt |date:'fullDate'}} </p>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-sm addToCart" (click)="addToCart(article)"><i
+                    class="fas fa-cart-plus card-icon"></i>{{'articlePage.addToCart'|translate|uppercase}}</button>
+              </div>
             </div>
           </div>
         </div>
@@ -133,6 +150,7 @@
         <div class="col-md-4">
           <img src="assets/product-not-found.svg" alt="not found" class="notFoundArticles">
           <p class="text-center">{{'Page.notFound'| translate}}</p>
+
         </div>
         <div class="col-md-4">
 
@@ -168,93 +186,97 @@
 </div>
 
 
+<app-footer></app-footer>
 
-<section>
-  <div class=" authors">
-    <div class="text-center popular-authors">
-      <h2>{{'Page.Authors'| translate }}</h2>
-    </div>
-    <div class="card-body">
-      <div class="row authors-name">
-        <div class="col-md-3">
-          <div class="text-center">
-            <div class="avatar">
-              <img src="assets/avatar.png" class="image">
-            </div>
-            <h6>Paul Doe</h6>
-            <span><a href="mailto:pauldoe@gmail.com" class="text-muted ">pauldoe@gmail.com</a></span>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <img src="assets/avatar.png" class="image">
-            <h6>Nzo Daniel</h6>
-            <span><a href="mailto:frenchderay@gmail.com" class="text-muted ">nzodaniel@gmail.com</a></span>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <img src="assets/avatar.png" class="image">
-            <h6>Chi Mah</h6>
-            <span><a href="mailto:mahchi26@gmail.com" class="text-muted ">mahchi26@gmail.com</a></span>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <img src="assets/avatar.png" class="image">
-            <h6>Deray French</h6>
-            <span><a href="mailto:derayfrench@gmail.com" class="text-muted ">derayfrench@gmail.com</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="footer">
-  <div class="row footer-row">
-    <div class="col-md-3">
-      <h5>{{'Page.Link'| translate }}</h5>
-      <a  href="#articles" class="quick-links">{{'Page.Categories'| translate }}</a>
-      <br>
-      <a  href="#articles" class="quick-links">{{'Page.Article'| translate }}</a>
-      <br>
-      <a  href="#authors" class="quick-links">{{'Page.Authors'| translate }}</a>
-      <br>
-      <a  routerLink="/signup" class="quick-links">{{'Navbar.SignUp'| translate }}</a><br>
-
-    </div>
-    <div class="col-md-3">
-      <h5>{{'Page.Contact'| translate }}</h5>
-      <span><i class="fab fa-whatsapp" style="color: lightgreen"></i> <a href="#" class="whatsapp quick-links">Whatsapp</a></span>
-      <br>
-      <span><i class="fab fa-instagram" style="background: linear-gradient(orange, purple)"></i> <a href="#" class="instagram quick-links">Instagram</a></span>
-      <br>
-      <span><i class="fab fa-twitter" style="color: dodgerblue"></i> <a href="#" class="twitter quick-links">Twitter</a></span>
-      <br>
-      <span><i class="fab fa-linkedin" style="color: deepskyblue"></i> <a href="#" class="linkedIn quick-links">LinkedIn</a></span>
-      <br>
-    </div>
-    <div class="col-md-3">
-      <a routerLink="/about"><span>{{'Page.About'| translate }}</span></a>
-      <p>{{'Page.faq' |translate}}</p>
-    </div>
-    <div class="col-md-3">
-      <a routerLink="/about"><span>{{'Page.Terms'| translate }}</span></a>
-      <p>{{'Page.Privacy'| translate }}</p>
-
-      <h5>{{'Page.Suscribe'| translate }}</h5>
-      <input type="email" placeholder=" {{'Page.placeholderE'| translate }}" class="input-size"
-        [(ngModel)]="email"><button (click)="subscribe(email)" class="btn btn-outline-primary">{{'Page.Suscribe1'|
-        translate }}</button>
-
-    </div>
-
-  </div>
-</section>
-<div class="foot">
-  <p class="p">{{'Page.Copy'| translate }}<span class="blog">{{'Navbar.title'| translate}}</span></p>
-</div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait.</p>
 </ngx-spinner>
+
+<!-- offcanvas for checkout -->
+<div class="row">
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
+    <div class="d-flex justify-content-end m-3">
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel">{{'articlePage.shoppingCart'| translate}}</h4>
+    </div>
+    <div class="offcanvas-body">
+      <div class="row shoppingCartItems" *ngFor="let item of cardItems">
+        <div class="col-sm-5">
+          <img src="{{item?.coverPage}}" class="articleCoverPageImage" alt="article CoverPage image" width="100%" />
+          <p class="imageBorder"></p>
+        </div>
+        <div class="col-sm-7">
+          <h5 class="shoppingCartArticleTitle">{{item?.title}}</h5>
+          <div class="d-flex justify-content-between details">
+            <h6 class="articleDetailPrice">1 x {{item?.price}} XFA</h6>
+            <button class="btn btn-light delete  btn-sm" type="button" (click)="removeArticleCard(item)">
+              <i class="fas fa-trash-alt delete-icon"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="emptyCard" *ngIf="cardItems.length == 0">
+        <label>{{'articlePage.cardEmpty'|translate}} </label>
+      </div>
+    </div>
+    <div class="offcanvas-footer canvasFooter">
+      <div *ngIf="cardItems.length > 0">
+        <div class="totalItemsCart">
+          <label for="total" class="articleTotal">{{'articlePage.subTotal'|translate}}: {{totalCostCartItems}}
+            XFA</label>
+        </div>
+        <button type="button" class="btn buy" data-bs-toggle="modal" (click)="clickOffCanvas()"
+          data-bs-target="#paymentModal">{{'articlePage.checkout'|
+          translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <div class="d-flex justify-content-end">
+        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
+            aria-label="Close"></button></h6>
+      </div>
+      <div>
+        <h6 class="createAccount1 mt-2" id="exampleModalLabel">{{'articlePage.Account'| translate}}</h6>
+      </div>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="modal-body">
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalArticles'|translate}}:
+              {{cardItems.length}}</label>
+          </div>
+          <div class="cardPayment">
+            <label for="total" class="articleTotal">{{'articlePage.totalAmount'|translate}}: {{totalCostCartItems}}
+              XFA</label>
+          </div>
+          <div class="form-group paymentForm">
+            <label class="mb-1 text-black accountNumber">{{'articlePage.Account1'| translate}}<span
+                class="required">*</span></label>
+            <input type="tel" formControlName="accountNumber" class="form-control" required placeholder="e.g 678480292" />
+            <span class="text-danger"
+              *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
+
+              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> {{'articlePage.Account2'| translate}}
+              </div>
+              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
+            </span>
+            <div class=" mt-4 account">
+              <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn text-white btn-sm"
+                data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
 
   onOpen() {
     // @ts-ignore
-    document.getElementById("side").style.display = "block";
+    document.getElementById("side").style.display = "inline-block";
     // @ts-ignore
     document.getElementById("menubar").style.display = "none";
   }
@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
     // @ts-ignore
     document.getElementById("side").style.display = "none";
     // @ts-ignore
-    document.getElementById("menubar").style.display = "block";
+    document.getElementById("menubar").style.display = "inline-block";
   }
 
 }

@@ -74,7 +74,15 @@
     "Password": "Password",
     "Password1": "Password is required",
     "password2": "Password must be at least 8 characters",
-    "username": "Username must not exceed 40 characters"
+    "username": "Username must not exceed 40 characters",
+    "addToCart":"ADD TO CART",
+    "shoppingCart":"My Shopping Cart",
+    "addMoreArticle":"Add more Article",
+    "checkout":"CHECKOUT",
+    "totalArticles":"Total Articles",
+    "totalAmount":"Total Amount",
+    "cardEmpty":"Card is Empty",
+    "subTotal":"SubTotal"
   },
   "YourArticles": {
     "Articles": "Articles",

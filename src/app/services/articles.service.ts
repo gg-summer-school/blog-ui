@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ArticleDto, Articles } from '../model/articles';
+import { ArticleDto, Articles, PaymentListPayload } from '../model/articles';
 import { ResponseObject } from "../model/response";
 import { Categories } from "../model/categories";
 import { ArticleResource } from '../model/articleDtoList';
@@ -18,6 +18,7 @@ export class ArticlesService {
 
   baseUrl: string = environment.baseUrlPub;
   baseUrl1: string = environment.baseUrlPro;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'multipart/form-data'
@@ -48,12 +49,12 @@ export class ArticlesService {
     return this.http.put(this.baseUrl1 + 'publishers/' + publisherId + '/articles/' + articleId + '/file-uploads', uploadFile);
   }
 
-  getArticlesByCategory(catid: string):Observable<ArticleDto[]> {
+  getArticlesByCategory(catid: string): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(this.baseUrl + `articles/categories?categoryId=` + catid);
   }
 
 
-  getCategory():Observable<Categories[]> {
+  getCategory(): Observable<Categories[]> {
     return this.http.get<Categories[]>(this.baseUrl + 'categories');
   }
 
@@ -72,13 +73,12 @@ export class ArticlesService {
   }
 
 
-  PayArticle(user_id: string, article_id: string, article: PayArticleDto):Observable<ResponseObject>{
+  PayArticle(user_id: string, article_id: string, article: PayArticleDto): Observable<ResponseObject> {
     return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/users/${user_id}/articles/${article_id}`, article)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
-
   }
 
   checkIfUserhasBoughtArticle(userId: string, articleId: string): Observable<boolean> {
@@ -88,20 +88,24 @@ export class ArticlesService {
     );
   }
 
-  previewArticle(articleId: string, userId:string):Observable<any>{
-     return this.http.get(this.baseUrl1 + `users/${userId}/articles/${articleId}`).pipe(
+  previewArticle(articleId: string, userId: string): Observable<any> {
+    return this.http.get(this.baseUrl1 + `users/${userId}/articles/${articleId}`).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  getPublisherByArticleId(articleId:string):Observable<UserDto> {
-    return this.http.get<UserDto>(this.baseUrl+ `publisher/articles?articleId=${articleId}`).pipe(
+  getPublisherByArticleId(articleId: string): Observable<UserDto> {
+    return this.http.get<UserDto>(this.baseUrl + `publisher/articles?articleId=${articleId}`).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
+
+  makeOrder(payload: PaymentListPayload, userId:string): Observable<ResponseObject> {
+    return this.http.post<ResponseObject>(this.baseUrl1 + `transactions/articles/users?userId=${userId}`, payload);
+  }
   // Error handling
   handleError(error: any) {
     let errorMessage = '';

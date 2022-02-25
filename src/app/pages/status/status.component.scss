@@ -1,3 +1,5 @@
+@import "../../Abstract/mixins";
+
 .logout {
   position: absolute;
   left: 25px;
@@ -198,6 +200,7 @@
 .name-icon {
   padding-right: 13px;
 }
+<<<<<<< HEAD
 //.changePassword{
 //
 //}
@@ -217,4 +220,12 @@
   padding-left: 0.2rem;
 }
 
+
+
+
+.profile {
+  @include respond(phone) {
+    display: none;
+  }
+}
 

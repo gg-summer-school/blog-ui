@@ -1,7 +1,6 @@
-<app-navbar></app-navbar>
 
-
-<div class="container-fluid mt-5">
+<app-navbar [cardItems]="cardItems" [totalCostCartItems]="totalCostCartItems"></app-navbar>
+<div class="container-fluid mt-5 mb-5">
   <div class="row coverPage">
     <div class="col-md-3 mt-lg-4">
       <div>
@@ -20,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-7 mt-lg-4">
+    <div class="col-md-6 mt-lg-4">
       <h6 class="label">{{article?.title}} <br>
         <p router-link="/user-profile">{{'articlePage.By'| translate}} {{publisher?.name}} |
           <span>{{'articlePage.Category'| translate}}: {{article?.categoryName}}</span>
@@ -29,7 +28,7 @@
       <hr>
       <div class="price">
         <small class="pdf">{{'articlePage.Pdf'| translate}}</small><br>
-        CFA {{article?.price}}
+        XFA {{article?.price}}
       </div>
       <div class="mt-2">
         <p class="articleAbstract" *ngIf="!showAbs">
@@ -67,18 +66,23 @@
       </div>
       <hr>
     </div>
-    <div class="col-md-2 mt-lg-4 d-flex justify-content-center buy-card">
+    <div class="col-md-3 mt-lg-4 buy-card">
       <div class="card shadow-sm">
         <div class="card-body">
           <h6 class="card-title">{{'articlePage.Article'| translate}}</h6>
           <label class="card-text"> </label>
+         <div class="articleInfo">
           <label class="card-text"><small class="text-muted">{{'articlePage.Price'| translate}}: </small> <span
-              class="purchase">XFA
-              {{article?.price}}</span></label>
+            class="purchase">XFA
+            {{article?.price}}</span></label>
+         </div>
+         <div  class="articleInfo">
           <label class="card-text"><small class="text-muted">{{'articlePage.Format'| translate}}: </small> <span
-              class="purchase">PDF</span></label>
+            class="purchase">PDF</span></label>
+         </div>
           <div>
-            <button type="button" class="btn btn-outline-info buy" (click)="requestText()">{{'articlePage.Buy'|
+            <button type="button" class="btn  buy" (click)="addToCart(article)" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">{{'articlePage.addToCart'|
               translate}}</button>
           </div>
         </div>
@@ -87,39 +91,7 @@
   </div>
 </div>
 
-<!-- payment form -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="d-flex justify-content-end">
-        <h6><button type="button" class="btn-close btn-sm text-dark close" data-bs-dismiss="modal"
-            aria-label="Close"></button></h6>
-      </div>
-      <div>
-        <h6 class="createAccount1 mt-2" id="exampleModalLabel">{{'articlePage.Account'| translate}}</h6>
-      </div>
-      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
-        <div class="modal-body">
-          <div class="form-group">
-            <label class="mb-1 text-black">{{'articlePage.Account1'| translate}}:</label>
-            <input type="tel" formControlName="accountNumber" class="form-control" required />
-            <span class="text-danger"
-              *ngIf="(paymentFormControl.accountNumber.touched) && paymentFormControl.accountNumber.errors">
 
-              <div *ngIf="paymentFormControl.accountNumber.errors?.required"> {{'articlePage.Account2'| translate}}
-              </div>
-              <div *ngIf="paymentFormControl.accountNumber.errors?.pattern"> {{'articlePage.Account3'| translate}}</div>
-            </span>
-          </div>
-        </div>
-        <div class=" mt-1 account">
-          <button type="submit" id="payment" [disabled]="!paymentForm.valid" class="btn btn-primary text-white btn-sm"
-            data-bs-dismiss="modal">{{'articlePage.Payment'| translate}}</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 <!-- Modal for users with no account-->
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm">

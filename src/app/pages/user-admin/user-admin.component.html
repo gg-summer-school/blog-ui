@@ -9,9 +9,11 @@
       <app-status></app-status>
     </div>
 
+
 <div class="col-md-10">
   <h5 *ngIf="!readers.length" class="form-text">Oops!! No readers are available yet.</h5>
   <table class="table table-borderless table-responsive" *ngIf="readers.length">
+
     <thead>
     <tr>
       <th scope="col"><b>{{'UserAdmin.Reader'| translate }} ({{number}})</b></th>

@@ -43,6 +43,8 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   article!: ArticleDto;
   hasBought: boolean = false;
   subscriptions: Subscription[] = [];
+  cardItems: ArticleDto[] = [];
+  totalCostCartItems: number = 0;
   paymentForm = this.formBuilder.group({
     nameOfArticle: '',
     accountNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{9}$")]],
@@ -82,11 +84,9 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.articleId = this.route.snapshot.params.id;
     this.getArticle();
     this.getPublisherByArticle(this.articleId);
-
-
+    this.getCachedCartItems();
+    this.calculateTotalCostItems(this.cardItems);
   }
-
-
   getArticle() {
     this.spinnerService.show()
     const subscription = this.publisherService.getArticle(this.articleId).subscribe((res:ArticleDto) => {
@@ -103,8 +103,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     })
     this.subscriptions.push(subscription)
   }
-
-
   submitPayment() {
     const articleId = this.article.id;
     const payload: PayArticleDto = {
@@ -124,8 +122,6 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
 
   }
-
-
   onSubmit(): void {
     
     this.submitted = true;
@@ -163,38 +159,10 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
   showContent() {
     this.showTable = !this.showTable;
   }
-  requestText() {
-    const authUser = this.tokenStorage.getUser();
-    if (authUser === null) {
-      //jquery code to open register modal
-      $("#registerModal").modal('show');
-    } else {
-      
-      const subscription = this.articleService.checkIfUserhasBoughtArticle(authUser.id, this.article.id).subscribe((response: boolean) => {
-        this.hasBought = response;
-        if (!this.hasBought) {
-          $("#editProfileModal").modal('show');
-        } else {
-          this.notificationService.sendMessage({message: 'You have bought this article already!', type:NotificationType.info})
-          this.router.navigate(['/users-article']); 
-        }
-      }, (error) => { }).add(() => {
-        
-       });
-      this.subscriptions.push(subscription);
-    }
-  }
 
   get registerFormControl() {
     return this.signupForm.controls
   }
-
-  get paymentFormControl() {
-    return this.paymentForm.controls;
-  }
-
-
-
   getPublisherByArticle(id:string) {
     this.spinnerService.show();
     const subscription = this.articleService.getPublisherByArticleId(id).subscribe((response:UserDto) => {
@@ -204,7 +172,36 @@ export class ArticleDetailPageComponent implements OnInit, OnDestroy {
     });
     this.subscriptions.push(subscription);
   }
+  addToCart(item: ArticleDto) {
+    if (this.tokenStorage.getUser() === null) {
+      this.notificationService.sendMessage({ message: 'Login is required to add articles to cart', type: NotificationType.error })
+      this.router.navigate(['login']);
+    } else {
+      this.cardItems = this.tokenStorage.getCartItems();
+      if (this.cardItems.find(item1 => item1.id === item.id) === undefined) {
+        this.cardItems.push(item);
+        this.tokenStorage.addToCart(this.cardItems);
+        this.cardItems = this.tokenStorage.getCartItems();
+        this.calculateTotalCostItems(this.cardItems);
+        this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
+      } else {
+        this.notificationService.sendMessage({ message: 'Article already exist in cart', type: NotificationType.error })
+      }
+    }
+  }
 
+  calculateTotalCostItems(items: ArticleDto[]) {
+    if (items != null) {
+      items.forEach(item => {
+        this.totalCostCartItems += item.price
+      })
+    }
+    return this.totalCostCartItems;
+  }
 
-
+  getCachedCartItems() {
+    if (this.tokenStorage.getCartItems() != null) {
+      this.cardItems = this.tokenStorage.getCartItems();
+    }
+  }
 }

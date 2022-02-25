@@ -40,6 +40,7 @@ export class UsersArticleComponent implements OnInit {
   }
   ngOnInit(): void {
     this.userId = this.tokenStorageService.getUser().id;
+
     this.getBook();
 
   }
