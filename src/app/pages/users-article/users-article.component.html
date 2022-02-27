@@ -17,7 +17,7 @@
       routerLink="/"> Buy an article <i
       class="fas fa-arrow-circle-right"></i></a></h5>
 
-  <table class="table table-borderless table-responsive" *ngIf="userPaidArticles.length">
+  <table class="table table-borderless table-responsive" *ngIf="userPaidArticles?.length">
     <thead>
     <tr>
       <th scope="col"><b>{{'UsersArticle.Book'| translate }} ({{number}})</b></th>
@@ -42,6 +42,7 @@
     </tr>
     </tbody>
   </table>
+
   <pagination-controls
     *ngIf="userPaidArticles.length"
     previousLabel="Prev"

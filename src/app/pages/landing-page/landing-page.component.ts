@@ -71,10 +71,11 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.getAllArticles(this.pageNum, this.pageSize);
     this.getAllCategories();
     this.getCachedCartItems();
-    this.calculateTotalCostItems(this.cardItems);
+    this.calculateTotalCostItemsCached(this.cardItems);
   }
   previous() {
     const subscription = this.activateRoute.queryParams.subscribe(params => {
@@ -224,8 +225,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
           if (paidItems.find(item1 => item1.id === item.id) === undefined) {
             this.cardItems.push(item);
             this.tokenStorage.addToCart(this.cardItems);
-            this.cardItems = this.tokenStorage.getCartItems();
-            this.calculateTotalCostItems(this.cardItems);
+            this.calculateTotalCostItems(item);
             this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
           } else {
             this.notificationService.sendMessage({ message: 'User has already buy this Article', type: NotificationType.error })
@@ -239,11 +239,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  calculateTotalCostItems(items: ArticleDto[]) {
-    if (items != null) {
-      items.forEach(item => {
-        this.totalCostCartItems += item.price
-      })
+  calculateTotalCostItems(item: ArticleDto) {
+    if (item != null) {
+      this.totalCostCartItems += item.price
     }
     return this.totalCostCartItems;
   }
@@ -252,6 +250,13 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     if (this.tokenStorage.getCartItems() != null) {
       this.cardItems = this.tokenStorage.getCartItems();
     }
+  }
+
+  calculateTotalCostItemsCached(items:ArticleDto[]){
+    items.forEach(item => {
+      this.totalCostCartItems += item.price;
+    })
+    return this.totalCostCartItems;
   }
 
   removeArticleCard(item: ArticleDto) {
