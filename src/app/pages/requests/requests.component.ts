@@ -32,7 +32,9 @@ export class RequestsComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   switchLang(lang: string) {
-    console.log(lang);
+
+
+
     this.translate.use(lang);
   }
 

@@ -43,10 +43,7 @@ export class PublishArticleComponent implements OnInit {
     translate.setDefaultLang('en');
   }
 
-  // switchLang(lang: string) {
-  //   console.log(lang)
-  //   this.translate.use(lang);
-  // }
+
 
   ngOnInit(): void {
     this.publish = new FormGroup(
@@ -62,6 +59,7 @@ export class PublishArticleComponent implements OnInit {
     );
 
     this.getCategories();
+
     this.publisherId = this.tokenStorage.getUser().id;
     this.accountApproved = this.tokenStorage.getUser().approved;
     console.log(this.accountApproved);
@@ -74,6 +72,7 @@ export class PublishArticleComponent implements OnInit {
     //   // localStorage.removeItem(JSON.stringify(this.tokenStorage.getApproval()));
     //   // console.log(this.tokenStorage.getApproval());
     // }
+
   }
 
   get f() {
@@ -134,7 +133,6 @@ export class PublishArticleComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('files', this.currentFile);
     formData.append('files', this.currentFile1)
-
     this.articlesService.uploadArticleFiles(formData, this.publisherId, this.articleId).subscribe(res => {
         this.notificationService.sendMessage({message: 'Article created Successfully!', type: NotificationType.success})
         this.router.navigate(['/your-articles']);

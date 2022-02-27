@@ -34,14 +34,16 @@ export class UserProfileComponent implements OnInit {
     password: '',
   });
   switchLang(lang: string) {
-    console.log(lang);
+
     this.translate.use(lang);
   }
 ngOnInit(): void {
      this.getUserDetail();
      const name = this.tokenStorage.getUser().name
-     this.user_id = this.tokenStorage.getUser().id;
-     console.log(this.user_id);
+
+      this.user_id = this.tokenStorage.getUser().id;
+
+
      this.getAllArticlesByPublisher();
      this.firstName = name.split(' ').slice(0, -1).join(' ');
   }
@@ -64,9 +66,11 @@ ngOnInit(): void {
   this.adminPagesService.getAllArticlesByPublisher(this.user_id)
     .subscribe( (res: Articles[]) => {
       this.articles = res;
-      this.number = this.articles.length;
-      console.log('length ' + this.number);
-    });
+
+      this.number= this.articles.length;
+
+    })
+
   }
 
 }

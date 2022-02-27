@@ -76,11 +76,11 @@ export class StatusComponent implements OnInit {
   }
 
   editUserAccount(): void{
-    console.log(this.usersEdit.value);
+
     this.authService.updateUserProfile(this.usersEdit.value).subscribe((response : any) => {
       this.userProfile = response;
       const user = this.tokenStorageService.getUser();
-      console.log(user);
+
       const newUser = {
         accessToken: user.accessToken,
         email: user.email,
@@ -102,13 +102,15 @@ export class StatusComponent implements OnInit {
   }
 
   passwordChanged(): void {
-    console.log(this.passwordChange.value);
+
+
     this.authService.changePassword(this.passwordChange.value).subscribe((response: any) => {
-      console.log(response);
-      this.notificationService.sendMessage({message: 'Password updated successfully', type: NotificationType.success});
-    }, (error: any) => {
-      this.notificationService.sendMessage({message: error.error.message, type: NotificationType.error});
-    });
+
+      this.notificationService.sendMessage({message: 'Password updated successfully', type:NotificationType.success})
+    }, (error:any) => {
+      this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
+    })
+
   }
 
   // tslint:disable-next-line:typedef
