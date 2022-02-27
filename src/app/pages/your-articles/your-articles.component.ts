@@ -21,6 +21,9 @@ export class YourArticlesComponent implements OnInit {
   error:string='';
   doc:string = '';
   number!: number;
+  page = 1;
+  count = 0;
+  tableSize = 5;
   constructor(private articleService: ArticlesService, private publisherService: DashboardPublisherService,
               private tokenStorage: TokenStorageService, private router: Router,
               public translate: TranslateService,
@@ -32,7 +35,7 @@ export class YourArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.publisherId= this.tokenStorage.getUser().id;
- 
+
     this.getArticlesByPublisher();
   }
 
@@ -41,8 +44,9 @@ export class YourArticlesComponent implements OnInit {
     this.spinnerService.show();
     this.publisherService.getArticlesByPublisher(this.publisherId).subscribe((res:ArticleDto[])=>
     {
-      this.pubArticles=res;
-      this.number= this.pubArticles.length;
+      const article = res;
+      this.pubArticles = article.reverse();
+      this.number = this.pubArticles.length;
       this.spinnerService.hide();
 
     },
@@ -55,24 +59,32 @@ export class YourArticlesComponent implements OnInit {
     )
   }
 
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getArticlesByPublisher();
+  }
+
 
   edit(id:string, catid:string)
   {
     this.router.navigate(['edit-article', id, catid]);
   }
 
-  previewArticle(id:string){
-    let article:ArticleDto;
-    for(let art of this.pubArticles){
-      if(art.id === id){
-        article =  art;
-        this.doc = article.document;
-         
-      }
-    }
+  // previewArticle(id:string){
+  //   let article:ArticleDto;
+  //   for(let art of this.pubArticles){
+  //     if(art.id === id){
+  //       article =  art;
+  //       this.doc = article.document;
+  //
+  //     }
+  //   }
+  //
+  //
+  // }
 
-
-  }
-
-
+ previewArticle(id: string, doc:string)
+ {
+   this.router.navigate(['/view-article', id, doc]);
+ }
 }

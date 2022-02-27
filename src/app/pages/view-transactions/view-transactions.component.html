@@ -11,16 +11,40 @@
 
   <div class="container">
   <div class="col-md-8 trans">
-
     <h5>{{'ViewTransactions.Details'| translate }}</h5>
-    <br>
     <h5 class="form-text" *ngIf="!transactions.length">You haven't done any transaction yet!</h5>
-    <div *ngFor="let trans of transactions">
-      <p>Article Name: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;{{trans.nameOfArticle}}</p>
-      <p>Payment date: &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;   {{trans.createdAt|date:'dd/MM/yyyy'}}, {{trans.createdAt| date: 'shortTime'}}</p>
-      <p>Transaction Id: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  {{trans.id}}</p>
-      <hr>
-    </div>
+    <table class="table table-borderless table-responsive" *ngIf="transactions.length">
+      <thead>
+      <br>
+      <tr>
+        <th>#</th>
+        <th scope="col">{{'Payment.Name'| translate }}</th>
+        <th scope="col">Date</th>
+        <th scope="col-md-2">ID</th>
+        <th scope="col">Download</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let trans of transactions; index as i">
+      <br>
+      <tr>
+        <td scope="row">{{ i + 1 }}</td>
+        <td>{{trans.nameOfArticle}}</td>
+        <td>{{trans.createdAt|date:'dd/MM/yyyy'}}, {{trans.createdAt| date: 'shortTime'}}</td>
+        <td>{{trans.id}}</td>
+        <td><button type="submit" class="btn btn-primary">Download<i class="fa fa-download"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+
+<!--    <h5>{{'ViewTransactions.Details'| translate }}</h5>-->
+<!--    <br>-->
+<!--    <h5 class="form-text" *ngIf="!transactions.length">You haven't done any transaction yet!</h5>-->
+<!--    <div *ngFor="let trans of transactions">-->
+<!--      <p>Article Name: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;{{trans.nameOfArticle}}</p>-->
+<!--      <p>Payment date: &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;   {{trans.createdAt|date:'dd/MM/yyyy'}}, {{trans.createdAt| date: 'shortTime'}}</p>-->
+<!--      <p>Transaction Id: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  {{trans.id}}</p>-->
+<!--      <hr>-->
+<!--    </div>-->
 
   </div>
   </div>

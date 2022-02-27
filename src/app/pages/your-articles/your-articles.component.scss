@@ -65,3 +65,6 @@ a{
   cursor: pointer;
 }
 
+.modal.show {
+  opacity: 0;
+}

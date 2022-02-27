@@ -71,7 +71,7 @@ onSubmit() {
       }
         this.tokenStorage.saveToken(userData.accessToken);
        this.tokenStorage.saveUser(userData);
-       this.spinnerService.hide()
+       this.spinnerService.hide();
     },
     err => {
       this.spinnerService.hide()

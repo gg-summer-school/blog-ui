@@ -10,7 +10,12 @@
   </div>
 <div class="container">
 
-      <div class="card" style="width: 50rem;">
+  <div class="alert alert-danger" role="alert" style="text-align: center" *ngIf="!accountApproved"><i class="fa fa-warning" ></i>
+    Your account has not been approved!!. <strong> Please be patient.</strong>
+  </div>
+
+
+      <div class="card" style="width: 50rem;" *ngIf="accountApproved">
         <h4 class="card-header" style="text-align: center">{{'PublishArticle.Publish'| translate }}</h4>
         <div class="card-body">
           <form [formGroup]="publish" (submit)="onSubmit(publish.value.category)">
@@ -33,7 +38,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label >{{'PublishArticle.Category'| translate }}</label> <span style="font-weight: bolder; color: crimson"> *</span>
-                <select class="form-control form-select" formControlName="category" >
+                <select class="form-select" formControlName="category" >
                   <option [selected]="category.name" *ngFor="let category of categories"  value="{{category.id}}">{{category.name}}</option>
                 </select>
                 <span *ngIf="f.category.invalid && f.category.touched" class="form-text"> {{'PublishArticle.Field'| translate }}</span>
@@ -63,7 +68,9 @@
 
 <!-- Modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="!error">
+
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="!error">
+
   <div class="modal-dialog">
     <div class="modal-content" >
 

@@ -25,7 +25,12 @@
       <th scope="col">Action</th>
     </tr>
     </thead>
-    <tbody *ngFor="let userPA of userPaidArticles">
+    <tbody *ngFor="let userPA of userPaidArticles| paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };">
     <br>
     <tr >
       <td>{{userPA.title}}</td>
@@ -37,15 +42,24 @@
     </tr>
     </tbody>
   </table>
-  <div *ngIf="userPaidArticles?.length">
+
+  <pagination-controls
+    *ngIf="userPaidArticles.length"
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>
+  <div *ngIf="userPaidArticles.length">
     <br>
-    <p class="buy-more"><a style="text-decoration: none" class="goBack"   (click)="back()">Buy more articles <i
+    <p class="buy-more"><a href="#articles" style="text-decoration: none" class="goBack" >Buy more articles <i
       class="fas fa-arrow-circle-right"></i></a>
     </p>
   </div>
   </div>
   </div>
 </div>
+
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait.</p>
 </ngx-spinner>

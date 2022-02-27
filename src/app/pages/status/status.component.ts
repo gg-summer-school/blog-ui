@@ -42,7 +42,7 @@ export class StatusComponent implements OnInit {
 
   constructor(private tokenStorageService: TokenStorageService, translate: TranslateService, private formBuilder: FormBuilder, private authService: AuthService,
               private adminPagesService: AdminPagesService, private router: Router,
-              private notificationService:NotificationMessageService) {
+              private notificationService: NotificationMessageService) {
     translate.addLangs(['en', 'fre']);
     translate.setDefaultLang('en');
   }
@@ -68,7 +68,7 @@ export class StatusComponent implements OnInit {
     this.email = this.tokenStorageService.getUser().email;
     this.test2 = name.split(" ");
     this.firstName = this.test2[0];
-    
+
     for (let i of role) {
       this.role2 = i.split('_').slice(-1).join(' ');
       this.role.push(this.role2);
@@ -76,11 +76,11 @@ export class StatusComponent implements OnInit {
   }
 
   editUserAccount(): void{
- 
+
     this.authService.updateUserProfile(this.usersEdit.value).subscribe((response : any) => {
       this.userProfile = response;
       const user = this.tokenStorageService.getUser();
- 
+
       const newUser = {
         accessToken: user.accessToken,
         email: user.email,
@@ -89,25 +89,31 @@ export class StatusComponent implements OnInit {
         refreshToken: user.refreshToken,
         type: user.type,
         role: user.role,
-      }
+        approved: user.approved
+
+      };
+
       this.tokenStorageService.saveUser(newUser);
-      this.notificationService.sendMessage({message: 'Your name has been updated successfully', type:NotificationType.success})
+      this.notificationService.sendMessage({message: 'Your name has been updated successfully', type: NotificationType.success});
       // window.location.reload();
     }, error => {
-      this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
+      this.notificationService.sendMessage({message: error.error.message, type: NotificationType.error});
     });
   }
 
   passwordChanged(): void {
- 
+
+
     this.authService.changePassword(this.passwordChange.value).subscribe((response: any) => {
-  
+
       this.notificationService.sendMessage({message: 'Password updated successfully', type:NotificationType.success})
-    }, (error) => {
+    }, (error:any) => {
       this.notificationService.sendMessage({message: error.error.message, type:NotificationType.error})
     })
+
   }
 
+  // tslint:disable-next-line:typedef
   getAllArticlesByPublisher() {
     this.userRole = this.tokenStorageService.getUser().role;
     this.readerRole = this.userRole.includes('ROLE_READER');
@@ -116,20 +122,20 @@ export class StatusComponent implements OnInit {
     this.adminPagesService.getAllArticlesByPublisher(this.user_id)
       .subscribe( (res: Articles[]) => {
         this.articles = res;
-        this.number= this.articles.length;
-      })
+        this.number = this.articles.length;
+      });
   }
 
   getAllPaidArticles() {
     this.adminPagesService.getPaidArticlesByUser(this.user_id).subscribe((response: Articles[]) => {
        this.paidArticles = response;
        this.numberOfPaid = this.paidArticles.length;
-    })
+    });
   }
 
   logout() {
     this.tokenStorageService.signOut();
-    this.router.navigate(['/landing-page'])
+    this.router.navigate(['/landing-page']);
   }
 
 }

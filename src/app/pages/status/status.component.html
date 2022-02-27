@@ -12,7 +12,7 @@
             <h4>{{ userName }}</h4>
             <p>{{ role }}</p>
             <div class="data">
-              <button (click)="logout()" class="btn btn-danger btn-sm mt-5 edit logout">Logout</button>
+              <button (click)="logout()" class="btn btn-outline-secondary btn-sm mt-5 edit logout">Logout</button>
             </div>
           </div>
           <div class="right">
@@ -47,14 +47,17 @@
               </div>
               <div class="projects_data">
                 <div class="data">
-                  <button class="btn btn-sm mt-5 edit" data-bs-toggle="modal"
-                    data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}</button>
+                  <button class="btn btn-sm btn-outline-light mt-5 modif" data-bs-toggle="modal"
+                    data-bs-target="#editProfileModal">{{'UserProfile.Edit'| translate }}
+                    <span class="icon"><i style="color: lightgrey" class="far fa-edit"></i></span>
+                  </button>
                 </div>
-                
+
               </div>
               <div class="changePassword">
-                <h4 data-bs-toggle="modal" data-bs-target="#editProfileModal2">Change password &nbsp; <span><i
-                      style="color: blue" class="far fa-edit"></i></span></h4>
+                <button data-bs-toggle="modal" class="btn btn-outline-light pwd" data-bs-target="#editProfileModal2">Change
+                  password
+                  <span class="icon"><i style="color: lightgrey" class="far fa-edit"></i></span></button>
               </div>
             </div>
 
@@ -72,24 +75,25 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">{{'UserProfile.Edit'| translate }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel2">{{'UserProfile.pwd'| translate }}</h5>
         <button type="button" class="btn-close btn-sm " data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="passwordChange">
           <div class="form-group mb-2">
             <label>Old password</label>
-            <input [(ngModel)]="old_pass" id="new_pass" type="password" class="form-control disabled"
+            <input [(ngModel)]="old_pass" id="old_pass" type="password" class="form-control disabled"
               formControlName="oldPassword" placeholder="Enter your old password" />
           </div>
           <div class="form-group mb-2">
             <label>New password</label>
-            <input [(ngModel)]="new_pass" id="old_pass" type="password" class="form-control" required
+            <input [(ngModel)]="new_pass" id="new_pass" type="password" class="form-control" required
               formControlName="newPassword" placeholder="Enter your new password" />
           </div>
           <div class="d-flex justify-content-end">
-            <button type="submit" class="btn  btn-sm btn-primary" data-bs-dismiss="modal" (click)="passwordChanged()">
-              Password change
+            <button type="submit" class="btn  btn-sm btn-primary pwdB" data-bs-dismiss="modal"
+                    (click)="passwordChanged()">
+              Change Password
             </button>
           </div>
         </form>
