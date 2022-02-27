@@ -17,7 +17,7 @@
       routerLink="/"> Buy an article <i
       class="fas fa-arrow-circle-right"></i></a></h5>
 
-  <table class="table table-borderless table-responsive" *ngIf="userPaidArticles.length">
+  <table class="table table-borderless table-responsive" *ngIf="userPaidArticles?.length">
     <thead>
     <tr>
       <th scope="col"><b>{{'UsersArticle.Book'| translate }} ({{number}})</b></th>
@@ -37,7 +37,7 @@
     </tr>
     </tbody>
   </table>
-  <div *ngIf="userPaidArticles.length">
+  <div *ngIf="userPaidArticles?.length">
     <br>
     <p class="buy-more"><a style="text-decoration: none" class="goBack"   (click)="back()">Buy more articles <i
       class="fas fa-arrow-circle-right"></i></a>

@@ -12,7 +12,7 @@ const MYCART ='my-cart';
 })
 export class TokenStorageService {
 
- 
+
   constructor() { }
 
   signOut(): void {
@@ -51,7 +51,7 @@ export class TokenStorageService {
   public getUser(): UserDto {
     const user = localStorage.getItem(USER_KEY)
     const userDto:UserDto = JSON.parse(user as string);
-    return userDto; 
+    return userDto;
   }
 
   public addToCart(items:ArticleDto[]){
@@ -69,5 +69,5 @@ export class TokenStorageService {
     localStorage.removeItem(MYCART);
     this.addToCart(articles);
   }
-  
+
 }

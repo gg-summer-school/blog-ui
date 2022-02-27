@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCachedCartItems();
-    this.calculateTotalCostItems(this.cardItems);
+    this.calculateTotalCostItemsCached(this.cardItems);
 
   }
 
@@ -61,8 +61,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
           if (paidItems.find(item1 => item1.id === item.id) === undefined) {
             this.cardItems.push(item);
             this.tokenStorage.addToCart(this.cardItems);
-            this.cardItems = this.tokenStorage.getCartItems();
-            this.calculateTotalCostItems(this.cardItems);
+            this.calculateTotalCostItems(item);
             this.notificationService.sendMessage({ message: 'Article added to cart successfully', type: NotificationType.success })
           } else {
             this.notificationService.sendMessage({ message: 'User has already buy this Article', type: NotificationType.error })
@@ -76,11 +75,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  calculateTotalCostItems(items: ArticleDto[]) {
-    if (items != null) {
-      items.forEach(item => {
-        this.totalCostCartItems += item.price
-      })
+  calculateTotalCostItems(item: ArticleDto) {
+    if (item != null) {
+      this.totalCostCartItems += item.price
     }
     return this.totalCostCartItems;
   }
@@ -89,6 +86,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.tokenStorage.getCartItems() != null) {
       this.cardItems = this.tokenStorage.getCartItems();
     }
+  }
+
+  calculateTotalCostItemsCached(items:ArticleDto[]){
+    items.forEach(item => {
+      this.totalCostCartItems += item.price;
+    })
+    return this.totalCostCartItems;
   }
 
 
