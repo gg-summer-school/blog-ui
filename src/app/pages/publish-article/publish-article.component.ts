@@ -80,7 +80,7 @@ export class PublishArticleComponent implements OnInit {
   }
 
   onSubmit(categoryId: string) {
-    this.spinnerService.show();
+
     let contributors: Contributors[] = [];
     this.contributor = this.publish.value.contributors.split(',');
     for (let i = 0; i < this.contributor.length; i++) {
@@ -104,14 +104,14 @@ export class PublishArticleComponent implements OnInit {
 
     this.articlesService.createArticle(payload, this.publisherId, categoryId).subscribe((response: ResponseObject) => {
         this.articleId = response.details;
-        this.spinnerService.hide();
+
 
       },
       error1 => {
         this.error = true;
         this.errorMessage1 = error1.error.message;
         this.notificationService.sendMessage({message: this.errorMessage1, type: NotificationType.error})
-        this.spinnerService.hide();
+
 
       })
   }

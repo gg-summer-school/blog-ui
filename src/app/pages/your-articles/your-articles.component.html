@@ -40,7 +40,7 @@
           <td>{{article.categoryName}}</td>
           <td>{{article.price}} frs</td>
           <td>
-            <a title="view article" (click)="previewArticle(article.id)" class="fas fa-eye" id="preview" data-bs-toggle="modal" data-bs-target="#articlePreview" style="color: indigo" ></a>&nbsp;&nbsp;&nbsp;
+            <a title="view article" (click)="previewArticle(article.id, article.document)" class="fas fa-eye" id="preview"  style="color: indigo" ></a>&nbsp;&nbsp;&nbsp;
             <button class="btn btn-primary edit" (click)="edit(article.id, article.categoryId)"><i
               class="fa fa-edit 2px"></i> {{'YourArticles.Edit'| translate }}</button>
           </td>
@@ -67,19 +67,19 @@
 <br>
 
 
-<!-- Modal -->
-<div class="modal fade hide" id="articlePreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">View Article</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="app">
-          <iframe [src]="doc+'#toolbar=0' | safe" width="400" height="400" frameborder="0"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLabel">View Article</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <div id="app">-->
+<!--          <iframe [src]="doc+'#toolbar=0' | safe" width="400" height="400" frameborder="0"></iframe>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

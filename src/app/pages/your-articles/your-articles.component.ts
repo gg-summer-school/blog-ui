@@ -35,7 +35,7 @@ export class YourArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.publisherId= this.tokenStorage.getUser().id;
- 
+
     this.getArticlesByPublisher();
   }
 
@@ -70,18 +70,21 @@ export class YourArticlesComponent implements OnInit {
     this.router.navigate(['edit-article', id, catid]);
   }
 
-  previewArticle(id:string){
-    let article:ArticleDto;
-    for(let art of this.pubArticles){
-      if(art.id === id){
-        article =  art;
-        this.doc = article.document;
-         
-      }
-    }
+  // previewArticle(id:string){
+  //   let article:ArticleDto;
+  //   for(let art of this.pubArticles){
+  //     if(art.id === id){
+  //       article =  art;
+  //       this.doc = article.document;
+  //
+  //     }
+  //   }
+  //
+  //
+  // }
 
-
-  }
-
-
+ previewArticle(id: string, doc:string)
+ {
+   this.router.navigate(['/view-article', id, doc]);
+ }
 }
