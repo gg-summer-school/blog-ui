@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NotificationType } from '../model/NotificationMessage';
+import { NotificationMessageService } from '../services/Notification/notification-message.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
@@ -8,7 +10,7 @@ import { TokenStorageService } from '../services/token-storage.service';
 })
 export class PublisherGuard implements CanActivate {
  
-  constructor(private tokenStorageService: TokenStorageService, private router: Router){}
+  constructor(private tokenStorageService: TokenStorageService, private router: Router, private notificationService: NotificationMessageService){}
 
 
   canActivate(): boolean {
@@ -17,8 +19,8 @@ export class PublisherGuard implements CanActivate {
     if(role === 'ROLE_PUBLISHER') {
       return true;
     }else {
-      alert('You are not authorized to access this page');
-      this.router.navigate(['/user-admin'])
+      this.notificationService.sendMessage({message: "You are not authorized to access that page! That page is meant for the publisher", type: NotificationType.error})
+      this.router.navigate(['/users-article'])
       return false;
     }
   } 

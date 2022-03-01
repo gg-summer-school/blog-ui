@@ -1,16 +1,16 @@
 <div *ngIf="errorMessage != ''" class="alert alert-danger errorMessage" role="alert">
   <h4>{{ errorMessage }}</h4>
 </div>
-<div class="container">
+<div class="container main">
   <div class="left">
     <img src="../../../assets/signup.png">
   </div>
 
   <div class="right">
-    <div class="register-form">
+    <div class="register-form" style="margin-top: 0;">
       <div class="col-sm-10">
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form-items">
-          <h5><b>{{'Signup.Account'| translate }}</b></h5>
+          <h5 style="font-size: 16px;"><b>{{'Signup.Account'| translate }}</b></h5>
           <div class="form-group">
             <label>{{'Signup.Name'| translate }}</label>
             <input
@@ -19,10 +19,6 @@
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
             />
-            <span class="text-danger"
-                  *ngIf="(f.name.touched || submitted) && f.name.errors?.required">
-                {{'Signup.Required'| translate }}
-              </span>
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
               <div *ngIf="f.name.errors.required">{{'Signup.Required'| translate }}</div>
             </div>
@@ -35,10 +31,6 @@
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
             />
-            <span class="text-danger"
-                  *ngIf="(f.email.touched || submitted) && f.email.errors?.required">
-                {{'Signup.ERequired'| translate }}
-              </span>
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
               <div *ngIf="f.email.errors.required">{{'Signup.ERequired'| translate }}</div>
               <div *ngIf="f.email.errors.email">{{'Signup.Invalid'| translate }}</div>
@@ -53,10 +45,6 @@
               class="form-control"
               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
             />
-            <span class="text-danger"
-                  *ngIf="(f.password.touched || submitted) && f.password.errors?.required">
-                {{'Signup.PRequired'| translate }}
-              </span>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.required">{{'Signup.PRequired'| translate }}</div>
               <div *ngIf="f.password.errors.minlength">
@@ -82,12 +70,11 @@
           <br>
           <div class="form-group" *ngIf="toggleTextBox()">
             <label>Enter reasons for becoming a publisher</label>
-            <textarea rows="3" cols="40" class="form-control" formControlName="reason"></textarea>
+            <textarea rows="1" cols="40" class="form-control" formControlName="reason"></textarea>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-cl" [disabled]="signupForm.invalid"
-            >{{'Signup.Account'| translate }}</button>
+            <button type="submit" class="btn btn-cl">{{'Signup.Account'| translate }}</button>
           </div>
           <h5>{{'Signup.Account1'| translate }} &nbsp; <a routerLink="/login">{{'Signup.Login'| translate }}</a></h5>
         </form>

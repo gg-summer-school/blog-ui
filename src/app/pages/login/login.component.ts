@@ -54,9 +54,12 @@ get registerFormControl() {
 }
 
 onSubmit() {
-  this.submitted = true;
-  if (this.loginForm.valid) {
-
+  this.spinnerService.show();
+    this.submitted = true;
+    if (this.loginForm.invalid){
+      this.spinnerService.hide();
+      return;
+    }else
     this.spinnerService.show();
      this.authService.login(this.loginForm.value).subscribe((userData: UserDto) => {
       const user = userData.role;
@@ -79,6 +82,4 @@ onSubmit() {
     }
   );
   }
-}
-
 }

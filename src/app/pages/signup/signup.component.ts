@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit {
     this.spinnerService.show();
     this.submitted = true;
     if (this.signupForm.invalid){
+      this.spinnerService.hide();
       return;
     }
     else{

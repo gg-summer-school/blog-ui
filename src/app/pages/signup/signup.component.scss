@@ -1,9 +1,10 @@
 @import "../../Abstract/mixins";
 
-.container {
-  margin-top: 65px;
-  width: 100%;
-  height: 100%
+.container.main {
+  margin-top: 15px;
+  width: 60%;
+  height: 100%;
+  margin-top: 40px;
 }
 
 .container .left {
@@ -54,19 +55,20 @@
 .btn {
   width: 100%;
   background-color: indigo;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 10px;
   color: white;
 }
 
 h5 {
   text-align: center;
+  font-size: 14px;
 }
 
 .right form {
   margin-left: 40px;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 textarea
 {
@@ -110,5 +112,9 @@ h6 {
   }
 }
 .register-form{
-  padding-right: 1.7rem;
+  
+}
+
+.form-items {
+  margin: 0;
 }
